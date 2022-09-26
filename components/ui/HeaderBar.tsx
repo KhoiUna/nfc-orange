@@ -1,0 +1,131 @@
+import NavLink from "./NavLink";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+const HEADER_BAR_BG_COLOR = "bg-primary";
+const LOGO_WIDTH = 128;
+const LOGO_HEIGHT = 30;
+
+type NavLink = {
+  href: string;
+  text: string;
+};
+const NAV_LINKS: NavLink[] = [
+  // {
+  //   href: "/",
+  //   text: "",
+  // },
+];
+
+const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
+  return (
+    <>
+      {/* Dark overlay */}
+      <div
+        onClick={() => toggleMenu()}
+        className="cursor-pointer sm:hidden absolute left-0 top-0 bg-black opacity-[0.2] w-[100vw] h-[100vh]"
+      ></div>
+
+      {/* Menu sidebar */}
+      <div
+        className={`text-black drop-shadow-xl sm:hidden absolute top-0 right-0 ${HEADER_BAR_BG_COLOR} h-[100vh] w-[60%]`}
+      >
+        <div className="text-right">
+          <button
+            className="sm:hidden mr-3 mt-9 text-primary"
+            onClick={() => toggleMenu()}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+
+          {NAV_LINKS.map((item, index) => (
+            <p
+              key={index}
+              className="sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 decoration-black"
+              onClick={() => toggleMenu()}
+            >
+              <NavLink href={item.href} text={item.text} />
+            </p>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+const HeaderBar = () => {
+  const [menuOpened, setMenuOpened] = useState<Boolean>(false);
+  const toggleMenu = () => setMenuOpened(!menuOpened);
+
+  return (
+    <header
+      className={`flex items-center justify-center p-1 ${HEADER_BAR_BG_COLOR}`}
+    >
+      <nav
+        className={`flex text-slate-50 py-4 px-3 items-center justify-between`}
+      >
+        <Link href="/">
+          <div className="h-[30px]">
+            <Image
+              className="cursor-pointer"
+              src={"/vercel.svg"}
+              alt="nTap logo"
+              width={LOGO_WIDTH}
+              height={LOGO_HEIGHT}
+            />
+          </div>
+        </Link>
+
+        <div className="flex text-black">
+          {NAV_LINKS.length != 0 &&
+            NAV_LINKS.map((item, index) => (
+              <p
+                key={index}
+                className="hidden sm:block mx-5 text-lg underline underline-offset-4 decoration-black"
+                onClick={() => toggleMenu()}
+              >
+                <NavLink href={item.href} text={item.text} />
+              </p>
+            ))}
+        </div>
+
+        {NAV_LINKS.length != 0 && (
+          <button className="sm:hidden text-primary" onClick={toggleMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
+        )}
+
+        {menuOpened && <MenuSidebar toggleMenu={toggleMenu} />}
+      </nav>
+    </header>
+  );
+};
+
+export default HeaderBar;
