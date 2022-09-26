@@ -6,7 +6,11 @@ module.exports = {
     "./containers/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "rgb(22 101 52)",
+      },
+    },
   },
   plugins: [],
 };
