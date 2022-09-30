@@ -11,7 +11,7 @@ export default function Index() {
         <div>
           <Link href={"/register"}>
             <a className="text-[1.3rem] underline text-primary font-bold">
-              Sign up
+              Register
             </a>
           </Link>
 

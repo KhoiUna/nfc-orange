@@ -45,7 +45,7 @@ export default function Login() {
           <div className="my-5">
             <Link href={"/register"}>
               <a className="text-[1.3rem] underline text-primary font-bold">
-                Sign up
+                Register
               </a>
             </Link>
           </div>
