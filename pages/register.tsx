@@ -9,7 +9,7 @@ export default function Register() {
 
   return (
     <Layout title="Register">
-      <div className="text-center bg-slate-50 p-20 m-auto">
+      <div className="text-center bg-slate-50 p-20 m-auto min-h-[80vh]">
         <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
 
         <div className="max-w-[500px] m-auto">
