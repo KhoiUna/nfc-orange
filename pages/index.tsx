@@ -4,7 +4,7 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div className="text-center py-[20vh]">
+      <div className="text-center py-[20vh] min-h-[80vh]">
         <h1 className="text-[5rem] font-bold">nTap</h1>
         <h2 className="text-[2rem]">NFC for Professionals</h2>
 
