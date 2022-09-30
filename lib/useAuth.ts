@@ -2,11 +2,7 @@ import { useEffect } from "react";
 import Router from "next/router";
 import useSWR from "swr";
 import { swrFetcher } from "./swrFetcher";
-
-export type User = {
-  isAuthenticated: boolean;
-  email: string;
-};
+import { User } from "./session";
 
 interface UseAuthProps {
   redirectIfFound?: boolean;
@@ -22,8 +18,7 @@ export default function useAuth({
 
   useEffect(() => {
     if (!data?.isAuthenticated) Router.push("/login");
-    if (data?.isAuthenticated && redirectIfFound)
-      Router.push("/" + data.userType);
+    if (data?.isAuthenticated && redirectIfFound) Router.push("/profile");
   }, [data, redirectIfFound]);
 
   return { data };
