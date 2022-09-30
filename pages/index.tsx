@@ -15,7 +15,7 @@ export default function Index() {
             </a>
           </Link>
 
-          <Link href={"/register"}>
+          <Link href={"/login"}>
             <a className="text-[1.3rem] ml-10 underline text-primary font-bold">
               Login
             </a>
