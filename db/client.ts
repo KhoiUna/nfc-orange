@@ -2,7 +2,6 @@ import { Client } from "pg";
 
 const client = new Client({
   connectionString: process.env.DATABASE_URI,
-  ssl: process.env.NODE_ENV === "production" ? true : false,
 });
 
 client
