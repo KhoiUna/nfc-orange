@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { ApiResponse } from "./register";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 export const firebaseConfig = {
   apiKey: process.env.firebase_apiKey,
@@ -17,7 +19,11 @@ export async function upload(
 ) {
   try {
     // TODO: upload to Firebase
-    //
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Cloud Storage and get a reference to the service
+    const storage = getStorage(app);
 
     return res.json({ success: true, error: false });
   } catch (error) {
