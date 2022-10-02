@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
-import AppLayout from "../../containers/AppLayout";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
 
