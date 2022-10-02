@@ -27,7 +27,7 @@ export default function View() {
   if (error)
     return (
       <Layout title="View">
-        <div className="text-center py-[20vh] min-h-[80vh]">
+        <div className="text-center py-[20vh] min-h-[80vh] m-4">
           {error === "invalid" && (
             <h1 className="text-[3em] font-bold">Invalid card</h1>
           )}
@@ -35,7 +35,7 @@ export default function View() {
             <>
               <h1 className="text-[3em] font-bold">Card is not registered</h1>
               <Link href={`/register?c_id=${cardUuid}`}>
-                <h2 className="underline text-primary text-[2rem] m-3 cursor-pointer">
+                <h2 className="underline text-primary text-[2rem] mt-3 cursor-pointer">
                   Go here to register
                 </h2>
               </Link>
