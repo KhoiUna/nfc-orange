@@ -45,6 +45,15 @@ export default function View() {
       </Layout>
     );
 
+  if (success.length === 0)
+    return (
+      <Layout title="View">
+        <div className="text-center py-[20vh] min-h-[80vh] m-4">
+          <h1 className="text-[3em] font-bold">No resume added</h1>
+        </div>
+      </Layout>
+    );
+
   return (
     <Layout title="View">
       <div className="text-center py-[20vh] min-h-[80vh]">
