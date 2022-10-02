@@ -23,3 +23,10 @@ CREATE TABLE "cards" (
   PRIMARY KEY ("id")
 );
 
+CREATE TABLE "links" (
+  "user_id" INT,
+  "url" TEXT,
+  "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" TIMESTAMP NOT NULL,
+  PRIMARY KEY ("user_id")
+);
