@@ -20,7 +20,7 @@ export default function Profile() {
 
   const { data, error } = useSWR("/api/profile", swrFetcher);
   useEffect(() => {
-    const pdfURL = data.success[0].url;
+    const pdfURL = data?.success[0].url;
     setUploadedURL(pdfURL);
   }, [data]);
 
