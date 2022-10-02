@@ -15,8 +15,8 @@ const Layout = ({ children, title }: LayoutProps) => {
     <>
       <Head>
         <meta name="description" content="nTap | NFC for Professionals" />
-        <link rel="icon" href="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link rel="icon" href="/ntap.svg" />
+        <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
 
         <title>{pageTitle}</title>
       </Head>
@@ -31,14 +31,16 @@ const Layout = ({ children, title }: LayoutProps) => {
             <div>
               <Image
                 className="cursor-pointer"
-                src={"/vercel.svg"}
+                src={"/ntap.svg"}
                 alt="nTap logo"
                 width={128}
                 height={30}
               />
             </div>
 
-            <p className="text-white text-left m-3">{/* TODO: nTap intro */}</p>
+            <p className="text-white text-left m-3 text-lg">
+              NFC for Professionals
+            </p>
           </div>
 
           {/* TODO: contact */}

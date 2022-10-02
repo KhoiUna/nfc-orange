@@ -82,7 +82,7 @@ const HeaderBar = () => {
           <div className="h-[30px]">
             <Image
               className="cursor-pointer"
-              src={"/vercel.svg"}
+              src={"/ntap.svg"}
               alt="nTap logo"
               width={LOGO_WIDTH}
               height={LOGO_HEIGHT}

@@ -18,8 +18,8 @@ const AppLayout = ({ children, title }: LayoutProps) => {
     return (
       <Head>
         <meta name="description" content="nTap | NFC for Professionals" />
-        <link rel="icon" href="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link rel="icon" href="/ntap.svg" />
+        <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
 
         <title>nTap | ...</title>
       </Head>
@@ -29,8 +29,8 @@ const AppLayout = ({ children, title }: LayoutProps) => {
     <>
       <Head>
         <meta name="description" content="nTap | NFC for Professionals" />
-        <link rel="icon" href="/favicon.png" />
-        <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+        <link rel="icon" href="/ntap.svg" />
+        <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
 
         <title>{pageTitle}</title>
       </Head>
