@@ -3,10 +3,12 @@ lockfileVersion: 5.4
 specifiers:
   '@iconify/react': ^4.0.0
   '@types/bcrypt': ^5.0.0
+  '@types/multiparty': ^0.0.33
   '@types/node': 18.7.21
   '@types/pg': ^8.6.5
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  '@types/uuid': ^8.3.4
   autoprefixer: ^10.4.12
   bcrypt: ^5.0.1
   eslint: 8.24.0
@@ -22,6 +24,7 @@ specifiers:
   swr: ^1.3.0
   tailwindcss: ^3.1.8
   typescript: 4.8.3
+  uuid: ^9.0.0
 
 dependencies:
   bcrypt: 5.0.1
@@ -33,14 +36,17 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   swr: 1.3.0_react@18.2.0
+  uuid: 9.0.0
 
 devDependencies:
   '@iconify/react': 4.0.0_react@18.2.0
   '@types/bcrypt': 5.0.0
+  '@types/multiparty': 0.0.33
   '@types/node': 18.7.21
   '@types/pg': 8.6.5
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
+  '@types/uuid': 8.3.4
   autoprefixer: 10.4.12_postcss@8.4.16
   eslint: 8.24.0
   eslint-config-next: 12.3.1_7ilbxdl5iguzcjriqqcg2m5cku
@@ -939,6 +945,12 @@ packages:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
     dev: false
 
+  /@types/multiparty/0.0.33:
+    resolution: {integrity: sha512-Il6cJUpSqgojT7NxbVJUvXkCblm50/yEJYtblISDsNIeNYf4yMAhdizzidUk6h8pJ8yhwK/3Fkb+3Dwcgtwl8w==}
+    dependencies:
+      '@types/node': 18.7.21
+    dev: true
+
   /@types/node/17.0.45:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
     dev: false
@@ -990,6 +1002,10 @@ packages:
       '@types/mime': 3.0.1
       '@types/node': 18.7.21
     dev: false
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+    dev: true
 
   /@typescript-eslint/parser/5.38.0_7ilbxdl5iguzcjriqqcg2m5cku:
     resolution: {integrity: sha512-/F63giJGLDr0ms1Cr8utDAxP2SPiglaD6V+pCOcG35P2jCqdfR7uuEhz1GIC3oy4hkUF8xA1XSXmd9hOh/a5EA==}
@@ -3431,6 +3447,11 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /webcrypto-core/1.7.5:
     resolution: {integrity: sha512-gaExY2/3EHQlRNNNVSrbG2Cg94Rutl7fAaKILS1w8ZDhGxdFOaw6EbCfHIxPy9vt/xwp5o0VQAx9aySPF6hU1A==}
