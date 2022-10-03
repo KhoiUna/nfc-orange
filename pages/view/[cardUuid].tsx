@@ -59,10 +59,11 @@ export default function View() {
       <div className="text-center py-[20vh] min-h-[80vh]">
         {success.map((item: { url: string }) => (
           <div className="" key={item.url}>
-            <iframe
+            <object
               className="w-screen h-[70vh] m-auto"
-              src={item.url}
-            ></iframe>
+              type="application/pdf"
+              data={item.url}
+            />
           </div>
         ))}
       </div>
