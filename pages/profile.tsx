@@ -136,7 +136,10 @@ export default function Profile() {
 
       {uploadedURL && (
         <div className="mt-9">
-          <embed className="w-screen h-[70vh] m-auto" src={uploadedURL}></embed>
+          <iframe
+            className="w-screen h-[70vh] m-auto"
+            src={uploadedURL}
+          ></iframe>
         </div>
       )}
     </AppLayout>
