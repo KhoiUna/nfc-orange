@@ -108,38 +108,38 @@ export default function View() {
       </Layout>
     );
 
-  if (isAndroid)
-    return (
-      <Layout title="View">
-        <div className="text-center py-[20vh] min-h-[80vh]">
-          <meta
-            http-equiv="refresh"
-            content={`0; url = https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
-              success[0].url
-            )}`}
-          />
-        </div>
-      </Layout>
-    );
-
+  // if (isAndroid)
   return (
     <Layout title="View">
       <div className="text-center py-[20vh] min-h-[80vh]">
-        {success.map((item: { url: string }) => (
-          <div className="" key={item.url}>
-            <object
-              className="w-screen h-[70vh] m-auto"
-              type="application/pdf"
-              data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
-                item.url
-              )}`}
-            />
-          </div>
-        ))}
-
-        {/* TODO: remove code */}
-        {/* <canvas id="the-canvas"></canvas> */}
+        <meta
+          http-equiv="refresh"
+          content={`0; url = https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+            success[0].url
+          )}`}
+        />
       </div>
     </Layout>
   );
+
+  //   return (
+  //     <Layout title="View">
+  //       <div className="text-center py-[20vh] min-h-[80vh]">
+  //         {success.map((item: { url: string }) => (
+  //           <div className="" key={item.url}>
+  //             <object
+  //               className="w-screen h-[70vh] m-auto"
+  //               type="application/pdf"
+  //               data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+  //                 item.url
+  //               )}`}
+  //             />
+  //           </div>
+  //         ))}
+
+  //         {/* TODO: remove code */}
+  //         {/* <canvas id="the-canvas"></canvas> */}
+  //       </div>
+  //     </Layout>
+  //   );
 }
