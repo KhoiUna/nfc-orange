@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { isAndroid } from "react-device-detect";
 import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
@@ -107,6 +108,20 @@ export default function View() {
       </Layout>
     );
 
+  if (isAndroid)
+    return (
+      <Layout title="View">
+        <div className="text-center py-[20vh] min-h-[80vh]">
+          <meta
+            http-equiv="refresh"
+            content={`0; url = https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+              success[0].url
+            )}`}
+          />
+        </div>
+      </Layout>
+    );
+
   return (
     <Layout title="View">
       <div className="text-center py-[20vh] min-h-[80vh]">
@@ -122,6 +137,7 @@ export default function View() {
           </div>
         ))}
 
+        {/* TODO: remove code */}
         {/* <canvas id="the-canvas"></canvas> */}
       </div>
     </Layout>
