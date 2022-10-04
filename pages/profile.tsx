@@ -139,7 +139,9 @@ export default function Profile() {
           <object
             className="w-screen h-[70vh] m-auto"
             type="application/pdf"
-            data={uploadedURL}
+            data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+              uploadedURL
+            )}`}
           />
         </div>
       )}

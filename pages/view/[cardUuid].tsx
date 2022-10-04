@@ -14,9 +14,12 @@ export default function View() {
 
   const { data } = useSWR(cardUuid && `/api/view?c_id=${cardUuid}`, swrFetcher);
 
+  // TODO: Remove pdfjs code
   // useEffect(() => {
   //   if (data?.success.length > 0) {
-  //     const url = data.success[0].url;
+  //     const url =
+  //       "https://drive.google.com/viewerng/viewer?embedded=true&url=https://firebasestorage.googleapis.com/v0/b/ntap-6cc7b.appspot.com/o/resumes%2Ffa5cd5b9-84f2-46cb-a4b4-c806947893e6.pdf?alt=media&token=19362fd3-34ba-4f02-ad8f-356c66c82563" ||
+  //       data.success[0].url;
 
   //     GlobalWorkerOptions.workerSrc =
   //       "https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.worker.js";
@@ -112,7 +115,9 @@ export default function View() {
             <object
               className="w-screen h-[70vh] m-auto"
               type="application/pdf"
-              data={item.url}
+              data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+                item.url
+              )}`}
             />
           </div>
         ))}
