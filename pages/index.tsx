@@ -5,18 +5,17 @@ export default function Index() {
   return (
     <Layout title="Home">
       <div className="text-center py-[20vh] min-h-[80vh]">
-        <h1 className="text-[5rem] font-bold">nTap</h1>
-        <h2 className="text-[2rem]">NFC for Professionals</h2>
+        <h1 className="text-[3rem] font-bold">Welcome</h1>
 
         <div>
           <Link href={"/register"}>
-            <a className="text-[1.3rem] underline text-primary font-bold">
+            <a className="text-[1.3rem] underline text-primary font-bold px-5">
               Register
             </a>
           </Link>
 
           <Link href={"/login"}>
-            <a className="text-[1.3rem] ml-10 underline text-primary font-bold">
+            <a className="text-[1.3rem] underline text-primary font-bold px-5">
               Login
             </a>
           </Link>

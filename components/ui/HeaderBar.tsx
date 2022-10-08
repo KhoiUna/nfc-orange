@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const HEADER_BAR_BG_COLOR = "bg-primary";
-const LOGO_WIDTH = 128;
-const LOGO_HEIGHT = 30;
+export const LOGO_WIDTH = 150;
+export const LOGO_WIDTH_HEIGHT_RATIO = 4 / 15;
+export const LOGO_HEIGHT = LOGO_WIDTH * LOGO_WIDTH_HEIGHT_RATIO;
 
 type NavLink = {
   href: string;
