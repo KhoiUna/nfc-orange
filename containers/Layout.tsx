@@ -16,7 +16,7 @@ const Layout = ({ children, title }: LayoutProps) => {
   return (
     <>
       <Head>
-        <meta name="description" content="nTap | NFC for Professionals" />
+        <meta name="description" content="nTap" />
         <link rel="icon" href="/ntap.svg" />
         <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
 
