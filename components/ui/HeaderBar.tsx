@@ -2,6 +2,7 @@ import NavLink from "./NavLink";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Logo from "../Logo";
 
 const HEADER_BAR_BG_COLOR = "bg-primary";
 export const LOGO_WIDTH = 150;
@@ -80,14 +81,8 @@ const HeaderBar = () => {
         className={`flex text-slate-50 py-4 px-3 items-center justify-between`}
       >
         <Link href="/">
-          <div className="h-[30px]">
-            <Image
-              className="cursor-pointer"
-              src={"/ntap.svg"}
-              alt="nTap logo"
-              width={LOGO_WIDTH}
-              height={LOGO_HEIGHT}
-            />
+          <div className="w-[5rem] h-fit cursor-pointer">
+            <Logo />
           </div>
         </Link>
 

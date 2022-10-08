@@ -1,14 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
 import { ReactNode } from "react";
-import HeaderBar, { LOGO_HEIGHT, LOGO_WIDTH } from "../components/ui/HeaderBar";
+import Logo from "../components/Logo";
+import HeaderBar from "../components/ui/HeaderBar";
 
 interface LayoutProps {
   children: ReactNode | ReactNode[];
   title: string;
 }
-
-const ENLARGE_RATIO = 1.7;
 
 const Layout = ({ children, title }: LayoutProps) => {
   const pageTitle = `nTap | ${title}`;
@@ -30,14 +28,8 @@ const Layout = ({ children, title }: LayoutProps) => {
       <footer className="bg-primary" style={{ padding: "4rem" }}>
         <div className="flex flex-wrap justify-between items-start">
           <div className="flex flex-col flex-wrap justify-start max-w-lg">
-            <div className="w-fit">
-              <Image
-                className="cursor-pointer"
-                src={"/ntap.svg"}
-                alt="nTap logo"
-                width={LOGO_WIDTH * ENLARGE_RATIO}
-                height={LOGO_HEIGHT * ENLARGE_RATIO}
-              />
+            <div className="w-[7rem] h-fit">
+              <Logo />
             </div>
           </div>
 
