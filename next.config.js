@@ -2,16 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/register",
-        permanent: true,
-      },
-    ];
-  },
+  productionBrowserSourceMaps: false,
 };
 
 module.exports = nextConfig;
