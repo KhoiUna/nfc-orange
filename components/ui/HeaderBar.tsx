@@ -77,10 +77,10 @@ const HeaderBar = () => {
       className={`flex items-center justify-center p-1 ${HEADER_BAR_BG_COLOR}`}
     >
       <nav
-        className={`flex text-slate-50 py-4 px-3 items-center justify-between`}
+        className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >
         <Link href="/">
-          <div className="w-[5rem] h-fit cursor-pointer">
+          <div className="w-[10rem] h-fit cursor-pointer">
             <Logo />
           </div>
         </Link>

@@ -10,14 +10,14 @@ interface LayoutProps {
 }
 
 const ViewLayout = ({ children, title }: LayoutProps) => {
-  const pageTitle = `nTap | ${title}`;
+  const pageTitle = `NFC ORANGE | ${title}`;
 
   return (
     <>
       <Head>
-        <meta name="description" content="nTap" />
-        <link rel="icon" href="/ntap.svg" />
-        <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
+        <meta name="description" content="NFC ORANGE" />
+        <link rel="icon" href="/nfc-orange.svg" />
+        <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 
         <title>{pageTitle}</title>
       </Head>
@@ -27,7 +27,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
           className={`w-[100%] flex justify-center p-2 ${HEADER_BAR_BG_COLOR}`}
         >
           <Link href="/">
-            <div className="w-[5rem] h-fit cursor-pointer">
+            <div className="w-[10rem] pt-2 h-fit cursor-pointer">
               <Logo />
             </div>
           </Link>

@@ -9,14 +9,14 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, title }: LayoutProps) => {
-  const pageTitle = `nTap | ${title}`;
+  const pageTitle = `NFC ORANGE | ${title}`;
 
   return (
     <>
       <Head>
-        <meta name="description" content="nTap" />
-        <link rel="icon" href="/ntap.svg" />
-        <link rel="shortcut icon" href="/ntap.svg" type="image/x-icon" />
+        <meta name="description" content="NFC ORANGE" />
+        <link rel="icon" href="/nfc-orange.svg" />
+        <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 
         <title>{pageTitle}</title>
       </Head>
@@ -28,7 +28,7 @@ const Layout = ({ children, title }: LayoutProps) => {
       <footer className="bg-primary" style={{ padding: "4rem" }}>
         <div className="flex flex-wrap justify-between items-start">
           <div className="flex flex-col flex-wrap justify-start max-w-lg">
-            <div className="w-[7rem] h-fit">
+            <div className="w-[12rem] h-fit">
               <Logo />
             </div>
           </div>
