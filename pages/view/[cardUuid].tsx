@@ -143,7 +143,10 @@ export default function View() {
         <div className="flex justify-center m-4">
           <div className="flex items-center">
             <button
-              className="bg-primary p-2 rounded-lg drop-shadow-lg"
+              disabled={currentPage === 1}
+              className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
+                currentPage === 1 && "bg-[#a3a3a3]"
+              }`}
               onClick={() => handleClick("back")}
             >
               <span className="text-xl text-white">Back</span>
@@ -154,7 +157,10 @@ export default function View() {
               </p>
             </div>
             <button
-              className="bg-primary p-2 rounded-lg drop-shadow-lg"
+              disabled={currentPage === maxPagesInPDF}
+              className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
+                currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
+              }`}
               onClick={() => handleClick("next")}
             >
               <span className="text-xl text-white">Next</span>
@@ -163,7 +169,7 @@ export default function View() {
         </div>
 
         {success.map((item: { url: string }) => (
-          <div className="max-w-[100%] overflow-auto m-4" key={item.url}>
+          <div className="my-4 mx-6" key={item.url}>
             {/* TODO: remove old Google PDF Viewer  */}
             {/* <object
               className="w-screen h-[70vh] m-auto"
@@ -173,7 +179,20 @@ export default function View() {
               )}`}
             /> */}
 
-            <canvas id="the-canvas" className="m-auto w-[1000px]"></canvas>
+            <Link
+              href={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
+                item.url
+              )}`}
+              passHref
+            >
+              <a target={"_blank"} className="text-[blue] underline">
+                <p className="pb-2">View on another tab</p>
+              </a>
+            </Link>
+
+            <div className="max-w-[100%] overflow-auto">
+              <canvas id="the-canvas" className="m-auto w-[1000px]" />
+            </div>
           </div>
         ))}
       </div>
