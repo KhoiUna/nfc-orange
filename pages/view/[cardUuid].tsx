@@ -1,19 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-// import { isAndroid } from "react-device-detect";
 import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RenderParameters } from "pdfjs-dist/types/src/display/api";
+import ViewLayout from "../../containers/ViewLayout";
 
 export default function View() {
   const router = useRouter();
   const { cardUuid } = router.query;
 
   const { data } = useSWR(cardUuid && `/api/view?c_id=${cardUuid}`, swrFetcher);
+
+  const viewer = useRef(null);
 
   const [maxPagesInPDF, setMaxPagesInPDF] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -37,7 +39,7 @@ export default function View() {
           pdf.getPage(currentPage).then(function (page) {
             console.log("PDF page loaded");
 
-            const scale = 2.1;
+            const scale = 2;
             const viewport = page.getViewport({ scale });
 
             // Prepare canvas using PDF page dimensions
@@ -138,8 +140,8 @@ export default function View() {
   };
 
   return (
-    <Layout title="View">
-      <div className="text-center py-4 min-h-[80vh] bg-slate-100">
+    <ViewLayout title="View">
+      <div className="text-center py-4 min-h-[80vh]">
         <div className="flex justify-center m-4">
           <div className="flex items-center">
             <button
@@ -179,23 +181,16 @@ export default function View() {
               )}`}
             /> */}
 
-            <Link
-              href={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
-                item.url
-              )}`}
-              passHref
-            >
+            <Link href={item.url} passHref>
               <a target={"_blank"} className="text-[blue] underline">
                 <p className="pb-2">View on another tab</p>
               </a>
             </Link>
 
-            <div className="max-w-[100%] overflow-auto">
-              <canvas id="the-canvas" className="m-auto w-[1000px]" />
-            </div>
+            <canvas id="the-canvas" className="m-auto w-fit h-fit" />
           </div>
         ))}
       </div>
-    </Layout>
+    </ViewLayout>
   );
 }
