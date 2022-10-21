@@ -14,22 +14,22 @@ const Logo = () => (
       <path
         d="M34.686 16.2628C34.6861 11.5139 35.782 10.0528 40.5308 8.22624"
         stroke="white"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M29.3078 14.6784C29.3078 8.17839 30.8078 6.17841 37.3078 3.67837"
         stroke="white"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M75.8448 16.2628C75.8448 11.5139 74.7489 10.0528 70 8.22624"
         stroke="white"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M81.2231 14.6784C81.2231 8.17839 79.7231 6.17841 73.2231 3.67837"
         stroke="white"
-        stroke-width="2"
+        strokeWidth="2"
       />
     </g>
     <defs>
@@ -40,7 +40,7 @@ const Logo = () => (
         width="148"
         height="87"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
         <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
