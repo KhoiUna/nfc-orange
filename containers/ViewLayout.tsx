@@ -33,7 +33,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
           </Link>
         </header>
 
-        <main className="bg-slate-200 p-4">{children}</main>
+        <main className="m-4">{children}</main>
       </div>
     </>
   );
