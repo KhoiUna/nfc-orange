@@ -89,7 +89,7 @@ export default function Profile() {
 
   if (error)
     return (
-      <AppLayout title="Profile">
+      <AppLayout title="Dashboard">
         <div className="text-[1.8rem] text-center m-5">
           <h1>Failed to load</h1>
         </div>
@@ -98,7 +98,7 @@ export default function Profile() {
 
   if (!data)
     return (
-      <AppLayout title="Profile">
+      <AppLayout title="Dashboard">
         <div className="text-[1.8rem] text-center m-5">
           <TextLoader loadingText="Loading" />
         </div>
@@ -106,7 +106,7 @@ export default function Profile() {
     );
 
   return (
-    <AppLayout title="Profile">
+    <AppLayout title="Dashboard">
       <button className="text-[1.5rem] bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-4 text-blue-800 active:drop-shadow-none">
         {!isLoading && "Upload your document"}
         {isLoading && <TextLoader loadingText="Uploading" />}

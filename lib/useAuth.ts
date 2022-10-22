@@ -18,7 +18,7 @@ export default function useAuth({
 
   useEffect(() => {
     if (!data?.isAuthenticated) Router.push("/login");
-    if (data?.isAuthenticated && redirectIfFound) Router.push("/profile");
+    if (data?.isAuthenticated && redirectIfFound) Router.push("/dashboard");
   }, [data, redirectIfFound]);
 
   return { data };
