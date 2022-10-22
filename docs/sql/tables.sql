@@ -30,3 +30,13 @@ CREATE TABLE "links" (
   "updated_at" TIMESTAMP NOT NULL,
   PRIMARY KEY ("user_id")
 );
+
+CREATE TABLE "scan_history" (
+  "id" SERIAL,
+  "card_id" INT NOT NULL,
+  "scanned_at" TIMESTAMP NOT NULL,
+  PRIMARY KEY ("id"),
+  CONSTRAINT "FK_scan_history.card_id"
+    FOREIGN KEY ("card_id")
+      REFERENCES "cards"("id")
+);
