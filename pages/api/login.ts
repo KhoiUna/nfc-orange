@@ -4,7 +4,7 @@ import PasswordHelper from "../../helpers/PasswordHelper";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { sessionOptions } from "../../lib/session";
 
-export type ApiResponse = {
+type ApiResponse = {
   success: any;
   error: any;
 };
