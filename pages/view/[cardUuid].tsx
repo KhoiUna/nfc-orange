@@ -5,9 +5,10 @@ import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
 import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { RenderParameters } from "pdfjs-dist/types/src/display/api";
 import ViewLayout from "../../containers/ViewLayout";
+import { useCookies } from "react-cookie";
 
 export default function View() {
   const router = useRouter();
@@ -15,11 +16,10 @@ export default function View() {
 
   const { data } = useSWR(cardUuid && `/api/view?c_id=${cardUuid}`, swrFetcher);
 
-  const viewer = useRef(null);
-
   const [maxPagesInPDF, setMaxPagesInPDF] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Render PDF
   useEffect(() => {
     if (data?.success.length > 0) {
       const pdfURL = data.success[0].url;
@@ -68,6 +68,34 @@ export default function View() {
       );
     }
   }, [data, currentPage]);
+
+  // Update scan history
+  const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
+  useEffect(() => {
+    // If card is valid & cookies.viewed not set & code is production
+    if (
+      data?.success.length > 0 &&
+      !cookies.viewed &&
+      process.env.NEXT_PUBLIC_PRODUCTION === "true"
+    ) {
+      const cookieOption = {
+        maxAge: 60, // 1 minute
+        path: "/view",
+        secure: process.env.NEXT_PUBLIC_PRODUCTION === "true",
+        sameSite: true,
+        httpOnly: false,
+      };
+      setCookie("viewed", true, cookieOption);
+
+      // Fetch POST to api to update scan history
+      fetch(`/api/view/scan?c_id=${cardUuid}`, {
+        method: "POST",
+      })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.error(err));
+    }
+  }, [setCookie, cookies, data, cardUuid]);
 
   if (!data)
     return (
