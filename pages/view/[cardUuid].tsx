@@ -184,7 +184,7 @@ export default function View() {
             <Link href={item.url} passHref>
               <a target={"_blank"}>
                 <p className="pb-4 text-primary font-bold underline">
-                  View on another tab
+                  View or download on another tab
                 </p>
               </a>
             </Link>
