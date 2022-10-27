@@ -135,7 +135,7 @@ export default function View() {
     return (
       <Layout title="View">
         <div className="text-center py-[20vh] min-h-[80vh] m-4">
-          <h1 className="text-[3em] font-bold">No resume added</h1>
+          <h1 className="text-[3em] font-bold">No document uploaded</h1>
         </div>
       </Layout>
     );
