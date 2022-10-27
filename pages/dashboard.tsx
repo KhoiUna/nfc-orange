@@ -8,7 +8,7 @@ import TextLoader from "../components/ui/TextLoader";
 import useSWR from "swr";
 import { swrFetcher } from "../lib/swrFetcher";
 
-export default function Profile() {
+export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState({
     error: false,
