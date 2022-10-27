@@ -11,7 +11,10 @@ export type ApiResponse = {
 
 const isValid = async (registerInfo: RegisterInfo) => {
   const schema = Joi.object().keys({
-    email: Joi.string().email().required(),
+    first_name: Joi.string().trim().min(1).required(),
+    middle_name: Joi.string().trim().allow(null, ""),
+    last_name: Joi.string().trim().min(1).required(),
+    email: Joi.string().email().trim().required(),
     password: Joi.string().min(6).required(),
     confirm_password: Joi.ref("password"),
   });
@@ -41,10 +44,10 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { email, password } = req.body;
+    const { first_name, middle_name, last_name, email, password } = req.body;
     const { c_id } = req.query;
 
-    // Validate email & password
+    // Validate req.body from user
     const { success, error } = await isValid(req.body);
     if (error) return res.status(400).json({ success: false, error });
 
@@ -77,8 +80,16 @@ export default async function register(
 
     // Save user to db
     const savingUserResponse = await client.query(
-      "INSERT INTO users(email, password, updated_at, card_id) VALUES ($1, $2, $3, $4);",
-      [email, await PasswordHelper.hashPassword(password), new Date(), cardId]
+      "INSERT INTO users(email, password, updated_at, card_id, first_name, middle_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7);",
+      [
+        email,
+        await PasswordHelper.hashPassword(password),
+        new Date(),
+        cardId,
+        first_name,
+        middle_name,
+        last_name,
+      ]
     );
 
     if (!savingUserResponse) throw new Error("Error creating user");

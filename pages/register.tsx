@@ -5,12 +5,18 @@ import TextLoader from "../components/ui/TextLoader";
 import Layout from "../containers/Layout";
 
 export type RegisterInfo = {
+  first_name: string;
+  middle_name: string;
+  last_name: string;
   email: string;
   password: string;
   confirm_password: string;
 };
 
-const registerInfoInitialState = {
+const registerInfoInitialState: RegisterInfo = {
+  first_name: "",
+  middle_name: "",
+  last_name: "",
   email: "",
   password: "",
   confirm_password: "",
@@ -102,7 +108,7 @@ export default function Register({ showForm }: RegisterProps) {
 
   return (
     <Layout title="Register">
-      <div className="text-center bg-slate-50 p-20 m-auto min-h-[80vh]">
+      <div className="text-center bg-slate-50 p-10 m-auto min-h-[80vh]">
         <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
 
         <div className="max-w-[500px] m-auto">
@@ -111,9 +117,40 @@ export default function Register({ showForm }: RegisterProps) {
               <input
                 onChange={handleChange}
                 className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                type="text"
+                name="first_name"
+                placeholder="First Name*"
+                value={registerInfo.first_name}
+              />
+            </div>
+            <div>
+              <input
+                onChange={handleChange}
+                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                type="text"
+                name="middle_name"
+                placeholder="Middle Name"
+                value={registerInfo.middle_name}
+              />
+            </div>
+            <div>
+              <input
+                onChange={handleChange}
+                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                type="text"
+                name="last_name"
+                placeholder="Last Name*"
+                value={registerInfo.last_name}
+              />
+            </div>
+
+            <div>
+              <input
+                onChange={handleChange}
+                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email*"
                 value={registerInfo.email}
               />
             </div>
@@ -124,7 +161,7 @@ export default function Register({ showForm }: RegisterProps) {
                 className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Password*"
                 value={registerInfo.password}
               />
             </div>
@@ -135,7 +172,7 @@ export default function Register({ showForm }: RegisterProps) {
                 className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                 type="password"
                 name="confirm_password"
-                placeholder="Confirm password"
+                placeholder="Confirm password*"
                 value={registerInfo.confirm_password}
               />
             </div>
