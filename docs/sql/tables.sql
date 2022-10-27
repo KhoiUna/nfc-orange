@@ -11,7 +11,7 @@ CREATE TABLE "users" (
   "updated_at" TIMESTAMP NOT NULL,
   "card_id" INT NOT NULL,
   PRIMARY KEY ("id"),
-  FOREIGN KEY(id) REFERENCES cards(id)
+  FOREIGN KEY("card_id") REFERENCES cards(id)
 );
 
 CREATE TABLE "cards" (
