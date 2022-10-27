@@ -90,9 +90,9 @@ export default function Register({ showForm }: RegisterProps) {
           <h2 className="text-[1.8rem]">You should get our NFC card first</h2>
 
           <div className="my-2">
-            <Link href={"/login"}>
+            <Link href={"/contact"}>
               <a className="text-[1.3rem] underline text-primary font-bold">
-                Login
+                Contact Us
               </a>
             </Link>
           </div>
