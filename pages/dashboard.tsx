@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import TextLoader from "../components/ui/TextLoader";
 import useSWR from "swr";
 import { swrFetcher } from "../lib/swrFetcher";
+import greetUser from "../lib/greetUser";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,9 +20,12 @@ export default function Dashboard() {
   const [uploadedURL, setUploadedURL] = useState("");
 
   const { data, error } = useSWR("/api/profile", swrFetcher);
+
   useEffect(() => {
-    const pdfURL = data?.success[0]?.url;
-    setUploadedURL(pdfURL);
+    if (data) {
+      const pdfURL = data.success.links[0].url;
+      setUploadedURL(pdfURL);
+    }
   }, [data]);
 
   const handleUpload = async (event: SyntheticEvent) => {
@@ -107,7 +111,11 @@ export default function Dashboard() {
 
   return (
     <AppLayout title="Dashboard">
-      <button className="text-[1.5rem] bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-4 text-blue-800 active:drop-shadow-none">
+      <h2 className="text-3xl m-7">
+        {greetUser(data.success.user.first_name)}
+      </h2>
+
+      <button className="text-[1.5rem] bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-blue-800 active:drop-shadow-none">
         {!isLoading && "Upload your document"}
         {isLoading && <TextLoader loadingText="Uploading" />}
         <Icon
