@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Script from "next/script";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import Analytics from "../components/Analytics";
 import AppHeaderBar from "../components/ui/AppHeaderBar";
 import useAuth from "../lib/useAuth";
