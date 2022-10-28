@@ -111,20 +111,17 @@ export default function Dashboard() {
 
   return (
     <AppLayout title="Dashboard">
-      <h2 className="text-3xl m-7">
+      <h2 className="text-3xl mx-5 my-7">
         {greetUser(data.success.user.first_name)}
       </h2>
 
-      <button className="text-[1.5rem] bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-blue-800 active:drop-shadow-none">
+      <button className="text-xl bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-blue-800 active:drop-shadow-none">
         {!isLoading && "Upload your document"}
         {isLoading && <TextLoader loadingText="Uploading" />}
-        <Icon
-          className="text-[2.4rem] ml-2"
-          icon="ant-design:upload-outlined"
-        />
+        <Icon className="text-3xl ml-2" icon="ant-design:upload-outlined" />
         <input
           required
-          className="absolute opacity-0 cursor-pointer w-[100%]"
+          className="absolute left-0 opacity-0 cursor-pointer w-full"
           type="file"
           name="resume_upload"
           onChange={handleUpload}
@@ -145,7 +142,7 @@ export default function Dashboard() {
       {uploadedURL && (
         <div className="mt-9">
           <object
-            className="w-screen h-[70vh] m-auto"
+            className="w-full h-[70vh] m-auto"
             type="application/pdf"
             data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
               uploadedURL
