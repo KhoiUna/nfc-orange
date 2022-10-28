@@ -6,6 +6,11 @@ import { ApiResponse } from "./register";
 
 async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
+    if (!req.session.user?.isAuthenticated)
+      return res
+        .status(403)
+        .json({ success: false, error: "Not authenticated" });
+
     if (req.method !== "POST")
       return res
         .status(403)
