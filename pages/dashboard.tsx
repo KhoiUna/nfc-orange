@@ -111,7 +111,7 @@ export default function Dashboard() {
 
   return (
     <AppLayout title="Dashboard">
-      <h2 className="text-3xl mx-5 my-7">
+      <h2 className="text-xl mx-5 my-7">
         {greetUser(data.success.user.first_name)}
       </h2>
 
