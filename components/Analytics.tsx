@@ -25,7 +25,7 @@ const Analytics = () => {
       <Script
         async
         defer
-        data-website-id="47dbc34e-c03e-482a-8aef-2a0a8dd9fe90"
+        data-website-id="5f98fbbd-8df1-4837-b2cc-9595c3f4fb00"
         src="https://umami.khoiuna.info/umami.js"
       />
     </>
