@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Layout from "../containers/Layout";
 
 export default function Contact() {
@@ -13,18 +12,9 @@ export default function Contact() {
           <div className="my-3">
             <a
               className="text-lg underline text-primary font-bold"
-              href="mailto:r281000@rediffmail.com"
+              href="mailto:nfcorange1@gmail.com"
             >
-              r281000@rediffmail.com
-            </a>
-          </div>
-
-          <div className="my-3">
-            <a
-              className="text-lg underline text-primary font-bold"
-              href="mailto:nguyentuankhoi2112@gmail.com"
-            >
-              nguyentuankhoi2112@gmail.com
+              nfcorange1@gmail.com
             </a>
           </div>
         </div>
