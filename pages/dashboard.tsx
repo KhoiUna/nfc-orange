@@ -22,7 +22,7 @@ export default function Dashboard() {
   const { data, error } = useSWR("/api/profile", swrFetcher);
 
   useEffect(() => {
-    if (data) {
+    if (data?.success.links[0]?.url) {
       const pdfURL = data.success.links[0].url;
       setUploadedURL(pdfURL);
     }
@@ -136,6 +136,12 @@ export default function Dashboard() {
           } text-[1.3rem] p-2 font-bold my-1 text-center`}
         >
           {status.text}
+        </p>
+      )}
+
+      {!uploadedURL && (
+        <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
+          No document uploaded
         </p>
       )}
 
