@@ -150,7 +150,7 @@ export default function View() {
   //     <Layout title="View">
   //       <div className="text-center py-[20vh] min-h-[80vh]">
   //         <meta
-  //           http-equiv="refresh"
+  //           httpEquiv="refresh"
   //           content={`0; url = https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
   //             success[0].url
   //           )}`}

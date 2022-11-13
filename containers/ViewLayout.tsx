@@ -17,7 +17,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
     <>
       <Head>
         <meta charSet="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="NFC ORANGE" />
         <link rel="icon" href="/nfc-orange.svg" />
         <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
