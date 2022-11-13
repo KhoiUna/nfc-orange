@@ -116,7 +116,7 @@ export default function Dashboard() {
       </h2>
 
       <button className="text-xl bg-blue-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-blue-800 active:drop-shadow-none">
-        {!isLoading && "Upload your document"}
+        {!isLoading && "Upload your PDF"}
         {isLoading && <TextLoader loadingText="Uploading" />}
         <Icon className="text-3xl ml-2" icon="ant-design:upload-outlined" />
         <input
@@ -141,7 +141,7 @@ export default function Dashboard() {
 
       {!uploadedURL && (
         <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
-          No document uploaded
+          No PDF uploaded
         </p>
       )}
 
