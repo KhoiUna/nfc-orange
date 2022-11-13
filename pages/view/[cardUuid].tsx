@@ -18,9 +18,12 @@ export default function View() {
 
   const [maxPagesInPDF, setMaxPagesInPDF] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [pdfIsLoading, setPDFIsLoading] = useState(false);
 
   // Render PDF
   useEffect(() => {
+    setPDFIsLoading(true);
+
     if (data?.success.length > 0) {
       const pdfURL = data.success[0].url;
 
@@ -58,6 +61,7 @@ export default function View() {
             const renderTask = page.render(renderContext as RenderParameters);
             renderTask.promise.then(function () {
               console.log("PDF rendered");
+              setPDFIsLoading(false);
             });
           });
         },
@@ -200,15 +204,6 @@ export default function View() {
 
         {success.map((item: { url: string }) => (
           <div className="my-4 mx-6" key={item.url}>
-            {/* TODO: remove old Google PDF Viewer  */}
-            {/* <object
-              className="w-screen h-[70vh] m-auto"
-              type="application/pdf"
-              data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
-                item.url
-              )}`}
-            /> */}
-
             <Link href={item.url} passHref>
               <a target={"_blank"}>
                 <p className="pb-4 text-primary font-bold underline">
@@ -217,6 +212,11 @@ export default function View() {
               </a>
             </Link>
 
+            {pdfIsLoading && (
+              <div className="font-bold">
+                <TextLoader loadingText="Loading PDF" />
+              </div>
+            )}
             <canvas id="the-canvas" className="m-auto w-fit h-fit" />
           </div>
         ))}
