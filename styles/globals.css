@@ -7,3 +7,14 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
+
+#text-layer {
+  background-color: #fff;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+#text-layer span {
+  font-size: large !important;
+}

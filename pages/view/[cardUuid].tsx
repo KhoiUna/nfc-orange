@@ -4,7 +4,7 @@ import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
-import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
+import { getDocument, GlobalWorkerOptions, renderTextLayer } from "pdfjs-dist";
 import { useEffect, useState } from "react";
 import { RenderParameters } from "pdfjs-dist/types/src/display/api";
 import ViewLayout from "../../containers/ViewLayout";
@@ -39,25 +39,21 @@ export default function View() {
           pdf.getPage(currentPage).then(function (page) {
             console.log("PDF page loaded");
 
-            const scale = 2;
+            const scale = 1;
             const viewport = page.getViewport({ scale });
 
-            // Prepare canvas using PDF page dimensions
-            const canvas = document.getElementById(
-              "the-canvas"
-            ) as HTMLCanvasElement;
-            const context = canvas.getContext("2d");
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            const renderTask = page.getTextContent();
+            renderTask.then((textContext) => {
+              const textLayerDiv = document.getElementById(
+                "text-layer"
+              ) as HTMLDivElement;
 
-            // Render PDF page into canvas context
-            const renderContext = {
-              canvasContext: context,
-              viewport: viewport,
-            };
-            const renderTask = page.render(renderContext as RenderParameters);
-            renderTask.promise.then(function () {
-              console.log("PDF rendered");
+              renderTextLayer({
+                textContent: textContext,
+                container: textLayerDiv,
+                viewport,
+                textDivs: [],
+              });
             });
           });
         },
@@ -200,15 +196,6 @@ export default function View() {
 
         {success.map((item: { url: string }) => (
           <div className="my-4 mx-6" key={item.url}>
-            {/* TODO: remove old Google PDF Viewer  */}
-            {/* <object
-              className="w-screen h-[70vh] m-auto"
-              type="application/pdf"
-              data={`https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURI(
-                item.url
-              )}`}
-            /> */}
-
             <Link href={item.url} passHref>
               <a target={"_blank"}>
                 <p className="pb-4 text-primary font-bold underline">
@@ -217,7 +204,7 @@ export default function View() {
               </a>
             </Link>
 
-            <canvas id="the-canvas" className="m-auto w-fit h-fit" />
+            <div id="text-layer"></div>
           </div>
         ))}
       </div>
