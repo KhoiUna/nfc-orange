@@ -4,8 +4,8 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div className="text-center py-[20vh] min-h-[80vh]">
-        <h1 className="text-[3rem] font-bold">Welcome</h1>
+      <div id="home-bg" className="text-center py-[20vh] min-h-[80vh] ">
+        {/* <h1 className="text-[3rem] font-bold">Welcome</h1>
 
         <div className="my-3">
           <Link href={"/contact"}>
@@ -27,7 +27,7 @@ export default function Index() {
               Login
             </a>
           </Link>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
