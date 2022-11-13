@@ -13,10 +13,18 @@ type NavLink = {
   text: string;
 };
 const NAV_LINKS: NavLink[] = [
-  // {
-  //   href: "/",
-  //   text: "",
-  // },
+  {
+    href: "/contact",
+    text: "Contact",
+  },
+  {
+    href: "/register",
+    text: "Register",
+  },
+  {
+    href: "/login",
+    text: "Login",
+  },
 ];
 
 const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
@@ -30,11 +38,11 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
 
       {/* Menu sidebar */}
       <div
-        className={`text-black drop-shadow-xl sm:hidden absolute top-0 right-0 ${HEADER_BAR_BG_COLOR} h-[100vh] w-[60%]`}
+        className={`z-2 text-black drop-shadow-xl sm:hidden absolute top-0 right-0 ${HEADER_BAR_BG_COLOR} h-[100vh] w-[60%]`}
       >
         <div className="text-right">
           <button
-            className="sm:hidden mr-3 mt-9 text-primary"
+            className="sm:hidden mr-5 mt-6 text-white"
             onClick={() => toggleMenu()}
           >
             <svg
@@ -56,7 +64,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
           {NAV_LINKS.map((item, index) => (
             <p
               key={index}
-              className="sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 decoration-black"
+              className="sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 decoration-white text-white"
               onClick={() => toggleMenu()}
             >
               <NavLink href={item.href} text={item.text} />
@@ -73,9 +81,7 @@ const HeaderBar = () => {
   const toggleMenu = () => setMenuOpened(!menuOpened);
 
   return (
-    <header
-      className={`flex items-center justify-center p-1 ${HEADER_BAR_BG_COLOR}`}
-    >
+    <header className={`p-2 ${HEADER_BAR_BG_COLOR}`}>
       <nav
         className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >
@@ -90,7 +96,7 @@ const HeaderBar = () => {
             NAV_LINKS.map((item, index) => (
               <p
                 key={index}
-                className="hidden sm:block mx-5 text-lg underline underline-offset-4 decoration-black"
+                className="hidden sm:block mx-5 text-lg underline underline-offset-4 decoration-white text-white font-semibold"
                 onClick={() => toggleMenu()}
               >
                 <NavLink href={item.href} text={item.text} />
@@ -99,7 +105,7 @@ const HeaderBar = () => {
         </div>
 
         {NAV_LINKS.length != 0 && (
-          <button className="sm:hidden text-primary" onClick={toggleMenu}>
+          <button className="sm:hidden text-white pb-1" onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
