@@ -9,9 +9,15 @@
 }
 
 #home-bg {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), #dc75008a),
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7),
+      rgba(220, 117, 0, 0.623)
+    ),
     url(/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
 }

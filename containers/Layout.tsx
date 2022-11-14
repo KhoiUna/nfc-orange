@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Script from "next/script";
 import { ReactNode } from "react";
 import Analytics from "../components/Analytics";
 import Logo from "../components/Logo";
@@ -28,7 +27,7 @@ const Layout = ({ children, title }: LayoutProps) => {
 
       <Analytics />
 
-      <HeaderBar />
+      <HeaderBar title={title} />
 
       <main>{children}</main>
 
