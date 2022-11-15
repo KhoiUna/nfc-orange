@@ -91,16 +91,27 @@ export default function Register({ showForm }: RegisterProps) {
   if (!showForm)
     return (
       <Layout title="Register">
-        <div className="text-center bg-slate-50 p-20 m-auto min-h-[80vh]">
-          <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
-          <h2 className="text-[1.8rem]">You should get our NFC card first</h2>
-
-          <div className="my-2">
-            <Link href={"/contact"}>
-              <a className="text-[1.3rem] underline text-primary font-bold">
-                Contact Us
-              </a>
-            </Link>
+        <div
+          id="parallax"
+          className="text-center bg-slate-50 p-6 m-auto min-h-[80vh]"
+        >
+          <div className="w-full p-6 mt-[7rem] rounded-lg text-white">
+            <h1
+              className="text-[2.5rem] font-bold mx-auto my-3"
+              style={{
+                textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              Register
+            </h1>
+            <h2
+              className="text-[1.8rem]"
+              style={{
+                textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              Contact us to get your card
+            </h2>
           </div>
         </div>
       </Layout>
@@ -108,102 +119,107 @@ export default function Register({ showForm }: RegisterProps) {
 
   return (
     <Layout title="Register">
-      <div className="text-center bg-slate-50 p-10 m-auto min-h-[80vh]">
-        <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
+      <div
+        id="parallax"
+        className="text-center bg-slate-50 p-6 m-auto min-h-[80vh]"
+      >
+        <div className="bg-white w-full p-6 mt-[5rem] rounded-lg max-w-[450px] mx-auto">
+          <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
 
-        <div className="max-w-[500px] m-auto">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="text"
-                name="first_name"
-                placeholder="First Name*"
-                value={registerInfo.first_name}
-              />
-            </div>
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="text"
-                name="middle_name"
-                placeholder="Middle Name"
-                value={registerInfo.middle_name}
-              />
-            </div>
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="text"
-                name="last_name"
-                placeholder="Last Name*"
-                value={registerInfo.last_name}
-              />
-            </div>
+          <div className="max-w-[500px] m-auto">
+            <form onSubmit={handleSubmit}>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="text"
+                  name="first_name"
+                  placeholder="First Name*"
+                  value={registerInfo.first_name}
+                />
+              </div>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="text"
+                  name="middle_name"
+                  placeholder="Middle Name"
+                  value={registerInfo.middle_name}
+                />
+              </div>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="text"
+                  name="last_name"
+                  placeholder="Last Name*"
+                  value={registerInfo.last_name}
+                />
+              </div>
 
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="email"
-                name="email"
-                placeholder="Email*"
-                value={registerInfo.email}
-              />
-            </div>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="email"
+                  name="email"
+                  placeholder="Email*"
+                  value={registerInfo.email}
+                />
+              </div>
 
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="password"
-                name="password"
-                placeholder="Password*"
-                value={registerInfo.password}
-              />
-            </div>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="password"
+                  name="password"
+                  placeholder="Password*"
+                  value={registerInfo.password}
+                />
+              </div>
 
-            <div>
-              <input
-                onChange={handleChange}
-                className="border-2 m-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                type="password"
-                name="confirm_password"
-                placeholder="Confirm password*"
-                value={registerInfo.confirm_password}
-              />
-            </div>
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="password"
+                  name="confirm_password"
+                  placeholder="Confirm password*"
+                  value={registerInfo.confirm_password}
+                />
+              </div>
 
-            <div className="my-5 drop-shadow-lg">
-              <button
-                className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black flex m-auto"
-                type="submit"
-              >
-                {!isLoading && "Submit"}
-                {isLoading && <TextLoader loadingText="Submitting" />}
-              </button>
-
-              {status.text && (
-                <p
-                  className={`${
-                    status.error === true ? "text-red-800" : "text-green-800"
-                  } text-[1.3rem] p-2 font-bold my-1`}
+              <div className="my-5 drop-shadow-lg">
+                <button
+                  className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black flex m-auto"
+                  type="submit"
                 >
-                  {status.text}
-                </p>
-              )}
-            </div>
-          </form>
+                  {!isLoading && "Submit"}
+                  {isLoading && <TextLoader loadingText="Submitting" />}
+                </button>
 
-          <div>
-            <Link href={"/login"}>
-              <a className="text-[1.3rem] underline text-primary font-bold">
-                Login
-              </a>
-            </Link>
+                {status.text && (
+                  <p
+                    className={`${
+                      status.error === true ? "text-red-800" : "text-green-800"
+                    } text-[1.3rem] p-2 font-bold my-1`}
+                  >
+                    {status.text}
+                  </p>
+                )}
+              </div>
+            </form>
+
+            <div>
+              <Link href={"/login"}>
+                <a className="text-[1.3rem] underline text-primary font-bold">
+                  Login
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
