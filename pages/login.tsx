@@ -67,11 +67,8 @@ export default function Login() {
 
   return (
     <Layout title="Login">
-      <div
-        id="parallax"
-        className="text-center bg-slate-50 p-6 m-auto min-h-[80vh]"
-      >
-        <div className="bg-white w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
+      <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
+        <div className="bg-slate-50 w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
           <h1 className="text-[2.5rem] font-bold mx-auto my-3">Login</h1>
 
           <div className="max-w-[500px] m-auto">

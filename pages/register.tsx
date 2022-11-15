@@ -112,12 +112,6 @@ export default function Register({ showForm }: RegisterProps) {
             >
               Contact us to get your card
             </h2>
-
-            <Link href={"/contact"}>
-              <button className="font-bold text-primary bg-white rounded-lg m-4 text-[1.2rem] p-2 underline underline-offset-4">
-                Contact us
-              </button>
-            </Link>
           </div>
         </div>
       </Layout>
@@ -125,11 +119,8 @@ export default function Register({ showForm }: RegisterProps) {
 
   return (
     <Layout title="Register">
-      <div
-        id="parallax"
-        className="text-center bg-slate-50 p-6 m-auto min-h-[80vh]"
-      >
-        <div className="bg-white w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
+      <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
+        <div className="bg-slate-50 w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
           <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
 
           <div className="max-w-[500px] m-auto">
