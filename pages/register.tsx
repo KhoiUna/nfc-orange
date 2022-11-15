@@ -123,7 +123,7 @@ export default function Register({ showForm }: RegisterProps) {
         id="parallax"
         className="text-center bg-slate-50 p-6 m-auto min-h-[80vh]"
       >
-        <div className="bg-white w-full p-6 mt-[5rem] rounded-lg max-w-[450px] mx-auto">
+        <div className="bg-white w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
           <h1 className="text-[2.5rem] font-bold mx-auto my-3">Register</h1>
 
           <div className="max-w-[500px] m-auto">
