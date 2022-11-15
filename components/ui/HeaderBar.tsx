@@ -14,8 +14,8 @@ type NavLink = {
 };
 const NAV_LINKS: NavLink[] = [
   {
-    href: "/contact",
-    text: "Contact",
+    href: "/about",
+    text: "About Us",
   },
   {
     href: "/register",
