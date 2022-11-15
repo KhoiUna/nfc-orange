@@ -35,7 +35,7 @@
       rgba(0, 0, 0, 0.7),
       rgba(220, 117, 0, 0.623)
     ),
-    url(/background.png);
+    url(/images/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
