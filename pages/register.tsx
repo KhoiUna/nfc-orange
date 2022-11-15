@@ -112,6 +112,12 @@ export default function Register({ showForm }: RegisterProps) {
             >
               Contact us to get your card
             </h2>
+
+            <Link href={"/contact"}>
+              <button className="font-bold text-primary bg-white rounded-lg m-4 text-[1.2rem] p-2 underline underline-offset-4">
+                Contact us
+              </button>
+            </Link>
           </div>
         </div>
       </Layout>
