@@ -79,7 +79,7 @@ const MenuSidebar = ({
               <Fragment key={index}>
                 <p
                   key={index}
-                  className={`sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 ${TEXT_DECORATION_COLOR}`}
+                  className={`sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}
                   onClick={() => toggleMenu()}
                 >
                   <NavLink href={item.href} text={item.text} />
@@ -140,7 +140,7 @@ const AppHeaderBar = ({
           {navLinks.map((item, index) => (
             <Fragment key={index}>
               <p
-                className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR}`}
+                className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}
                 onClick={() => toggleMenu()}
               >
                 <NavLink href={item.href} text={item.text} />
