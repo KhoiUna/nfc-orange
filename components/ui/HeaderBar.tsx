@@ -1,5 +1,5 @@
 import NavLink from "./NavLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "../Logo";
 
@@ -83,12 +83,22 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
   const [menuOpened, setMenuOpened] = useState<Boolean>(false);
   const toggleMenu = () => setMenuOpened(!menuOpened);
 
+  useEffect(() => {
+    const header = document.querySelector("header") as HTMLHeadingElement;
+    window.addEventListener("scroll", () => {
+      const html = document.querySelector("html") as HTMLHtmlElement;
+
+      if (html.scrollTop === 0)
+        return (header.style.animation =
+          "1s ease 0s 1 normal forwards running colorFadeOut");
+
+      return (header.style.animation =
+        "1s ease 0s 1 normal forwards running colorFadeIn");
+    });
+  }, []);
+
   return (
-    <header
-      className={`p-2 ${
-        title === "Home" ? "fixed w-full" : HEADER_BAR_BG_COLOR
-      }`}
-    >
+    <header className={`p-2 fixed w-full z-10`}>
       <nav
         className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >

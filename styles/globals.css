@@ -4,11 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --theme-bg-color: #dc7700;
+}
+
 * {
   font-family: "Montserrat", sans-serif;
 }
 
-#home-bg {
+@keyframes colorFadeIn {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--theme-bg-color);
+  }
+}
+@keyframes colorFadeOut {
+  from {
+    background-color: var(--theme-bg-color);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+#parallax {
   background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.7),
