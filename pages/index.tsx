@@ -4,30 +4,15 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div id="home-bg" className="text-center py-[20vh] min-h-[80vh] ">
-        {/* <h1 className="text-[3rem] font-bold">Welcome</h1>
-
-        <div className="my-3">
-          <Link href={"/contact"}>
-            <a className="text-[1.3rem] underline text-primary font-bold px-5">
-              Get your card
-            </a>
-          </Link>
-        </div>
-
-        <div className="mt-4">
-          <Link href={"/register"}>
-            <a className="text-[1.3rem] underline text-primary font-bold px-5">
-              Register
-            </a>
-          </Link>
-
-          <Link href={"/login"}>
-            <a className="text-[1.3rem] underline text-primary font-bold px-5">
-              Login
-            </a>
-          </Link>
-        </div> */}
+      <div id="parallax" className="text-center py-[20vh] min-h-[80vh]">
+        <h1
+          className="text-6xl m-8 mt-[7.5rem] text-white font-bold"
+          style={{
+            textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+          }}
+        >
+          A tap into your world
+        </h1>
       </div>
     </Layout>
   );
