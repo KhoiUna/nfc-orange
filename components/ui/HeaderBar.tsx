@@ -19,7 +19,7 @@ const NAV_LINKS: NavLink[] = [
   },
   {
     href: "/about",
-    text: "About Us",
+    text: "About us",
   },
   {
     href: "/register",
