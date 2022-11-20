@@ -19,8 +19,8 @@ const Shop = () => {
             />
           </div>
 
-          <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-16 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg">
-            $15
+          <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg">
+            $15 / card
           </button>
 
           <p className="text-[1.2rem] mt-2 font-semibold italic">
