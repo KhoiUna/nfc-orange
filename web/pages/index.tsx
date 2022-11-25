@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../containers/Layout";
 
 export default function Index() {
@@ -21,6 +22,12 @@ export default function Index() {
             src={"/videos/intro-video.mp4"}
             controls
           ></video>
+
+          <Link href={"/shop"}>
+            <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg">
+              Get your card
+            </button>
+          </Link>
         </div>
       </div>
     </Layout>

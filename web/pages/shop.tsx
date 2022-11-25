@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Layout from "../containers/Layout";
 import productImage from "../public/images/product.png";
+import { Icon } from "@iconify/react";
 
 const Shop = () => {
   return (
@@ -19,13 +20,14 @@ const Shop = () => {
             />
           </div>
 
-          <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg">
-            $15 / card
+          <button className="flex items-center justify-around text-[1.5rem] bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg">
+            <span className="border-r-2 px-4 font-bold">$15 / card</span>
+            <Icon className="ml-3" icon="material-symbols:add-shopping-cart" />
           </button>
 
-          <p className="text-[1.2rem] mt-2 font-semibold italic">
+          {/* <p className="text-[1.2rem] mt-2 font-semibold italic">
             Contact us to purchase
-          </p>
+          </p> */}
         </div>
       </div>
     </Layout>
