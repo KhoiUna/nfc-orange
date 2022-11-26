@@ -20,14 +20,6 @@ const Analytics = () => {
                     gtag('config', 'G-JHYW0T0JLC');`,
         }}
       />
-
-      {/* umami analytics */}
-      <Script
-        async
-        defer
-        data-website-id="5f98fbbd-8df1-4837-b2cc-9595c3f4fb00"
-        src="https://umami.khoiuna.info/umami.js"
-      />
     </>
   );
 };
