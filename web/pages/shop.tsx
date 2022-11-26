@@ -2,9 +2,19 @@ import Image from "next/image";
 import Layout from "../containers/Layout";
 import productImage from "../public/images/product.png";
 import { Icon } from "@iconify/react";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
+import TextLoader from "../components/ui/TextLoader";
 
-const orderFormInitialState = {
+export type OrderInfo = {
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  shipping_address: string;
+};
+
+const orderFormInitialState: OrderInfo = {
   first_name: "",
   middle_name: "",
   last_name: "",
@@ -24,16 +34,55 @@ const Shop = () => {
   const [orderForm, setOrderForm] = useState(orderFormInitialState);
   const handleChange = (event: SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
+    setStatus({
+      error: false,
+      text: "",
+    });
     setOrderForm((prev) => ({
       ...prev,
       [target.name]: target.value,
     }));
   };
 
-  const handleSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-    // TODO: submit form -> send to Discord -> Response: We will process your order and send you a secure payment link
-    console.log(orderForm);
+  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState({
+    error: false,
+    text: "",
+  });
+  const handleSubmit = async (event: SyntheticEvent) => {
+    try {
+      event.preventDefault();
+      setIsLoading(true);
+
+      const { error, success } = await (
+        await fetch("/api/submit-order", {
+          method: "POST",
+          headers: new Headers({
+            "content-type": "application/json",
+          }),
+          body: JSON.stringify(orderForm),
+        })
+      ).json();
+
+      if (error) throw error;
+
+      setStatus({
+        error: false,
+        text: success,
+      });
+      setIsLoading(false);
+      setOrderForm(orderFormInitialState);
+
+      return true;
+    } catch (error: any) {
+      console.error(error);
+      setStatus({
+        error: true,
+        text: error,
+      });
+      setIsLoading(false);
+      return false;
+    }
   };
 
   return (
@@ -154,7 +203,6 @@ const Shop = () => {
                   <input
                     className="mt-1 p-2 border-2 rounded-lg"
                     type="tel"
-                    pattern="[0-9]{10}"
                     name="phone_number"
                     id="phone_number"
                     placeholder="Phone Number*"
@@ -185,8 +233,19 @@ const Shop = () => {
                   type="submit"
                   className="font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto hover:shadow-lg"
                 >
-                  Submit my order
+                  {!isLoading && "Submit my order"}
+                  {isLoading && <TextLoader loadingText="Submitting" />}
                 </button>
+
+                {status.text && (
+                  <p
+                    className={`${
+                      status.error === true ? "text-red-800" : "text-green-800"
+                    } text-[1rem] p-2 font-bold mt-2`}
+                  >
+                    {status.text}
+                  </p>
+                )}
               </div>
             </form>
           </div>
