@@ -46,6 +46,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
       >
         <div className="text-right">
           <button
+            type="button"
             className="sm:hidden mr-5 mt-6 text-white"
             onClick={() => toggleMenu()}
           >
@@ -126,7 +127,11 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
         </div>
 
         {NAV_LINKS.length != 0 && (
-          <button className="sm:hidden text-white pb-1" onClick={toggleMenu}>
+          <button
+            type="button"
+            className="sm:hidden text-white pb-1"
+            onClick={toggleMenu}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
