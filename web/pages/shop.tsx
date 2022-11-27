@@ -88,8 +88,15 @@ const Shop = () => {
   return (
     <Layout title="Pricing">
       <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
-        <div className="bg-slate-50 opacity-[0.9] w-fit p-6 mt-[7rem] rounded-lg mx-auto">
-          <h1 className="text-[2.5rem] font-bold mx-auto my-3 mb-6">Product</h1>
+        <div className="w-fit p-6 mt-[3rem] rounded-lg mx-auto">
+          <h1
+            className="text-[2.5rem] font-bold mx-auto my-3 mb-6 text-white"
+            style={{
+              textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            Product
+          </h1>
 
           <div>
             <Image
@@ -101,11 +108,16 @@ const Shop = () => {
             />
           </div>
 
-          <p className="mt-2 text-[1.3rem] font-bold text-red-600">
+          <p
+            className="mt-2 text-[1.3rem] font-bold text-white"
+            style={{
+              textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+            }}
+          >
             *Limited time offer 40% off
           </p>
           <button
-            className="flex items-center justify-around text-[1.5rem] bg-[#ffa463] w-fit py-2 px-6 text-black rounded-[100px] cursor-pointer mt-2 mx-auto hover:shadow-lg"
+            className="flex items-center justify-around text-[1.5rem] bg-[#ffa463] w-fit py-2 px-6 text-black rounded-[100px] cursor-pointer mt-2 mx-auto shadow-stone-800 shadow-lg"
             onClick={toggleOrderForm}
           >
             <span className="border-r-2 border-black px-4 font-bold">

@@ -32,8 +32,8 @@
 #parallax {
   background-image: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.7),
-      rgba(220, 117, 0, 0.623)
+      rgba(0, 0, 0, 0.9),
+      rgba(220, 117, 0, 0.6)
     ),
     url(/images/background.png);
   background-position: center;

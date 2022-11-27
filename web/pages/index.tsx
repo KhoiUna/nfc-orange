@@ -4,7 +4,7 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div id="parallax" className="text-center py-[20vh] min-h-[80vh]">
+      <div id="parallax" className="text-center pt-[18vh] pb-4 min-h-[80vh]">
         <h1
           className="text-6xl m-8 mt-0 text-white font-bold"
           style={{
@@ -23,7 +23,7 @@ export default function Index() {
           ></video>
 
           <Link href={"/shop"}>
-            <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto shadow-black shadow-xl">
+            <button className="text-[1.5rem] font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto shadow-stone-800 shadow-lg">
               Get your card
             </button>
           </Link>
