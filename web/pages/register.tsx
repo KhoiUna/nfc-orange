@@ -110,7 +110,7 @@ export default function Register({ showForm }: RegisterProps) {
                 textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
               }}
             >
-              Contact us to get your card
+              Please purchase a card to get started
             </h2>
           </div>
         </div>
