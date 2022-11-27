@@ -17,10 +17,10 @@ const NAV_LINKS: NavLink[] = [
     href: "/shop",
     text: "Shop",
   },
-  {
-    href: "/about",
-    text: "About us",
-  },
+  // {
+  //   href: "/about",
+  //   text: "About us",
+  // },
   {
     href: "/register",
     text: "Register",
