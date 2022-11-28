@@ -4,9 +4,7 @@ import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
-import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
 import { useEffect, useState } from "react";
-import { RenderParameters } from "pdfjs-dist/types/src/display/api";
 import ViewLayout from "../../containers/ViewLayout";
 import { useCookies } from "react-cookie";
 import PDFViewer from "../../components/PDFViewer";
@@ -110,73 +108,10 @@ export default function View() {
       </Layout>
     );
 
-  const handleClick = (action: "back" | "next") => {
-    if (currentPage <= 1 && action === "back") return;
-    if (action === "next" && currentPage >= maxPagesInPDF) return;
-
-    if (action === "back") {
-      setCurrentPage(currentPage - 1);
-    }
-    if (action === "next") {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
   return (
     <ViewLayout title="View">
-      <div className="text-center py-4 min-h-[80vh]">
-        <div className="flex justify-center m-4">
-          <div className="flex items-center">
-            <button
-              disabled={currentPage === 1}
-              className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
-                currentPage === 1 && "bg-[#a3a3a3]"
-              }`}
-              onClick={() => handleClick("back")}
-            >
-              <span className="text-xl text-white">Back</span>
-            </button>
-            <div>
-              <p className="mx-6 text-xl bg-white px-3 py-2 rounded-lg border-slate-400 border-2 h-fit">
-                {currentPage}
-              </p>
-            </div>
-            <button
-              disabled={currentPage === maxPagesInPDF}
-              className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
-                currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
-              }`}
-              onClick={() => handleClick("next")}
-            >
-              <span className="text-xl text-white">Next</span>
-            </button>
-          </div>
-        </div>
-
-        {success.map((item: { url: string }) => (
-          <div className="" key={item.url}>
-            <Link href={item.url} passHref>
-              <a target={"_blank"}>
-                <p className="pb-4 text-primary font-bold underline">
-                  View or download on another tab
-                </p>
-              </a>
-            </Link>
-
-            {pdfIsLoading && (
-              <div className="font-bold">
-                <TextLoader loadingText="Loading PDF" />
-              </div>
-            )}
-
-            <PDFViewer pdfURL={data.success[0].url} />
-            {/* <div
-              className={`overflow-auto max-w-[380px] max-h-[700px] rounded-lg`}
-            >
-              <canvas id="the-canvas" className="m-auto w-fit h-fit" />
-            </div> */}
-          </div>
-        ))}
+      <div className="text-center py-4 min-h-[100vh]">
+        <PDFViewer pdfURL={data.success[0].url} />
       </div>
     </ViewLayout>
   );
