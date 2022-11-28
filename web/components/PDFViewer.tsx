@@ -88,38 +88,14 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
   return (
     <>
-      <div className="flex justify-center p-4">
-        <div className="flex items-center">
-          <button
-            disabled={currentPage === 1}
-            className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
-              currentPage === 1 && "bg-[#a3a3a3]"
-            }`}
-            onClick={() => handleClick("back")}
-          >
-            <span className="text-xl text-white">Back</span>
-          </button>
-          <div>
-            <p className="mx-6 text-xl bg-white px-3 py-2 rounded-lg border-slate-400 border-2 h-fit">
-              {currentPage}
-            </p>
-          </div>
-          <button
-            disabled={currentPage === maxPagesInPDF}
-            className={`bg-primary p-2 rounded-lg drop-shadow-lg ${
-              currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
-            }`}
-            onClick={() => handleClick("next")}
-          >
-            <span className="text-xl text-white">Next</span>
-          </button>
-        </div>
-      </div>
+      {/* <div className="flex justify-center p-4">
+    
+      </div> */}
 
-      <div>
+      <div className="p-4">
         <Link href={pdfURL} passHref>
           <a target={"_blank"}>
-            <p className="pb-4 text-primary font-bold underline">
+            <p className="text-primary font-bold underline">
               View or download on another tab
             </p>
           </a>
@@ -133,7 +109,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
       )}
 
       <div
-        className={`bg-stone-400 m-auto p-3 overflow-auto w-full max-h-[700px] ${
+        className={`bg-stone-400 m-auto p-3 overflow-auto w-full max-h-[500px] ${
           pdfIsLoading ? "hidden" : ""
         }`}
       >
@@ -142,23 +118,50 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
           className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
         />
 
-        {/* TODO: move btw pages */}
-        <div className="fixed sm:left-[48%] left-[35%] bottom-3 bg-stone-400 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
-          <button
-            type="button"
-            className="text-white text-[2rem] px-3"
-            onClick={() => handleZoom("ZOOM_OUT")}
-          >
-            <Icon icon="material-symbols:zoom-out" />
-          </button>
+        <div className="fixed sm:left-[39%] left-[9%] bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
+          <div className="flex items-center">
+            <button
+              disabled={currentPage === 1}
+              className={`bg-primary p-2 rounded-lg ${
+                currentPage === 1 && "bg-[#a3a3a3]"
+              }`}
+              onClick={() => handleClick("back")}
+            >
+              <span className="text-md text-white">Back</span>
+            </button>
 
-          <button
-            type="button"
-            className="text-white text-[2rem] px-3"
-            onClick={() => handleZoom("ZOOM_IN")}
-          >
-            <Icon icon="material-symbols:zoom-in" />
-          </button>
+            <div>
+              <p className="mx-4 text-md bg-white px-3 py-2 rounded-lg border-slate-400 border-2 h-fit">
+                {currentPage}
+              </p>
+            </div>
+
+            <button
+              disabled={currentPage === maxPagesInPDF}
+              className={`bg-primary p-2 rounded-lg ${
+                currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
+              }`}
+              onClick={() => handleClick("next")}
+            >
+              <span className="text-md text-white">Next</span>
+            </button>
+
+            <button
+              type="button"
+              className="text-white text-[2rem] px-3"
+              onClick={() => handleZoom("ZOOM_OUT")}
+            >
+              <Icon icon="material-symbols:zoom-out" />
+            </button>
+
+            <button
+              type="button"
+              className="text-white text-[2rem] px-3"
+              onClick={() => handleZoom("ZOOM_IN")}
+            >
+              <Icon icon="material-symbols:zoom-in" />
+            </button>
+          </div>
         </div>
       </div>
     </>
