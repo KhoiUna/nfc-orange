@@ -203,7 +203,7 @@ export default function View() {
         </div>
 
         {success.map((item: { url: string }) => (
-          <div className="my-4 mx-6" key={item.url}>
+          <div className="" key={item.url}>
             <Link href={item.url} passHref>
               <a target={"_blank"}>
                 <p className="pb-4 text-primary font-bold underline">
@@ -217,7 +217,12 @@ export default function View() {
                 <TextLoader loadingText="Loading PDF" />
               </div>
             )}
-            <canvas id="the-canvas" className="m-auto w-fit h-fit" />
+
+            <div
+              className={`overflow-auto max-w-[380px] max-h-[700px] rounded-lg`}
+            >
+              <canvas id="the-canvas" className="m-auto w-fit h-fit" />
+            </div>
           </div>
         ))}
       </div>
