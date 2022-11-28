@@ -68,6 +68,11 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
         console.error("Error rendering PDF");
       }
     );
+
+    return () => {
+      (document.querySelector("html") as HTMLHtmlElement).style.overflow =
+        "auto";
+    };
   }, [currentPage, pdfURL, pdfZoom]);
 
   const handleClick = (action: "PREVIOUS_PAGE" | "NEXT_PAGE") => {
