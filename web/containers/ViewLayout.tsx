@@ -39,7 +39,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
           </Link>
         </header>
 
-        <main className="p-8">{children}</main>
+        <main className="px-10 pb-16">{children}</main>
       </div>
     </>
   );
