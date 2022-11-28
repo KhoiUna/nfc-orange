@@ -11,12 +11,13 @@ interface PDFViewProps {
 }
 
 const PDF_INITIAL_SCALE = isMobile ? 0.5 : 1;
+const PDF_MAX_ZOOM = PDF_INITIAL_SCALE + 1;
 
 const PDFViewer = ({ pdfURL }: PDFViewProps) => {
   const [maxPagesInPDF, setMaxPagesInPDF] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [pdfIsLoading, setPDFIsLoading] = useState(false);
-  const [zoomAddition, setZoomAddition] = useState(0);
+  const [pdfZoom, setPdfZoom] = useState(PDF_INITIAL_SCALE);
 
   // Render PDF
   useEffect(() => {
@@ -37,7 +38,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
         pdf.getPage(currentPage).then((page) => {
           console.log("PDF page loaded");
 
-          const scale = PDF_INITIAL_SCALE + zoomAddition;
+          const scale = pdfZoom;
           const viewport = page.getViewport({ scale });
 
           // Prepare canvas using PDF page dimensions
@@ -65,7 +66,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
         console.error("Error rendering PDF");
       }
     );
-  }, [currentPage, pdfURL, zoomAddition]);
+  }, [currentPage, pdfURL, pdfZoom]);
 
   const handleClick = (action: "PREVIOUS_PAGE" | "NEXT_PAGE") => {
     if (currentPage <= 1 && action === "PREVIOUS_PAGE") return;
@@ -81,13 +82,13 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
   const handleZoom = (action: "ZOOM_IN" | "ZOOM_OUT") => {
     if (action == "ZOOM_IN") {
-      if (zoomAddition >= 1) return;
-      setZoomAddition(zoomAddition + 0.2);
+      if (pdfZoom >= PDF_MAX_ZOOM) return;
+      setPdfZoom(pdfZoom + 0.2);
     }
 
     if (action == "ZOOM_OUT") {
-      if (zoomAddition <= 0) return;
-      setZoomAddition(zoomAddition - 0.2);
+      if (pdfZoom <= PDF_INITIAL_SCALE) return;
+      setPdfZoom(pdfZoom - 0.2);
     }
   };
 
@@ -103,7 +104,8 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
         </Link>
       </div>
 
-      {pdfIsLoading && zoomAddition === 0 && (
+      {/* Only show loader when PDF is loaded for the 1st time */}
+      {pdfIsLoading && pdfZoom === PDF_INITIAL_SCALE && (
         <div className="bg-stone-400 m-auto p-3 pb-20 sm:pb-[7.5rem] overflow-auto w-full sm:h-[750px] h-[500px]">
           <div className="font-bold text-white text-xl mt-4">
             <TextLoader loadingText="Loading PDF" />
@@ -114,7 +116,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
       {/* PDF canvas */}
       <div
         className={`bg-stone-400 m-auto p-3 pb-20 sm:pb-[7.5rem] overflow-auto w-full sm:h-[750px] h-[500px] ${
-          pdfIsLoading && zoomAddition === 0 ? "invisible" : "visible"
+          pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
         }`}
       >
         <canvas
@@ -155,10 +157,9 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
           <button
             type="button"
             className={`text-white text-[2rem] px-3 ${
-              zoomAddition <= 0 ? "text-[silver]" : "text-white"
+              pdfZoom <= PDF_INITIAL_SCALE ? "text-[silver]" : "text-white"
             }`}
             onClick={() => handleZoom("ZOOM_OUT")}
-            disabled={zoomAddition <= 0 || pdfIsLoading}
           >
             <Icon icon="material-symbols:zoom-out" />
           </button>
@@ -166,10 +167,9 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
           <button
             type="button"
             className={`text-[2rem] px-3 ${
-              zoomAddition >= 1 ? "text-[silver]" : "text-white"
+              pdfZoom >= PDF_MAX_ZOOM ? "text-[silver]" : "text-white"
             }`}
             onClick={() => handleZoom("ZOOM_IN")}
-            disabled={zoomAddition >= 1 || pdfIsLoading}
           >
             <Icon icon="material-symbols:zoom-in" />
           </button>
