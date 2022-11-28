@@ -10,7 +10,7 @@ interface PDFViewProps {
   pdfURL: string;
 }
 
-const PDF_INITIAL_SCALE = isMobile ? 0.5 : 1;
+const PDF_INITIAL_SCALE = isMobile ? 0.6 : 1;
 const PDF_MAX_ZOOM = PDF_INITIAL_SCALE + 1;
 
 const PDFViewer = ({ pdfURL }: PDFViewProps) => {
@@ -21,6 +21,8 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
   // Render PDF
   useEffect(() => {
+    (document.querySelector("html") as HTMLHtmlElement).style.overflow =
+      "hidden";
     setPDFIsLoading(true);
 
     GlobalWorkerOptions.workerSrc =
@@ -115,7 +117,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
       {/* PDF canvas */}
       <div
-        className={`bg-stone-400 m-auto p-3 pb-20 sm:pb-[7.5rem] overflow-auto w-full sm:h-[750px] h-[500px] ${
+        className={`bg-stone-400 m-auto p-3 pb-[14rem] overflow-auto w-full h-screen ${
           pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
         }`}
       >
@@ -126,7 +128,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
       </div>
 
       {/* Control buttons */}
-      <div className="fixed sm:left-[39%] left-[9%] bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
+      <div className="fixed left-0 right-0 bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
         <div className="flex items-center">
           <button
             disabled={currentPage === 1}
