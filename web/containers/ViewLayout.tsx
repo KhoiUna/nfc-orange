@@ -28,17 +28,15 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
 
       <Analytics />
 
-      <div className={`bg-slate-200`}>
-        <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
-          <Link href="/">
-            <div className="w-[10rem] pt-2 h-fit cursor-pointer">
-              <Logo />
-            </div>
-          </Link>
-        </header>
+      <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
+        <Link href="/">
+          <div className="w-[10rem] pt-2 h-fit cursor-pointer">
+            <Logo />
+          </div>
+        </Link>
+      </header>
 
-        <main className="pb-16">{children}</main>
-      </div>
+      <main>{children}</main>
     </>
   );
 };

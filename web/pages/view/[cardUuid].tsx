@@ -110,7 +110,7 @@ export default function View() {
 
   return (
     <ViewLayout title="View">
-      <div className="text-center py-4 min-h-[100vh]">
+      <div className="text-center">
         <PDFViewer pdfURL={data.success[0].url} />
       </div>
     </ViewLayout>
