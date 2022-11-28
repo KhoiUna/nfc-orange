@@ -142,6 +142,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
           className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
         />
 
+        {/* TODO: move btw pages */}
         <div className="fixed sm:left-[48%] left-[35%] bottom-3 bg-stone-400 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
           <button
             type="button"
