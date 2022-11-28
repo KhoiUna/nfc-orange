@@ -4,7 +4,7 @@ import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import Layout from "../../containers/Layout";
 import { swrFetcher } from "../../lib/swrFetcher";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ViewLayout from "../../containers/ViewLayout";
 import { useCookies } from "react-cookie";
 import PDFViewer from "../../components/PDFViewer";
@@ -14,10 +14,6 @@ export default function View() {
   const { cardUuid } = router.query;
 
   const { data } = useSWR(cardUuid && `/api/view?c_id=${cardUuid}`, swrFetcher);
-
-  const [maxPagesInPDF, setMaxPagesInPDF] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pdfIsLoading, setPDFIsLoading] = useState(false);
 
   // Update scan history
   const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
@@ -111,7 +107,7 @@ export default function View() {
   return (
     <ViewLayout title="View">
       <div className="text-center">
-        <PDFViewer pdfURL={data.success[0].url} />
+        <PDFViewer pdfURL={success[0].url} />
       </div>
     </ViewLayout>
   );
