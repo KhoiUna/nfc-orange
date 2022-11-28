@@ -18,6 +18,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
       <Head>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="NFC ORANGE" />
         <link rel="icon" href="/nfc-orange.svg" />
         <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
@@ -38,7 +39,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
           </Link>
         </header>
 
-        <main className="m-4">{children}</main>
+        <main className="p-8">{children}</main>
       </div>
     </>
   );
