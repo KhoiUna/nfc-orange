@@ -107,7 +107,7 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
       <nav
         className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >
-        <Link href="/">
+        <Link href="/" legacyBehavior>
           <div className="w-[10rem] h-fit cursor-pointer">
             <Logo />
           </div>

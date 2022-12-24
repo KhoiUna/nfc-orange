@@ -99,91 +99,89 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
     }
   };
 
-  return (
-    <>
-      <div className="p-4">
-        <Link href={pdfURL} passHref>
-          <a target={"_blank"}>
-            <p className="text-primary font-bold underline">
-              View or download on another tab
-            </p>
-          </a>
-        </Link>
-      </div>
+  return <>
+    <div className="p-4">
+      <Link href={pdfURL} passHref target={"_blank"}>
 
-      {/* Only show loader when PDF is loaded for the 1st time */}
-      {pdfIsLoading && pdfZoom === PDF_INITIAL_SCALE && (
-        <div className="bg-stone-400 m-auto p-3 pb-20 sm:pb-[7.5rem] overflow-auto w-full sm:h-[750px] h-[500px]">
-          <div className="font-bold text-white text-xl mt-4">
-            <TextLoader loadingText="Loading PDF" />
-          </div>
-        </div>
-      )}
+        <p className="text-primary font-bold underline">
+          View or download on another tab
+        </p>
 
-      {/* PDF canvas */}
-      <div
-        className={`bg-stone-400 m-auto p-3 pb-[14rem] overflow-auto w-full h-screen ${
-          pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
-        }`}
-      >
-        <canvas
-          id="the-canvas"
-          className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
-        />
-      </div>
+      </Link>
+    </div>
 
-      {/* Control buttons */}
-      <div className="fixed left-0 right-0 bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
-        <div className="flex items-center">
-          <button
-            disabled={currentPage === 1}
-            className={`bg-primary p-2 rounded-lg ${
-              currentPage === 1 && "bg-[#a3a3a3]"
-            }`}
-            onClick={() => handleClick("PREVIOUS_PAGE")}
-          >
-            <span className="text-md text-white">Back</span>
-          </button>
-
-          <div>
-            <p className="mx-4 text-md bg-white px-3 py-2 rounded-lg border-slate-400 border-2 h-fit">
-              {currentPage}
-            </p>
-          </div>
-
-          <button
-            disabled={currentPage === maxPagesInPDF}
-            className={`bg-primary p-2 rounded-lg ${
-              currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
-            }`}
-            onClick={() => handleClick("NEXT_PAGE")}
-          >
-            <span className="text-md text-white">Next</span>
-          </button>
-
-          <button
-            type="button"
-            className={`text-white text-[2rem] px-3 ${
-              pdfZoom <= PDF_INITIAL_SCALE ? "text-[silver]" : "text-white"
-            }`}
-            onClick={() => handleZoom("ZOOM_OUT")}
-          >
-            <Icon icon="material-symbols:zoom-out" />
-          </button>
-
-          <button
-            type="button"
-            className={`text-[2rem] px-3 ${
-              pdfZoom >= PDF_MAX_ZOOM ? "text-[silver]" : "text-white"
-            }`}
-            onClick={() => handleZoom("ZOOM_IN")}
-          >
-            <Icon icon="material-symbols:zoom-in" />
-          </button>
+    {/* Only show loader when PDF is loaded for the 1st time */}
+    {pdfIsLoading && pdfZoom === PDF_INITIAL_SCALE && (
+      <div className="bg-stone-400 m-auto p-3 pb-20 sm:pb-[7.5rem] overflow-auto w-full sm:h-[750px] h-[500px]">
+        <div className="font-bold text-white text-xl mt-4">
+          <TextLoader loadingText="Loading PDF" />
         </div>
       </div>
-    </>
-  );
+    )}
+
+    {/* PDF canvas */}
+    <div
+      className={`bg-stone-400 m-auto p-3 pb-[14rem] overflow-auto w-full h-screen ${
+        pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
+      }`}
+    >
+      <canvas
+        id="the-canvas"
+        className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
+      />
+    </div>
+
+    {/* Control buttons */}
+    <div className="fixed left-0 right-0 bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
+      <div className="flex items-center">
+        <button
+          disabled={currentPage === 1}
+          className={`bg-primary p-2 rounded-lg ${
+            currentPage === 1 && "bg-[#a3a3a3]"
+          }`}
+          onClick={() => handleClick("PREVIOUS_PAGE")}
+        >
+          <span className="text-md text-white">Back</span>
+        </button>
+
+        <div>
+          <p className="mx-4 text-md bg-white px-3 py-2 rounded-lg border-slate-400 border-2 h-fit">
+            {currentPage}
+          </p>
+        </div>
+
+        <button
+          disabled={currentPage === maxPagesInPDF}
+          className={`bg-primary p-2 rounded-lg ${
+            currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
+          }`}
+          onClick={() => handleClick("NEXT_PAGE")}
+        >
+          <span className="text-md text-white">Next</span>
+        </button>
+
+        <button
+          type="button"
+          className={`text-white text-[2rem] px-3 ${
+            pdfZoom <= PDF_INITIAL_SCALE ? "text-[silver]" : "text-white"
+          }`}
+          onClick={() => handleZoom("ZOOM_OUT")}
+        >
+          <Icon icon="material-symbols:zoom-out" />
+        </button>
+
+        <button
+          type="button"
+          className={`text-[2rem] px-3 ${
+            pdfZoom >= PDF_MAX_ZOOM ? "text-[silver]" : "text-white"
+          }`}
+          onClick={() => handleZoom("ZOOM_IN")}
+        >
+          <Icon icon="material-symbols:zoom-in" />
+        </button>
+      </div>
+    </div>
+  </>;
 };
 
 export default PDFViewer;

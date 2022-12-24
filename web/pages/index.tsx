@@ -22,7 +22,7 @@ export default function Index() {
             controls
           ></video>
 
-          <Link href={"/shop"}>
+          <Link href={"/shop"} legacyBehavior>
             <button className="text-2xl font-bold bg-primary w-fit py-2 px-6 text-white rounded-[100px] cursor-pointer mt-4 mx-auto shadow-stone-800 shadow-lg">
               Get your card
             </button>

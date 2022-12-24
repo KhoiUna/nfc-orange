@@ -218,10 +218,12 @@ export default function Register({ showForm }: RegisterProps) {
             </form>
 
             <div>
-              <Link href={"/login"}>
-                <a className="text-[1.3rem] underline text-primary font-bold shadow-stone-800 shadow-lg">
+              <Link
+                href={"/login"}
+                className="text-[1.3rem] underline text-primary font-bold shadow-stone-800 shadow-lg">
+                
                   Login
-                </a>
+                
               </Link>
             </div>
           </div>

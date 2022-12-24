@@ -84,7 +84,7 @@ export default function View() {
               >
                 Card is not registered
               </h1>
-              <Link href={`/register?c_id=${cardUuid}`}>
+              <Link href={`/register?c_id=${cardUuid}`} legacyBehavior>
                 <h2 className="underline text-white text-[2rem] mt-3 cursor-pointer">
                   Go here to register
                 </h2>
