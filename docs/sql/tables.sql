@@ -19,11 +19,29 @@ CREATE TABLE IF NOT EXISTS "users" (
 CREATE TABLE IF NOT EXISTS "cards" (
   "id" SERIAL,
   "uuid" UUID DEFAULT uuid_generate_v4(),
-  "serial_number" CHAR(21),
+  "serial_number" CHAR(14),
   "password" TEXT NOT NULL,
   "created_at" VARCHAR(45),
   "updated_at" TIMESTAMP ,
   PRIMARY KEY ("id")
+);
+
+CREATE TABLE IF NOT EXISTS "universities" (
+  "id" SERIAL,
+  "name" VARCHAR(255),
+  PRIMARY KEY ("id")
+);
+
+CREATE TABLE IF NOT EXISTS "readers" (
+  "id" SERIAL,
+  "secret_key" TEXT,
+  "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updated_at" TIMESTAMP ,
+  "university_id" INT NOT NULL,
+  PRIMARY KEY ("id"),
+  CONSTRAINT "FK_readers.university_id"
+    FOREIGN KEY ("university_id")
+      REFERENCES "universities"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "links" (
@@ -71,29 +89,11 @@ CREATE TABLE IF NOT EXISTS "recruiters" (
 CREATE TABLE IF NOT EXISTS "reader_history" (
   "id" SERIAL,
   "recruiter_id" INT NOT NULL,
-  "serial_number" CHAR(21),
+  "serial_number" CHAR(14),
   "read_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY ("id"),
   CONSTRAINT "FK_reader_history.recruiter_id"
     FOREIGN KEY ("recruiter_id")
       REFERENCES "recruiters"("id")
-);
-
-CREATE TABLE IF NOT EXISTS "universities" (
-  "id" SERIAL,
-  "name" VARCHAR(255),
-  PRIMARY KEY ("id")
-);
-
-CREATE TABLE IF NOT EXISTS "readers" (
-  "id" SERIAL,
-  "secret_key" TEXT,
-  "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  "updated_at" TIMESTAMP ,
-  "university_id" INT NOT NULL,
-  PRIMARY KEY ("id"),
-  CONSTRAINT "FK_readers.university_id"
-    FOREIGN KEY ("university_id")
-      REFERENCES "universities"("id")
 );
 
