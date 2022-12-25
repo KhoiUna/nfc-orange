@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 import { sequelize } from "../client";
 
-const ReaderHistory = sequelize.define("companies", {
+const Recruiters = sequelize.define("companies", {
   first_name: {
     type: Sequelize.STRING(45),
   },
@@ -32,4 +32,4 @@ const ReaderHistory = sequelize.define("companies", {
   },
 });
 
-export default ReaderHistory;
+export default Recruiters;
