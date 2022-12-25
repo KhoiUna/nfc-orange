@@ -793,7 +793,7 @@
       "seed": 573100238,
       "groupIds": [],
       "roundness": null,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1671867953162,
       "link": null,
       "locked": false,
@@ -1314,43 +1314,32 @@
       "originalText": "Green LED"
     },
     {
-      "id": "Pr4Xe0OKEqRtiEtrjE61p",
       "type": "arrow",
-      "x": 1003.6625175845584,
-      "y": 505.7864103312868,
-      "width": 0.3637892904664568,
-      "height": 66.76352142228711,
-      "angle": 0,
-      "strokeColor": "#087f5b",
-      "backgroundColor": "transparent",
+      "version": 71,
+      "versionNonce": 392112018,
+      "isDeleted": false,
+      "id": "Pr4Xe0OKEqRtiEtrjE61p",
       "fillStyle": "hachure",
       "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 1,
       "opacity": 100,
+      "angle": 0,
+      "x": 1003.6625175845584,
+      "y": 505.7864103312868,
+      "strokeColor": "#087f5b",
+      "backgroundColor": "transparent",
+      "width": 0.3637892904664568,
+      "height": 66.76352142228711,
+      "seed": 1023867538,
       "groupIds": [],
       "roundness": {
         "type": 2
       },
-      "seed": 1023867538,
-      "version": 71,
-      "versionNonce": 392112018,
-      "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1671867936398,
       "link": null,
       "locked": false,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0.3637892904664568,
-          66.76352142228711
-        ]
-      ],
-      "lastCommittedPoint": null,
       "startBinding": {
         "elementId": "Uk6fqrtqQJGQP4tR6FDiP",
         "focus": -0.06181541045400872,
@@ -1361,8 +1350,53 @@
         "focus": -0.1347182275039078,
         "gap": 2.474980244455651
       },
+      "lastCommittedPoint": null,
       "startArrowhead": null,
-      "endArrowhead": "arrow"
+      "endArrowhead": "arrow",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0.3637892904664568,
+          66.76352142228711
+        ]
+      ]
+    },
+    {
+      "id": "MYrgzHZonIOXMxGtBh8hn",
+      "type": "text",
+      "x": 1106.1921546549215,
+      "y": 390.79211393446167,
+      "width": 146.02881693091788,
+      "height": 21.474826019252628,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "roundness": null,
+      "seed": 1068483679,
+      "version": 51,
+      "versionNonce": 492715967,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1671958740223,
+      "link": null,
+      "locked": false,
+      "text": "include reader_id",
+      "fontSize": 17.1798608154021,
+      "fontFamily": 1,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "baseline": 15.474826019252628,
+      "containerId": null,
+      "originalText": "include reader_id"
     }
   ],
   "appState": {
