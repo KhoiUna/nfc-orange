@@ -22,6 +22,7 @@ const Recruiters = sequelize.define("companies", {
   created_at: {
     type: Sequelize.TIME,
     allowNull: false,
+    defaultValue: new Date(Date.now()),
   },
   updated_at: {
     type: Sequelize.TIME,
