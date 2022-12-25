@@ -1,6 +1,8 @@
 import express from "express";
+import Cards from "../db/models/Cards";
+import Readers from "../db/models/Readers";
 
-export const validateReader = (
+export const validateReader = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -8,17 +10,24 @@ export const validateReader = (
   const readerID = req.body?.reader_id;
 
   if (!readerID || !readerID.trim()) {
-    console.error("Missing reader ID");
     return res.status(400).send({ success: false, error: "Missing reader ID" });
   }
 
-  // TODO: check reader in database
-  //
+  // Check if reader in database
+  const reader = await Readers.findOne({
+    where: {
+      serial_number: readerID,
+    },
+  });
+
+  if (!reader) {
+    return res.status(400).send({ success: false, error: "Invalid reader" });
+  }
 
   next();
 };
 
-export const validateCardSerialNumber = (
+export const validateCardSerialNumber = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -37,8 +46,15 @@ export const validateCardSerialNumber = (
       .send({ success: false, error: "Invalid serial number" });
   }
 
-  //  TODO: check card in database
-  //
+  //  Check if card in database
+  const card = await Cards.findOne({
+    where: {
+      serial_number: serialNumber,
+    },
+  });
+
+  if (!card)
+    return res.status(400).send({ success: false, error: "Invalid card" });
 
   next();
 };

@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/api/reader", (req: express.Request, res: express.Response) => {
   res.json({ success: "hi world", error: false });
 });
 
@@ -30,11 +30,9 @@ app.post(
 
     // TODO: save to table `reader_history`
     //
-    console.log("save card to db");
-    console.log(reader_id, serial_number);
 
     res.json({
-      success: true,
+      success: "Card saved!",
       error: false,
     });
   }
