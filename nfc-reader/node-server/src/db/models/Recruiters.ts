@@ -2,7 +2,7 @@ import Sequelize from "sequelize";
 import { sequelize } from "../client";
 
 const Recruiters = sequelize.define(
-  "companies",
+  "recruiters",
   {
     first_name: {
       type: Sequelize.STRING(45),
