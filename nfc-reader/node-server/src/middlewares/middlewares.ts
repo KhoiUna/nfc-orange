@@ -1,5 +1,6 @@
 import express from "express";
 import Cards from "../db/models/Cards";
+import ReaderHistory from "../db/models/ReaderHistory";
 import Readers from "../db/models/Readers";
 
 export const validateReader = async (
@@ -27,8 +28,12 @@ export const validateReader = async (
       return res.status(400).send({ success: false, error: "Invalid reader" });
     }
 
-    next();
+    const readerIDUsedByRecruiter = reader?.dataValues.id;
+    res.locals.readerIDUsedByRecruiter = readerIDUsedByRecruiter;
+
+    return next();
   } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       error: "Internal server error",
@@ -44,17 +49,15 @@ export const validateCardSerialNumber = async (
   try {
     const serialNumber: string = req.body?.serial_number;
 
-    if (!serialNumber || !serialNumber.trim()) {
+    if (!serialNumber || !serialNumber.trim())
       return res
         .status(400)
         .send({ success: false, error: "Missing serial number" });
-    }
 
-    if (serialNumber.length !== 14) {
+    if (serialNumber.length !== 14)
       return res
         .status(400)
         .send({ success: false, error: "Invalid serial number" });
-    }
 
     //  Check if card in database
     const card = await Cards.findOne({
@@ -66,8 +69,40 @@ export const validateCardSerialNumber = async (
     if (!card)
       return res.status(400).send({ success: false, error: "Invalid card" });
 
-    next();
+    const cardID = card?.dataValues.id;
+    res.locals.cardID = cardID;
+
+    return next();
   } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+export const checkIfCardBeenRead = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
+  try {
+    const { cardID } = res.locals;
+
+    const readerHistory = await ReaderHistory.findOne({
+      where: {
+        card_id: cardID,
+      },
+    });
+    if (readerHistory)
+      return res
+        .status(400)
+        .send({ success: false, error: "Card has been read" });
+
+    return next();
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({
       success: false,
       error: "Internal server error",
