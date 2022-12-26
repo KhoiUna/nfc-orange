@@ -2,22 +2,21 @@ import Sequelize from "sequelize";
 import { sequelize } from "../client";
 
 const ReaderHistory = sequelize.define(
-  "reader_history",
+  "reader_histories",
   {
     recruiter_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    serial_number: {
-      type: Sequelize.CHAR(14),
+    card_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      unique: true,
     },
     read_at: {
       type: Sequelize.TIME,
       allowNull: false,
-    },
-    university_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+      defaultValue: new Date(),
     },
   },
   {
