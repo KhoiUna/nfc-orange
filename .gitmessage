@@ -1,9 +1,14 @@
 # Fixes:
-#/docs:
-#/nfc-reader:
-#/web:
+#/docs: fix
+#/nfc-reader: fix
+#/web: fix
 
 # Improvements:
-#/docs:
-#/nfc-reader:
-#/web:
+#/docs: update
+#/nfc-reader: update
+#/web: update
+
+# Creation:
+#/docs: add
+#/nfc-reader: add
+#/web: add
