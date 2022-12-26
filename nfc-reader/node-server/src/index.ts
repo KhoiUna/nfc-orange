@@ -1,9 +1,12 @@
 import express, { Application } from "express";
 import { config } from "dotenv";
 import {
+  checkIfCardBeenRead,
   validateCardSerialNumber,
   validateReader,
 } from "./middlewares/middlewares";
+import ReaderHistory from "./db/models/ReaderHistory";
+import Recruiters from "./db/models/Recruiters";
 
 config();
 
@@ -18,23 +21,52 @@ app.use(
 );
 
 app.get("/api/reader", (req: express.Request, res: express.Response) => {
-  res.json({ success: "hi world", error: false });
+  try {
+    return res.json({ success: "hi world", error: false });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
 });
 
 app.post(
   "/api/reader",
   validateReader,
   validateCardSerialNumber,
+  checkIfCardBeenRead,
   async (req: express.Request, res: express.Response) => {
-    const { serial_number, reader_id } = req.body;
+    try {
+      const { readerIDUsedByRecruiter: readerID, cardID } = res.locals;
 
-    // TODO: save to table `reader_history`
-    //
+      // Find the only recruiter who is using that reader based on readerID
+      const recruiter = await Recruiters.findOne({
+        where: {
+          reader_id: readerID,
+        },
+      });
+      const recruiterID = recruiter?.dataValues.id;
 
-    res.json({
-      success: "Card saved!",
-      error: false,
-    });
+      // Save card scan to table `reader_history`
+      const response = await ReaderHistory.create({
+        card_id: cardID,
+        recruiter_id: recruiterID,
+      });
+      if (!response) throw new Error("Error saving to reader_history");
+
+      return res.json({
+        success: "Card saved!",
+        error: false,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        success: false,
+        error: "Internal server error",
+      });
+    }
   }
 );
 
