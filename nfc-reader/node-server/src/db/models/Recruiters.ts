@@ -33,6 +33,9 @@ const Recruiters = sequelize.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    reader_id: {
+      type: Sequelize.INTEGER,
+    },
   },
   {
     timestamps: false,
