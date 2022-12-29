@@ -43,6 +43,9 @@ export default function Dashboard() {
           Saved {"students'"} profile
         </h2>
 
+        {students.length === 0 && (
+          <p className="mx-5 text-slate-500">No student profiles been saved</p>
+        )}
         {students.map((student: Student, index) => (
           <div key={index} className="bg-slate-50 rounded-lg m-3 p-4">
             <p className="text-lg font-bold">
