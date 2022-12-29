@@ -13,7 +13,7 @@ export default function Head() {
       <link rel="icon" href="/nfc-orange.svg" />
       <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 
-      <title>Recruit | Login</title>
+      <title>Recruit | Dashboard</title>
 
       <Analytics />
     </>
