@@ -6,30 +6,22 @@ import AppHeaderBar from "@/components/ui/AppHeaderBar";
 
 const queryClient = new QueryClient();
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
-      <head />
+    <>
+      <AppHeaderBar
+        title="Dashboard"
+        navLinks={[
+          {
+            href: "/api/logout",
+            text: "Logout",
+          },
+        ]}
+      />
 
-      <body>
-        <AppHeaderBar
-          title="Dashboard"
-          navLinks={[
-            {
-              href: "/api/logout",
-              text: "Logout",
-            },
-          ]}
-        />
-
-        <QueryClientProvider client={queryClient}>
-          <main>{children}</main>
-        </QueryClientProvider>
-      </body>
-    </html>
+      <QueryClientProvider client={queryClient}>
+        <main>{children}</main>
+      </QueryClientProvider>
+    </>
   );
 }
