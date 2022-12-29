@@ -1,4 +1,4 @@
-import Analytics from "../components/Analytics";
+import Analytics from "@/components/Analytics";
 
 export default function Head() {
   return (
@@ -13,7 +13,7 @@ export default function Head() {
       <link rel="icon" href="/nfc-orange.svg" />
       <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 
-      <title>Recruiter | Login</title>
+      <title>Recruit | Login</title>
 
       <Analytics />
     </>

@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
-import TextLoader from "../components/ui/TextLoader";
+import TextLoader from "@/components/ui/TextLoader";
 import { useMutation } from "@tanstack/react-query";
 
 type Inputs = {
@@ -22,6 +23,8 @@ const login = async (inputData: Inputs) => {
 };
 
 export default function Page() {
+  const router = useRouter();
+
   const [status, setStatus] = useState({
     error: false,
     text: "",
@@ -29,9 +32,7 @@ export default function Page() {
 
   const { mutate, isLoading } = useMutation(login, {
     onSuccess: (data: any) => {
-      if (data.success) {
-        //
-      }
+      if (data.success) router.push("/dashboard");
 
       if (data.error)
         setStatus({
@@ -53,7 +54,7 @@ export default function Page() {
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
         >
-          Recruit Portal
+          Login
         </h1>
 
         <div className="max-w-[500px] m-auto">
