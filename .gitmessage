@@ -1,10 +1,4 @@
-#/recruit: update
-#/docs: update
-#/nfc-reader: update
-#/web: update
-
-# Creation:
-#/recruit: update
-#/docs: add
-#/nfc-reader: add
-#/web: add
+#/recruit:
+#/docs:
+#/nfc-reader:
+#/web:
