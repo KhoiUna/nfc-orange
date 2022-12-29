@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import TextLoader from "@/components/ui/TextLoader";
 import { useMutation } from "@tanstack/react-query";
+import useAuth from "../lib/useAuth";
 
 type Inputs = {
   email: string;
@@ -23,6 +24,8 @@ const login = async (inputData: Inputs) => {
 };
 
 export default function Page() {
+  useAuth({ redirectIfFound: true });
+
   const router = useRouter();
 
   const [status, setStatus] = useState({
