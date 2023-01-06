@@ -23,7 +23,7 @@ const login = async (inputData: Inputs) => {
   }
 };
 
-export default function Page() {
+export default function Login() {
   useAuth({ redirectIfFound: true });
 
   const router = useRouter();
