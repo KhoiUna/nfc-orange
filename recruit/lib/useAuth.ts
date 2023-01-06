@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import { User } from "./session";
+import axios from "axios";
 
 interface UseAuthProps {
   redirectIfFound?: boolean;
@@ -10,7 +11,7 @@ interface UseAuthReturn {
   data: User | null;
 }
 
-const swrFetcher = (url: string) => fetch(url).then((r) => r.json());
+const swrFetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export default function useAuth({
   redirectIfFound = false,
