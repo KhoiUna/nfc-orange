@@ -1,10 +1,5 @@
-import NavLink from "./NavLink";
+import NavLink, { NavLinkProps } from "./NavLink";
 import { Fragment, useState } from "react";
-
-export type NavLinkProps = {
-  href: string;
-  text: string;
-};
 
 const HEADER_BAR_BG_COLOR = "bg-primary";
 const TEXT_COLOR = "text-white";
@@ -111,14 +106,13 @@ const AppHeaderBar = ({
 
         <div className="flex text-black">
           {navLinks.map((item, index) => (
-            <Fragment key={index}>
-              <p
-                className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}
-                onClick={() => toggleMenu()}
-              >
-                <NavLink href={item.href} text={item.text} />
-              </p>
-            </Fragment>
+            <p
+              key={index}
+              className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}
+              onClick={() => toggleMenu()}
+            >
+              <NavLink href={item.href} text={item.text} />
+            </p>
           ))}
         </div>
 
