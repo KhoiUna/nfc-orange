@@ -3,7 +3,7 @@ import Joi from "joi";
 import client from "../../db/client";
 import PasswordHelper from "../../helpers/PasswordHelper";
 
-// TODO: update
+const TEST_COMPANY_ID = 1; // TODO: remove TEST_COMPANY_ID
 
 export type ApiResponse = {
   success: any;
@@ -12,12 +12,10 @@ export type ApiResponse = {
 
 const isValid = async (registerInfo: any) => {
   const schema = Joi.object().keys({
-    first_name: Joi.string().trim().min(1).required(),
-    middle_name: Joi.string().trim().allow(null, ""),
-    last_name: Joi.string().trim().min(1).required(),
     email: Joi.string().email().trim().required(),
     password: Joi.string().min(6).required(),
     confirm_password: Joi.ref("password"),
+    readerID: Joi.string().trim().required(),
   });
 
   try {
@@ -45,31 +43,40 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { first_name, middle_name, last_name, email, password } = req.body;
-    const { c_id } = req.query;
+    const { email, password } = req.body;
+    const { r_id } = req.query;
 
     // Validate req.body from user
-    const { success, error } = await isValid(req.body);
+    const { error } = await isValid(req.body);
     if (error) return res.status(400).json({ success: false, error });
 
-    // Validate card id c_id
-    if (!c_id)
-      return res
-        .status(400)
-        .json({ success: false, error: "Invalid registration" });
+    // Validate reader id r_id
+    if (!r_id)
+      return res.status(400).json({ success: false, error: "Invalid reader" });
 
-    const { rows: cards } = await client.query(
-      "SELECT * FROM cards WHERE uuid = $1;",
-      [c_id]
+    const { rows: readers } = await client.query(
+      "SELECT * FROM readers WHERE serial_number = $1;",
+      [r_id]
     );
-    const cardId = cards[0].id;
+    const readerID = readers[0].id;
+    console.log(readerID);
 
-    if (cards.length !== 1)
+    if (readers.length !== 1)
       return res
         .status(400)
         .json({ success: false, error: "Invalid registration" });
 
-    // Validate unique user
+    // Validate that reader has not been registered by any recruiters
+    const { rows } = await client.query(
+      "SELECT * FROM recruiters WHERE reader_id = $1;",
+      [readerID]
+    );
+    if (rows.length !== 0)
+      return res
+        .status(400)
+        .json({ success: false, error: "Reader already registered" });
+
+    // Validate user is not students
     const { rows: users } = await client.query(
       "SELECT * FROM users WHERE email = $1;",
       [email]
@@ -79,21 +86,28 @@ export default async function register(
         .status(400)
         .json({ success: false, error: "Email already registered" });
 
+    // Validate unique email
+    const { rows: recruiters } = await client.query(
+      "SELECT * FROM recruiters WHERE email = $1;",
+      [email]
+    );
+    if (recruiters.length !== 0)
+      return res
+        .status(400)
+        .json({ success: false, error: "Email already registered" });
+
     // Save user to db
     const savingUserResponse = await client.query(
-      "INSERT INTO users(email, password, updated_at, card_id, first_name, middle_name, last_name) VALUES ($1, $2, $3, $4, $5, $6, $7);",
+      "INSERT INTO recruiters(email, password, company_id, reader_id) VALUES ($1, $2, $3, $4);",
       [
         email,
         await PasswordHelper.hashPassword(password),
-        new Date(),
-        cardId,
-        first_name,
-        middle_name,
-        last_name,
+        TEST_COMPANY_ID,
+        readerID,
       ]
     );
 
-    if (!savingUserResponse) throw new Error("Error creating user");
+    if (!savingUserResponse) throw new Error("Error saving recruiter");
 
     return res
       .status(200)
