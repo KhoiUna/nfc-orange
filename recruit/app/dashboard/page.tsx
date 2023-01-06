@@ -36,7 +36,9 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-xl mx-5 my-7">{greetUser(profile.first_name)}</h1>
+      <h1 className="text-xl mx-5 my-7">
+        {greetUser(profile.first_name || "")}
+      </h1>
 
       <div>
         <h2 className="text-2xl font-bold mx-5 mt-12 mb-4">
