@@ -29,7 +29,7 @@ export default function Dashboard() {
           src: ["notification-sound.mp3"]
         });
         notificationSound.play()
-        notificationSound.stop()
+        setTimeout(() => notificationSound.stop(), 1000)
       }
 
       setCachedStudents(res.data.success)
