@@ -29,9 +29,10 @@ export default function Dashboard() {
           src: ["notification-sound.mp3"]
         });
         notificationSound.play();
-
-        setCachedStudents(res.data.success)
       }
+
+      setCachedStudents(res.data.success)
+
       return res.data.success
     }),
     refetchInterval: 1000
