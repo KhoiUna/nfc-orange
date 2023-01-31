@@ -43,7 +43,7 @@ export default function Dashboard() {
 
       <div>
         <h2 className="text-2xl font-bold mx-5 mt-12 mb-4">
-          Saved {"students'"} profile
+          Saved {"students'"} profile: {students.length}
         </h2>
 
         {students.length === 0 && (
