@@ -19,20 +19,20 @@ type Student = {
 export default function Dashboard() {
   useAuth({});
 
-  const [cachedStudents, setCachedStudents] = useState([])
+  // const [cachedStudents, setCachedStudents] = useState([])
 
   const { data: students } = useQuery<any, any, Student[], any>({
     queryKey: ["fetchedStudents"],
     queryFn: () => axios.get("/api/dashboard").then((res) => {
-      if (res.data.success.length > cachedStudents.length && cachedStudents.length > 0) {
-        const notificationSound = new Howl({
-          src: ["notification-sound.mp3"]
-        });
-        notificationSound.play()
-        setTimeout(() => notificationSound.stop(), 1000)
-      }
-
-      setCachedStudents(res.data.success)
+      // TODO: add notification sound
+      // if (res.data.success.length > cachedStudents.length && cachedStudents.length > 0) {
+      //   const notificationSound = new Howl({
+      //     src: ["notification-sound.mp3"]
+      //   });
+      //   notificationSound.play()
+      //   setTimeout(() => notificationSound.stop(), 1000)
+      // }
+      // setCachedStudents(res.data.success)
 
       return res.data.success
     }),
