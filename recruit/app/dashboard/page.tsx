@@ -20,6 +20,7 @@ export default function Dashboard() {
   const { data: students } = useQuery<any, any, Student[], any>({
     queryKey: ["fetchedStudents"],
     queryFn: () => axios.get("/api/dashboard").then((res) => res.data.success),
+    refetchInterval: 1000
   });
 
   const { data: profile } = useQuery({
