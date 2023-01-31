@@ -10,8 +10,8 @@
 #define SCK_PIN SCK
 
 
-int led1 = A0; // Success LED
-int led2 = A1; // Failure LED
+int led1 = D5; // Success LED
+int led2 = D1; // Failure LED
 
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
