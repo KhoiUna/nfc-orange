@@ -24,7 +24,7 @@ export default function Dashboard() {
   const { data: students } = useQuery<any, any, Student[], any>({
     queryKey: ["fetchedStudents"],
     queryFn: () => axios.get("/api/dashboard").then((res) => {
-      if (res.data.success !== cachedStudents && cachedStudents.length > 0) {
+      if (JSON.stringify(res.data.success) !== JSON.stringify(cachedStudents) && cachedStudents.length > 0) {
         const notificationSound = new Howl({
           src: ["notification-sound.mp3"]
         });
