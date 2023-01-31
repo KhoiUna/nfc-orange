@@ -28,7 +28,8 @@ export default function Dashboard() {
         const notificationSound = new Howl({
           src: ["notification-sound.mp3"]
         });
-        notificationSound.play();
+        notificationSound.play()
+        notificationSound.stop()
       }
 
       setCachedStudents(res.data.success)
