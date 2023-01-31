@@ -5,6 +5,8 @@ import useAuth from "../../lib/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import greetUser from "../../lib/greetUser";
+import { Howl } from 'howler';
+import { useState } from "react";
 
 type Student = {
   first_name: string;
@@ -17,9 +19,21 @@ type Student = {
 export default function Dashboard() {
   useAuth({});
 
+  const [cachedStudents, setCachedStudents] = useState([])
+
   const { data: students } = useQuery<any, any, Student[], any>({
     queryKey: ["fetchedStudents"],
-    queryFn: () => axios.get("/api/dashboard").then((res) => res.data.success),
+    queryFn: () => axios.get("/api/dashboard").then((res) => {
+      if (res.data.success !== cachedStudents && cachedStudents.length > 0) {
+        const notificationSound = new Howl({
+          src: ["notification-sound.mp3"]
+        });
+        notificationSound.play();
+
+        setCachedStudents(res.data.success)
+      }
+      return res.data.success
+    }),
     refetchInterval: 1000
   });
 
