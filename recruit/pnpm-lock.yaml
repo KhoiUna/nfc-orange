@@ -5,6 +5,7 @@ specifiers:
   '@next/font': 13.1.1
   '@tanstack/react-query': ^4.20.4
   '@types/bcrypt': ^5.0.0
+  '@types/howler': ^2.2.7
   '@types/node': 18.11.18
   '@types/pg': ^8.6.6
   '@types/react': 18.0.26
@@ -14,6 +15,7 @@ specifiers:
   bcrypt: ^5.1.0
   eslint: 8.30.0
   eslint-config-next: 13.1.1
+  howler: ^2.2.3
   iron-session: ^6.3.1
   joi: ^17.7.0
   next: 13.1.1
@@ -39,6 +41,7 @@ dependencies:
   bcrypt: 5.1.0
   eslint: 8.30.0
   eslint-config-next: 13.1.1_lzzuuodtsqwxnvqeq4g4likcqa
+  howler: 2.2.3
   iron-session: 6.3.1_next@13.1.1
   joi: 17.7.0
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
@@ -53,6 +56,7 @@ dependencies:
 
 devDependencies:
   '@types/bcrypt': 5.0.0
+  '@types/howler': 2.2.7
   '@types/pg': 8.6.6
   autoprefixer: 10.4.13_postcss@8.4.20
   postcss: 8.4.20
@@ -444,6 +448,10 @@ packages:
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.0
     dev: false
+
+  /@types/howler/2.2.7:
+    resolution: {integrity: sha512-PEZldwZqJJw1PWRTpupyC7ajVTZA8aHd8nB/Y0n6zRZi5u8ktYDntsHj13ltEiBRqWwF06pASxBEvCTxniG8eA==}
+    dev: true
 
   /@types/http-assert/1.5.3:
     resolution: {integrity: sha512-FyAOrDuQmBi8/or3ns4rwPno7/9tJTijVW6aQQjK02+kOQ8zmoNg2XJtAuQhvQcy1ASJq38wirX5//9J1EqoUA==}
@@ -1736,6 +1744,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /howler/2.2.3:
+    resolution: {integrity: sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==}
+    dev: false
 
   /https-proxy-agent/5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
