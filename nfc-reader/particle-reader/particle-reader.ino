@@ -13,6 +13,8 @@
 int led1 = D5; // Success LED
 int led2 = D1; // Failure LED
 
+int tracking = 0;
+
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
@@ -34,6 +36,7 @@ void successHandler(const char *event, const char *data) {
   delay(1000);
   digitalWrite(led1, LOW);
   delay(1000);
+  tracking = 0;
 }
 
 void failureHandler(const char *event, const char *data) {
@@ -41,6 +44,7 @@ void failureHandler(const char *event, const char *data) {
   delay(1000);
   digitalWrite(led2, LOW);
   delay(1000);
+  tracking = 0;
 }
 
 
@@ -55,6 +59,7 @@ void loop() {
 		return;
 	}
 
+  if (tracking > 0) return;
 	
 	String serial_number = "";
 	for (byte i = 0; i < mfrc522.uid.size; i++) {
@@ -62,6 +67,6 @@ void loop() {
         serial_number += String(mfrc522.uid.uidByte[i], HEX);
     }
     
-    Particle.publish("reader_scan", serial_number, PRIVATE); 
-    delay(3000);
+    Particle.publish("reader_scan", serial_number, PRIVATE);
+    tracking = 1;
 }
