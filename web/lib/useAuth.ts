@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import Router from "next/router";
 import useSWR from "swr";
 import { swrFetcher } from "./swrFetcher";
 import { User } from "./session";
+import { useRouter } from "next/navigation";
 
 interface UseAuthProps {
   redirectIfFound?: boolean;
@@ -14,12 +14,14 @@ interface UseAuthReturn {
 export default function useAuth({
   redirectIfFound = false,
 }: UseAuthProps): UseAuthReturn {
+  const router = useRouter();
+
   const { data } = useSWR(`/api/user`, swrFetcher);
 
   useEffect(() => {
-    if (!data?.isAuthenticated) Router.push("/login");
-    if (data?.isAuthenticated && redirectIfFound) Router.push("/dashboard");
-  }, [data, redirectIfFound]);
+    if (!data?.isAuthenticated) router.push("/login");
+    if (data?.isAuthenticated && redirectIfFound) router.push("/dashboard");
+  }, [data, redirectIfFound, router]);
 
   return { data };
 }
