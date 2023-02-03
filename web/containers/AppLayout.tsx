@@ -45,6 +45,14 @@ const AppLayout = ({ children, title }: LayoutProps) => {
         title={title}
         navLinks={[
           {
+            href: "/dashboard",
+            text: "Dashboard",
+          },
+          {
+            href: "/profile",
+            text: "Profile",
+          },
+          {
             href: "/api/logout",
             text: "Logout",
           },
