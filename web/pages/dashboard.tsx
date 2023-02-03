@@ -47,7 +47,7 @@ export default function Dashboard() {
       if (file.type !== "application/pdf") throw "Only PDFs are allowed";
 
       const storage = getStorage(app);
-      const storageRef = ref(storage, `/resumes/${uuidv4()}.pdf`);
+      const storageRef = ref(storage, `/resumes/${process.env.NEXT_PUBLIC_UPLOAD_FOLDER}/${uuidv4()}.pdf`);
 
       const response = await uploadBytes(storageRef, file);
       const fileURL = await getDownloadURL(storageRef);
@@ -131,9 +131,8 @@ export default function Dashboard() {
 
       {status.text && (
         <p
-          className={`${
-            status.error === true ? "text-red-800" : "text-green-800"
-          } text-[1.3rem] p-2 font-bold my-1 text-center`}
+          className={`${status.error === true ? "text-red-800" : "text-green-800"
+            } text-[1.3rem] p-2 font-bold my-1 text-center`}
         >
           {status.text}
         </p>
