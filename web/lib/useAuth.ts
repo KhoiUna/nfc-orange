@@ -19,8 +19,10 @@ export default function useAuth({
   const { data } = useSWR(`/api/user`, swrFetcher);
 
   useEffect(() => {
-    if (!data?.isAuthenticated) router.push("/login");
-    if (data?.isAuthenticated && redirectIfFound) router.push("/dashboard");
+    if (!data) return;
+
+    if (!data.isAuthenticated) router.push("/login");
+    if (data.isAuthenticated && redirectIfFound) router.push("/dashboard");
   }, [data, redirectIfFound, router]);
 
   return { data };
