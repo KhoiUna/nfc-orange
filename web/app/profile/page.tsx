@@ -14,7 +14,7 @@ type Profile = {
             first_name: string,
             middle_name?: string,
             last_name: string,
-            avatarURL?: string
+            avatar_url?: string
         }
     }
 }
@@ -50,7 +50,7 @@ export default function Profile() {
     return (
         <div className="m-auto w-fit my-10">
             <div className="rounded-lg p-3 m-auto mt-5">
-                <Image className="m-auto rounded-[100%]" src={user?.avatarURL ||
+                <Image className="m-auto rounded-[100%]" src={user?.avatar_url ||
                     `https://api.dicebear.com/5.x/initials/png?seed=${user.first_name} ${user.last_name}`
                 } alt={`${user.first_name}'s profile picture`} width={120} height={120} />
             </div>
