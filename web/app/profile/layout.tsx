@@ -1,14 +1,8 @@
 'use client'
 
-import { ReactNode } from "react";
 import AppHeaderBar from "../../components/ui/AppHeaderBar";
 
-interface LayoutProps {
-    children: ReactNode | ReactNode[];
-    title: string;
-}
-
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <AppHeaderBar
