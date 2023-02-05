@@ -7,11 +7,13 @@ import axios from "axios";
 import greetUser from "../../lib/greetUser";
 import { Howl } from 'howler';
 import { useState } from "react";
+import Image from "next/image";
 
 type Student = {
   first_name: string;
   middle_name?: string;
   last_name: string;
+  avatar_url?: string;
   university_name: string;
   url: string;
 };
@@ -66,18 +68,28 @@ export default function Dashboard() {
           <p className="mx-5 text-slate-500">No student profiles been saved</p>
         )}
         {students.map((student: Student, index) => (
-          <div key={index} className="bg-slate-50 rounded-lg m-3 p-4">
-            <p className="text-lg font-bold">
-              {student.first_name} {student.middle_name} {student.last_name}
-            </p>
+          <div key={index} className="bg-slate-50 rounded-lg m-3 p-4 flex flex-wrap items-center">
+            <div className="rounded-lg border-r-2 border-slate-300 pr-8">
+              <Image
+                className="m-auto w-[100px] h-[100px] rounded-[100%] object-scale-down"
+                src={student.avatar_url
+                  || `https://api.dicebear.com/5.x/initials/png?seed=${student.first_name} ${student.last_name}`
+                } alt={`${student.first_name} ${student.last_name}'s profile picture`} width={500} height={500} />
+            </div>
 
-            <p className="py-1">{student.university_name}</p>
-
-            <a href={student.url} target="_blank" rel="noreferrer">
-              <p className="pt-1 underline font-semibold text-blue-700">
-                View Resume
+            <div className="pl-5">
+              <p className="text-lg font-bold">
+                {student.first_name} {student.middle_name} {student.last_name}
               </p>
-            </a>
+
+              <p className="py-1">{student.university_name}</p>
+
+              <a href={student.url} target="_blank" rel="noreferrer">
+                <p className="pt-1 underline font-semibold text-blue-700">
+                  View Resume
+                </p>
+              </a>
+            </div>
           </div>
         ))}
       </div>
