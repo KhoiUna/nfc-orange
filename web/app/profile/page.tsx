@@ -1,12 +1,14 @@
-'use client'
+'use client';
 
 import { Icon } from "@iconify/react";
+import { IKContext, IKUpload } from "imagekitio-react";
 import Image from "next/image";
 import { useState } from "react";
 import useSWR from "swr";
 import TextLoader from "../../components/ui/TextLoader";
 import { swrFetcher } from "../../lib/swrFetcher";
 import useAuth from "../../lib/useAuth"
+import toast, { Toaster } from 'react-hot-toast'
 
 type Profile = {
     success: {
@@ -24,16 +26,14 @@ export default function Profile() {
 
     const { data: profileResponse, error } = useSWR<Profile, any>("/api/profile", swrFetcher);
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [imageURL, setImageURL] = useState<string>("");
 
-    if (error)
-        return (
-            <div className="text-[1.8rem] text-center m-5">
-                <h1>Failed to load</h1>
-            </div>
-        );
-
-
+    if (error) return (
+        <div className="text-[1.8rem] text-center m-5">
+            <h1>Failed to load</h1>
+        </div>
+    );
 
     if (!profileResponse) return (
         <div className="text-[1.8rem] text-center m-5">
@@ -43,31 +43,62 @@ export default function Profile() {
 
     const { user } = profileResponse.success
 
-    const handleUpload = () => {
-        // TODO
-    }
+    const onError = (error: any) => {
+        console.error(error.message);
+        toast.error(error.message)
+        setIsLoading(false)
+    };
+
+    const onSuccess = async (res: any) => {
+        try {
+            if (res.fileType === "image") {
+                setImageURL(res.url)
+                setIsLoading(false)
+                toast.success("Avatar updated")
+
+                // TODO: POST res.url to db to update db
+                //
+            } else {
+                toast.error("Invalid file type")
+                setIsLoading(false)
+            }
+        } catch (error) {
+            console.error("Error uploading image");
+        }
+    };
 
     return (
         <div className="m-auto w-fit my-10">
+            <Toaster />
+
             <div className="rounded-lg p-3 m-auto mt-5">
-                <Image className="m-auto rounded-[100%]" src={user?.avatar_url ||
+                <Image className="m-auto w-[120px] h-[120px] rounded-[100%] object-scale-down" src={imageURL || user?.avatar_url ||
                     `https://api.dicebear.com/5.x/initials/png?seed=${user.first_name} ${user.last_name}`
                 } alt={`${user.first_name}'s profile picture`} width={120} height={120} />
             </div>
 
-            <button className="text-lg bg-blue-100 rounded-lg mb-5 p-3 flex drop-shadow-lg m-auto text-blue-800 active:drop-shadow-none cursor-pointer">
-                {!isLoading && "Update your avatar"}
-                {isLoading && <TextLoader loadingText="Uploading" />}
-                <Icon className="text-3xl ml-2" icon="ant-design:upload-outlined" />
-                <input
-                    required
-                    className="absolute left-0 opacity-0 cursor-pointer w-full"
-                    type="file"
-                    name="avatar_upload"
-                    onChange={handleUpload}
-                // value={path}
-                />
-            </button>
+            <IKContext
+                publicKey={process.env.NEXT_PUBLIC_IMGKIT_PUBLIC_KEY}
+                urlEndpoint={process.env.NEXT_PUBLIC_IMGKIT_URL_ENDPOINT}
+                authenticationEndpoint={`${process.env.NEXT_PUBLIC_ORIGIN}/api/profile/avatar/auth`}
+            >
+                <button className="text-lg bg-blue-100 rounded-lg p-3 flex items-center drop-shadow-lg m-auto mb-5 text-blue-800 active:drop-shadow-none">
+                    {!isLoading && "Update your avatar"}
+                    {isLoading && <TextLoader loadingText="Uploading" />}
+                    <Icon className="text-2xl ml-2" icon="ant-design:upload-outlined" />
+                    <IKUpload
+                        className="absolute left-0 opacity-0 cursor-pointer w-full"
+                        fileName={`avatar-${'a'}.png`}
+                        onError={onError}
+                        onSuccess={onSuccess}
+                        folder={`${process.env.NEXT_PUBLIC_IMGKIT_UPLOAD_FOLDER}/${process.env.NEXT_PUBLIC_UPLOAD_FOLDER}`}
+                        onChange={() => {
+                            setImageURL("")
+                            setIsLoading(true)
+                        }}
+                    />
+                </button>
+            </IKContext>
 
             <div className="text-lg">
                 <p><b>First Name:</b> {user.first_name}</p>
