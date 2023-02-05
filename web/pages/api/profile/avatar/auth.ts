@@ -15,16 +15,16 @@ async function handler(
       }
   >
 ) {
-  if (req.method !== "GET")
-    return res.status(400).json({
-      success: false,
-      error: "Method not allowed",
-    });
-
   if (!req.session.user?.isAuthenticated)
     return res.status(403).json({
       success: false,
       error: "Not authenticated",
+    });
+
+  if (req.method !== "GET")
+    return res.status(403).json({
+      success: false,
+      error: "Method not allowed",
     });
 
   const imagekit = new ImageKit({
