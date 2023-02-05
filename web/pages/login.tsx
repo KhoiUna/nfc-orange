@@ -114,9 +114,8 @@ export default function Login() {
 
               {status.text && (
                 <p
-                  className={`${
-                    status.error === true ? "text-red-600" : "text-green-600"
-                  } text-[1.3rem] p-2 font-bold my-1`}
+                  className={`${status.error === true ? "text-red-600" : "text-green-600"
+                    } text-[1.3rem] p-2 font-bold my-1`}
                 >
                   {status.text}
                 </p>
@@ -127,9 +126,9 @@ export default function Login() {
               <Link
                 href={"/register"}
                 className="text-[1.3rem] underline text-primary font-bold shadow-stone-800 shadow-lg">
-                
-                  Register
-                
+
+                Register
+
               </Link>
             </div>
           </div>
