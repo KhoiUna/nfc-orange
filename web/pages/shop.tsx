@@ -251,9 +251,8 @@ const Shop = () => {
 
                 {status.text && (
                   <p
-                    className={`${
-                      status.error === true ? "text-red-800" : "text-green-800"
-                    } text-[1rem] p-2 font-bold mt-2`}
+                    className={`${status.error === true ? "text-red-800" : "text-green-800"
+                      } text-[1rem] p-2 font-bold mt-2`}
                   >
                     {status.text}
                   </p>
