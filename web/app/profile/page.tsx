@@ -9,6 +9,7 @@ import TextLoader from "../../components/ui/TextLoader";
 import { swrFetcher } from "../../lib/swrFetcher";
 import useAuth from "../../lib/useAuth"
 import toast, { Toaster } from 'react-hot-toast'
+import axios from "axios";
 
 type Profile = {
     success: {
@@ -52,18 +53,22 @@ export default function Profile() {
     const onSuccess = async (res: any) => {
         try {
             if (res.fileType === "image") {
+                const { data } = await axios.post('/api/profile/avatar', {
+                    avatar_url: res.url
+                })
+
+                if (data.error) throw new Error("Error updating avatar")
+
                 setImageURL(res.url)
                 setIsLoading(false)
                 toast.success("Avatar updated")
-
-                // TODO: POST res.url to db to update db
-                //
             } else {
-                toast.error("Invalid file type")
-                setIsLoading(false)
+                throw new Error("Invalid file type")
             }
-        } catch (error) {
-            console.error("Error uploading image");
+        } catch (error: any) {
+            console.error("Error uploading image")
+            toast.error(error.message)
+            setIsLoading(false)
         }
     };
 
@@ -72,9 +77,9 @@ export default function Profile() {
             <Toaster />
 
             <div className="rounded-lg p-3 m-auto mt-5">
-                <Image className="m-auto w-[120px] h-[120px] rounded-[100%] object-scale-down" src={imageURL || user?.avatar_url ||
+                <Image className="m-auto w-[150px] h-[150px] rounded-[100%] object-scale-down" src={imageURL || user?.avatar_url ||
                     `https://api.dicebear.com/5.x/initials/png?seed=${user.first_name} ${user.last_name}`
-                } alt={`${user.first_name}'s profile picture`} width={120} height={120} />
+                } alt={`${user.first_name}'s profile picture`} width={500} height={500} />
             </div>
 
             <IKContext
@@ -88,7 +93,7 @@ export default function Profile() {
                     <Icon className="text-2xl ml-2" icon="ant-design:upload-outlined" />
                     <IKUpload
                         className="absolute left-0 opacity-0 cursor-pointer w-full"
-                        fileName={`avatar-${'a'}.png`}
+                        fileName={`avatar-${user.first_name}-${user.last_name}.png`}
                         onError={onError}
                         onSuccess={onSuccess}
                         folder={`${process.env.NEXT_PUBLIC_IMGKIT_UPLOAD_FOLDER}/${process.env.NEXT_PUBLIC_UPLOAD_FOLDER}`}
