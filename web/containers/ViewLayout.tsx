@@ -17,7 +17,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
     <Head>
       <meta charSet="UTF-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1.0" /> */}
       <meta name="description" content="NFC ORANGE" />
       <link rel="icon" href="/nfc-orange.svg" />
       <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
@@ -27,15 +27,17 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
 
     <Analytics />
 
-    <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
-      <Link href="/" legacyBehavior>
-        <div className="w-[10rem] pt-2 h-fit cursor-pointer">
-          <Logo />
-        </div>
-      </Link>
-    </header>
+    <div className="w-fit">
+      <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
+        <Link href="/" legacyBehavior>
+          <div className="w-[10rem] pt-2 h-fit cursor-pointer">
+            <Logo />
+          </div>
+        </Link>
+      </header>
 
-    <main>{children}</main>
+      <main className="w-fit h-[200vh] bg-stone-400">{children}</main>
+    </div>
   </>;
 };
 

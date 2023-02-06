@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import ViewLayout from "../../containers/ViewLayout";
 import { useCookies } from "react-cookie";
 import PDFViewer from "../../components/PDFViewer";
+import Image from "next/image";
 
 export default function View() {
   const router = useRouter();
@@ -104,10 +105,20 @@ export default function View() {
       </Layout>
     );
 
+  const { first_name, middle_name, last_name, url, avatar_url } = success[0]
+
   return (
     <ViewLayout title="View">
+      <div className="bg-white">
+        <div className="rounded-lg">
+          <Image className="m-auto w-[230px] h-[230px] rounded-[100%] object-scale-down" src={avatar_url ||
+            `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
+          } alt={`${first_name}'s profile picture`} width={500} height={500} />
+        </div>
+      </div>
+
       <div className="text-center">
-        <PDFViewer pdfURL={success[0].url} />
+        <PDFViewer pdfURL={url} />
       </div>
     </ViewLayout>
   );

@@ -10,7 +10,8 @@ interface PDFViewProps {
   pdfURL: string;
 }
 
-const PDF_INITIAL_SCALE = isMobile ? 0.6 : 1;
+const PDF_INITIAL_SCALE = 2
+// const PDF_INITIAL_SCALE = isMobile ? 0.6 : 1;
 const PDF_MAX_ZOOM = PDF_INITIAL_SCALE + 1;
 
 const PDFViewer = ({ pdfURL }: PDFViewProps) => {
@@ -100,13 +101,11 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
   };
 
   return <>
-    <div className="p-4">
+    <div className="p-4 bg-white">
       <Link href={pdfURL} passHref target={"_blank"}>
-
         <p className="text-primary font-bold underline">
           View or download on another tab
         </p>
-
       </Link>
     </div>
 
@@ -120,11 +119,16 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
     )}
 
     {/* PDF canvas */}
-    <div
-      className={`bg-stone-400 m-auto p-3 pb-[14rem] overflow-auto w-full h-screen ${
-        pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
-      }`}
+    {/* <div
+      className={`bg-stone-400 m-auto p-3 pb-[14rem] overflow-auto w-full h-screen ${pdfIsLoading && pdfZoom === 0 ? "invisible" : "visible"
+        }`}
     >
+      <canvas
+        id="the-canvas"
+        className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
+      />
+    </div> */}
+    <div className="bg-stone-400 p-6 w-fit">
       <canvas
         id="the-canvas"
         className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
@@ -132,13 +136,12 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
     </div>
 
     {/* Control buttons */}
-    <div className="fixed left-0 right-0 bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
+    {/* <div className="fixed left-0 right-0 bottom-3 bg-stone-700 w-fit m-auto p-2 rounded-lg opacity-[0.9]">
       <div className="flex items-center">
         <button
           disabled={currentPage === 1}
-          className={`bg-primary p-2 rounded-lg ${
-            currentPage === 1 && "bg-[#a3a3a3]"
-          }`}
+          className={`bg-primary p-2 rounded-lg ${currentPage === 1 && "bg-[#a3a3a3]"
+            }`}
           onClick={() => handleClick("PREVIOUS_PAGE")}
         >
           <span className="text-md text-white">Back</span>
@@ -152,9 +155,8 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
         <button
           disabled={currentPage === maxPagesInPDF}
-          className={`bg-primary p-2 rounded-lg ${
-            currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
-          }`}
+          className={`bg-primary p-2 rounded-lg ${currentPage === maxPagesInPDF && "bg-[#a3a3a3]"
+            }`}
           onClick={() => handleClick("NEXT_PAGE")}
         >
           <span className="text-md text-white">Next</span>
@@ -162,9 +164,8 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
         <button
           type="button"
-          className={`text-white text-[2rem] px-3 ${
-            pdfZoom <= PDF_INITIAL_SCALE ? "text-[silver]" : "text-white"
-          }`}
+          className={`text-white text-[2rem] px-3 ${pdfZoom <= PDF_INITIAL_SCALE ? "text-[silver]" : "text-white"
+            }`}
           onClick={() => handleZoom("ZOOM_OUT")}
         >
           <Icon icon="material-symbols:zoom-out" />
@@ -172,15 +173,14 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
         <button
           type="button"
-          className={`text-[2rem] px-3 ${
-            pdfZoom >= PDF_MAX_ZOOM ? "text-[silver]" : "text-white"
-          }`}
+          className={`text-[2rem] px-3 ${pdfZoom >= PDF_MAX_ZOOM ? "text-[silver]" : "text-white"
+            }`}
           onClick={() => handleZoom("ZOOM_IN")}
         >
           <Icon icon="material-symbols:zoom-in" />
         </button>
       </div>
-    </div>
+    </div> */}
   </>;
 };
 

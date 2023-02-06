@@ -40,12 +40,12 @@ export default async function view(
 
     // Send pdf url
     const userId = users[0].id;
-    const { rows: links } = await client.query(
+    const { rows: profileView } = await client.query(
       "SELECT first_name, middle_name, last_name, avatar_url, url FROM links JOIN users ON users.id=links.user_id WHERE user_id = $1;",
       [userId]
     );
 
-    return res.status(200).json({ success: links, error: false });
+    return res.status(200).json({ success: profileView, error: false });
   } catch (error) {
     console.error(error);
     return res
