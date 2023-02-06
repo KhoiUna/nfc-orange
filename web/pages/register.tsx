@@ -110,7 +110,7 @@ export default function Register({ showForm }: RegisterProps) {
                 textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
               }}
             >
-              Please purchase a card to get started
+              Tap your NFC Orange card on any NFC-enabled mobile phone to register
             </h2>
           </div>
         </div>
