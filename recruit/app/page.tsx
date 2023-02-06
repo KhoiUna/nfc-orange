@@ -57,7 +57,7 @@ export default function Login() {
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
         >
-          Login
+          Recruiter Login
         </h1>
 
         <div className="max-w-[500px] m-auto">
@@ -92,9 +92,8 @@ export default function Login() {
 
             {status.text && (
               <p
-                className={`${
-                  status.error === true ? "text-red-600" : "text-green-600"
-                } text-[1.3rem] p-2 font-bold my-1`}
+                className={`${status.error === true ? "text-red-600" : "text-green-600"
+                  } text-[1.3rem] p-2 font-bold my-1`}
               >
                 {status.text}
               </p>

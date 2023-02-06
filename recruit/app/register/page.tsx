@@ -92,7 +92,7 @@ export default function Register() {
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
         >
-          Register
+          Recruiter Register
         </h1>
 
         <div className="max-w-[500px] m-auto">
@@ -149,9 +149,8 @@ export default function Register() {
 
             {status.text && (
               <p
-                className={`${
-                  status.error === true ? "text-red-600" : "text-green-600"
-                } text-[1.3rem] p-2 font-bold my-1`}
+                className={`${status.error === true ? "text-red-600" : "text-green-600"
+                  } text-[1.3rem] p-2 font-bold my-1`}
               >
                 {status.text}
               </p>
