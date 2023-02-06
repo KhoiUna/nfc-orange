@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../db/client";
-import { ApiResponse } from "./register";
+import client from "../../../db/client";
+import { ApiResponse } from "../register";
 import { validate as uuidValidate } from "uuid";
 
 export default async function view(
@@ -41,7 +41,7 @@ export default async function view(
     // Send pdf url
     const userId = users[0].id;
     const { rows: links } = await client.query(
-      "SELECT url FROM links WHERE user_id = $1;",
+      "SELECT first_name, middle_name, last_name, avatar_url, url FROM links JOIN users ON users.id=links.user_id WHERE user_id = $1;",
       [userId]
     );
 
