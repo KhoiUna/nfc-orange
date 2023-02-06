@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Layout from "../containers/Layout";
 
 export default function Index() {
@@ -14,7 +13,7 @@ export default function Index() {
           A tap into your world
         </h1>
 
-        <div className="bg-none p-4 mt-0 rounded-lg w-fit sm:mx-auto m-8">
+        {/* <div className="bg-none p-4 mt-0 rounded-lg w-fit sm:mx-auto m-8">
           <video
             width={800}
             className="rounded-lg m-auto"
@@ -27,11 +26,11 @@ export default function Index() {
               Get your card
             </button>
           </Link>
-        </div>
+        </div> */}
 
         <div className="p-4 rounded-lg mx-auto px-8 pb-12 max-w-3xl">
           <p
-            className="text-lg text-white"
+            className="text-[1.3rem] text-white"
             style={{
               textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
             }}

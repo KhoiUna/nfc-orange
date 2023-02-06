@@ -13,21 +13,25 @@ type NavLink = {
   text: string;
 };
 const NAV_LINKS: NavLink[] = [
-  {
-    href: "/shop",
-    text: "Shop",
-  },
+  // {
+  //   href: "/shop",
+  //   text: "Shop",
+  // },
   // {
   //   href: "/about",
   //   text: "About us",
   // },
   {
+    href: "https://recruit.nfcorange.com/",
+    text: "Recruiter Login",
+  },
+  {
     href: "/register",
-    text: "Register",
+    text: "Student Register",
   },
   {
     href: "/login",
-    text: "Login",
+    text: "Student Login",
   },
 ];
 
