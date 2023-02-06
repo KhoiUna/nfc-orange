@@ -74,7 +74,26 @@ export default function Profile() {
 
     return (
         <div className="m-auto w-fit my-10">
-            <Toaster />
+            <Toaster
+                toastOptions={{
+                    success: {
+                        style: {
+                            background: "green",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                    error: {
+                        style: {
+                            background: "red",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                }}
+            />
 
             <div className="rounded-lg p-3 m-auto mt-5">
                 <Image className="m-auto w-[100px] h-[100px] rounded-[100%] border-2 border-primary object-scale-down" src={imageURL || user?.avatar_url ||
