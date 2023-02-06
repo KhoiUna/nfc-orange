@@ -71,7 +71,7 @@ export default function Dashboard() {
           <div key={index} className="bg-slate-50 rounded-lg m-3 p-4 flex items-center">
             <div className="rounded-lg border-r-2 border-slate-300 pr-8">
               <Image
-                className="m-auto w-[70px] rounded-[100%] object-scale-down"
+                className="m-auto w-[70px] h-[70px] rounded-[100%] border-2 border-primary object-scale-down"
                 src={student.avatar_url
                   || `https://api.dicebear.com/5.x/initials/png?seed=${student.first_name} ${student.last_name}`
                 } alt={`${student.first_name} ${student.last_name}'s profile picture`} width={500} height={500} />
