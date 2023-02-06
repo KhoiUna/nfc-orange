@@ -30,6 +30,14 @@ async function login(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .status(403)
         .json({ error: "Invalid credentials", success: false });
 
+    // Update last_logged_in timestamp
+    const updateLastLoggedInResponse = await client.query(
+      "UPDATE recruiters SET last_logged_in=$1 WHERE email = $2;",
+      [new Date(), email]
+    );
+    if (!updateLastLoggedInResponse)
+      throw new Error("Error update recruiter's last_logged_in timestamp");
+
     const user = {
       isAuthenticated: true,
       email,
