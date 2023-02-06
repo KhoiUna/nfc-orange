@@ -8,13 +8,10 @@ import TextLoader from "../components/ui/TextLoader";
 import useSWR from "swr";
 import { swrFetcher } from "../lib/swrFetcher";
 import greetUser from "../lib/greetUser";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState({
-    error: false,
-    text: "",
-  });
 
   const [path, setPath] = useState("");
   const [uploadedURL, setUploadedURL] = useState("");
@@ -33,10 +30,6 @@ export default function Dashboard() {
       event.preventDefault();
       setUploadedURL("");
       setIsLoading(true);
-      setStatus({
-        error: false,
-        text: "",
-      });
 
       const target = event.target as HTMLInputElement;
       setPath(target.value);
@@ -65,28 +58,15 @@ export default function Dashboard() {
       if (error) throw error;
 
       setIsLoading(false);
-      setStatus({
-        error: false,
-        text: "Uploaded successfully",
-      });
+      toast.success("Uploaded successfully!\nYou can tap your card on any NFC-enabled mobile phones to show your resume!")
       setUploadedURL(fileURL);
       setPath("");
-
-      setTimeout(() => {
-        setStatus({
-          error: false,
-          text: "",
-        });
-      }, 3000); // make status text gone after 3 seconds
     } catch (error: any) {
-      console.error("Error uploading pdf");
-      setPath("");
-      setUploadedURL("");
-      setIsLoading(false);
-      setStatus({
-        error: true,
-        text: error,
-      });
+      console.error("Error uploading pdf")
+      setPath("")
+      setUploadedURL("")
+      setIsLoading(false)
+      toast.error(error)
       return false;
     }
   };
@@ -111,6 +91,8 @@ export default function Dashboard() {
 
   return (
     <AppLayout title="Dashboard">
+      <Toaster />
+
       <h2 className="text-xl mx-5 my-7">
         {greetUser(data.success.user.first_name)}
       </h2>
@@ -128,15 +110,7 @@ export default function Dashboard() {
           value={path}
         />
       </button>
-
-      {status.text && (
-        <p
-          className={`${status.error === true ? "text-red-800" : "text-green-800"
-            } text-[1.3rem] p-2 font-bold my-1 text-center`}
-        >
-          {status.text}
-        </p>
-      )}
+      <p className="text-sm text-center italic">*Only PDFs are allowed</p>
 
       {!uploadedURL && (
         <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
