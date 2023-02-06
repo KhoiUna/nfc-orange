@@ -109,13 +109,16 @@ export default function View() {
 
   return (
     <ViewLayout title="View">
-      <div className="bg-white">
+      <div className="bg-white text-center pb-5">
         <div className="rounded-lg">
           <Image className="m-auto w-[230px] h-[230px] rounded-[100%] object-scale-down" src={avatar_url ||
             `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
           } alt={`${first_name}'s profile picture`} width={500} height={500} />
         </div>
+
+        <p className="text-[3rem] font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
       </div>
+      <hr />
 
       <div className="text-center">
         <PDFViewer pdfURL={url} />

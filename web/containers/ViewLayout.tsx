@@ -23,11 +23,12 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
       <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 
       <title>{pageTitle}</title>
+
+      <Analytics />
     </Head>
 
-    <Analytics />
 
-    <div className="w-fit">
+    <div className="sm:w-screen w-fit">
       <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
         <Link href="/" legacyBehavior>
           <div className="w-[10rem] pt-2 h-fit cursor-pointer">
@@ -36,7 +37,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
         </Link>
       </header>
 
-      <main className="w-fit h-[200vh] bg-stone-400">{children}</main>
+      <main className="w-fit m-auto h-[200vh] bg-stone-400">{children}</main>
     </div>
   </>;
 };

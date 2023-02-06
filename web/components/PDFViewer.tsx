@@ -22,7 +22,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
 
   // Render PDF
   useEffect(() => {
-    (document.querySelector("html") as HTMLHtmlElement).style.overflow =
+    (document.querySelector("html") as HTMLHtmlElement).style.overflowX =
       "hidden";
     setPDFIsLoading(true);
 
@@ -103,7 +103,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
   return <>
     <div className="p-4 bg-white">
       <Link href={pdfURL} passHref target={"_blank"}>
-        <p className="text-primary font-bold underline">
+        <p className="text-primary font-bold underline text-[2rem]">
           View or download on another tab
         </p>
       </Link>
@@ -128,7 +128,7 @@ const PDFViewer = ({ pdfURL }: PDFViewProps) => {
         className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
       />
     </div> */}
-    <div className="bg-stone-400 p-6 w-fit">
+    <div className="bg-stone-400 p-8 w-fit">
       <canvas
         id="the-canvas"
         className="m-auto w-fit h-fit shadow-stone-800 shadow-xl"
