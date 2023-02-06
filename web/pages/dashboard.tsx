@@ -28,7 +28,6 @@ export default function Dashboard() {
   const handleUpload = async (event: SyntheticEvent) => {
     try {
       event.preventDefault();
-      setUploadedURL("");
       setIsLoading(true);
 
       const target = event.target as HTMLInputElement;
@@ -64,7 +63,6 @@ export default function Dashboard() {
     } catch (error: any) {
       console.error("Error uploading pdf")
       setPath("")
-      setUploadedURL("")
       setIsLoading(false)
       toast.error(error)
       return false;
@@ -91,7 +89,26 @@ export default function Dashboard() {
 
   return (
     <AppLayout title="Dashboard">
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          success: {
+            style: {
+              background: "green",
+              fontWeight: "bold",
+              fontSize: "large",
+              color: "white",
+            },
+          },
+          error: {
+            style: {
+              background: "red",
+              fontWeight: "bold",
+              fontSize: "large",
+              color: "white",
+            },
+          },
+        }}
+      />
 
       <h2 className="text-xl mx-5 my-7">
         {greetUser(data.success.user.first_name)}
