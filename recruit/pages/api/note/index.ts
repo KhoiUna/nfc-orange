@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { ApiResponse } from "../register";
 import client from "../../../db/client";
+import { sessionOptions } from "@/lib/session";
 
 async function login(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
