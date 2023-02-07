@@ -3,7 +3,8 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import { ApiResponse } from "../register";
 import client from "../../../db/client";
 import { sessionOptions } from "@/lib/session";
-import { MAX_WORD_COUNT } from "../../../app/dashboard/note/[student_id]/page";
+
+const MAX_WORD_COUNT = 500;
 
 async function login(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
