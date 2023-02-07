@@ -5,11 +5,13 @@ import useAuth from "../../lib/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import greetUser from "../../lib/greetUser";
-import { Howl } from 'howler';
-import { useState } from "react";
+// import { Howl } from 'howler';
+// import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Student = {
+  student_id: number
   first_name: string;
   middle_name?: string;
   last_name: string;
@@ -67,31 +69,40 @@ export default function Dashboard() {
         {students.length === 0 && (
           <p className="mx-5 text-slate-500">No student profiles been saved</p>
         )}
-        {students.map((student: Student, index) => (
-          <div key={index} className="bg-slate-50 rounded-lg m-3 p-4 flex items-center">
-            <div className="rounded-lg border-r-2 border-slate-300 pr-8">
-              <Image
-                className="m-auto w-[70px] h-[70px] rounded-[100%] border-2 border-primary object-scale-down"
-                src={student.avatar_url
-                  || `https://api.dicebear.com/5.x/initials/png?seed=${student.first_name} ${student.last_name}`
-                } alt={`${student.first_name} ${student.last_name}'s profile picture`} width={500} height={500} />
-            </div>
+        <div className="flex flex-wrap">
+          {students.map((student: Student, index) => (
+            <div key={index} className="bg-slate-50 rounded-lg mx-3 my-4 p-4 flex items-center max-w-lg hover:drop-shadow-lg">
+              <div className="rounded-lg border-r-2 border-slate-300 pr-8">
+                <Image
+                  className="m-auto w-[70px] h-[70px] rounded-[100%] border-2 border-primary object-scale-down"
+                  src={student.avatar_url
+                    || `https://api.dicebear.com/5.x/initials/png?seed=${student.first_name} ${student.last_name}`
+                  } alt={`${student.first_name} ${student.last_name}'s profile picture`} width={500} height={500} />
+              </div>
 
-            <div className="pl-5">
-              <p className="text-lg font-bold">
-                {student.first_name} {student.middle_name} {student.last_name}
-              </p>
-
-              <p className="py-1">{student.university_name}</p>
-
-              <a href={student.url} target="_blank" rel="noreferrer">
-                <p className="pt-1 underline font-semibold text-blue-700">
-                  View Resume
+              <div className="pl-5">
+                <p className="text-lg font-bold">
+                  {student.first_name} {student.middle_name} {student.last_name}
                 </p>
-              </a>
+
+                <p className="py-1">{student.university_name}</p>
+
+                <a className="block w-fit" href={student.url} target="_blank" rel="noreferrer">
+                  <p className="pt-1 underline font-semibold text-blue-700">
+                    View Resume
+                  </p>
+                </a>
+
+                {/* TODO: pass state to Link */}
+                <Link href={`/dashboard/note/${student.student_id}`}>
+                  <button className="bg-primary p-2 text-white rounded-lg drop-shadow-lg mt-4">
+                    <p className="font-semibold">View / Add Note</p>
+                  </button>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
