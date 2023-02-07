@@ -5,7 +5,13 @@ import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast'
 import useAuth from '@/lib/useAuth';
 
-export default function Note({ params }) {
+type Props = {
+    params: {
+        student_id: string
+    }
+}
+
+export default function Note({ params }: Props) {
     useAuth({});
 
     const router = useRouter()
