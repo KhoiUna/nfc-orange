@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import TextLoader from '@/components/ui/TextLoader';
 
-export const MAX_WORD_COUNT = 500
+const MAX_WORD_COUNT = 500
 
 type Props = {
     params: {
