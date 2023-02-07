@@ -138,7 +138,7 @@ export default function Note({ params }: Props) {
             </button>}
             {editMode && (
                 <button
-                    // disabled={wordCount > MAX_WORD_COUNT}
+                    disabled={wordCount > MAX_WORD_COUNT}
                     className={`cursor-pointer mt-3 rounded-lg text-lg drop-shadow-lg text-white p-2 font-semibold ${wordCount > MAX_WORD_COUNT ? 'bg-slate-400' : 'bg-primary'}`}
                     onClick={handleSave}
                 >
