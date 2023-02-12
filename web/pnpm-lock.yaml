@@ -29,6 +29,7 @@ specifiers:
   react-dom: 18.2.0
   react-hot-toast: ^2.4.0
   swr: ^1.3.0
+  tailwind-pdf-viewer: ^0.0.5
   tailwindcss: ^3.1.8
   typescript: 4.8.3
   uuid: ^9.0.0
@@ -50,6 +51,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.0_owo25xnefcwdq3zjgtohz6dbju
   swr: 1.3.0_react@18.2.0
+  tailwind-pdf-viewer: 0.0.5
   uuid: 9.0.0
 
 devDependencies:
@@ -644,9 +646,17 @@ packages:
       react: 18.2.0
     dev: true
 
+  /@iconify/react/4.1.0_react@18.2.0:
+    resolution: {integrity: sha512-Mf72i3TNNKpKCKxmo7kzqyrUdCgaoljpqtWmtqpqwyxoV4ukhnDsSRNLhf2yBnqGr3cVZsdj/i0FMpXIY0Qk0g==}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      '@iconify/types': 2.0.0
+      react: 18.2.0
+    dev: false
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@mapbox/node-pre-gyp/1.0.10:
     resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
@@ -1363,6 +1373,20 @@ packages:
   /caniuse-lite/1.0.30001412:
     resolution: {integrity: sha512-+TeEIee1gS5bYOiuf+PS/kp2mrXic37Hl66VY6EAfxasIk5fELTktK2oOezYed12H8w7jt3s512PpulQidPjwA==}
 
+  /canvas/2.11.0:
+    resolution: {integrity: sha512-bdTjFexjKJEwtIo0oRx8eD4G2yWoUOXP9lj279jmQ2zMnTQhT8C3512OKz3s+ZOaQlLbE7TuVvRDYDB3Llyy5g==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@mapbox/node-pre-gyp': 1.0.10
+      nan: 2.17.0
+      simple-get: 3.1.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+    optional: true
+
   /chalk/4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -1504,6 +1528,14 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+
+  /decompress-response/4.2.1:
+    resolution: {integrity: sha512-jOSne2qbyE+/r8G1VU+G/82LBs2Fs4LAsTiLSHOCOMZQl2OKZ6i8i4IyHemTe+/yIXOtTcRQMzPcgyhoFlqPkw==}
+    engines: {node: '>=8'}
+    dependencies:
+      mimic-response: 2.1.0
+    dev: false
+    optional: true
 
   /deep-is/0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -2624,6 +2656,12 @@ packages:
       mime-db: 1.52.0
     dev: false
 
+  /mimic-response/2.1.0:
+    resolution: {integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==}
+    engines: {node: '>=8'}
+    dev: false
+    optional: true
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -2664,6 +2702,11 @@ packages:
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
+
+  /nan/2.17.0:
+    resolution: {integrity: sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==}
+    dev: false
+    optional: true
 
   /nanoid/3.3.4:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
@@ -2896,6 +2939,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /path2d-polyfill/2.0.1:
+    resolution: {integrity: sha512-ad/3bsalbbWhmBo0D6FZ4RNMwsLsPpL6gnvhuSaU5Vm7b06Kr5ubSltQQ0T7YKsiJQO+g22zJ4dJKNTXIyOXtA==}
+    engines: {node: '>=8'}
+    dev: false
+
   /pdfjs-dist/2.16.105:
     resolution: {integrity: sha512-J4dn41spsAwUxCpEoVf6GVoz908IAA3mYiLmNxg8J9kfRXc2jxpbUepcP0ocp0alVNLFthTAM8DZ1RaHh8sU0A==}
     peerDependencies:
@@ -2906,6 +2954,18 @@ packages:
     dependencies:
       dommatrix: 1.0.3
       web-streams-polyfill: 3.2.1
+    dev: false
+
+  /pdfjs-dist/3.3.122:
+    resolution: {integrity: sha512-98WC09jOq3OuqrmF5+LZfcyzTlGA0sY9ocMBbWZ/H6Pwni7deptxwkNZVLieOz+4nSoTEW25PsfnfOj3ELrHdA==}
+    dependencies:
+      path2d-polyfill: 2.0.1
+      web-streams-polyfill: 3.2.1
+    optionalDependencies:
+      canvas: 2.11.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
     dev: false
 
   /pg-connection-string/2.5.0:
@@ -3384,6 +3444,20 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: false
 
+  /simple-concat/1.0.1:
+    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
+    dev: false
+    optional: true
+
+  /simple-get/3.1.1:
+    resolution: {integrity: sha512-CQ5LTKGfCpvE1K0n2us+kuMPbk/q0EKl82s4aheV9oXjFEz6W/Y7oQFVJuU6QG77hRT4Ghb5RURteF5vnWjupA==}
+    dependencies:
+      decompress-response: 4.2.1
+      once: 1.4.0
+      simple-concat: 1.0.1
+    dev: false
+    optional: true
+
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -3493,6 +3567,19 @@ packages:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /tailwind-pdf-viewer/0.0.5:
+    resolution: {integrity: sha512-dXotJpMe3vlgSuWUBg0rHtz+f4z1taKFzqPZOsl7dxiI0CkDls73GRUS8RXkCT9GVZdsJaHRiq1Hvhmy4vn1uA==}
+    dependencies:
+      '@iconify/react': 4.1.0_react@18.2.0
+      pdfjs-dist: 3.3.122
+      react: 18.2.0
+      react-device-detect: 2.2.2_biqbaboplfbrettd7655fr4n2y
+      react-dom: 18.2.0_react@18.2.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
     dev: false
 
   /tailwindcss/3.1.8_postcss@8.4.16:
