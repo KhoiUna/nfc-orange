@@ -57,55 +57,72 @@ export default function View() {
 
   const { success, error } = data;
 
-  if (error)
-    return (
-      <Layout
-        title={
-          error === "register" ? "View - Please Register" : "View - Invalid"
-        }
-      >
-        <div id="parallax" className="text-center py-[20vh] min-h-[80vh] m-0">
-          {error === "invalid" && (
+  if (error) return (
+    <Layout
+      title={
+        error === "register" ? "View - Please Register" : "View - Invalid"
+      }
+    >
+      <div id="parallax" className="text-center py-[20vh] min-h-[80vh] m-0">
+        {error === "invalid" && (
+          <h1
+            className="text-white text-[3em] font-bold"
+            style={{
+              textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+            }}
+          >
+            Invalid card
+          </h1>
+        )}
+        {error === "register" && (
+          <>
             <h1
-              className="text-white text-[3em] font-bold"
+              className="text-[3em] text-white font-bold"
               style={{
                 textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
               }}
             >
-              Invalid card
+              Card is not registered
             </h1>
-          )}
-          {error === "register" && (
-            <>
-              <h1
-                className="text-[3em] text-white font-bold"
-                style={{
-                  textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
-                }}
-              >
-                Card is not registered
-              </h1>
-              <Link href={`/register?c_id=${cardUuid}`} legacyBehavior>
-                <h2 className="underline text-white text-[2rem] mt-3 cursor-pointer">
-                  Go here to register
-                </h2>
-              </Link>
-            </>
-          )}
-        </div>
-      </Layout>
-    );
+            <Link href={`/register?c_id=${cardUuid}`} legacyBehavior>
+              <h2 className="underline text-white text-[2rem] mt-3 cursor-pointer">
+                Go here to register
+              </h2>
+            </Link>
+          </>
+        )}
+      </div>
+    </Layout>
+  );
 
-  if (success.length === 0)
-    return (
-      <Layout title="View">
-        <div className="text-center py-[20vh] min-h-[80vh] m-4">
-          <h1 className="text-[3em] font-bold">No document uploaded</h1>
-        </div>
-      </Layout>
-    );
+  if (success.length === 0) return (
+    <Layout title="View">
+      <div className="text-center py-[20vh] min-h-[80vh] p-4">
+        <h1 className="text-3xl font-bold">No document uploaded</h1>
+      </div>
+    </Layout>
+  );
 
-  const { first_name, middle_name, last_name, url, avatar_url } = success[0]
+  const { first_name, middle_name, last_name, pdf_url, symplicity_url, avatar_url } = success[0]
+
+  if (symplicity_url) return (
+    <ViewLayout title="View">
+      <div className="bg-white text-center pb-5">
+        <div className="rounded-lg">
+          <Image className="m-auto w-[230px] h-[230px] rounded-[100%] object-scale-down" src={avatar_url ||
+            `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
+          } alt={`${first_name}'s profile picture`} width={500} height={500} />
+        </div>
+
+        <p className="text-[3rem] font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
+      </div>
+      <hr />
+
+      <div className="text-center">
+        <PDFViewer pdfURL={symplicity_url} />
+      </div>
+    </ViewLayout>
+  );
 
   return (
     <ViewLayout title="View">
@@ -121,7 +138,7 @@ export default function View() {
       <hr />
 
       <div className="text-center">
-        <PDFViewer pdfURL={url} />
+        <PDFViewer pdfURL={pdf_url} />
       </div>
     </ViewLayout>
   );
