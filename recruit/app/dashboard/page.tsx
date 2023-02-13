@@ -17,7 +17,8 @@ type Student = {
   last_name: string;
   avatar_url?: string;
   university_name: string;
-  url: string;
+  pdf_url?: string;
+  symplicity_url?: string
 };
 
 export default function Dashboard() {
@@ -87,7 +88,7 @@ export default function Dashboard() {
 
                 <p className="py-1">{student.university_name}</p>
 
-                <a className="block w-fit" href={student.url} target="_blank" rel="noreferrer">
+                <a className="block w-fit" href={student.symplicity_url || student.pdf_url} target="_blank" rel="noreferrer">
                   <p className="pt-1 underline font-semibold text-blue-700">
                     View Resume
                   </p>
