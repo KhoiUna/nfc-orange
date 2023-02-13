@@ -34,8 +34,8 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     return res.status(200).json({
       success: {
         user: rows[0],
-        pdf_link: pdfLinks[0].url,
-        symplicity_link: symplicityLinks[0].url,
+        pdf_link: pdfLinks[0]?.url || "",
+        symplicity_link: symplicityLinks[0]?.url || "",
       },
       error: false,
     });
