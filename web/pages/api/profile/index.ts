@@ -16,8 +16,13 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .status(403)
         .json({ success: false, error: "Method not allowed" });
 
-    const { rows: links } = await client.query(
+    const { rows: pdfLinks } = await client.query(
       "SELECT url FROM links WHERE user_id = (SELECT id FROM users WHERE email = $1);",
+      [req.session.user?.email]
+    );
+
+    const { rows: symplicityLinks } = await client.query(
+      "SELECT url FROM symplicity_resume_links WHERE user_id = (SELECT id FROM users WHERE email = $1);",
       [req.session.user?.email]
     );
 
@@ -26,9 +31,14 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
       [req.session.user?.email]
     );
 
-    return res
-      .status(200)
-      .json({ success: { user: rows[0], links }, error: false });
+    return res.status(200).json({
+      success: {
+        user: rows[0],
+        pdf_link: pdfLinks[0].url,
+        symplicity_link: symplicityLinks[0].url,
+      },
+      error: false,
+    });
   } catch (error) {
     console.error(error);
     return res
