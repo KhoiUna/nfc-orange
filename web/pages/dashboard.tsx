@@ -162,25 +162,28 @@ export default function Dashboard() {
         {greetUser(data.success.user.first_name)}
       </h2>
 
-      <div className="text-center">
+      <div>
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
             <p className="text-left mb-2 font-bold">Paste Symplicity Resume URL</p>
             <input
               required
               placeholder="Paste URL here"
-              className={`w-full sm:w-[500px] border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
+              className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
               value={symplicityLink}
             />
           </div>
-          <button
-            className="text-md bg-blue-100 rounded-lg p-2 drop-shadow-lg m-auto text-blue-800 active:drop-shadow-none"
-          >
-            {!isLoading && "Save"}
-            {isLoading && <TextLoader loadingText="Saving" />}
-          </button>
+
+          <div className="text-center">
+            <button
+              className="text-md bg-blue-100 rounded-lg p-2 drop-shadow-lg m-auto text-blue-800 active:drop-shadow-none"
+            >
+              {!isLoading && "Save"}
+              {isLoading && <TextLoader loadingText="Saving" />}
+            </button>
+          </div>
         </form>
 
         <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
@@ -227,25 +230,28 @@ export default function Dashboard() {
       </h2>
 
       {/* Upload Symplicity PDF URL */}
-      <div className="text-center">
+      <div>
         <form>
           <div className="m-5">
             <p className="text-left mb-2 font-bold">Paste Symplicity Resume URL</p>
             <input
               required
               placeholder="Paste URL here"
-              className={`w-full sm:w-[500px] border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
+              className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
               value={symplicityLink}
             />
           </div>
-          <button
-            className="text-md bg-blue-100 rounded-lg p-2 drop-shadow-lg m-auto text-blue-800 active:drop-shadow-none"
-          >
-            {!isLoading && "Save"}
-            {isLoading && <TextLoader loadingText="Saving" />}
-          </button>
+
+          <div className="text-center">
+            <button
+              className="text-md bg-blue-100 rounded-lg p-2 drop-shadow-lg m-auto text-blue-800 active:drop-shadow-none"
+            >
+              {!isLoading && "Save"}
+              {isLoading && <TextLoader loadingText="Saving" />}
+            </button>
+          </div>
         </form>
 
         <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
