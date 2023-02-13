@@ -1,8 +1,8 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../db/client";
-import { sessionOptions } from "../../lib/session";
-import { ApiResponse } from "./register";
+import client from "../../../db/client";
+import { sessionOptions } from "../../../lib/session";
+import { ApiResponse } from "../register";
 
 async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
