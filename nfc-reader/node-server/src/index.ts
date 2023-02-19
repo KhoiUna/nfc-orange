@@ -32,6 +32,19 @@ app.get("/api/reader", (req: express.Request, res: express.Response) => {
   }
 });
 
+app.post("/api/card", async (req: express.Request, res: express.Response) => {
+  try {
+    const { serial_number } = req.body;
+    // TODO: generate 6 digit password (optional)
+    //
+
+    // TODO: save to DB
+    //
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.post(
   "/api/reader",
   validateReader,
