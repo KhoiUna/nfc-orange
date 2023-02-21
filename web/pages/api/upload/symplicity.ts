@@ -1,3 +1,4 @@
+import axios from "axios";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "../../../db/client";
@@ -18,10 +19,20 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
 
     const { symplicityLink } = req.body;
 
+    const { data } = await axios.post(
+      `${process.env.NODE_DOWNLOAD_API}/api/download`,
+      {
+        download_url: symplicityLink,
+      }
+    );
+    if (data.error) throw new Error("POST error to node-download-server");
+
+    const pdfURL = data.success;
+
     // Save link to database
     const response = await client.query(
       "INSERT INTO symplicity_resume_links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
-      [req.session.user?.email, symplicityLink, new Date()]
+      [req.session.user?.email, pdfURL, new Date()]
     );
     if (!response) throw "Error saving Symplicity link";
 
