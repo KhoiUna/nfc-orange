@@ -28,7 +28,7 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     if (data.error) throw new Error("POST error to node-download-server");
 
     const pdfURL = data.success;
-    console.log(data);
+    console.log(pdfURL);
 
     // Save link to database
     const response = await client.query(
