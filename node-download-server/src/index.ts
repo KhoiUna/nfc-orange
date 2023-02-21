@@ -32,7 +32,7 @@ app.post(
       );
 
       download.on("end", async (event) => {
-        console.log("Download Completed");
+        console.log("Download completed");
         const fileName = event.fileName;
 
         // TODO: upload to Firebase
@@ -41,26 +41,21 @@ app.post(
           storage,
           `/resumes/${process.env.UPLOAD_FOLDER}/${uuidv4()}.pdf`
         );
-        console.log("xxx:", fileName);
 
-        // FIX
-        // const buffer = readFileSync(
-        //   path.join(__dirname + `/downloads/${fileName}`)
-        // ); // TODO: get file from filesystem
+        const buffer = readFileSync(
+          path.join(__dirname + `/downloads/${fileName}`)
+        );
 
-        // const file = new Blob([buffer]);
-        // const response = uploadBytes(storageRef, file);
+        const response = await uploadBytes(storageRef, buffer);
+        if (!response) throw new Error("Upload to Firbase failed");
 
-        // const fileURL = await getDownloadURL(storageRef);
-        // console.log(fileURL);
+        const fileURL = await getDownloadURL(storageRef);
+        console.log(fileURL);
 
         // TODO: delete file in /downloads
         unlinkSync(path.join(__dirname + `/downloads/${fileName}`));
 
-        // TODO: update SQL database
-        //
-
-        res.json({ success: "fileURL", error: false }); // CHANGE: fileURL
+        return res.json({ success: fileURL, error: false });
       });
       download.on("error", (err) => {
         throw err;
