@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { readFileSync, unlinkSync } from "fs";
 import firebaseApp from "./lib/firebase";
 import path from "path";
+import cors from "cors";
 
 config();
 
@@ -14,6 +15,11 @@ const PORT = process.env.PORT || 5000;
 const app: Application = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["www.nfcorange.com"],
+  })
+);
 
 app.get("/api/download", (req: express.Request, res: express.Response) => {
   res.json({ success: "Hi world", error: false });
