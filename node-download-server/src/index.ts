@@ -50,9 +50,8 @@ app.post(
         if (!response) throw new Error("Upload to Firbase failed");
 
         const fileURL = await getDownloadURL(storageRef);
-        console.log(fileURL);
 
-        // TODO: delete file in /downloads
+        // Delete file in /downloads
         unlinkSync(path.join(__dirname + `/downloads/${fileName}`));
 
         return res.json({ success: fileURL, error: false });
