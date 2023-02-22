@@ -1,4 +1,5 @@
 import axios from "axios";
+import { error } from "console";
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "../../../db/client";
@@ -19,29 +20,63 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
 
     const { symplicityLink } = req.body;
 
-    const { data } = await axios.post(
-      `${process.env.NODE_DOWNLOAD_API}/api/download`,
-      {
-        user_email: req.session.user.email,
-        download_url: symplicityLink,
-      },
-      {
-        timeout: 3000,
-      }
-    );
-    if (data.error) throw new Error("POST error to node-download-server");
+    // const { data } = await axios.post(
+    //   `${process.env.NODE_DOWNLOAD_API}/api/download`,
+    //   {
+    //     user_email: req.session.user.email,
+    //     download_url: symplicityLink,
+    //   },
+    //   {
+    //     timeout: 3000,
+    //   }
+    // );
+    // if (data.error) throw new Error("POST error to node-download-server");
 
-    const pdfURL = data.success;
-    console.log(JSON.stringify(data));
+    // const pdfURL = data.success;
+    // console.log(JSON.stringify(data));
 
-    // Save link to database
-    const response = await client.query(
-      "INSERT INTO symplicity_resume_links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
-      [req.session.user?.email, pdfURL, new Date()]
-    );
-    if (!response) throw "Error saving Symplicity link";
+    // // Save link to database
+    // const response = await client.query(
+    //   "INSERT INTO symplicity_resume_links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
+    //   [req.session.user?.email, pdfURL, new Date()]
+    // );
+    // if (!response) throw "Error saving Symplicity link";
 
-    return res.status(200).json({ success: true, error: false });
+    // return res.status(200).json({ success: true, error: false });
+
+    //
+    //
+    //
+    axios
+      .post(
+        `${process.env.NODE_DOWNLOAD_API}/api/download`,
+        {
+          download_url: symplicityLink,
+        },
+        {
+          timeout: 5000,
+          timeoutErrorMessage: "Axios timeout error!",
+        }
+      )
+      .then(async ({ data }) => {
+        if (data.error) throw new Error("POST error to node-download-server");
+
+        const pdfURL = data.success;
+        console.log(JSON.stringify(data));
+
+        // Save link to database
+        const response = await client.query(
+          "INSERT INTO symplicity_resume_links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
+          [req.session.user?.email, pdfURL, new Date()]
+        );
+        if (!response) throw "Error saving Symplicity link";
+
+        return res.status(200).json({ success: true, error: false });
+      })
+      .catch((error) => {
+        console.error("AXIOS ERROR!");
+        throw error;
+      });
   } catch (error) {
     console.error(error);
     return res
