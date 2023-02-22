@@ -15,6 +15,7 @@ const isValid = async (registerInfo: RegisterInfo) => {
     middle_name: Joi.string().trim().allow(null, ""),
     last_name: Joi.string().trim().min(1).required(),
     email: Joi.string().email().trim().required(),
+    major: Joi.string().min(5).max(45).required(),
     password: Joi.string().min(6).required(),
     confirm_password: Joi.ref("password"),
   });
@@ -44,7 +45,8 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { first_name, middle_name, last_name, email, password } = req.body;
+    const { first_name, middle_name, last_name, email, major, password } =
+      req.body;
     const { c_id } = req.query;
 
     // Validate req.body from user
