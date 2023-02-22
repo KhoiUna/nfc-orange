@@ -14,6 +14,7 @@ import axios from "axios";
 type Profile = {
     success: {
         user: {
+            major: string
             first_name: string,
             middle_name?: string,
             last_name: string,
@@ -125,6 +126,7 @@ export default function Profile() {
             </IKContext>
 
             <div className="text-lg">
+                <p><b>Major:</b> {user.major}</p>
                 <p><b>First Name:</b> {user.first_name}</p>
                 {user.middle_name && <p><b>Middle Name:</b> {user.middle_name}</p>}
                 <p><b>Last Name:</b> {user.last_name}</p>
