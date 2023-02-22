@@ -7,6 +7,7 @@ import {
 } from "./middlewares/middlewares";
 import ReaderHistory from "./db/models/ReaderHistory";
 import Recruiters from "./db/models/Recruiters";
+import Cards from "./db/models/Cards";
 
 config();
 
@@ -34,14 +35,46 @@ app.get("/api/reader", (req: express.Request, res: express.Response) => {
 
 app.post("/api/card", async (req: express.Request, res: express.Response) => {
   try {
-    const { serial_number } = req.body;
+    const serialNumber: string = req.body.serial_number;
+
+    if (!serialNumber || !serialNumber.trim())
+      return res
+        .status(400)
+        .send({ success: false, error: "Missing serial number" });
+
+    if (serialNumber.length !== 14)
+      return res
+        .status(400)
+        .send({ success: false, error: "Invalid serial number" });
+
     // TODO: generate 6 digit password (optional)
     //
 
-    // TODO: save to DB
-    //
+    // Check if card exists in database
+    const card = await Cards.findOne({
+      where: {
+        serial_number: serialNumber,
+      },
+    });
+    if (card)
+      return res.status(400).send({ success: false, error: "Invalid card" });
+
+    // Save to new cards to DB
+    const response = await Cards.create({
+      serial_number: serialNumber,
+    });
+    if (!response) throw new Error("Error saving new card");
+
+    return res.json({
+      success: "New card saved",
+      error: false,
+    });
   } catch (error) {
     console.error(error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
   }
 });
 
