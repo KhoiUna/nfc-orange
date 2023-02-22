@@ -19,11 +19,6 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
 
     const { symplicityLink } = req.body;
 
-    const { data: testData } = await axios.get(
-      `${process.env.NODE_DOWNLOAD_API}/api/download`
-    );
-    console.log(JSON.stringify(testData));
-
     const { data } = await axios.post(
       `${process.env.NODE_DOWNLOAD_API}/api/download`,
       {
@@ -31,10 +26,7 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         download_url: symplicityLink,
       },
       {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
+        timeout: 3000,
       }
     );
     if (data.error) throw new Error("POST error to node-download-server");
