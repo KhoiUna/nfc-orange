@@ -95,7 +95,9 @@ export default function View() {
     </Layout>
   );
 
-  if (success.length === 0) return (
+  const { first_name, middle_name, last_name, pdf_url, symplicity_url, avatar_url, major } = success[0]
+
+  if (!symplicity_url && !pdf_url) return (
     <Layout title="View">
       <div className="text-center py-[20vh] min-h-[80vh] p-4">
         <h1 className="text-3xl font-bold">No document uploaded</h1>
@@ -103,7 +105,6 @@ export default function View() {
     </Layout>
   );
 
-  const { first_name, middle_name, last_name, pdf_url, symplicity_url, avatar_url, major } = success[0]
 
   if (symplicity_url) return (
     <ViewLayout title="View">
