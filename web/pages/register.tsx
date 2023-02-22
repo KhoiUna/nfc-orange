@@ -9,6 +9,7 @@ export type RegisterInfo = {
   middle_name: string;
   last_name: string;
   email: string;
+  major: string;
   password: string;
   confirm_password: string;
 };
@@ -18,6 +19,7 @@ const registerInfoInitialState: RegisterInfo = {
   middle_name: "",
   last_name: "",
   email: "",
+  major: "",
   password: "",
   confirm_password: "",
 };
@@ -171,6 +173,17 @@ export default function Register({ showForm }: RegisterProps) {
                   name="email"
                   placeholder="Email*"
                   value={registerInfo.email}
+                />
+              </div>
+
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="text"
+                  name="major"
+                  placeholder="Major*"
+                  value={registerInfo.major}
                 />
               </div>
 
