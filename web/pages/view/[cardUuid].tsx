@@ -99,8 +99,21 @@ export default function View() {
 
   if (!symplicity_url && !pdf_url) return (
     <Layout title="View">
-      <div className="text-center py-[20vh] min-h-[80vh] p-4">
-        <h1 className="text-3xl font-bold">No document uploaded</h1>
+      <div className="bg-white text-center pt-[3rem]">
+        <div className="rounded-lg">
+          <Image className="m-auto w-[150px] h-[150px] rounded-[100%] object-scale-down" src={avatar_url ||
+            `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
+          } alt={`${first_name}'s profile picture`} width={100} height={100} />
+        </div>
+
+        <p className="text-lg font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
+        <p className="text-lg">Major in <b>{major}</b></p>
+      </div>
+      <hr />
+
+      <div className="text-center py-[20vh] min-h-[80vh] p-4 bg-slate-100">
+        <h1 className="text-lg font-bold">No document uploaded</h1>
+        <p className="text-lg text-red-500 font-bold">Please go to Student Login to upload (preferably on your PC or laptop)</p>
       </div>
     </Layout>
   );
