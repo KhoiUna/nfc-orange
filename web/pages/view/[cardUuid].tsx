@@ -103,7 +103,7 @@ export default function View() {
     </Layout>
   );
 
-  const { first_name, middle_name, last_name, pdf_url, symplicity_url, avatar_url } = success[0]
+  const { first_name, middle_name, last_name, pdf_url, symplicity_url, avatar_url, major } = success[0]
 
   if (symplicity_url) return (
     <ViewLayout title="View">
@@ -115,6 +115,7 @@ export default function View() {
         </div>
 
         <p className="text-[3rem] font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
+        <p className="text-[2.7rem]">Major in <b>{major}</b></p>
       </div>
       <hr />
 
