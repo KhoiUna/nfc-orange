@@ -22,7 +22,14 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     const { data } = await axios.post(
       `${process.env.NODE_DOWNLOAD_API}/api/download`,
       {
+        user_email: req.session.user.email,
         download_url: symplicityLink,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
       }
     );
     if (data.error) throw new Error("POST error to node-download-server");
