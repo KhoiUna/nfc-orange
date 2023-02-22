@@ -7,6 +7,8 @@ import { readFileSync, unlinkSync } from "fs";
 import firebaseApp from "./lib/firebase";
 import path from "path";
 import cors from "cors";
+import SymplicityLinks from "./db/models/SymplicityLinks";
+import Users from "./db/models/Users";
 
 config();
 
@@ -29,7 +31,7 @@ app.post(
   "/api/download",
   async (req: express.Request, res: express.Response) => {
     try {
-      const { download_url } = req.body;
+      const { user_email, download_url } = req.body;
 
       const download = new DownloaderHelper(
         download_url,
@@ -60,7 +62,28 @@ app.post(
         // Delete file in /downloads
         unlinkSync(path.join(__dirname + `/downloads/${fileName}`));
 
-        return res.json({ success: fileURL, error: false });
+        // Update link in `symplicity_resume_links` table in db
+        const user = await Users.findOne({
+          where: {
+            email: user_email,
+          },
+        });
+        if (!user) return res.status(400).json({ success: false, error: true });
+
+        const updateSymplicityLinksResponse = await SymplicityLinks.update(
+          {
+            url: fileURL,
+          },
+          {
+            where: {
+              user_id: user.dataValues.id,
+            },
+          }
+        );
+        if (!updateSymplicityLinksResponse)
+          return res.status(500).json({ success: false, error: true });
+
+        return res.json({ success: true, error: false });
       });
       download.on("error", (err) => {
         throw err;

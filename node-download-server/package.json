@@ -17,6 +17,8 @@
     "express": "^4.18.2",
     "firebase": "^9.17.1",
     "node-downloader-helper": "^2.1.6",
+    "pg": "^8.9.0",
+    "sequelize": "^6.28.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
