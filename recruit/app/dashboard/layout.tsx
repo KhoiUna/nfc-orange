@@ -11,12 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <AppHeaderBar
         title="Dashboard"
-        navLinks={[
-          {
-            href: "/api/logout",
-            text: "Logout",
-          },
-        ]}
+        navLinks={[]}
       />
 
       <QueryClientProvider client={queryClient}>

@@ -81,6 +81,11 @@ const MenuSidebar = ({
               </Fragment>
             );
           })}
+          <p className={`sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}>
+            <a href="/api/logout">
+              Logout
+            </a>
+          </p>
         </div>
       </div>
     </>
@@ -114,6 +119,13 @@ const AppHeaderBar = ({
               <NavLink href={item.href} text={item.text} />
             </p>
           ))}
+          <p className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}>
+            <a
+              href="/api/logout"
+            >
+              Logout
+            </a>
+          </p>
         </div>
 
         <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu}>
