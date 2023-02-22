@@ -41,7 +41,7 @@ export default async function view(
     // Send pdf url
     const userId = users[0].id;
     const { rows: profileView } = await client.query(
-      "SELECT users.id as user_id, first_name, middle_name, last_name, avatar_url, links.url as pdf_url, symplicity_resume_links.url as symplicity_url FROM links JOIN users ON users.id=links.user_id LEFT JOIN symplicity_resume_links ON links.user_id=symplicity_resume_links.user_id WHERE users.id=$1;",
+      "SELECT users.id as user_id, first_name, middle_name, last_name, avatar_url, links.url as pdf_url, symplicity_resume_links.url as symplicity_url FROM links RIGHT JOIN users ON users.id=links.user_id LEFT JOIN symplicity_resume_links ON users.id=symplicity_resume_links.user_id WHERE users.id=$1;",
       [userId]
     );
 
