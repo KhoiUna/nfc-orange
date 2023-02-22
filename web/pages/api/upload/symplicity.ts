@@ -48,16 +48,9 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     //
     //
     axios
-      .post(
-        `${process.env.NODE_DOWNLOAD_API}/api/download`,
-        {
-          download_url: symplicityLink,
-        },
-        {
-          timeout: 5000,
-          timeoutErrorMessage: "Axios timeout error!",
-        }
-      )
+      .post(`${process.env.NODE_DOWNLOAD_API}/api/download`, {
+        download_url: symplicityLink,
+      })
       .then(({ data }) => {
         console.log(JSON.stringify(data));
         return res.status(200).json({ success: true, error: false });
