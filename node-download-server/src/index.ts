@@ -29,7 +29,6 @@ app.post(
   "/api/download",
   async (req: express.Request, res: express.Response) => {
     try {
-      // TODO: download file from URL
       const { download_url } = req.body;
 
       const download = new DownloaderHelper(
@@ -41,7 +40,7 @@ app.post(
         console.log("Download completed");
         const fileName = event.fileName;
 
-        // TODO: upload to Firebase
+        // Upload file to Firebase
         const storage = getStorage(firebaseApp);
         const storageRef = ref(
           storage,
@@ -56,6 +55,7 @@ app.post(
         if (!response) throw new Error("Upload to Firbase failed");
 
         const fileURL = await getDownloadURL(storageRef);
+        console.log("Upload file URL:", fileURL);
 
         // Delete file in /downloads
         unlinkSync(path.join(__dirname + `/downloads/${fileName}`));
