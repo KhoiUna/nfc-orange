@@ -27,11 +27,11 @@ const NAV_LINKS: NavLink[] = [
   },
   {
     href: "/register",
-    text: "Register",
+    text: "Student Register",
   },
   {
     href: "/login",
-    text: "Login",
+    text: "Student Login",
   },
 ];
 
