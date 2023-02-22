@@ -58,24 +58,31 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
           timeoutErrorMessage: "Axios timeout error!",
         }
       )
-      .then(async ({ data }) => {
-        if (data.error) throw new Error("POST error to node-download-server");
-
-        const pdfURL = data.success;
+      .then(({ data }) => {
         console.log(JSON.stringify(data));
-
-        // Save link to database
-        const response = await client.query(
-          "INSERT INTO symplicity_resume_links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
-          [req.session.user?.email, pdfURL, new Date()]
-        );
-        if (!response) throw "Error saving Symplicity link";
-
         return res.status(200).json({ success: true, error: false });
       })
       .catch((error) => {
-        console.error("AXIOS ERROR!");
-        throw error;
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+        console.log(error.config);
+
+        return res
+          .status(500)
+          .json({ success: false, error: "Internal server error" });
       });
   } catch (error) {
     console.error(error);
