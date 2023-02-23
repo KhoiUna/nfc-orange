@@ -16,6 +16,7 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [symplicityLink, setSymplicityLink] = useState("")
+  const [previewSymplicityLink, setPreviewSymplicityLink] = useState("")
   const [symplicityURLValidated, setSymplicityURLValidated] = useState<boolean | null>(null)
 
   const [path, setPath] = useState("");
@@ -95,7 +96,7 @@ export default function Dashboard() {
       event.preventDefault()
       setIsLoading(true);
 
-      const { data } = await axios.post('/api/upload/symplicity', { symplicityLink })
+      const { data } = await axios.post('/api/upload/symplicity', { symplicityLink: previewSymplicityLink })
 
       if (data.error) throw error;
 
@@ -126,10 +127,11 @@ export default function Dashboard() {
         if (!SYMPLICITY_VALIDATE_KEYS.includes(key) || !value) throw new Error("Invalid Symplicity URL");
       }
 
-      setSymplicityLink(target.value)
+      setPreviewSymplicityLink(target.value)
       setSymplicityURLValidated(true)
     } catch (error: any) {
       console.error(error.message);
+      setPreviewSymplicityLink('')
       setSymplicityURLValidated(false)
       toast.error(error.message)
     }
@@ -172,7 +174,7 @@ export default function Dashboard() {
               className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
-              value={symplicityLink}
+              value={previewSymplicityLink}
             />
           </div>
 
@@ -197,7 +199,9 @@ export default function Dashboard() {
 
 
       <div className="mt-9">
-        <PDFViewer pdfURL={symplicityLink} />
+        {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
+        {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
+        <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
       </div>
     </AppLayout>
   )
