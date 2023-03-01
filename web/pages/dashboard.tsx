@@ -191,16 +191,9 @@ export default function Dashboard() {
         <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
       </div>
 
-      {!symplicityLink && (
-        <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
-          No PDF uploaded
-        </p>
-      )}
-
-
       <div className="mt-9">
-        {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
-        {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
+        {!previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
+        {previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
         <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
       </div>
     </AppLayout>
@@ -235,7 +228,7 @@ export default function Dashboard() {
 
       {/* Upload Symplicity PDF URL */}
       <div>
-        <form>
+        <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
             <p className="text-left mb-2 font-bold">Paste Symplicity Resume URL</p>
             <input
@@ -244,7 +237,7 @@ export default function Dashboard() {
               className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
-              value={symplicityLink}
+              value={previewSymplicityLink}
             />
           </div>
 
@@ -277,13 +270,21 @@ export default function Dashboard() {
       </button>
       <p className="text-sm text-center italic">*Only PDFs are allowed</p> */}
 
-      {!uploadedURL && (
+      {!uploadedURL && !symplicityLink && (
         <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
           No PDF uploaded
         </p>
       )}
 
-      {uploadedURL && (
+      {(previewSymplicityLink || symplicityLink) && (
+        <div className="mt-9">
+          {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
+          {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
+          <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
+        </div>
+      )}
+
+      {/* {uploadedURL && (
         <div className="mt-9">
           <object
             className="w-full h-[70vh] m-auto"
@@ -293,7 +294,7 @@ export default function Dashboard() {
             )}`}
           />
         </div>
-      )}
+      )} */}
     </AppLayout>
   );
 }
