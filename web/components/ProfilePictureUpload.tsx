@@ -75,7 +75,7 @@ const ProfilePictureUpload = ({ user }: { user: User }) => {
                 authenticationEndpoint={`${process.env.NEXT_PUBLIC_ORIGIN}/api/profile/avatar/auth`}
             >
                 <button className="text-md bg-blue-100 rounded-lg p-3 flex items-center drop-shadow-lg m-auto mb-5 text-blue-800 active:drop-shadow-none">
-                    {!isLoading && "Update your avatar"}
+                    {!isLoading && "Update profile picture"}
                     {isLoading && <TextLoader loadingText="Uploading" />}
                     <Icon className="text-2xl ml-2" icon="ant-design:upload-outlined" />
                     <IKUpload
