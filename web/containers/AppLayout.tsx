@@ -59,7 +59,7 @@ const AppLayout = ({ children, title }: LayoutProps) => {
         ]}
       />
 
-      <main>{children}</main>
+      <main className="max-h-screen overflow-auto">{children}</main>
     </>
   );
 };
