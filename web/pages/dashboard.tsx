@@ -170,10 +170,12 @@ export default function Dashboard() {
       <div>
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
-            <p className="text-left mb-2 font-bold">Paste Symplicity Resume URL</p>
+            <p className="mt-8 font-bold">Paste Symplicity Resume URL</p>
+            <p className="mt-1 mb-2 text-sm italic">Only approved PDFs from Symplicity are allowed</p>
+
             <input
               required
-              placeholder="Paste URL here"
+              placeholder="Paste here"
               className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
@@ -190,11 +192,9 @@ export default function Dashboard() {
             </button>
           </div>
         </form>
-
-        <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
       </div>
 
-      <div>
+      <div className="mt-6">
         {!previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
         {previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
 
@@ -238,10 +238,12 @@ export default function Dashboard() {
       <div>
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
-            <p className="text-left mb-2 font-bold">Paste Symplicity Resume URL</p>
+            <p className="mt-8 font-bold">Paste Symplicity Resume URL</p>
+            <p className="mt-1 mb-2 text-sm italic">Only approved PDFs from Symplicity are allowed</p>
+
             <input
               required
-              placeholder="Paste URL here"
+              placeholder="Paste here"
               className={`w-full border-2 border-slate-200 p-2 rounded-lg focus:outline-none ${symplicityURLValidated === true && 'border-green-500'} ${symplicityURLValidated === false && 'border-red-500'}`}
               type="text"
               onChange={handleChange}
@@ -258,8 +260,6 @@ export default function Dashboard() {
             </button>
           </div>
         </form>
-
-        <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
       </div>
 
       {/* Upload custom PDF */}
@@ -279,13 +279,13 @@ export default function Dashboard() {
       <p className="text-sm text-center italic">*Only PDFs are allowed</p> */}
 
       {!uploadedURL && !symplicityLink && (
-        <p className="text-[1.3rem] p-2 font-bold my-1 text-center">
+        <p className="text-lg p-2 font-bold mt-3 text-center">
           No PDF uploaded
         </p>
       )}
 
       {(previewSymplicityLink || symplicityLink) && (
-        <div>
+        <div className="mt-6">
           {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
           {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
 
