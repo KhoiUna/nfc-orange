@@ -1,5 +1,4 @@
 import AppLayout from "../containers/AppLayout";
-import { Icon } from "@iconify/react";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import app from "../lib/firebase";
@@ -11,6 +10,7 @@ import greetUser from "../lib/greetUser";
 import toast, { Toaster } from "react-hot-toast";
 import PDFViewer from "tailwind-pdf-viewer/dist";
 import axios from "axios";
+import ProfilePictureUpload from "@/components/ProfilePictureUpload";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +29,7 @@ export default function Dashboard() {
     if (data?.success?.symplicity_link) setSymplicityLink(data.success.symplicity_link)
   }, [data]);
 
+  // NOTE: The function below is for uploading custom PDF
   const handleUpload = async (event: SyntheticEvent) => {
     try {
       event.preventDefault();
@@ -164,6 +165,8 @@ export default function Dashboard() {
         {greetUser(data.success.user.first_name)}
       </h2>
 
+      <ProfilePictureUpload user={data.success.user} />
+
       <div>
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
@@ -191,10 +194,13 @@ export default function Dashboard() {
         <p className="mt-3 text-sm text-center italic">*Only approved PDFs from<br />Symplicity are allowed</p>
       </div>
 
-      <div className="mt-9">
+      <div>
         {!previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
         {previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
-        <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
+
+        <div className="mx-5">
+          <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
+        </div>
       </div>
     </AppLayout>
   )
@@ -225,6 +231,8 @@ export default function Dashboard() {
       <h2 className="text-xl mx-5 my-7">
         {greetUser(data.success.user.first_name)}
       </h2>
+
+      <ProfilePictureUpload user={data.success.user} />
 
       {/* Upload Symplicity PDF URL */}
       <div>
@@ -277,10 +285,13 @@ export default function Dashboard() {
       )}
 
       {(previewSymplicityLink || symplicityLink) && (
-        <div className="mt-9">
+        <div>
           {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
           {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
-          <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
+
+          <div className="mx-5">
+            <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
+          </div>
         </div>
       )}
 
