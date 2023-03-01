@@ -100,7 +100,7 @@ export default function View() {
 
   if (!symplicity_url && !pdf_url) return (
     <ViewLayout title="View">
-      <div className="bg-white text-center pt-[3rem] px-3">
+      <div className="bg-white text-center pt-[3rem] px-3 pb-5">
         <div className="rounded-lg">
           <Image className="m-auto w-[150px] h-[150px] rounded-[100%] object-scale-down" src={avatar_url ||
             `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
@@ -122,15 +122,15 @@ export default function View() {
 
   if (symplicity_url) return (
     <ViewLayout title="View">
-      <div className="bg-white text-center pb-5">
+      <div className="bg-white text-center pt-[3rem] px-3 pb-5">
         <div className="rounded-lg">
           <Image className="m-auto w-[230px] h-[230px] rounded-[100%] object-scale-down" src={avatar_url ||
             `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
           } alt={`${first_name}'s profile picture`} width={500} height={500} />
         </div>
 
-        <p className="text-[3rem] font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
-        <p className="text-[2.7rem]">Major in <b>{major}</b></p>
+        <p className="mt-3 text-lg font-bold">{first_name} {middle_name} {last_name}{"'s"} Resume</p>
+        <p className="text-lg">Major in <b>{major}</b></p>
       </div>
       <hr />
 
