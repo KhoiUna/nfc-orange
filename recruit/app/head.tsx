@@ -2,7 +2,7 @@ import Analytics from "@/components/Analytics";
 
 export default function Head() {
   return (
-    <>
+    <html lang="en">
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <link rel="icon" href="/nfc-orange.svg" />
 
@@ -16,6 +16,6 @@ export default function Head() {
       <title>Recruit | Login</title>
 
       <Analytics />
-    </>
+    </html>
   );
 }
