@@ -16,6 +16,7 @@ type Student = {
   middle_name?: string;
   last_name: string;
   avatar_url?: string;
+  major: string;
   university_name: string;
   pdf_url?: string;
   symplicity_url?: string
@@ -82,21 +83,25 @@ export default function Dashboard() {
               </div>
 
               <div className="pl-5">
-                <p className="text-lg font-bold">
+                <p className="font-bold">
                   {student.first_name} {student.middle_name} {student.last_name}
                 </p>
 
-                <p className="py-1">{student.university_name}</p>
+                <p>
+                  <b>Major:</b> {student.major}
+                </p>
+
+                <p className="py-2">{student.university_name}</p>
+
 
                 <a className="block w-fit" href={student.symplicity_url || student.pdf_url} target="_blank" rel="noreferrer">
-                  <p className="pt-1 underline font-semibold text-blue-700">
+                  <p className="pt-2 underline font-semibold text-blue-700">
                     View Resume
                   </p>
                 </a>
 
-                {/* TODO: pass state to Link */}
                 <Link href={`/dashboard/note/${student.student_id}`}>
-                  <button className="bg-primary p-2 text-white rounded-lg drop-shadow-lg mt-4">
+                  <button className="bg-primary p-2 text-white rounded-lg drop-shadow-lg ml-[-4px] mt-2">
                     <p className="font-semibold">View / Add Note</p>
                   </button>
                 </Link>
