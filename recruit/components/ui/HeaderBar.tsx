@@ -13,14 +13,14 @@ type NavLink = {
   text: string;
 };
 const NAV_LINKS: NavLink[] = [
-  {
-    href: "/",
-    text: "Login",
-  },
-  {
-    href: "/register",
-    text: "Register",
-  },
+  // {
+  //   href: "/",
+  //   text: "Login",
+  // },
+  // {
+  //   href: "/register",
+  //   text: "Register",
+  // },
 ];
 
 const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
