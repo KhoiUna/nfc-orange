@@ -100,14 +100,14 @@ export default function Login() {
             )}
           </form>
 
-          <div className="my-5">
+          {/* <div className="my-5">
             <Link
               href={"/register"}
               className="text-[1.3rem] underline text-primary font-bold shadow-stone-800 shadow-lg"
             >
               Register
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
