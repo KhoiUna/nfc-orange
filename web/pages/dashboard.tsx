@@ -280,14 +280,14 @@ export default function Dashboard() {
 
       {!uploadedURL && !symplicityLink && (
         <p className="text-lg p-2 font-bold mt-3 text-center">
-          No PDF uploaded
+          No PDF saved
         </p>
       )}
 
       {(previewSymplicityLink || symplicityLink) && (
         <div className="mt-6">
-          {symplicityLink && !previewSymplicityLink && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
-          {symplicityLink && previewSymplicityLink && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
+          {(uploadedURL && !previewSymplicityLink) && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
+          {(!uploadedURL && previewSymplicityLink) && <p className="mx-5 font-bold mb-2">Resume preview:</p>}
 
           <div className="mx-5">
             <PDFViewer pdfURL={previewSymplicityLink || symplicityLink} />
