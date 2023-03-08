@@ -28,7 +28,7 @@ async function login(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         });
 
       const response = await client.query(
-        "INSERT INTO recruiter_notes(note, recruiter_id, user_id) VALUES ($1, (SELECT id FROM recruiters WHERE email=$2), $3) ON CONFLICT (user_id) DO UPDATE SET note = $1, updated_at = $4;",
+        "INSERT INTO recruiter_notes(note, recruiter_id, user_id) VALUES ($1, (SELECT id FROM recruiters WHERE email=$2), $3) ON CONFLICT (user_id, recruiter_id) DO UPDATE SET note = $1, updated_at = $4;",
         [note, req.session.user.email, student_id, new Date()]
       );
       if (!response)
