@@ -48,8 +48,8 @@ async function login(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
       );
 
       const { rows: noteRows } = await client.query(
-        "SELECT note FROM recruiter_notes JOIN users ON users.id=user_id WHERE user_id=$1;",
-        [student_id]
+        "SELECT note FROM recruiter_notes JOIN users ON users.id=user_id WHERE user_id=$1 AND recruiter_id=(SELECT id FROM recruiters WHERE email=$2);",
+        [student_id, req.session.user.email]
       );
       if (noteRows.length === 0)
         return res.status(200).json({
