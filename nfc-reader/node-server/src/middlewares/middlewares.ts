@@ -2,6 +2,7 @@ import express from "express";
 import Cards from "../db/models/Cards";
 import ReaderHistory from "../db/models/ReaderHistory";
 import Readers from "../db/models/Readers";
+import Recruiters from "../db/models/Recruiters";
 
 export const validateReader = async (
   req: express.Request,
@@ -28,8 +29,19 @@ export const validateReader = async (
       return res.status(400).send({ success: false, error: "Invalid reader" });
     }
 
-    const readerIDUsedByRecruiter = reader?.dataValues.id;
+    const readerIDUsedByRecruiter = reader.dataValues.id;
     res.locals.readerIDUsedByRecruiter = readerIDUsedByRecruiter;
+
+    // Check if reader is currently being used
+    const recruiter = await Recruiters.findOne({
+      where: {
+        reader_id: readerIDUsedByRecruiter,
+      },
+    });
+    if (!recruiter) {
+      return res.status(400).send({ success: false, error: "Invalid reader" });
+    }
+    res.locals.recruiterID = recruiter.dataValues.id;
 
     return next();
   } catch (error) {
@@ -88,11 +100,12 @@ export const checkIfCardBeenRead = async (
   next: express.NextFunction
 ) => {
   try {
-    const { cardID } = res.locals;
+    const { cardID, recruiterID } = res.locals;
 
     const readerHistory = await ReaderHistory.findOne({
       where: {
         card_id: cardID,
+        recruiter_id: recruiterID,
       },
     });
     if (readerHistory)
