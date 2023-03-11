@@ -16,7 +16,7 @@
     "imagekitio-react": "^2.0.0",
     "iron-session": "^6.2.1",
     "joi": "^17.6.2",
-    "next": "13.1.6",
+    "next": "13.2.4",
     "pdfjs-dist": "^2.16.105",
     "pg": "^8.8.0",
     "react": "18.2.0",
