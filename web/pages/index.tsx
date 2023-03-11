@@ -3,9 +3,9 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div id="parallax" className="text-center pt-[18vh] min-h-[80vh]">
+      <div id="parallax" className="flex justify-center items-center text-center">
         <h1
-          className="text-6xl m-8 mt-0 text-white font-bold"
+          className="text-6xl text-white font-bold"
           style={{
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
@@ -28,7 +28,7 @@ export default function Index() {
           </Link>
         </div> */}
 
-        <div className="p-4 rounded-lg mx-auto px-8 pb-12 max-w-3xl">
+        {/* <div className="p-4 rounded-lg mx-auto px-8 pb-12 max-w-3xl">
           <p
             className="text-[1.3rem] text-white"
             style={{
@@ -51,7 +51,7 @@ export default function Index() {
             to instantly show your resume or any other important documents to
             professors, recruiters, etc.
           </p>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
