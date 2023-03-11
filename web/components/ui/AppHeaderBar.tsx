@@ -1,6 +1,5 @@
 import NavLink from "./NavLink";
 import { Fragment, useState } from "react";
-import Link from "next/link";
 
 export type NavLinkProps = {
   href: string;
