@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import PDFViewer from "tailwind-pdf-viewer/dist";
 import axios from "axios";
 import ProfilePictureUpload from "@/components/ProfilePictureUpload";
+import Link from "next/link";
 
 export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -171,6 +172,7 @@ export default function Dashboard() {
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
             <p className="mt-8 font-bold">Paste Symplicity Resume URL</p>
+            <Link href={'/guide'} target='_blank'><p className="text-sm underline font-semibold italic text-purple-800">How do I do this?</p></Link>
             <p className="mt-1 mb-2 text-sm italic">Only approved PDFs from Symplicity are allowed</p>
 
             <input
@@ -239,6 +241,7 @@ export default function Dashboard() {
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
             <p className="mt-8 font-bold">Paste Symplicity Resume URL</p>
+            <Link href={'/guide'} target='_blank'><p className="text-sm underline font-semibold italic text-purple-800">How do I do this?</p></Link>
             <p className="mt-1 mb-2 text-sm italic">Only approved PDFs from Symplicity are allowed</p>
 
             <input
