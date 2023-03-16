@@ -9,6 +9,8 @@ import greetUser from "../../lib/greetUser";
 // import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SearchBar from "./components/SearchBar";
+import { SyntheticEvent, useState } from "react";
 
 type Student = {
   student_id: number
@@ -25,6 +27,7 @@ type Student = {
 export default function Dashboard() {
   useAuth({});
 
+  const [studentsSearched, setStudentsSearched] = useState<Student[] | null>(null)
   // const [cachedStudents, setCachedStudents] = useState([])
 
   const { data: students } = useQuery<any, any, Student[], any>({
@@ -57,6 +60,20 @@ export default function Dashboard() {
       </div>
     );
 
+  const searchStudents = (event: SyntheticEvent) => {
+    const searchValue = (event.target as HTMLInputElement).value
+
+    if (searchValue.trim().length === 0) return setStudentsSearched(null)
+
+    const studentArray = students.filter((student) => {
+      const stringToSearch = student.first_name + student.middle_name + student.last_name + student.major + student.university_name
+      return stringToSearch.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+    })
+    setStudentsSearched(studentArray)
+  }
+
+  const studentsToMap = studentsSearched || students
+
   return (
     <div>
       <h1 className="text-xl mx-5 my-7">
@@ -64,15 +81,14 @@ export default function Dashboard() {
       </h1>
 
       <div>
-        <h2 className="text-2xl font-bold mx-5 mt-12 mb-4">
-          Saved {"students'"} profile: {students.length}
-        </h2>
+        <SearchBar searchStudents={searchStudents} />
+        <p className="mx-3 mt-2 text-sm text-slate-500">Total: {studentsToMap.length}</p>
 
         {students.length === 0 && (
           <p className="mx-5 text-slate-500">No student profiles been saved</p>
         )}
         <div className="flex flex-wrap">
-          {students.map((student: Student, index) => (
+          {studentsToMap.map((student: Student, index: number) => (
             <div key={index} className="bg-slate-50 rounded-lg mx-3 my-4 p-4 flex items-center max-w-lg hover:drop-shadow-lg">
               <div className="rounded-lg border-r-2 border-slate-300 pr-8">
                 <Image
