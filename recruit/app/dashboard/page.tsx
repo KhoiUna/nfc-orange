@@ -100,7 +100,7 @@ export default function Dashboard() {
                   </p>
                 </a>
 
-                <Link href={`/dashboard/note/${student.student_id}`}>
+                <Link href={`/note/${student.student_id}`}>
                   <button className="bg-primary p-2 text-white rounded-lg drop-shadow-lg ml-[-4px] mt-2">
                     <p className="font-semibold">View / Add Note</p>
                   </button>
