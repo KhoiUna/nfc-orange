@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
 import { SyntheticEvent, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast'
 import useAuth from '@/lib/useAuth';
@@ -18,8 +17,6 @@ type Props = {
 
 export default function Note({ params }: Props) {
     useAuth({});
-
-    const router = useRouter()
 
     const { student_id } = params
 
@@ -55,10 +52,6 @@ export default function Note({ params }: Props) {
 
     if (error) return (
         <div className='p-3 pt-5 bg-slate-50 min-h-screen'>
-            <button className='rounded-lg text-lg drop-shadow-lg text-white bg-primary p-2 font-semibold' onClick={() => router.back()}>
-                {'<'} Back to dashboard
-            </button>
-
             <div className="text-[1.8rem] text-center m-5">
                 <h1>Failed to load</h1>
             </div>
@@ -67,10 +60,6 @@ export default function Note({ params }: Props) {
 
     if (!data) return (
         <div className='p-3 pt-5 bg-slate-50 min-h-screen'>
-            <button className='rounded-lg text-lg drop-shadow-lg text-white bg-primary p-2 font-semibold' onClick={() => router.back()}>
-                {'<'} Back to dashboard
-            </button>
-
             <div className="text-[1.8rem] text-center font-bold">
                 <TextLoader loadingText="Loading" />
             </div>
@@ -107,10 +96,6 @@ export default function Note({ params }: Props) {
                     },
                 }}
             />
-
-            <button className='rounded-lg text-lg drop-shadow-lg text-white bg-primary p-2 font-semibold' onClick={() => router.back()}>
-                {'<'} Back to dashboard
-            </button>
 
             <h1 className='mt-5 font-bold text-center text-lg'>Your note for</h1>
             <h2 className='mt-1 underline font-bold text-center text-xl'>{first_name} {middle_name} {last_name}</h2>
