@@ -62,13 +62,24 @@ export default function Dashboard() {
 
   const searchStudents = (event: SyntheticEvent) => {
     const searchValue = (event.target as HTMLInputElement).value
-
     if (searchValue.trim().length === 0) return setStudentsSearched(null)
+
+    let searchValueArray = searchValue.trim().toLowerCase().split(' ')
 
     const studentArray = students.filter((student) => {
       const stringToSearch = student.first_name + student.middle_name + student.last_name + student.major + student.university_name
-      return stringToSearch.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
+
+      for (let index = 0; index < searchValueArray.length; index++) {
+        const string = searchValueArray[index]
+
+        if (stringToSearch.toLowerCase().indexOf(string) < 0) return false
+
+        // Remove the first phrase since it is already matched
+        if (searchValueArray.length > 1) searchValueArray = searchValueArray.slice(index + 1, searchValueArray.length)
+        return true
+      }
     })
+
     setStudentsSearched(studentArray)
   }
 
@@ -89,7 +100,7 @@ export default function Dashboard() {
         )}
         <div className="flex flex-wrap">
           {studentsToMap.map((student: Student, index: number) => (
-            <div key={index} className="bg-slate-50 rounded-lg mx-3 my-4 p-4 flex items-center max-w-lg hover:drop-shadow-lg">
+            <div key={index} className="bg-slate-50 rounded-lg mx-3 my-4 p-4 flex items-center hover:drop-shadow-lg w-[400px]">
               <div className="rounded-lg border-r-2 border-slate-300 pr-8">
                 <Image
                   className="m-auto w-[70px] h-[70px] rounded-[100%] border-2 border-primary object-scale-down"
