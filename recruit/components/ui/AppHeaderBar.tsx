@@ -127,7 +127,7 @@ const AppHeaderBar = ({
           </Link>
         </div>
 
-        <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu}>
+        <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu} aria-label="Menu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
