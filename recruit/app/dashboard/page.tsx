@@ -20,8 +20,7 @@ type Student = {
   avatar_url?: string;
   major: string;
   university_name: string;
-  pdf_url?: string;
-  symplicity_url?: string
+  uuid: string
 };
 
 export default function Dashboard() {
@@ -121,7 +120,7 @@ export default function Dashboard() {
                 <p className="py-2">{student.university_name}</p>
 
 
-                <a className="block w-fit" href={student.symplicity_url || student.pdf_url} target="_blank" rel="noreferrer">
+                <a className="block w-fit" href={process.env.NEXT_PUBLIC_STUDENT_APP_URL + student.uuid} target="_blank" rel="noreferrer">
                   <p className="pt-2 underline font-semibold text-blue-700">
                     View Resume
                   </p>
