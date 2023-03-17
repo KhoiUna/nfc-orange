@@ -98,7 +98,7 @@ export default function Dashboard() {
         {students.length === 0 && (
           <p className="mx-5 text-slate-500">No student profiles been saved</p>
         )}
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-evenly">
           {studentsToMap.map((student: Student, index: number) => (
             <div key={index} className="bg-slate-50 rounded-lg mx-3 my-4 p-4 flex items-center hover:drop-shadow-lg w-[400px]">
               <div className="rounded-lg border-r-2 border-slate-300 pr-8">
