@@ -32,7 +32,7 @@ const Layout = ({ children, title }: LayoutProps) => {
 
       <main>{children}</main>
 
-      <footer className="bg-primary" style={{ padding: "4rem" }}>
+      <footer className="bg-primary py-[5%] px-[14%]" >
         <div className="flex flex-wrap justify-between items-start">
           <div className="flex flex-col flex-wrap justify-start max-w-lg">
             <div className="w-[12rem] h-fit">
@@ -71,6 +71,10 @@ const Layout = ({ children, title }: LayoutProps) => {
             </div>
           </div>
         </div>
+
+        <p className="text-sm text-white mt-5">
+          <span>&copy; {new Date().getFullYear()}</span> | NFC Orange
+        </p>
       </footer>
     </>
   );
