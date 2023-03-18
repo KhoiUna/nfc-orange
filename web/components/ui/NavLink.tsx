@@ -7,7 +7,7 @@ interface NavLinkProps {
 
 const NavLink = ({ href, text }: NavLinkProps) => {
   return (
-    <Link href={href.toLowerCase()} passHref legacyBehavior>
+    <Link href={href.toLowerCase()}>
       <span className="cursor-pointer inline">{text}</span>
     </Link>
   );
