@@ -172,7 +172,7 @@ export default function Dashboard() {
         <form onSubmit={handleSubmitSymplicity}>
           <div className="m-5">
             <p className="mt-8 font-bold">Paste Symplicity Resume URL</p>
-            <Link href={'/guide'} target='_blank'><p className="text-sm underline font-semibold italic text-purple-800">How do I do this?</p></Link>
+            <Link href={'/guide'} target='_blank' className="block w-fit"><p className="text-sm underline font-semibold italic text-purple-800">How do I do this?</p></Link>
             <p className="mt-1 mb-2 text-sm italic">Only approved PDFs from Symplicity are allowed</p>
 
             <input
