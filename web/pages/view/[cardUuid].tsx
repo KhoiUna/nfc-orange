@@ -9,7 +9,6 @@ import ViewLayout from "../../containers/ViewLayout";
 import { useCookies } from "react-cookie";
 import PDFViewer from "../../components/PDFViewer";
 import Image from "next/image";
-import NavLink from "@/components/ui/NavLink";
 
 export default function View() {
   const router = useRouter();
@@ -85,7 +84,7 @@ export default function View() {
             >
               Card is not registered
             </h1>
-            <Link href={`/register?c_id=${cardUuid}`} legacyBehavior>
+            <Link href={`/register?c_id=${cardUuid}`}>
               <h2 className="underline text-white text-[2rem] mt-3 cursor-pointer">
                 Go here to register
               </h2>
