@@ -96,7 +96,7 @@ const HeaderBar = () => {
       <nav
         className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >
-        <Link href="/" legacyBehavior>
+        <Link href={'https://www.nfcorange.com/'}>
           <div className="w-[10rem] h-fit cursor-pointer">
             <Logo />
           </div>
