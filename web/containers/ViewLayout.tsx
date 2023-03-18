@@ -31,7 +31,7 @@ const ViewLayout = ({ children, title }: LayoutProps) => {
 
       <div className="sm:w-screen w-fit">
         <header className={`flex justify-center p-3 ${HEADER_BAR_BG_COLOR}`}>
-          <Link href="/" legacyBehavior>
+          <Link href="/">
             <div className="w-[10rem] pt-2 h-fit cursor-pointer">
               <Logo />
             </div>
