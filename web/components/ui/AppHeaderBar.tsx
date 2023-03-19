@@ -9,13 +9,29 @@ export type NavLinkProps = {
 const HEADER_BAR_BG_COLOR = "bg-primary";
 const TEXT_COLOR = "text-white";
 const TEXT_DECORATION_COLOR = TEXT_COLOR;
+const NAV_LINKS: NavLinkProps[] = [
+  {
+    href: "/dashboard",
+    text: "Dashboard",
+  },
+  {
+    href: "/peers",
+    text: "Peers",
+  },
+  {
+    href: "/profile",
+    text: "Profile",
+  },
+  {
+    href: "/api/logout",
+    text: "Logout",
+  },
+]
 
 const MenuSidebar = ({
-  toggleMenu,
-  navLinks,
+  toggleMenu
 }: {
   toggleMenu: () => void;
-  navLinks: NavLinkProps[];
 }) => {
   return (
     <>
@@ -73,7 +89,7 @@ const MenuSidebar = ({
             </a>
           </Link> */}
 
-          {navLinks.map((item: any, index: number) => {
+          {NAV_LINKS.map((item: any, index: number) => {
             return (
               <Fragment key={index}>
                 <p
@@ -94,10 +110,8 @@ const MenuSidebar = ({
 
 const AppHeaderBar = ({
   title,
-  navLinks,
 }: {
   title: string;
-  navLinks: NavLinkProps[];
 }) => {
   const [menuOpened, setMenuOpened] = useState<Boolean>(false);
   const toggleMenu = () => setMenuOpened(!menuOpened);
@@ -136,7 +150,7 @@ const AppHeaderBar = ({
             </a>
           </Link> */}
 
-          {navLinks.map((item, index) => (
+          {NAV_LINKS.map((item, index) => (
             <Fragment key={index}>
               <p
                 className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}
@@ -166,7 +180,7 @@ const AppHeaderBar = ({
         </button>
 
         {menuOpened && (
-          <MenuSidebar navLinks={navLinks} toggleMenu={toggleMenu} />
+          <MenuSidebar toggleMenu={toggleMenu} />
         )}
       </nav>
     </header>
