@@ -41,23 +41,7 @@ const AppLayout = ({ children, title }: LayoutProps) => {
 
       <Analytics />
 
-      <AppHeaderBar
-        title={title}
-        navLinks={[
-          {
-            href: "/dashboard",
-            text: "Dashboard",
-          },
-          {
-            href: "/profile",
-            text: "Profile",
-          },
-          {
-            href: "/api/logout",
-            text: "Logout",
-          },
-        ]}
-      />
+      <AppHeaderBar title={title} />
 
       <main className="max-h-screen overflow-auto">{children}</main>
     </>
