@@ -1,10 +1,15 @@
-export type Student = {
-  student_id: number;
+export type Peer = {
+  avatar_url?: string;
   first_name: string;
   middle_name?: string;
   last_name: string;
-  avatar_url?: string;
-  major: string;
   university_name: string;
-  uuid: string;
+  major: string;
 };
+
+export type Student =
+  | Peer
+  | {
+      student_id: number;
+      uuid: string;
+    };
