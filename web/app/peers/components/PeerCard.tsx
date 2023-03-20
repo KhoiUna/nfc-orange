@@ -1,14 +1,8 @@
 import Image from "next/image";
+import { Peer } from "../../../types/types";
 
 interface Props {
-    student: {
-        avatar_url?: string
-        first_name: string
-        middle_name?: string
-        last_name: string
-        university_name: string
-        major: string
-    }
+    student: Peer
 }
 
 export default function PeerCard({ student }: Props) {
