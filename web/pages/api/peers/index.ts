@@ -17,7 +17,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .json({ success: false, error: "Method not allowed" });
 
     const { rows } = await client.query(
-      "SELECT first_name, middle_name, last_name, major, universities.name as university_name FROM users JOIN universities ON users.university_id=universities.id GROUP BY first_name, middle_name, last_name, major, university_name ORDER BY first_name;"
+      "SELECT first_name, middle_name, last_name, avatar_url, major, universities.name as university_name FROM users JOIN universities ON users.university_id=universities.id GROUP BY first_name, middle_name, last_name, major, avatar_url, university_name ORDER BY first_name;"
     );
 
     return res.status(200).json({
