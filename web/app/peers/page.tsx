@@ -5,6 +5,8 @@ import Marquee from "react-fast-marquee";
 
 const DIV_IN_MARQUEE_QUANTITY = 7
 const DIV_IN_MARQUEE_MAP = new Array(DIV_IN_MARQUEE_QUANTITY).fill(null)
+
+// TODO: add skeleton avatar
 const DivInMarquee = () => <div className="shadow-lg rounded-lg w-[15rem] h-[100px] mx-3 bg-slate-50" />
 
 export default function peers() {
@@ -48,6 +50,7 @@ export default function peers() {
             <div className="h-[85vh] mt-4">
                 <h1 className="text-center mb-8 mx-3 sm:text-5xl text-4xl font-semibold">Your Peers Network</h1>
 
+                {/* TODO: map fetched students here */}
                 <div>
                     <p className="mx-3 mt-3 mb-1 font-semibold">Computer Science</p>
                     <DivInMarquee />
