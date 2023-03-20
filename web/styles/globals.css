@@ -6,6 +6,8 @@
 
 :root {
   --theme-bg-color: #dc7700;
+  --swiper-navigation-size: 20px;
+  --swiper-navigation-color: var(--theme-bg-color);
 }
 
 * {
@@ -55,4 +57,8 @@
   background-size: cover;
   background-attachment: fixed;
   min-height: 100vh;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
 }
