@@ -29,16 +29,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <AppHeaderBar title={'Peers'} />
 
             <main>
-                <div className="bg-slate-100 pb-3 max-h-screen overflow-hidden">
+                <div className="bg-[rgba(255, 255, 255, 1)] pb-3 max-h-screen overflow-hidden">
                     <div className="pt-8">
                         {DIV_IN_MARQUEE_MAP.map((_, index) => (
                             <Fragment key={index}>
-                                <Marquee className="mb-8">
+                                <Marquee className="bg-[rgba(255, 255, 255, 1)] opacity-50 mb-8">
                                     {DIV_IN_MARQUEE_MAP.map((_, index) => (
                                         <DivInMarquee key={index} />
                                     ))}
                                 </Marquee>
-                                <Marquee className="my-8" direction="right">
+                                <Marquee className="bg-[rgba(255, 255, 255, 1)] opacity-50 my-8" direction="right">
                                     {DIV_IN_MARQUEE_MAP.map((_, index) => (
                                         <DivInMarquee key={index} />
                                     ))}
