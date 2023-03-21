@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <main>
                 <MarqueeBackground mode={"light"} />
 
-                <div className="absolute top-[10%] z-[5] w-full max-h-screen overflow-auto">
+                <div className="absolute top-[10%] z-10 w-full max-h-screen overflow-auto">
                     {children}
                 </div>
             </main>
