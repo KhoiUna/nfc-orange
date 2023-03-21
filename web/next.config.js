@@ -18,6 +18,7 @@ const nextConfig = {
       },
     ],
   },
+  // CHANGE: hide peers
   async redirects() {
     return [
       {
