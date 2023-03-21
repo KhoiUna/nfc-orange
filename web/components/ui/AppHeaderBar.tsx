@@ -14,10 +14,11 @@ const NAV_LINKS: NavLinkProps[] = [
     href: "/dashboard",
     text: "Dashboard",
   },
-  {
-    href: "/peers",
-    text: "Peers",
-  },
+  // CHANGE: hide /peers
+  // {
+  //   href: "/peers",
+  //   text: "Peers",
+  // },
   {
     href: "/profile",
     text: "Profile",
