@@ -10,7 +10,6 @@ import axios from "axios";
 import ProfilePictureUpload from "@/components/ProfilePictureUpload";
 import Link from "next/link";
 import { swrFetcher } from "@/lib/swrFetcher";
-import AppLayout from "../../containers/AppLayout";
 import TextLoader from "@/components/ui/TextLoader";
 import greetUser from "@/lib/greetUser";
 import app from "@/lib/firebase";
