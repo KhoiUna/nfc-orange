@@ -1,6 +1,5 @@
 'use client'
 
-import MarqueeBackground from "@/components/MarqueeBackground";
 import AppHeaderBar from "@/components/ui/AppHeaderBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -10,12 +9,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 title={'Dashboard'}
             />
 
-            <main>
-                <MarqueeBackground mode={"light"} />
-
-                <div className="absolute top-[10%] z-10 w-full max-h-screen overflow-auto">
-                    {children}
-                </div>
+            <main className="max-h-screen overflow-auto">
+                {children}
             </main>
         </>
     );
