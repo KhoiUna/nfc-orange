@@ -1,3 +1,4 @@
+import MarqueeBackground from "@/components/MarqueeBackground";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
 import { ReactNode } from "react";
@@ -30,7 +31,13 @@ const Layout = ({ children, title }: LayoutProps) => {
 
       <HeaderBar title={title} />
 
-      <main>{children}</main>
+      <main>
+        <MarqueeBackground mode="light" />
+
+        <div className="absolute top-0 left-0 right-0 -z-10">
+          {children}
+        </div>
+      </main>
 
       <footer className="bg-primary py-[5%] px-[14%]" >
         <div className="flex flex-wrap justify-between items-start">
