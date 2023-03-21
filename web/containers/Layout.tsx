@@ -32,11 +32,7 @@ const Layout = ({ children, title }: LayoutProps) => {
       <HeaderBar title={title} />
 
       <main>
-        <MarqueeBackground mode="light" />
-
-        <div className="absolute top-0 left-0 right-0 -z-10">
-          {children}
-        </div>
+        {children}
       </main>
 
       <footer className="bg-primary py-[5%] px-[14%]" >
