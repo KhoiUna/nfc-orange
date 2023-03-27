@@ -45,6 +45,20 @@
   border-radius: 8px;
 }
 
+#gif-parallax {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.3),
+      rgba(220, 117, 0, 0.6)
+    ),
+    url(/images/animation.gif);
+  background-position: left 42% top 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+}
+
 #parallax {
   background-image: linear-gradient(
       to top,
