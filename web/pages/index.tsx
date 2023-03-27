@@ -3,9 +3,9 @@ import Layout from "../containers/Layout";
 export default function Index() {
   return (
     <Layout title="Home">
-      <div id="parallax" className="flex justify-center items-center text-center">
+      <div id="gif-parallax" className="flex justify-center items-center text-center">
         <h1
-          className="text-6xl text-white font-bold"
+          className="text-6xl text-white font-bold px-1 absolute top-[18vh]"
           style={{
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
@@ -53,6 +53,6 @@ export default function Index() {
           </p>
         </div> */}
       </div>
-    </Layout>
+    </Layout >
   );
 }
