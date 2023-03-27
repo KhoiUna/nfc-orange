@@ -58,7 +58,3 @@
   background-attachment: fixed;
   min-height: 100vh;
 }
-
-.swiper-button-next::after,
-.swiper-button-prev::after {
-}
