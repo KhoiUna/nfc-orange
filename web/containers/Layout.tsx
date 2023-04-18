@@ -50,30 +50,22 @@ const Layout = ({ children, title }: LayoutProps) => {
               <div className="flex items-center">
                 <Icon icon="ant-design:mail-outlined" />
                 <a
-                  className="mx-3 font-light underline"
+                  className="mx-3 font-light underline underline-offset-4"
                   href="mailto:nfcorange1@gmail.com"
                 >
                   nfcorange1@gmail.com
                 </a>
               </div>
 
-              {/* <div className="flex items-center">
-                <Icon icon="ant-design:phone-outlined" />
-                <a
-                  className="mx-3 font-light underline mt-1"
-                  href="tel:+84 948 230 033"
-                >
-                  +84 948 230 033
-                </a>
-              </div>
-
               <div className="flex items-center">
                 <Icon icon="akar-icons:location" />
                 <p className="mx-3 font-light mt-1">Florence, AL, US</p>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
+
+        <a href="https://www.linkedin.com/company/nfc-orange/" target={'_blank'} rel="noreferrer" className="text-white underline underline-offset-4 font-light">LinkedIn</a>
 
         <p className="text-sm text-white mt-5">
           <span>&copy; {new Date().getFullYear()}</span> | NFC Orange
