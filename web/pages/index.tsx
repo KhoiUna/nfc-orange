@@ -5,7 +5,7 @@ export default function Index() {
     <Layout title="Home">
       <div id="gif-parallax" className="flex justify-center items-center text-center">
         <h1
-          className="text-6xl text-white font-bold px-1 absolute top-[18vh]"
+          className="text-6xl text-white font-bold px-1"
           style={{
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
