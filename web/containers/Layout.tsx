@@ -65,7 +65,9 @@ const Layout = ({ children, title }: LayoutProps) => {
           </div>
         </div>
 
-        <a href="https://www.linkedin.com/company/nfc-orange/" target={'_blank'} rel="noreferrer" className="text-white underline underline-offset-4 font-light">LinkedIn</a>
+        <div className="mt-5">
+          <a href="https://www.linkedin.com/company/nfc-orange/" target={'_blank'} rel="noreferrer" className="text-white underline underline-offset-4 font-light">LinkedIn</a>
+        </div>
 
         <p className="text-sm text-white mt-5">
           <span>&copy; {new Date().getFullYear()}</span> | NFC Orange
