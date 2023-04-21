@@ -10,7 +10,7 @@ export default function Index() {
             textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
           }}
         >
-          Enhance university career fair experience
+          Enhance {"universities'"} career fair experience
         </h1>
 
         {/* <div className="bg-none p-4 mt-0 rounded-lg w-fit sm:mx-auto m-8">
