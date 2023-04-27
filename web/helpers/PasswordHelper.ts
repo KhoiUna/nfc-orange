@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 
 export default class PasswordHelper {
   static async hashPassword(password: string, saltRounds = 10) {
