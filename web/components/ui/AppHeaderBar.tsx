@@ -1,3 +1,5 @@
+'use client'
+
 import NavLink from "./NavLink";
 import { Fragment, useState } from "react";
 
