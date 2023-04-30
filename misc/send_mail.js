@@ -67,6 +67,9 @@ const sendMail = async (toAddress, subject, toName) => {
     "SELECT first_name, last_name, email FROM users"
   );
 
+  console.log(rows.length, "emails to send:");
+
+  let count = 1;
   for (const row of rows) {
     const name = `${row.first_name} ${row.last_name[0]}.`;
     const email = row.email;
@@ -78,7 +81,8 @@ const sendMail = async (toAddress, subject, toName) => {
     );
     if (!response) process.exit(1);
 
-    console.log("Successfully sent email to", name);
+    console.log(`${count}. Successfully sent email to`, name);
+    count++;
   }
 
   console.log("Send emails successfully!");
