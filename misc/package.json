@@ -1,6 +1,8 @@
 {
 	"dependencies": {
 		"dotenv": "^16.0.3",
+		"nodemailer": "^6.9.1",
+		"nodemailer-express-handlebars": "^6.1.0",
 		"pg": "^8.10.0",
 		"uuid": "^9.0.0"
 	}
