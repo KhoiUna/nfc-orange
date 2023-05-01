@@ -48,8 +48,8 @@
 #gif-parallax {
   background-image: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.3),
-      rgba(220, 117, 0, 0.6)
+      rgb(255, 248, 211, 0.5),
+      rgb(255, 233, 182)
     ),
     url(/images/animation.gif);
   background-position: left 42% top 0;
