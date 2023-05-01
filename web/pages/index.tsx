@@ -3,32 +3,33 @@ import Layout from "../containers/Layout";
 import useSWR from "swr";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
+import Image from "next/image";
 
 export default function Index() {
   const { data } = useSWR('/api/homepage', swrFetcher)
 
   return (
     <Layout title="Home">
-      <div id="gif-parallax" className="flex flex-col justify-center items-center text-center">
-        <h1
-          className="text-5xl text-white font-bold px-1 mx-2"
-          style={{
-            textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
-          }}
-        >
-          Your online identity with a card tap
-        </h1>
+      <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
+        <div className="mx-8">
+          <h1
+            className="text-3xl text-primary font-bold px-1">
+            Your online identity with a card tap
+          </h1>
 
-        <div className="bg-white p-3 mt-5 rounded-lg mx-5">
-          <h2 className="text-4xl text-primary font-bold flex">{!data ? <span className="mr-2"><TextLoader loadingText="" /></span> : data.success.count} users and growing</h2>
+          <h2 className="text-6xl text-primary font-bold mt-4 ml-1 flex">
+            {!data ? <span className="mr-2"><TextLoader loadingText="" /></span> : data.success.count} users and growing
+          </h2>
+
+          <Link href={"/waitlist"}>
+            <button className="text-xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
+              Join waitlist
+            </button>
+          </Link>
         </div>
 
-        <Link href={"/waitlist"}>
-          <button className="text-xl font-bold bg-white text-primary py-2 px-6 rounded-[100px] cursor-pointer mt-5 transition-all hover:bg-primary hover:text-white hover:shadow-stone-800 hover:shadow-lg">
-            Join waitlist
-          </button>
-        </Link>
+        <Image className="w-[450px] h-screen hidden sm:flow-root" src={'/images/animation-vertical.gif'} width={1080} height={1920} alt="NFC Orange animation" />
       </div>
-    </Layout >
+    </Layout>
   );
 }
