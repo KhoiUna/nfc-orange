@@ -37,7 +37,7 @@ const NAV_LINKS: NavLink[] = [
   },
 ];
 
-const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
+const MenuSidebar = ({ toggleMenu, title }: { toggleMenu: () => void, title: string }) => {
   return (
     <>
       {/* Dark overlay */}
@@ -53,7 +53,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
         <div className="text-right">
           <button
             type="button"
-            className="sm:hidden mr-5 mt-6 text-white"
+            className={"sm:hidden mr-5 mt-6 text-white"}
             onClick={() => toggleMenu()}
           >
             <svg
@@ -119,12 +119,12 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
           </div>
         </Link>
 
-        <div className="flex text-black">
-          {NAV_LINKS.length != 0 &&
+        <div className="flex">
+          {NAV_LINKS.length !== 0 &&
             NAV_LINKS.map((item, index) => (
               <p
                 key={index}
-                className="hidden sm:block mx-5 text-lg underline underline-offset-4 decoration-white text-white font-semibold"
+                className={"hidden sm:block mx-5 text-lg underline underline-offset-4 font-semibold " + `${title === 'Home' || title === 'NFC Orange | Waitlist' ? 'decoration-primary text-primary' : 'decoration-white text-white'}`}
                 onClick={() => toggleMenu()}
               >
                 <NavLink href={item.href} text={item.text} />
@@ -132,10 +132,10 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
             ))}
         </div>
 
-        {NAV_LINKS.length != 0 && (
+        {NAV_LINKS.length !== 0 && (
           <button
             type="button"
-            className="sm:hidden text-white pb-1"
+            className={"sm:hidden pb-1 " + `${title === 'Home' || title === 'NFC Orange | Waitlist' ? 'text-primary' : 'text-white'}`}
             onClick={toggleMenu}
           >
             <svg
@@ -155,7 +155,7 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
           </button>
         )}
 
-        {menuOpened && <MenuSidebar toggleMenu={toggleMenu} />}
+        {menuOpened && <MenuSidebar toggleMenu={toggleMenu} title={title} />}
       </nav>
     </header>
   );
