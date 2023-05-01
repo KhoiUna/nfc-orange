@@ -75,9 +75,9 @@
 
 #bg-parallax {
   background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.3),
-    rgba(220, 117, 0, 0.6)
+    to right bottom,
+    rgb(255, 248, 211),
+    rgb(255, 233, 182)
   );
   min-height: 100vh;
 }
