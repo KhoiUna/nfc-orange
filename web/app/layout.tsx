@@ -1,5 +1,4 @@
-'use client'
-
+import Analytics from '@/components/Analytics';
 import '@/styles/globals.css'
 
 export default function RootLayout({ children }: {
@@ -7,6 +6,8 @@ export default function RootLayout({ children }: {
 }) {
     return (
         <html lang='en'>
+            <Analytics />
+
             <body>
                 <main>{children}</main>
             </body>
