@@ -124,7 +124,7 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
             NAV_LINKS.map((item, index) => (
               <p
                 key={index}
-                className={"hidden sm:block mx-5 text-lg underline underline-offset-4 font-semibold " + `${title === 'Home' || title === 'NFC Orange | Waitlist' ? 'decoration-primary text-primary' : 'decoration-white text-white'}`}
+                className={"hidden sm:block mx-5 text-lg underline underline-offset-4 font-semibold text-white drop-shadow-lg"}
                 onClick={() => toggleMenu()}
               >
                 <NavLink href={item.href} text={item.text} />
