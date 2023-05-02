@@ -6,6 +6,12 @@ const hbs = require("nodemailer-express-handlebars");
 const nodemailer = require("nodemailer");
 const path = require("node:path");
 const { Client } = require("pg");
+const readline = require("node:readline/promises");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const client = new Client({
   connectionString: process.env.DATABASE_URI,
@@ -14,7 +20,7 @@ const client = new Client({
 client
   .connect()
   .then(() => {
-    console.log("Database connected");
+    console.log("Database connected!");
   })
   .catch((error) => {
     console.error("Error connecting to database", error);
@@ -65,10 +71,10 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
 (async () => {
   const subject = process.argv[2];
   const emailTemplate = process.argv[3];
-  const testFlag = process.argv[4] === "--test";
+
   if (!subject || !emailTemplate) {
     console.log(
-      "Usage: node send_mail.js <email subject> <email template's name> <--test>"
+      "Usage: node send_mail.js <email subject> <email template's name>"
     );
     process.exit(1);
   }
@@ -77,22 +83,28 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
     process.exit(1);
   }
 
-  const { rows } = testFlag
-    ? {
-        rows: [
-          {
-            first_name: "Demo",
-            last_name: "Nguyen",
-            email: "knguyen2@una.edu",
-          },
-          {
-            first_name: "Test",
-            last_name: "Nguyen",
-            email: "thorwaitson@gmail.com",
-          },
-        ],
-      }
-    : await client.query("SELECT first_name, last_name, email FROM users");
+  let isTesting = await rl.question("Is this for testing? (y/n) ");
+  do {
+    isTesting = await rl.question("Is this for testing? (y/n) ");
+  } while (!isTesting || isTesting.length === 0);
+
+  const { rows } =
+    isTesting === "y"
+      ? {
+          rows: [
+            {
+              first_name: "Demo",
+              last_name: "Nguyen",
+              email: "knguyen2@una.edu",
+            },
+            {
+              first_name: "Test",
+              last_name: "Nguyen",
+              email: "thorwaitson@gmail.com",
+            },
+          ],
+        }
+      : await client.query("SELECT first_name, last_name, email FROM users");
 
   console.log(rows.length, "emails to send:");
 
