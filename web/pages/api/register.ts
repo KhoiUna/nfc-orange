@@ -9,6 +9,15 @@ export type ApiResponse = {
   error: any;
 };
 
+type Body = {
+  first_name: string
+  middle_name: string
+  last_name: string
+  email: string
+  major: string
+  password: string
+}
+
 const isValid = async (registerInfo: RegisterInfo) => {
   const schema = Joi.object().keys({
     first_name: Joi.string().trim().min(1).required(),
@@ -45,7 +54,7 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { first_name, middle_name, last_name, email, major, password } =
+    const { first_name, middle_name, last_name, email, major, password }: Body =
       req.body;
     const { c_id } = req.query;
 
@@ -88,9 +97,9 @@ export default async function register(
         await PasswordHelper.hashPassword(password),
         new Date(),
         cardId,
-        first_name,
-        middle_name,
-        last_name,
+        first_name.trim(),
+        middle_name.trim(),
+        last_name.trim(),
         major,
       ]
     );
