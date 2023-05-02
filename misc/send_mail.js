@@ -20,7 +20,7 @@ client
     console.error("Error connecting to database", error);
   });
 
-const sendMail = async (toAddress, subject, toName) => {
+const sendMail = async (toAddress, subject, toName, emailTemplate) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -48,7 +48,7 @@ const sendMail = async (toAddress, subject, toName) => {
       from: '"NFC Orange" <nfcorange1@gmail.com>',
       to: toAddress,
       subject,
-      template: "email", // use email.handlebars template
+      template: emailTemplate,
       context: {
         name: toName, // replace {{name}} with `toName`
       },
@@ -63,9 +63,36 @@ const sendMail = async (toAddress, subject, toName) => {
 };
 
 (async () => {
-  const { rows } = await client.query(
-    "SELECT first_name, last_name, email FROM users"
-  );
+  const subject = process.argv[2];
+  const emailTemplate = process.argv[3];
+  const testFlag = process.argv[4] === "--test";
+  if (!subject || !emailTemplate) {
+    console.log(
+      "Usage: node send_mail.js <email subject> <email template's name> <--test>"
+    );
+    process.exit(1);
+  }
+  if (subject.length < 10) {
+    console.log("Warn: email subject too short!");
+    process.exit(1);
+  }
+
+  const { rows } = testFlag
+    ? {
+        rows: [
+          {
+            first_name: "Demo",
+            last_name: "Nguyen",
+            email: "knguyen2@una.edu",
+          },
+          {
+            first_name: "Test",
+            last_name: "Nguyen",
+            email: "thorwaitson@gmail.com",
+          },
+        ],
+      }
+    : await client.query("SELECT first_name, last_name, email FROM users");
 
   console.log(rows.length, "emails to send:");
 
@@ -74,11 +101,7 @@ const sendMail = async (toAddress, subject, toName) => {
     const name = `${row.first_name} ${row.last_name[0]}.`;
     const email = row.email;
 
-    const response = await sendMail(
-      email,
-      "📎 Instant Update: Upload Custom PDFs for Your NFC Orange Card! 🎉",
-      name
-    );
+    const response = await sendMail(email, subject, name, emailTemplate);
     if (!response) process.exit(1);
 
     console.log(`${count}. Successfully sent email to`, name);
