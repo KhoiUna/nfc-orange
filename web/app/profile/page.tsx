@@ -31,7 +31,7 @@ const updatePasswordFormInitialState = {
 }
 
 export default function Profile() {
-    useAuth({});
+    const authData = useAuth({});
 
     const [isLoading, setIsLoading] = useState(false)
     const [updatePasswordForm, setUpdatePasswordForm] = useState(updatePasswordFormInitialState)
@@ -109,7 +109,11 @@ export default function Profile() {
             </div>
             <hr className="mt-3" />
 
-            <form className="text-lg mt-3" onSubmit={handleSubmit}>
+            <form className="text-lg mt-2" onSubmit={handleSubmit}>
+                <p className="text-center text-xl font-bold mt-4 mb-2">Account info</p>
+
+                <p><b>Email:</b> {authData.data?.email}</p>
+
                 <div>
                     <label className="font-bold" htmlFor="current_password">Current password</label>
                     <br />
