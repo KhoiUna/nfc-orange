@@ -5,6 +5,10 @@ import TextLoader from "../../components/ui/TextLoader";
 import { swrFetcher } from "../../lib/swrFetcher";
 import useAuth from "../../lib/useAuth"
 import ProfilePictureUpload from "@/components/ProfilePictureUpload";
+import { SyntheticEvent, useState } from "react";
+import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export type User = {
     major: string
@@ -20,8 +24,17 @@ type Profile = {
     }
 }
 
+const updatePasswordFormInitialState = {
+    current_password: '',
+    new_password: '',
+    confirm_new_password: '',
+}
+
 export default function Profile() {
     useAuth({});
+
+    const [isLoading, setIsLoading] = useState(false)
+    const [updatePasswordForm, setUpdatePasswordForm] = useState(updatePasswordFormInitialState)
 
     const { data: profileResponse, error } = useSWR<Profile, any>("/api/profile", swrFetcher);
 
@@ -39,8 +52,53 @@ export default function Profile() {
 
     const { user } = profileResponse.success
 
+    const handleChange = (event: SyntheticEvent) => {
+        const target = event.target as HTMLInputElement
+        setUpdatePasswordForm(prev => ({ ...prev, [target.name]: target.value }))
+    }
+
+    const handleSubmit = async (event: SyntheticEvent) => {
+        try {
+            event.preventDefault()
+            setIsLoading(true)
+
+            const { data } = await axios.post('/api/profile/update_password', updatePasswordForm)
+
+            if (data.success) {
+                setIsLoading(false)
+                setUpdatePasswordForm(updatePasswordFormInitialState)
+                toast.success('Update password successfully!')
+            }
+        } catch (error: any) {
+            console.error(error.response.data.error);
+            toast.error(error.response.data.error)
+            setIsLoading(false)
+        }
+    }
+
     return (
         <div className="m-auto w-fit my-10">
+            <Toaster
+                toastOptions={{
+                    success: {
+                        style: {
+                            background: "green",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                    error: {
+                        style: {
+                            background: "red",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                }}
+            />
+
             <ProfilePictureUpload user={user} />
 
             <div className="text-lg">
@@ -49,6 +107,62 @@ export default function Profile() {
                 {user.middle_name && <p><b>Middle Name:</b> {user.middle_name}</p>}
                 <p><b>Last Name:</b> {user.last_name}</p>
             </div>
+            <hr className="mt-3" />
+
+            <form className="text-lg mt-3" onSubmit={handleSubmit}>
+                <div>
+                    <label className="font-bold" htmlFor="current_password">Current password</label>
+                    <br />
+                    <input
+                        required
+                        id="current_password"
+                        name="current_password"
+                        className={inputStyle}
+                        placeholder="Current password*"
+                        type="password"
+                        value={updatePasswordForm.current_password}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div>
+                    <label className="font-bold" htmlFor="new_password">New password</label>
+                    <br />
+                    <input
+                        required
+                        id="new_password"
+                        name="new_password"
+                        className={inputStyle}
+                        placeholder="New password*"
+                        type="password"
+                        value={updatePasswordForm.new_password}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div>
+                    <label className="font-bold" htmlFor="confirm_new_password">Confirm new password</label>
+                    <br />
+                    <input
+                        required
+                        id="confirm_new_password"
+                        name="confirm_new_password"
+                        className={inputStyle}
+                        placeholder="Retype new password*"
+                        type="password"
+                        value={updatePasswordForm.confirm_new_password}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <button
+                    className={appSubmitButtonStyle + " mt-2"}
+                    type="submit"
+                >
+                    {!isLoading && "Submit"}
+                    {isLoading && <TextLoader loadingText="Submitting" />}
+                </button>
+            </form>
         </div>
     )
 }
