@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast'
 import axios from "axios";
-import { User } from "../app/profile/page";
 import TextLoader from "./ui/TextLoader";
+import { User } from "../types/types";
 
 
 const ProfilePictureUpload = ({ user }: { user: User }) => {
