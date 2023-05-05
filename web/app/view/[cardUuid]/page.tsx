@@ -92,25 +92,31 @@ export default function View({ params }: Props) {
     const { first_name, middle_name, last_name, avatar_url, major } = success[0]
 
     return (
-        <>
-            <div className="pt-3 text-center pb-5">
-                <div className="rounded-lg">
-                    <Image className="m-auto w-[150px] h-[150px] rounded-[100%] object-scale-down" src={avatar_url ||
+        <div>
+            <div className="w-full h-[140px]">
+                <div className="h-full" style={{
+                    backgroundImage: 'url(/images/animation.gif)',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                }}>
+                    <Image className="w-[100px] h-[100px] object-scale-down bg-white rounded-[100%] border-2 border-black relative top-[100px] left-0 right-0 m-auto" src={avatar_url ||
                         `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
                     } alt={`${first_name}'s profile picture`} width={100} height={100} />
                 </div>
-
-                <p className="mt-3 text-lg font-bold">{first_name} {middle_name} {last_name}</p>
-                <p className="text-lg">Major in <b>{major}</b></p>
             </div>
 
-            <div className="text-center mx-3">
-                <Link href={`/view/${cardUuid}/resume`}>
-                    <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white max-w-[500px] m-auto">
-                        <p className="font-bold">My Resume</p>
-                    </div>
-                </Link>
+            <div className="text-center mt-[5rem] mx-3">
+                <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
+                <p className="text-lg">My major is <b>{major}</b></p>
+
+                <div className="mt-6">
+                    <Link href={`/view/${cardUuid}/resume`}>
+                        <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white max-w-[500px] m-auto">
+                            <p className="font-bold">My Resume</p>
+                        </div>
+                    </Link>
+                </div>
             </div>
-        </>
+        </div >
     );
 }
