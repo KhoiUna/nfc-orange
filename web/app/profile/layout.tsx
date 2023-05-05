@@ -10,9 +10,7 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
         <>
             <Analytics />
 
-            <AppHeaderBar
-                title={'Profile'}
-            />
+            <AppHeaderBar title={'Profile'} />
 
             <main>{children}</main>
         </>
