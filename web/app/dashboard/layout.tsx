@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             <AppHeaderBar title={'Dashboard'} />
 
-            <main className="max-h-screen overflow-auto">
+            <main className="max-h-screen overflow-auto bg-slate-50 min-h-screen">
                 {children}
             </main>
         </>
