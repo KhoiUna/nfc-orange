@@ -5,6 +5,7 @@ import PDFUpload from "../dashboard/components/PDFUpload";
 import useSWR from "swr";
 import TextLoader from "@/components/ui/TextLoader";
 import useAuth from "@/lib/useAuth";
+import { Link } from "../../types/types";
 
 export default function Page() {
     useAuth({})
@@ -25,5 +26,6 @@ export default function Page() {
             </div>
         );
 
-    return <PDFUpload pdfURL={data.success.pdf_link} />
+    const resumeLink = data.success.links.find((item: Link) => item.link_title === 'My Resume')
+    return <PDFUpload pdfURL={resumeLink} />
 }
