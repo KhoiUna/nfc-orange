@@ -5,14 +5,12 @@ export const metadata = {
     title: 'NFC ORANGE | Dashboard',
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <Analytics />
 
-            <AppHeaderBar
-                title={'Dashboard'}
-            />
+            <AppHeaderBar title={'Dashboard'} />
 
             <main className="max-h-screen overflow-auto">
                 {children}
