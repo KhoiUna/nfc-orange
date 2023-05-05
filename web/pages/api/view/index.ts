@@ -40,12 +40,22 @@ export default async function view(
 
     // Send pdf url
     const userId = users[0].id;
-    const { rows: profileView } = await client.query(
-      "SELECT users.id as user_id, first_name, middle_name, last_name, major, avatar_url, links.url as pdf_url, symplicity_resume_links.url as symplicity_url FROM links RIGHT JOIN users ON users.id=links.user_id LEFT JOIN symplicity_resume_links ON users.id=symplicity_resume_links.user_id WHERE users.id=$1;",
+    const { rows: links } = await client.query(
+      "SELECT link_title, url FROM links WHERE user_id=$1",
       [userId]
     );
 
-    return res.status(200).json({ success: profileView, error: false });
+    const { rows: user } = await client.query(
+      "SELECT first_name, middle_name, last_name, major, avatar_url FROM users WHERE id=$1",
+      [userId]
+    );
+
+    return res.status(200).json({
+      success: {
+        user: user[0],
+        links
+      }, error: false
+    });
   } catch (error) {
     console.error(error);
     return res
