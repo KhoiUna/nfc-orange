@@ -58,18 +58,14 @@ export default function View({ params }: Props) {
   const { pdf_url } = success[0]
 
   if (!pdf_url) return (
-    <>
-      <HeaderBar title="Home" />
-
-      <div className="text-center py-[20vh]">
-        <h1 className="text-lg font-bold">No resume uploaded</h1>
-        <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload<br />(preferably on your PC or laptop)</p>
-      </div>
-    </>
+    <div className="text-center py-[20vh]">
+      <h1 className="text-lg font-bold">No resume uploaded</h1>
+      <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload<br />(preferably on your PC or laptop)</p>
+    </div>
   );
 
   return (
-    <div className="w-screen">
+    <div className="w-screen absolute z-10">
       <div className='bg-primary p-3'>
         <Link href={`/view/${cardUuid}`}>
           <div className="flex flex-row items-center">
