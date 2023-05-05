@@ -77,7 +77,7 @@ export default function Profile() {
     }
 
     return (
-        <div className="m-auto w-fit my-10">
+        <div className="m-auto w-fit py-10">
             <Toaster
                 toastOptions={{
                     success: {
