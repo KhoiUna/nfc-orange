@@ -2,6 +2,7 @@ import TextLoader from "@/components/ui/TextLoader";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import PDFViewer from "tailwind-pdf-viewer/dist";
+import "tailwind-pdf-viewer/dist/style.css";
 import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -36,10 +37,10 @@ export default function PDFUpload({ pdfURL }: Props) {
             const storage = getStorage(app);
             const storageRef = ref(storage, `/resumes/${process.env.NEXT_PUBLIC_UPLOAD_FOLDER}/${uuidv4()}.pdf`);
 
-            const response = await uploadBytes(storageRef, file);
+            await uploadBytes(storageRef, file);
             const fileURL = await getDownloadURL(storageRef);
 
-            const { error, success } = await (
+            const { error } = await (
                 await fetch("/api/upload", {
                     method: "POST",
                     headers: new Headers({
@@ -100,7 +101,7 @@ export default function PDFUpload({ pdfURL }: Props) {
                     value={path}
                 />
             </button>
-            <p className="text-sm text-center italic">*Only PDFs are allowed</p>
+            <p className="mt-3 text-sm text-center italic">*Only PDFs are allowed</p>
 
             {!uploadedURL && (
                 <p className="text-lg p-2 font-bold mt-3 text-center">
