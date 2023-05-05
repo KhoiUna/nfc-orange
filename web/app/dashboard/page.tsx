@@ -83,16 +83,9 @@ export default function Dashboard() {
     }
 
     // TODO: update link
-    // const updateLink = (link_title: string, url: string) => {
-    //     const newLinkState = linkState
-
-    //     const index = linkState.findIndex((item) => item.link_title === link_title && item.url === url)
-    //     newLinkState[index] = { ...newLinkState[index], isAdded: true }
-
-    //     console.log(newLinkState);
-
-    //     setLinkState(newLinkState)
-    // }
+    const updateLink = (link_title: string, url: string) => {
+        //
+    }
 
     const saveLink = (link_title: string, url: string) => {
         const newLinkState = [...linkState, { link_title, url, isAdded: false, isSaved: true }].map(item => ({
@@ -100,7 +93,6 @@ export default function Dashboard() {
         }))
         setLinkState(newLinkState)
     }
-
 
     return (
         <div className="pb-5">
@@ -124,6 +116,7 @@ export default function Dashboard() {
                             <button
                                 key={index}
                                 className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
+                            // TODO: update link
                             // onClick={() => updateLink(item.link_title, item.url)}
                             >
                                 <div className="flex w-full justify-center">
