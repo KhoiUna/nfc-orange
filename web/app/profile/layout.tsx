@@ -12,7 +12,7 @@ export default function ProfileLayout({ children }: { children: React.ReactNode 
 
             <AppHeaderBar title={'Profile'} />
 
-            <main>{children}</main>
+            <main className="bg-slate-50">{children}</main>
         </>
     );
 };
