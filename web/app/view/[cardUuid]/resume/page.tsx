@@ -8,6 +8,7 @@ import PDFViewer from "tailwind-pdf-viewer/dist";
 import "tailwind-pdf-viewer/dist/style.css";
 import { Icon } from "@iconify/react";
 import HeaderBar from "@/components/ui/HeaderBar";
+import { Link as LinkType } from "../../../../types/types";
 
 type Props = {
   params: {
@@ -55,12 +56,23 @@ export default function View({ params }: Props) {
     </>
   );
 
-  const { pdf_url } = success[0]
+  const resumeLink = success.links.find((item: LinkType) => item.link_title === 'My Resume')
 
-  if (!pdf_url) return (
-    <div className="text-center py-[20vh]">
-      <h1 className="text-lg font-bold">No resume uploaded</h1>
-      <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload<br />(preferably on your PC or laptop)</p>
+  if (!resumeLink) return (
+    <div className="w-screen absolute z-10">
+      <div className='bg-primary p-3'>
+        <Link href={`/view/${cardUuid}`}>
+          <div className="flex flex-row items-center">
+            <Icon icon="material-symbols:arrow-back-ios" className="text-white" />
+            <p className="text-lg text-white underline">Main Profile</p>
+          </div>
+        </Link>
+      </div>
+
+      <div className="text-center py-[20vh]">
+        <h1 className="text-lg font-bold">No resume uploaded</h1>
+        <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload.</p>
+      </div>
     </div>
   );
 
@@ -75,7 +87,7 @@ export default function View({ params }: Props) {
         </Link>
       </div>
 
-      <PDFViewer pdfURL={pdf_url} />
+      <PDFViewer pdfURL={resumeLink} />
     </div>
   );
 }
