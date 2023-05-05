@@ -21,3 +21,8 @@ export type User = {
   last_name: string,
   avatar_url?: string
 }
+
+export type Link = {
+  link_title: string,
+  url: string
+}
