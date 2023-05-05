@@ -89,7 +89,7 @@ export default function View({ params }: Props) {
         </>
     );
 
-    const { first_name, middle_name, last_name, avatar_url, major } = success[0]
+    const { first_name, middle_name, last_name, avatar_url, major } = success.user
 
     return (
         <div>
