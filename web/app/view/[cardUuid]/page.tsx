@@ -99,7 +99,7 @@ export default function View({ params }: Props) {
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
-                    <Image className="w-[100px] h-[100px] object-scale-down bg-white rounded-[100%] border-2 border-black relative top-[150px] left-0 right-0 m-auto" src={avatar_url ||
+                    <Image className="w-[100px] h-[100px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[150px] left-0 right-0 m-auto" src={avatar_url ||
                         `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
                     } alt={`${first_name}'s profile picture`} width={100} height={100} />
                 </div>
