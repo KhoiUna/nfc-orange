@@ -5,7 +5,7 @@ export const metadata = {
     title: 'NFC Orange | Profile'
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function ProfileLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <Analytics />
