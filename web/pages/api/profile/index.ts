@@ -1,8 +1,16 @@
 import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "../../../db/client";
-import { sessionOptions } from "../../../lib/session";
-import { ApiResponse } from "../register";
+import { User, sessionOptions } from "../../../lib/session";
+import { Link } from "../../../types/types";
+
+type ApiResponse = {
+  success: boolean | {
+    user: User,
+    links: Link[]
+  };
+  error: any;
+}
 
 async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
@@ -16,13 +24,8 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .status(403)
         .json({ success: false, error: "Method not allowed" });
 
-    const { rows: pdfLinks } = await client.query(
-      "SELECT url FROM links WHERE user_id = (SELECT id FROM users WHERE email = $1);",
-      [req.session.user?.email]
-    );
-
-    const { rows: symplicityLinks } = await client.query(
-      "SELECT url FROM symplicity_resume_links WHERE user_id = (SELECT id FROM users WHERE email = $1);",
+    const { rows: links } = await client.query(
+      "SELECT link_title, url FROM links WHERE user_id = (SELECT id FROM users WHERE email = $1);",
       [req.session.user?.email]
     );
 
@@ -34,8 +37,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     return res.status(200).json({
       success: {
         user: rows[0],
-        pdf_link: pdfLinks[0]?.url || "",
-        symplicity_link: symplicityLinks[0]?.url || "",
+        links,
       },
       error: false,
     });
