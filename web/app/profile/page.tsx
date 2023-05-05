@@ -9,14 +9,7 @@ import { SyntheticEvent, useState } from "react";
 import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
-export type User = {
-    major: string
-    first_name: string,
-    middle_name?: string,
-    last_name: string,
-    avatar_url?: string
-}
+import { User } from "../../types/types";
 
 type Profile = {
     success: {
