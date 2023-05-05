@@ -69,8 +69,8 @@ export default function View({ params }: Props) {
       <div className='bg-primary p-3'>
         <Link href={`/view/${cardUuid}`}>
           <div className="flex flex-row items-center">
-            <Icon icon="material-symbols:arrow-back-ios" className="text-white font-bold" />
-            <p className="text-lg text-white underline font-bold">Main Profile</p>
+            <Icon icon="material-symbols:arrow-back-ios" className="text-white" />
+            <p className="text-lg text-white underline">Main Profile</p>
           </div>
         </Link>
       </div>
