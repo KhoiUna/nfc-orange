@@ -20,7 +20,7 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
 
     // Save link to database
     const response = await client.query(
-      "INSERT INTO links(user_id, url, updated_at) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id) DO UPDATE SET url = $2, updated_at = $3;",
+      "INSERT INTO links(user_id, url, updated_at) VALUES ( (SELECT id FROM users WHERE email = $1), $2, $3) ON CONFLICT (user_id, link_title) DO UPDATE SET url=$2, updated_at=$3",
       [req.session.user?.email, fileURL, new Date()]
     );
     if (!response) throw "Error saving link";
