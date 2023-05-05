@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
+import { Link as LinkType } from "../../../types/types";
 
 type Props = {
     params: {
@@ -90,6 +91,7 @@ export default function View({ params }: Props) {
     );
 
     const { first_name, middle_name, last_name, avatar_url, major } = success.user
+    const { links } = success
 
     return (
         <div>
@@ -116,8 +118,16 @@ export default function View({ params }: Props) {
                         </div>
                     </Link>
 
-                    {/* TODO: loop through social links */}
-                    { }
+                    {/* Loop through social links */}
+                    {
+                        links.filter((link: LinkType) => link.link_title !== 'My Resume').map((link: LinkType, index: number) => (
+                            <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
+                                <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
+                                    <p className="font-bold">{link.link_title}</p>
+                                </div>
+                            </Link>
+                        ))
+                    }
                 </div>
             </div>
         </div >
