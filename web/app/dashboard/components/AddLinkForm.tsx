@@ -1,38 +1,68 @@
+'use client'
+
+import TextLoader from '@/components/ui/TextLoader';
 import { appSubmitButtonStyle, inputStyle } from '@/styles/tailwind';
+import axios from 'axios';
 import { SyntheticEvent, useState } from 'react';
+import { toast } from "react-hot-toast";
 
-export default function AddLinkForm() {
-    const [url, setUrl] = useState('');
-    const [title, setTitle] = useState('');
+type Props = {
+    index: number,
+    link_title: string
+    url: string
+    removeLink: (index: number) => void
+    saveLink: (link_title: string, url: string) => void
+}
 
+const formInitialState = {
+    url: '',
+    link_title: ''
+}
+
+export default function AddLinkForm({ index, removeLink, saveLink, link_title, url }: Props) {
+    const [form, setForm] = useState(formInitialState)
+
+    const handleChange = (event: SyntheticEvent) => {
+        const target = event.target as HTMLInputElement
+        setForm(prev => ({
+            ...prev,
+            [target.name]: target.value
+        }))
+    }
+
+    const [isLoading, setIsLoading] = useState(false)
     const handleSubmit = async (event: SyntheticEvent) => {
         try {
-            event.preventDefault();
+            event.preventDefault()
+            setIsLoading(true)
 
-            // TODO:
-            // Handle form submission here
-            console.log('URL:', url);
-            console.log('Title:', title);
+            const { data } = await axios.post('/api/dashboard/link', form)
 
-            // Reset the form fields
-            setUrl('');
-            setTitle('');
-        } catch (error) {
-            console.error('Error adding link');
+            if (data.success) {
+                saveLink(form.link_title, form.url)
+                setIsLoading(false)
+                setForm(formInitialState)
+                toast.success('Link added successfully!')
+            }
+        } catch (error: any) {
+            console.error(error.response.data.error);
+            toast.error(error.response.data.error)
+            setIsLoading(false)
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg mt-5 border-2 border-slate-500 border-dashed max-w-[500px] p-3 mx-auto">
+        <form onSubmit={handleSubmit} className="bg-white rounded-lg mt-5 border-2 border-slate-500 border-dashed max-w-[500px] p-3 mx-auto drop-shadow-lg">
             <div className="mb-4">
-                <label htmlFor="title" className="font-bold">
+                <label htmlFor="link_title" className="font-bold">
                     Link title:
                 </label>
                 <input
                     type="text"
-                    id="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    id="link_title"
+                    name='link_title'
+                    value={link_title || form.link_title}
+                    onChange={handleChange}
                     className={inputStyle}
                     placeholder="Enter link title"
                     required
@@ -46,8 +76,9 @@ export default function AddLinkForm() {
                 <input
                     type="text"
                     id="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
+                    name='url'
+                    value={url || form.url}
+                    onChange={handleChange}
                     className={inputStyle}
                     placeholder="Enter URL"
                     required
@@ -58,6 +89,7 @@ export default function AddLinkForm() {
                 <button
                     type='button'
                     className={appSubmitButtonStyle + " bg-gray-500 text-white"}
+                    onClick={() => removeLink(index)}
                 >
                     Cancel
                 </button>
@@ -65,7 +97,8 @@ export default function AddLinkForm() {
                     type="submit"
                     className={appSubmitButtonStyle}
                 >
-                    Add
+                    {!isLoading && "Add"}
+                    {isLoading && <TextLoader loadingText="Adding" />}
                 </button>
             </div>
         </form>
