@@ -7,6 +7,7 @@ import { swrFetcher } from "../../../../lib/swrFetcher";
 import PDFViewer from "tailwind-pdf-viewer/dist";
 import "tailwind-pdf-viewer/dist/style.css";
 import { Icon } from "@iconify/react";
+import HeaderBar from "@/components/ui/HeaderBar";
 
 type Props = {
   params: {
@@ -29,6 +30,8 @@ export default function View({ params }: Props) {
 
   if (error) return (
     <>
+      <HeaderBar title="Home" />
+
       <div className="w-screen text-center pt-[20vh]">
         {error === "invalid" && (
           <h1 className="text-[3em] font-bold drop-shadow-lg">
@@ -55,10 +58,14 @@ export default function View({ params }: Props) {
   const { pdf_url } = success[0]
 
   if (!pdf_url) return (
-    <div className="text-center py-[20vh] min-h-[80vh] p-4 bg-slate-100">
-      <h1 className="text-lg font-bold">No resume uploaded</h1>
-      <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload<br />(preferably on your PC or laptop)</p>
-    </div>
+    <>
+      <HeaderBar title="Home" />
+
+      <div className="text-center py-[20vh]">
+        <h1 className="text-lg font-bold">No resume uploaded</h1>
+        <p className="text-lg text-primary">Please go to <Link href="/login"><span className="underline font-bold">Student Login</span></Link> to upload<br />(preferably on your PC or laptop)</p>
+      </div>
+    </>
   );
 
   return (
