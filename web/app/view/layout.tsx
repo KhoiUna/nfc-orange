@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Analytics from "@/components/Analytics";
 import HeaderBar from "@/components/ui/HeaderBar";
 
 export const metadata = {
@@ -16,8 +15,6 @@ export default function ViewLayout({ children }: LayoutProps) {
 
     return (
         <>
-            <Analytics />
-
             <HeaderBar title="Home" />
 
             <main className="bg-slate-50 min-h-screen">{children}</main>
