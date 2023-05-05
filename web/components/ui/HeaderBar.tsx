@@ -37,7 +37,7 @@ const NAV_LINKS: NavLink[] = [
   },
 ];
 
-const MenuSidebar = ({ toggleMenu, title }: { toggleMenu: () => void, title: string }) => {
+const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
   return (
     <>
       {/* Dark overlay */}
@@ -155,7 +155,7 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
           </button>
         )}
 
-        {menuOpened && <MenuSidebar toggleMenu={toggleMenu} title={title} />}
+        {menuOpened && <MenuSidebar toggleMenu={toggleMenu} />}
       </nav>
     </header>
   );
