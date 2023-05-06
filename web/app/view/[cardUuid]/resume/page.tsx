@@ -8,7 +8,6 @@ import PDFViewer from "tailwind-pdf-viewer/dist";
 import "tailwind-pdf-viewer/dist/style.css";
 import { Icon } from "@iconify/react";
 import HeaderBar from "@/components/ui/HeaderBar";
-import { Link as LinkType } from "@/types/types";
 
 type Props = {
   params: {
