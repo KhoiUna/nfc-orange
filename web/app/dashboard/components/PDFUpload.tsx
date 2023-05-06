@@ -40,7 +40,7 @@ export default function PDFUpload({ pdfURL }: Props) {
             const fileURL = await getDownloadURL(storageRef);
 
             const { error } = await (
-                await fetch("/api/upload", {
+                await fetch("/api/pdf", {
                     method: "POST",
                     headers: new Headers({
                         "content-type": "application/json",
@@ -63,6 +63,14 @@ export default function PDFUpload({ pdfURL }: Props) {
             return false;
         }
     };
+
+    const handleRemove = async () => {
+        try {
+
+        } catch (error) {
+            toast.error('Error removing PDF.')
+        }
+    }
 
     return (
         <>
@@ -101,6 +109,15 @@ export default function PDFUpload({ pdfURL }: Props) {
                 />
             </button>
             <p className="mt-3 text-sm text-center italic">*Only PDFs are allowed</p>
+
+            <button
+                className="text-md bg-red-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-red-800 active:drop-shadow-none"
+                onClick={handleRemove}
+            >
+                {!isLoading && "Remove PDF"}
+                {isLoading && <TextLoader loadingText="Removing" />}
+                <Icon className="text-2xl ml-2" icon="ant-design:delete-outlined" />
+            </button>
 
             {!uploadedURL && (
                 <p className="text-lg p-2 font-bold mt-3 text-center">
