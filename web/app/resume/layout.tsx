@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </nav>
             </header>
 
-            <main className="pt-20 max-h-screen overflow-y-auto bg-slate-50">{children}</main>
+            <main className="pt-20 h-screen max-h-screen overflow-y-auto bg-slate-50">{children}</main>
         </>
     )
 }
