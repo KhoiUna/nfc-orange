@@ -44,6 +44,16 @@ const isValid = async (registerInfo: RegisterInfo) => {
   return { success: true, error: false };
 };
 
+const isEduEmail = (email: string) => {
+  let array = email.split('@')
+  const domain = array[array.length - 1]
+
+  array = domain.split('.')
+  const topLevelDomain = array[array.length - 1]
+
+  return topLevelDomain === 'edu'
+}
+
 export default async function register(
   req: NextApiRequest,
   res: NextApiResponse<ApiResponse>
@@ -58,8 +68,11 @@ export default async function register(
       req.body;
     const { c_id } = req.query;
 
+    // Validate email (has to be school email with `.edu`)
+    if (!isEduEmail(email)) return res.status(400).json({ success: false, error: 'Please use a .edu email' });
+
     // Validate req.body from user
-    const { success, error } = await isValid(req.body);
+    const { error } = await isValid(req.body);
     if (error) return res.status(400).json({ success: false, error });
 
     // Validate card id c_id
