@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SyntheticEvent, useState } from "react";
-import TextLoader from "../components/ui/TextLoader";
-import Layout from "../containers/Layout";
+import TextLoader from "@/components/ui/TextLoader";
+import Layout from "@/containers/Layout";
+import axios from "axios";
 
 export type RegisterInfo = {
   first_name: string;
@@ -59,34 +60,22 @@ export default function Register({ showForm }: RegisterProps) {
       event.preventDefault();
       setIsLoading(true);
 
-      const { success, error } = await (
-        await fetch(`/api/register?c_id=${router.query.c_id}`, {
-          method: "POST",
-          headers: new Headers({
-            "content-type": "application/json",
-          }),
-          body: JSON.stringify(registerInfo),
-        })
-      ).json();
+      const { data } = await axios.post(`/api/register?c_id=${router.query.c_id}`, registerInfo)
 
-      if (error) throw error;
-
-      setStatus({
-        error: false,
-        text: success,
-      });
-      setRegisterInfo(registerInfoInitialState);
-      setIsLoading(false);
-
-      return true;
+      if (data.success) {
+        setStatus({
+          error: false,
+          text: data.success,
+        });
+        setRegisterInfo(registerInfoInitialState);
+        setIsLoading(false);
+      }
     } catch (error: any) {
-      console.error("Error registering");
       setIsLoading(false);
       setStatus({
         error: true,
-        text: error,
+        text: error.response.data.error,
       });
-      return false;
     }
   };
 
@@ -171,7 +160,7 @@ export default function Register({ showForm }: RegisterProps) {
                   className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                   type="email"
                   name="email"
-                  placeholder="Email*"
+                  placeholder="School email .edu*"
                   value={registerInfo.email}
                 />
               </div>
