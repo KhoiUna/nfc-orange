@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import useSWR from "swr";
-import TextLoader from "../../../../components/ui/TextLoader";
-import { swrFetcher } from "../../../../lib/swrFetcher";
+import TextLoader from "@/components/ui/TextLoader";
+import { swrFetcher } from "@/lib/swrFetcher";
 import PDFViewer from "tailwind-pdf-viewer/dist";
 import "tailwind-pdf-viewer/dist/style.css";
 import { Icon } from "@iconify/react";
 import HeaderBar from "@/components/ui/HeaderBar";
-import { Link as LinkType } from "../../../../types/types";
+import { Link as LinkType } from "@/types/types";
 
 type Props = {
   params: {
@@ -56,9 +56,9 @@ export default function View({ params }: Props) {
     </>
   );
 
-  const resumeLink = success.links.find((item: LinkType) => item.link_title === 'My Resume')
+  const { resume_link } = success
 
-  if (!resumeLink) return (
+  if (!resume_link) return (
     <div className="w-screen absolute z-10">
       <div className='bg-primary p-3'>
         <Link href={`/view/${cardUuid}`}>
@@ -87,7 +87,7 @@ export default function View({ params }: Props) {
         </Link>
       </div>
 
-      <PDFViewer pdfURL={resumeLink} />
+      <PDFViewer pdfURL={resume_link} />
     </div>
   );
 }
