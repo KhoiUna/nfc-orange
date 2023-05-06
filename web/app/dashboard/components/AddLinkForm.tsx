@@ -71,7 +71,7 @@ export default function AddLinkForm({ index, removeLink, saveLink, link_title, u
 
             <div className="mb-4">
                 <label htmlFor="url" className="font-bold">
-                    URL:
+                    URL: (https://...)
                 </label>
                 <input
                     type="text"
