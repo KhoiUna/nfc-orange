@@ -41,7 +41,12 @@ export default async function view(
     // Send pdf url
     const userId = users[0].id;
     const { rows: links } = await client.query(
-      "SELECT link_title, url FROM links WHERE user_id=$1",
+      "SELECT link_title, url FROM links WHERE user_id=$1 AND NOT link_title='My Resume'",
+      [userId]
+    );
+
+    const { rows: resume_link } = await client.query(
+      "SELECT link_title, url FROM links WHERE user_id=(SELECT id FROM users WHERE id=$1) AND link_title='My Resume'",
       [userId]
     );
 
@@ -53,6 +58,7 @@ export default async function view(
     return res.status(200).json({
       success: {
         user: user[0],
+        resume_link: resume_link[0].url,
         links
       }, error: false
     });
