@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import HeaderBar from "@/components/ui/HeaderBar";
 
 export const metadata = {
@@ -6,12 +5,7 @@ export const metadata = {
     description: 'NFC Orange | View'
 }
 
-interface LayoutProps {
-    children: ReactNode | ReactNode[];
-    title: string;
-}
-
-export default function ViewLayout({ children }: LayoutProps) {
+export default function ViewLayout({ children }: { children: React.ReactNode; }) {
 
     return (
         <>
