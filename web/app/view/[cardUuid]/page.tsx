@@ -120,7 +120,7 @@ export default function View({ params }: Props) {
 
                     {/* Loop through social links */}
                     {
-                        links.filter((link: LinkType) => link.link_title !== 'My Resume').map((link: LinkType, index: number) => (
+                        links.map((link: LinkType, index: number) => (
                             <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
                                 <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
                                     <p className="font-bold">{link.link_title}</p>
