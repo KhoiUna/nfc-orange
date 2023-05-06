@@ -23,6 +23,7 @@
       "@/components/*": ["./components/*"],
       "@/db/*": ["./db/*"],
       "@/lib/*": ["./lib/*"],
+      "@/types/*": ["./types/*"],
       "@/styles/*": ["./styles/*"]
     }
   },
