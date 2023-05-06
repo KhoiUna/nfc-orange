@@ -82,11 +82,6 @@ export default function Dashboard() {
         }
     }
 
-    // TODO: update link
-    const updateLink = (link_title: string, url: string) => {
-        //
-    }
-
     const saveLink = (link_title: string, url: string) => {
         const newLinkState = [...linkState, { link_title, url, isAdded: false, isSaved: true }].map(item => ({
             ...item, isAdded: false
@@ -126,11 +121,10 @@ export default function Dashboard() {
                             <button
                                 key={index}
                                 className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
-                            // TODO: update link
-                            // onClick={() => updateLink(item.link_title, item.url)}
                             >
-                                <Link href={item.url} target="_blank" rel="noreferrer" className="flex w-full justify-center">
+                                <Link href={item.url} target="_blank" rel="noreferrer" className="flex w-full justify-center underline">
                                     {item.link_title}
+                                    <Icon icon="material-symbols:arrow-outward-rounded" />
                                 </Link>
 
                                 <button
@@ -149,7 +143,7 @@ export default function Dashboard() {
                 {/* Only show `Add link` button when there's no current <AddLinkForm />  */}
                 {linkState.every(item => item.isAdded === false) &&
                     <button
-                        className="bg-slate-100 text-slate-500 rounded-lg mt-5 border-2 border-slate-500 border-dashed p-3 block m-auto w-full max-w-[500px] hover:drop-shadow-lg hover:bg-blue-100"
+                        className="bg-slate-100 text-slate-500 h-[75.2px] rounded-lg mt-5 border-2 border-slate-500 border-dashed p-3 block m-auto w-full max-w-[500px] hover:drop-shadow-lg hover:bg-blue-100"
                         onClick={addLink}
                     >
                         + Add link
