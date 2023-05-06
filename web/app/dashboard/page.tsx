@@ -105,9 +105,19 @@ export default function Dashboard() {
 
             <div className="mt-5 mx-3">
                 <Link href={`/resume`} className="block max-w-[500px] m-auto">
-                    <div className="font-bold border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100">
-                        My Resume
-                    </div>
+                    <button
+                        className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
+                    >
+                        <div className="flex w-full justify-center">
+                            Upload Resume
+                        </div>
+
+                        <button
+                            className="bg-blue-100 ml-3 p-3 rounded-lg"
+                        >
+                            <Icon className="text-2xl text-blue-800" icon="ant-design:upload-outlined" />
+                        </button>
+                    </button>
                 </Link>
 
                 {
@@ -124,7 +134,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <button
-                                    className="bg-red-100 ml-3 p-3 rounded-lg"
+                                    className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
                                     onClick={() => deleteLink(index, item.link_title, item.url)}
                                 >
                                     <Icon className="text-2xl text-red-700" icon="material-symbols:delete-outline" />
