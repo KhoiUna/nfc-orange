@@ -92,6 +92,13 @@ export default async function register(
         .status(400)
         .json({ success: false, error: "Invalid registration" });
 
+    // Validate that card is not registered
+    const { rows: registeredUser } = await client.query('SELECT * FROM users WHERE card_id=$1', [cardId])
+    if (registeredUser.length > 0)
+      return res
+        .status(400)
+        .json({ success: false, error: "Invalid registration" });
+
     // Validate unique user
     const { rows: users } = await client.query(
       "SELECT * FROM users WHERE email = $1;",
