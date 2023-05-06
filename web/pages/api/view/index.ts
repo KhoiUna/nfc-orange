@@ -58,7 +58,7 @@ export default async function view(
     return res.status(200).json({
       success: {
         user: user[0],
-        resume_link: resume_link[0].url,
+        resume_link: resume_link[0]?.url,
         links
       }, error: false
     });
