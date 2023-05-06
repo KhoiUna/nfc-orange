@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
-import { Link as LinkType } from "../../../types/types";
+import { Link as LinkType } from "@/types/types";
 
 type Props = {
     params: {
@@ -111,12 +111,12 @@ export default function View({ params }: Props) {
                 <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
                 <p className="text-lg">My major is <b>{major}</b></p>
 
-                <div className="mt-6">
+                <div className="mt-6 pb-6">
                     {!resume_link && links.length === 0 && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
                     {
                         resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
-                            <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
+                            <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
                                 <p className="font-bold">My Resume</p>
                             </div>
                         </Link>
@@ -126,7 +126,7 @@ export default function View({ params }: Props) {
                     {
                         links.map((link: LinkType, index: number) => (
                             <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
-                                <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
+                                <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
                                     <p className="font-bold">{link.link_title}</p>
                                 </div>
                             </Link>
