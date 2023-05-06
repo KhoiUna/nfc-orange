@@ -34,7 +34,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     return res.status(200).json({
       success: {
         user: rows[0],
-        resume_link: resume_link[0].url,
+        resume_link: resume_link[0]?.url,
         links,
       },
       error: false,
