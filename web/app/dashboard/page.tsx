@@ -104,7 +104,7 @@ export default function Dashboard() {
             <hr className="w-[95%] m-auto" />
 
             <div className="mt-5 mx-3">
-                <Link href={`/resume`}>
+                <Link href={`/resume`} className="contents">
                     <button
                         className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
                     >
@@ -123,24 +123,23 @@ export default function Dashboard() {
                 {
                     linkState.map((item, index) => {
                         if (item.isSaved && !item.isAdded) return (
-                            <Link key={index} href={item.url} target="_blank" rel="noreferrer">
-                                <button
-                                    className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
-                                // TODO: update link
-                                // onClick={() => updateLink(item.link_title, item.url)}
-                                >
-                                    <div className="flex w-full justify-center">
-                                        {item.link_title}
-                                    </div>
+                            <button
+                                key={index}
+                                className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
+                            // TODO: update link
+                            // onClick={() => updateLink(item.link_title, item.url)}
+                            >
+                                <Link href={item.url} target="_blank" rel="noreferrer" className="flex w-full justify-center">
+                                    {item.link_title}
+                                </Link>
 
-                                    <button
-                                        className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
-                                        onClick={() => deleteLink(index, item.link_title, item.url)}
-                                    >
-                                        <Icon className="text-2xl text-red-700" icon="material-symbols:delete-outline" />
-                                    </button>
+                                <button
+                                    className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
+                                    onClick={() => deleteLink(index, item.link_title, item.url)}
+                                >
+                                    <Icon className="text-2xl text-red-700" icon="material-symbols:delete-outline" />
                                 </button>
-                            </Link>
+                            </button>
                         )
 
                         return item.isAdded ? <AddLinkForm key={index} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
@@ -157,6 +156,6 @@ export default function Dashboard() {
                     </button>
                 }
             </div>
-        </div>
+        </div >
     );
 }
