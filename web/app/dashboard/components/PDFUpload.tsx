@@ -6,6 +6,7 @@ import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 type Props = {
     pdfURL: string
@@ -13,6 +14,7 @@ type Props = {
 
 export default function PDFUpload({ pdfURL }: Props) {
     const [isLoading, setIsLoading] = useState(false);
+    const [isRemoving, setIsRemoving] = useState(false);
     const [path, setPath] = useState("");
     const [uploadedURL, setUploadedURL] = useState("");
 
@@ -66,7 +68,15 @@ export default function PDFUpload({ pdfURL }: Props) {
 
     const handleRemove = async () => {
         try {
+            setIsRemoving(true)
 
+            const { data } = await axios.delete('/api/pdf')
+
+            if (data.success) {
+                setUploadedURL('')
+                setIsRemoving(false)
+                toast.success('PDF removed successfully!')
+            }
         } catch (error) {
             toast.error('Error removing PDF.')
         }
@@ -110,14 +120,16 @@ export default function PDFUpload({ pdfURL }: Props) {
             </button>
             <p className="mt-3 text-sm text-center italic">*Only PDFs are allowed</p>
 
-            <button
-                className="text-md bg-red-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-red-800 active:drop-shadow-none"
-                onClick={handleRemove}
-            >
-                {!isLoading && "Remove PDF"}
-                {isLoading && <TextLoader loadingText="Removing" />}
-                <Icon className="text-2xl ml-2" icon="ant-design:delete-outlined" />
-            </button>
+            {
+                uploadedURL && <button
+                    className="text-md bg-red-100 rounded-lg p-3 flex drop-shadow-lg m-auto my-5 text-red-800 active:drop-shadow-none"
+                    onClick={handleRemove}
+                >
+                    {!isRemoving && "Remove PDF"}
+                    {isRemoving && <TextLoader loadingText="Removing" />}
+                    <Icon className="text-2xl ml-2" icon="ant-design:delete-outlined" />
+                </button>
+            }
 
             {!uploadedURL && (
                 <p className="text-lg p-2 font-bold mt-3 text-center">
