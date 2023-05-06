@@ -91,7 +91,7 @@ export default function View({ params }: Props) {
     );
 
     const { first_name, middle_name, last_name, avatar_url, major } = success.user
-    const { links } = success
+    const { links, resume_link } = success
 
     return (
         <div>
@@ -112,11 +112,15 @@ export default function View({ params }: Props) {
                 <p className="text-lg">My major is <b>{major}</b></p>
 
                 <div className="mt-6">
-                    <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
-                        <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
-                            <p className="font-bold">My Resume</p>
-                        </div>
-                    </Link>
+                    {!resume_link && links.length === 0 && <p className="italic text-lg text-slate-500">Nothing here!</p>}
+
+                    {
+                        resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
+                            <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white">
+                                <p className="font-bold">My Resume</p>
+                            </div>
+                        </Link>
+                    }
 
                     {/* Loop through social links */}
                     {
