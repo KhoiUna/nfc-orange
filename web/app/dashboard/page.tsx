@@ -109,7 +109,7 @@ export default function Dashboard() {
                         className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
                     >
                         <div className="flex w-full justify-center">
-                            Upload Resume
+                            My Resume
                         </div>
 
                         <button
