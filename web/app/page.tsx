@@ -1,7 +1,6 @@
 'use client'
 
 import Link from "next/link";
-import Layout from "../containers/Layout";
 import useSWR from "swr";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
