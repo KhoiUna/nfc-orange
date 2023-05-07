@@ -1,4 +1,3 @@
-import MarqueeBackground from "@/components/MarqueeBackground";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
 import { ReactNode } from "react";
