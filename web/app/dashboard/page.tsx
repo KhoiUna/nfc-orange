@@ -70,6 +70,8 @@ export default function Dashboard() {
 
     const deleteLink = async (index: number, link_title: string, url: string) => {
         try {
+            if (confirm('Are you sure you want to delete this link?')) return
+
             const { data } = await axios.delete(`/api/dashboard/link/?link_title=${link_title}&url=${url}`)
 
             if (data.success) {
