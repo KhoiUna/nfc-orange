@@ -68,6 +68,8 @@ export default function PDFUpload({ pdfURL }: Props) {
 
     const handleRemove = async () => {
         try {
+            if (confirm('Are you sure you want to remove this PDF?')) return
+
             setIsRemoving(true)
 
             const { data } = await axios.delete('/api/pdf')
