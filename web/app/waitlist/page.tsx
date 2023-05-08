@@ -1,6 +1,10 @@
 import Script from "next/script";
 
-export default function page() {
+export const metadata = {
+    title: 'NFC Orange | Waitlist'
+}
+
+export default function Waitlist() {
     return (
         <>
             <iframe
@@ -15,10 +19,11 @@ export default function page() {
                     bottom: 0,
                     left: 0,
                     border: 0,
-                }} />
+                    background: '#fff'
+                }}
+            />
 
             <Script async strategy={'afterInteractive'} src="https://tally.so/widgets/embed.js" />
         </>
     )
-
 }
