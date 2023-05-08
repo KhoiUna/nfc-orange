@@ -11,11 +11,11 @@ export default function Home() {
             <div className="mx-8">
                 <h1
                     className="text-3xl text-primary font-bold px-1">
-                    Your online identity with a card tap
+                    Online identity with a card tap
                 </h1>
 
-                <h2 className="text-6xl text-primary font-bold mt-4 ml-1 flex">
-                    Get one & join our network
+                <h2 className="text-5xl text-primary font-bold mt-4 ml-1 flex">
+                    Get one & join our student community
                 </h2>
 
                 <Link href={"/waitlist"}>
