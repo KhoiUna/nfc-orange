@@ -1,14 +1,11 @@
-'use client'
-
 import Link from "next/link";
-import useSWR from "swr";
-import { swrFetcher } from "@/lib/swrFetcher";
-import TextLoader from "@/components/ui/TextLoader";
 import Image from "next/image";
 
-export default function Home() {
-    const { data } = useSWR('/api/homepage', swrFetcher)
+export const metadata = {
+    title: 'NFC Orange | Home'
+}
 
+export default function Home() {
     return (
         <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
             <div className="mx-8">
@@ -18,7 +15,7 @@ export default function Home() {
                 </h1>
 
                 <h2 className="text-6xl text-primary font-bold mt-4 ml-1 flex">
-                    {!data ? <span className="mr-2"><TextLoader loadingText="" /></span> : data.success.count} users and growing
+                    Get one & join our network
                 </h2>
 
                 <Link href={"/waitlist"}>
