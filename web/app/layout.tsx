@@ -13,7 +13,6 @@ export default function RootLayout({ children }: {
         <html lang='en'>
             <Analytics />
 
-
             <body>
                 <HeaderBar title='Home' />
 
