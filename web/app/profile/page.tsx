@@ -1,15 +1,15 @@
 'use client';
 
 import useSWR from "swr";
-import TextLoader from "../../components/ui/TextLoader";
-import { swrFetcher } from "../../lib/swrFetcher";
-import useAuth from "../../lib/useAuth"
+import TextLoader from "@/components/ui/TextLoader";
+import { swrFetcher } from "@/lib/swrFetcher";
+import useAuth from "@/lib/useAuth"
 import ProfilePictureUpload from "@/components/ProfilePictureUpload";
 import { SyntheticEvent, useState } from "react";
 import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { User } from "../../types/types";
+import { User } from "@/types/types";
 
 type Profile = {
     success: {
