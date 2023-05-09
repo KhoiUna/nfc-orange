@@ -109,11 +109,9 @@ export default function Dashboard() {
                             My Resume
                         </div>
 
-                        <button
-                            className="bg-blue-100 ml-3 p-3 rounded-lg"
-                        >
+                        <span className="bg-blue-100 ml-3 p-3 rounded-lg">
                             <Icon className="text-2xl text-blue-800" icon="ant-design:upload-outlined" />
-                        </button>
+                        </span>
                     </button>
                 </Link>
 
@@ -129,12 +127,12 @@ export default function Dashboard() {
                                     <Icon icon="material-symbols:arrow-outward-rounded" />
                                 </Link>
 
-                                <button
+                                <span
                                     className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
                                     onClick={() => deleteLink(index, item.link_title, item.url)}
                                 >
                                     <Icon className="text-2xl text-red-700" icon="material-symbols:delete-outline" />
-                                </button>
+                                </span>
                             </button>
                         )
 
@@ -152,6 +150,6 @@ export default function Dashboard() {
                     </button>
                 }
             </div>
-        </div>
+        </div >
     );
 }
