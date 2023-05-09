@@ -18,16 +18,6 @@ const nextConfig = {
       },
     ],
   },
-  // CHANGE: hide peers
-  async redirects() {
-    return [
-      {
-        source: "/peers",
-        destination: "/login",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
