@@ -88,6 +88,8 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
     isTesting = await rl.question("Is this for testing? (y/n) ");
   } while (!isTesting || isTesting.length === 0);
 
+  const sql = "SELECT first_name, last_name, email FROM users"; // CHANGE
+
   const { rows } =
     isTesting === "y"
       ? {
@@ -104,7 +106,7 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
             },
           ],
         }
-      : await client.query("SELECT first_name, last_name, email FROM users");
+      : await client.query(sql);
 
   console.log(rows.length, "emails to send:");
 
