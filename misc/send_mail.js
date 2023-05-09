@@ -88,7 +88,8 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
     isTesting = await rl.question("Is this for testing? (y/n) ");
   } while (!isTesting || isTesting.length === 0);
 
-  const sql = "SELECT first_name, last_name, email FROM users"; // CHANGE
+  // CHANGE
+  const sql = "SELECT first_name, last_name, email FROM users";
 
   const { rows } =
     isTesting === "y"
