@@ -99,7 +99,7 @@ export default function Dashboard() {
             </h2>
 
             <ProfilePictureUpload user={data.success.user} />
-            <BioEditor />
+            <BioEditor bio={data.success.user.bio} />
             <hr className="w-[95%] m-auto" />
 
             <div className="mt-5 mx-3">
