@@ -18,6 +18,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/peers",
+        destination: "/dashboard",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
