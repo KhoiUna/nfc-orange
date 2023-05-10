@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
-import { Link as LinkType } from "@/types/types";
+import { Link as LinkType, User } from "@/types/types";
 
 type Props = {
     params: {
@@ -15,18 +15,26 @@ type Props = {
     }
 }
 
+type ApiResponse = {
+    success: {
+        user: User
+        links: LinkType[]
+        resume_link: string
+    },
+    error: any
+}
+
 export default function View({ params }: Props) {
     const { cardUuid } = params
-    const { data } = useSWR(`/api/view?c_id=${cardUuid}`, swrFetcher);
+    const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
     // Update scan history
     const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
     useEffect(() => {
         // If card is valid & cookies.viewed not set & code is production
         if (
-            data?.success.length > 0 &&
-            !cookies.viewed &&
-            process.env.NEXT_PUBLIC_PRODUCTION === "true"
+            data?.success &&
+            !cookies.viewed
         ) {
             const cookieOption = {
                 maxAge: 60, // 1 minute
@@ -90,7 +98,7 @@ export default function View({ params }: Props) {
         </>
     );
 
-    const { first_name, middle_name, last_name, avatar_url, major } = success.user
+    const { first_name, middle_name, last_name, avatar_url, major, bio } = success.user
     const { links, resume_link } = success
 
     return (
@@ -108,8 +116,20 @@ export default function View({ params }: Props) {
             </div>
 
             <div className="text-center mt-[5rem] mx-3">
-                <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
-                <p className="text-lg">My major is <b>{major}</b></p>
+                {!bio && (
+                    <>
+                        <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
+                        <p className="text-lg">My major is <b>{major}</b></p>
+                    </>
+                )}
+                {bio && (
+                    <div
+                        id='bio'
+                        className='text-center mb-3 bg-white p-3 mx-3 rounded-lg leading-6'
+                    >
+                        <p dangerouslySetInnerHTML={{ __html: bio }} />
+                    </div>
+                )}
 
                 <div className="mt-6 pb-6">
                     {!resume_link && links.length === 0 && <p className="italic text-lg text-slate-500">Nothing here!</p>}
@@ -124,7 +144,7 @@ export default function View({ params }: Props) {
 
                     {/* Loop through social links */}
                     {
-                        links.map((link: LinkType, index: number) => (
+                        links.map((link, index) => (
                             <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
                                 <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
                                     <p className="font-bold">{link.link_title}</p>
