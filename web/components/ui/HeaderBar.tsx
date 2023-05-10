@@ -23,17 +23,17 @@ const NAV_LINKS: NavLink[] = [
   //   href: "/about",
   //   text: "About us",
   // },
-  {
-    href: "https://recruit.nfcorange.com/",
-    text: "Recruiter Login",
-  },
+  // {
+  //   href: "https://recruit.nfcorange.com/",
+  //   text: "Recruiter Login",
+  // },
   {
     href: "/register",
-    text: "Student Register",
+    text: "Register",
   },
   {
     href: "/login",
-    text: "Student Login",
+    text: "Login",
   },
 ];
 
