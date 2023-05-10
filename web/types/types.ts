@@ -17,9 +17,10 @@ export type Student =
 export type User = {
   major: string
   first_name: string,
-  middle_name?: string,
+  middle_name: string | null,
   last_name: string,
-  avatar_url?: string
+  avatar_url: string | null
+  bio: string | null
 }
 
 export type Link = {
