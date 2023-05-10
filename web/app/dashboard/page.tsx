@@ -12,7 +12,11 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import BioEditor from "./components/BioEditor";
+import dynamic from 'next/dynamic';
+
+const BioEditor = dynamic(() => import('./components/BioEditor'), {
+    ssr: false,
+});
 
 type ApiResponse = {
     success: {
