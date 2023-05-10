@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import client from "@/db/client";
 import { sessionOptions } from "@/lib/session";
 import { ApiResponse } from "../register";
+import sanitizeHtml from 'sanitize-html';
 
 type Body = {
     richTextBio: string
@@ -23,13 +24,11 @@ async function bio(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
                 .status(403)
                 .json({ success: false, error: "Method not allowed" });
 
-        const { richTextBio, text }: Body = req.body
+        const { text }: Body = req.body
+        let { richTextBio }: Body = req.body
 
-        // Validate empty bio with text
-        if (text.trim().length === 0)
-            return res
-                .status(400)
-                .json({ success: false, error: "Empty bio!" });
+        // Sanitize richTextBio: ensure dangerous HTML tags are not saved to database
+        richTextBio = sanitizeHtml(richTextBio)
 
         // Validate bio length with text
         if (text.length > MAX_WORD_COUNT)
@@ -38,7 +37,8 @@ async function bio(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
                 .json({ success: false, error: "Bio is too long." });
 
         // Update column `bio` in table `users`
-        const response = await client.query('UPDATE users SET bio=$1 WHERE email=$2', [richTextBio, req.session.user.email])
+        const updateValue = text.trim().length === 0 ? null : richTextBio
+        const response = await client.query('UPDATE users SET bio=$1 WHERE email=$2', [updateValue, req.session.user.email])
         if (!response) throw 'Error updating bio.'
 
         return res.status(200).json({ success: true, error: false });
