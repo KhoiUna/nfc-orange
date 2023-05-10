@@ -64,7 +64,6 @@ export default function Dashboard() {
             </div>
         );
 
-
     const addLink = () => setLinkState(prev => [...prev, { ...linksInitialState[0], isAdded: true }])
 
     const cancelLink = (index: number) => setLinkState((prev) => prev.filter((_, i) => i !== index))
