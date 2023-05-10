@@ -82,3 +82,8 @@
   background-attachment: fixed;
   min-height: 100vh;
 }
+
+#bio a {
+  color: #1e40af;
+  text-decoration: underline;
+}
