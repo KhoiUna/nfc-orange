@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import BioEditor from "./components/BioEditor";
 
 type ApiResponse = {
     success: {
@@ -98,6 +99,7 @@ export default function Dashboard() {
             </h2>
 
             <ProfilePictureUpload user={data.success.user} />
+            <BioEditor />
             <hr className="w-[95%] m-auto" />
 
             <div className="mt-5 mx-3">
@@ -150,6 +152,6 @@ export default function Dashboard() {
                     </button>
                 }
             </div>
-        </div >
+        </div>
     );
 }
