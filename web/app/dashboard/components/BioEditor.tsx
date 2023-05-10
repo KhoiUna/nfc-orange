@@ -1,3 +1,5 @@
+'use client'
+
 import { appSubmitButtonStyle } from '@/styles/tailwind';
 import { useEffect, useRef, useState } from 'react';
 import ReactQuill from 'react-quill'
