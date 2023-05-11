@@ -1,7 +1,7 @@
 'use client'
 
 import { swrFetcher } from "@/lib/swrFetcher";
-import PDFUpload from "../dashboard/components/PDFUpload";
+import PDFUpload from "./components/PDFUpload";
 import useSWR from "swr";
 import TextLoader from "@/components/ui/TextLoader";
 import useAuth from "@/lib/useAuth";
