@@ -11,6 +11,7 @@ export type RegisterInfo = {
   last_name: string;
   email: string;
   major: string;
+  expected_grad_date: string
   password: string;
   confirm_password: string;
 };
@@ -21,6 +22,7 @@ const registerInfoInitialState: RegisterInfo = {
   last_name: "",
   email: "",
   major: "",
+  expected_grad_date: '',
   password: "",
   confirm_password: "",
 };
@@ -108,6 +110,9 @@ export default function Register({ showForm }: RegisterProps) {
       </Layout>
     );
 
+  console.log(registerInfo.expected_grad_date);
+
+
   return (
     <Layout title="Register">
       <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
@@ -173,6 +178,16 @@ export default function Register({ showForm }: RegisterProps) {
                   name="major"
                   placeholder="Major*"
                   value={registerInfo.major}
+                />
+              </div>
+
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="date"
+                  name="expected_grad_date"
+                  value={registerInfo.expected_grad_date}
                 />
               </div>
 

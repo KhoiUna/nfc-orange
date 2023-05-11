@@ -15,6 +15,7 @@ type Body = {
   last_name: string
   email: string
   major: string
+  expected_grad_date: string
   password: string
 }
 
@@ -25,6 +26,7 @@ const isValid = async (registerInfo: RegisterInfo) => {
     last_name: Joi.string().trim().min(1).required(),
     email: Joi.string().email().trim().required(),
     major: Joi.string().min(5).max(45).required(),
+    expected_grad_date: Joi.string().required(),
     password: Joi.string().min(6).required(),
     confirm_password: Joi.ref("password"),
   });
@@ -64,7 +66,7 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { first_name, middle_name, last_name, email, major, password }: Body =
+    const { first_name, middle_name, last_name, email, major, expected_grad_date, password }: Body =
       req.body;
     const { c_id } = req.query;
 
@@ -111,7 +113,7 @@ export default async function register(
 
     // Save user to db
     const savingUserResponse = await client.query(
-      "INSERT INTO users(email, password, updated_at, card_id, first_name, middle_name, last_name, major) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);",
+      "INSERT INTO users(email, password, updated_at, card_id, first_name, middle_name, last_name, major, expected_grad_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
       [
         email,
         await PasswordHelper.hashPassword(password),
@@ -121,6 +123,7 @@ export default async function register(
         middle_name.trim(),
         last_name.trim(),
         major,
+        expected_grad_date
       ]
     );
 
