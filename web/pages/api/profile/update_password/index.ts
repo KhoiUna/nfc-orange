@@ -44,7 +44,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
 
         // Update user password
         const hashedPassword = await PasswordHelper.hashPassword(new_password)
-        const response = await client.query('UPDATE users SET password=$1 AND updated_at=$2 WHERE email=$3', [hashedPassword, new Date(), email])
+        const response = await client.query('UPDATE users SET password=$1, updated_at=$2 WHERE email=$3', [hashedPassword, new Date(), email])
         if (!response) throw new Error("Error updating user password");
 
         return res.status(200).json({ success: true, error: false });
