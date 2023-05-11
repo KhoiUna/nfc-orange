@@ -110,9 +110,6 @@ export default function Register({ showForm }: RegisterProps) {
       </Layout>
     );
 
-  console.log(registerInfo.expected_grad_date);
-
-
   return (
     <Layout title="Register">
       <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
@@ -181,8 +178,10 @@ export default function Register({ showForm }: RegisterProps) {
                 />
               </div>
 
-              <div>
+              <div className="text-left">
+                <label htmlFor="expected_grad_date" className="text-white text-lg font-bold">Expected graduation date*</label>
                 <input
+                  id="expected_grad_date"
                   onChange={handleChange}
                   className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                   type="date"
