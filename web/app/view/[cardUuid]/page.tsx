@@ -105,7 +105,7 @@ export default function View({ params }: Props) {
         <div>
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
-                    backgroundImage: 'url(/images/animation.gif)',
+                    backgroundImage: 'url(/images/animation.webp)',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
