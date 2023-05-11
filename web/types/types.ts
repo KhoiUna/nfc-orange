@@ -16,6 +16,7 @@ export type Student =
 
 export type User = {
   major: string
+  expected_grad_date: string
   first_name: string,
   middle_name: string | null,
   last_name: string,
