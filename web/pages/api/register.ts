@@ -113,11 +113,10 @@ export default async function register(
 
     // Save user to db
     const savingUserResponse = await client.query(
-      "INSERT INTO users(email, password, updated_at, card_id, first_name, middle_name, last_name, major, expected_grad_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+      "INSERT INTO users(email, password, card_id, first_name, middle_name, last_name, major, expected_grad_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [
         email,
         await PasswordHelper.hashPassword(password),
-        new Date(),
         cardId,
         first_name.trim(),
         middle_name.trim(),
