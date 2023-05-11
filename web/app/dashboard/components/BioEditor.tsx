@@ -66,6 +66,12 @@ export default function BioEditor({ bio }: Props) {
 
     const handleOpen = () => setIsEditing(true)
 
+    if (!editorValue || !bio) return (
+        <div className='text-center mb-3 bg-white p-3 mx-3 rounded-lg leading-6'>
+            <TextLoader loadingText='Loading' />
+        </div>
+    )
+
     if (!editorValue && !isEditing) return (
         <button
             className={appSubmitButtonStyle}
