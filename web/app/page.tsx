@@ -26,7 +26,7 @@ export default function Home() {
                     </Link>
                 </div>
 
-                <Image priority className="w-[450px] h-screen hidden sm:flow-root" src={'/images/animation-vertical.gif'} width={1080} height={1920} alt="NFC Orange animation" />
+                <Image priority className="w-[450px] h-screen hidden sm:flow-root" src={'/images/animation-vertical.webp'} width={1080} height={1920} alt="NFC Orange animation" />
             </div>
 
             <footer className="bg-primary py-[5%] px-[14%]" >
