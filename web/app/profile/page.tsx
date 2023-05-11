@@ -9,12 +9,15 @@ import { SyntheticEvent, useState } from "react";
 import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { User } from "@/types/types";
+import { Link, User } from "@/types/types";
 
-type Profile = {
+type ApiResponse = {
     success: {
-        user: User
-    }
+        user: User,
+        resume_link: string,
+        links: Link[]
+    },
+    error: boolean | string,
 }
 
 const updatePasswordFormInitialState = {
@@ -29,7 +32,7 @@ export default function Profile() {
     const [isLoading, setIsLoading] = useState(false)
     const [updatePasswordForm, setUpdatePasswordForm] = useState(updatePasswordFormInitialState)
 
-    const { data: profileResponse, error } = useSWR<Profile, any>("/api/profile", swrFetcher);
+    const { data: profileResponse, error } = useSWR<ApiResponse, any>("/api/profile", swrFetcher);
 
     if (error) return (
         <div className="text-[1.8rem] text-center m-5">
@@ -96,6 +99,7 @@ export default function Profile() {
 
             <div className="text-lg">
                 <p><b>Major:</b> {user.major}</p>
+                <p><b>Expected graduation date:</b> {new Date(user.expected_grad_date).toLocaleDateString()}</p>
                 <p><b>First Name:</b> {user.first_name}</p>
                 {user.middle_name && <p><b>Middle Name:</b> {user.middle_name}</p>}
                 <p><b>Last Name:</b> {user.last_name}</p>
