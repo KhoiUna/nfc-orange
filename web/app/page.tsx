@@ -4,20 +4,34 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/components/Logo";
 import { Icon } from "@iconify/react";
+import useSWR from "swr";
+import { swrFetcher } from "@/lib/swrFetcher";
+
+type ApiResponse = {
+    success: {
+        count: number
+    },
+    error: boolean | string
+}
 
 export default function Home() {
+    const { data } = useSWR<ApiResponse>('/api/homepage', swrFetcher)
+
     return (
         <>
             <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
                 <div className="mx-8">
                     <h1
-                        className="text-3xl text-primary font-bold px-1">
+                        className="text-4xl text-primary font-bold px-1">
                         Online identity with a card tap
                     </h1>
 
                     <h2 className="text-5xl text-primary font-bold mt-4 ml-1 flex">
                         Get one & join our student community
                     </h2>
+                    {data && <h3 className="text-3xl text-primary font-bold mt-4 ml-1 flex">
+                        {Math.floor(data.success.count / 10) * 10}+ students and growing
+                    </h3>}
 
                     <Link href={"/waitlist"}>
                         <button className="text-xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
