@@ -10,6 +10,7 @@ import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, User } from "@/types/types";
+import OrangeLoader from "@/components/ui/OrangeLoader";
 
 type ApiResponse = {
     success: {
@@ -40,11 +41,7 @@ export default function Profile() {
         </div>
     );
 
-    if (!profileResponse) return (
-        <div className="text-[1.8rem] text-center m-5">
-            <TextLoader loadingText="Loading" />
-        </div>
-    )
+    if (!profileResponse) return <OrangeLoader />
 
     const { user } = profileResponse.success
 
