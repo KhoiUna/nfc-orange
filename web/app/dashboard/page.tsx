@@ -68,7 +68,15 @@ export default function Dashboard() {
             </div>
         );
 
-    const addLink = () => setLinkState(prev => [...prev, { ...linksInitialState[0], isAdded: true }])
+    const addLink = () => {
+        setLinkState(prev => [...prev, { ...linksInitialState[0], isAdded: true }])
+
+        // Scroll to bottom
+        const html = document.querySelector('html') as HTMLHtmlElement
+        setTimeout(() => {
+            html.scrollTo(0, html.scrollHeight)
+        });
+    }
 
     const cancelLink = (index: number) => setLinkState((prev) => prev.filter((_, i) => i !== index))
 
