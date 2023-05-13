@@ -3,7 +3,6 @@
 import useSWR from "swr";
 import ProfilePictureUpload from "@/components/ProfilePictureUpload";
 import { swrFetcher } from "@/lib/swrFetcher";
-import TextLoader from "@/components/ui/TextLoader";
 import greetUser from "@/lib/greetUser";
 import Link from "next/link";
 import AddLinkForm from "./components/AddLinkForm";
@@ -13,6 +12,7 @@ import { Icon } from "@iconify/react";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import dynamic from 'next/dynamic';
+import OrangeLoader from "@/components/ui/OrangeLoader";
 
 const BioEditor = dynamic(() => import('./components/BioEditor'), {
     ssr: false,
@@ -61,12 +61,7 @@ export default function Dashboard() {
             </div>
         );
 
-    if (!data)
-        return (
-            <div className="text-[1.8rem] text-center mx-5 pt-5">
-                <TextLoader loadingText="Loading" />
-            </div>
-        );
+    if (!data) return <OrangeLoader />
 
     const addLink = () => {
         setLinkState(prev => [...prev, { ...linksInitialState[0], isAdded: true }])
