@@ -5,9 +5,9 @@ import useSWR from "swr";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import Image from "next/image";
-import { swrFetcher } from "@/lib/swrFetcher";
 import { Link as LinkType, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
+import axios from "axios";
 
 type Props = {
     params: {
@@ -23,6 +23,15 @@ type ApiResponse = {
     },
     error: any
 }
+
+function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => {
+    await sleep(2000)
+    return data
+});
 
 export default function View({ params }: Props) {
     const { cardUuid } = params
