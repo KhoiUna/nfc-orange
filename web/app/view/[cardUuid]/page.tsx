@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { swrFetcher } from "@/lib/swrFetcher";
-import TextLoader from "@/components/ui/TextLoader";
 import { Link as LinkType, User } from "@/types/types";
+import OrangeLoader from "@/components/ui/OrangeLoader";
 
 type Props = {
     params: {
@@ -50,17 +50,11 @@ export default function View({ params }: Props) {
                 method: "POST",
             })
                 .then((res) => res.json())
-                .then((res) => console.log(res))
                 .catch((err) => console.error(err));
         }
     }, [setCookie, cookies, data, cardUuid]);
 
-    if (!data)
-        return (
-            <div className="w-screen text-center pt-[20vh] text-[3em] font-bold">
-                <TextLoader loadingText="Loading" />
-            </div>
-        );
+    if (!data) return <OrangeLoader />
 
     const { success, error } = data;
 
