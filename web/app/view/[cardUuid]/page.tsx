@@ -9,6 +9,7 @@ import { Link as LinkType, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
 import axios from "axios";
 import imagekitTransform from "@/lib/imagekitTransform";
+import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
 
 type Props = {
     params: {
@@ -24,8 +25,6 @@ type ApiResponse = {
     },
     error: any
 }
-
-const BLUR_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/2rbfwAJLwOgP/tGXwAAAABJRU5ErkJggg=='
 
 const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => data)
 
