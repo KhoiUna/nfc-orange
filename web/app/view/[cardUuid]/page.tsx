@@ -14,6 +14,8 @@ import FloatIconButton from "@/components/ui/FloatIconButton";
 import { Icon } from "@iconify/react";
 import { Toaster, toast } from "react-hot-toast";
 import SharePopup from "@/app/dashboard/components/SharePopup";
+import QrCodePopup from "../components/QrCodePopup";
+import HeaderBar from "@/components/ui/HeaderBar";
 
 type Props = {
     params: {
@@ -37,6 +39,7 @@ export default function View({ params }: Props) {
     const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
     const [showPopup, setShowPopup] = useState(false)
+    const [showQrCodePopup, setShowQrCodePopup] = useState(false)
 
     // Update scan history
     const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
@@ -47,7 +50,7 @@ export default function View({ params }: Props) {
             !cookies.viewed
         ) {
             const cookieOption = {
-                maxAge: 60, // 1 minute
+                maxAge: 1800, // 30 min
                 path: "/view",
                 secure: process.env.NEXT_PUBLIC_PRODUCTION === "true",
                 sameSite: true,
@@ -70,6 +73,8 @@ export default function View({ params }: Props) {
 
     if (error) return (
         <>
+            <HeaderBar />
+
             <div id="parallax" className="text-center py-[20vh] min-h-[80vh] m-0">
                 {error === "invalid" && (
                     <h1
@@ -106,9 +111,13 @@ export default function View({ params }: Props) {
     const { links, resume_link } = success
 
     const togglePopup = () => setShowPopup(!showPopup)
+    const toggleQrCodePopup = () => setShowQrCodePopup(!showQrCodePopup)
 
     const handleClick = () => {
-        if (!navigator.share) return togglePopup()
+        if (!navigator.share) {
+            togglePopup()
+            return
+        }
 
         navigator.share({
             title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
@@ -120,6 +129,8 @@ export default function View({ params }: Props) {
 
     return (
         <div>
+            <HeaderBar />
+
             <Toaster
                 toastOptions={{
                     success: {
@@ -200,12 +211,21 @@ export default function View({ params }: Props) {
             </div>
 
             <FloatIconButton
+                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 right-2 drop-shadow-lg flex justify-center items-center"
                 onClick={handleClick}
             >
                 <Icon className="text-white text-2xl" icon="ph:share-bold" />
             </FloatIconButton>
+            <FloatIconButton
+                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 left-2 drop-shadow-lg flex justify-center items-center"
+                onClick={() => toggleQrCodePopup()}
+            >
+                <Icon className="text-white text-2xl" icon="vaadin:qrcode" />
+            </FloatIconButton>
+            <div className="pb-14" />
 
             {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
+            {showQrCodePopup && <QrCodePopup url={window.location.href} togglePopup={toggleQrCodePopup} />}
         </div>
     );
 }
