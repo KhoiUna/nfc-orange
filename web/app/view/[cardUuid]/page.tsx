@@ -25,6 +25,8 @@ type ApiResponse = {
     error: any
 }
 
+const BLUR_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/2rbfwAJLwOgP/tGXwAAAABJRU5ErkJggg=='
+
 const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => data)
 
 export default function View({ params }: Props) {
@@ -115,7 +117,7 @@ export default function View({ params }: Props) {
                         width={120}
                         height={120}
                         placeholder="blur"
-                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/2rbfwAJLwOgP/tGXwAAAABJRU5ErkJggg=='}
+                        blurDataURL={BLUR_DATA_URL}
                     />
                 </div>
             </div>
