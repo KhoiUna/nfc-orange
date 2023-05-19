@@ -114,6 +114,8 @@ export default function View({ params }: Props) {
                         alt={`${first_name}'s profile picture`}
                         width={120}
                         height={120}
+                        placeholder="blur"
+                        blurDataURL={'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/2rbfwAJLwOgP/tGXwAAAABJRU5ErkJggg=='}
                     />
                 </div>
             </div>
