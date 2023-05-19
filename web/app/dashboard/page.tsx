@@ -178,17 +178,14 @@ export default function Dashboard() {
             </div>
 
             <FloatIconButton
+                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 right-2 drop-shadow-lg flex justify-center items-center"
                 onClick={handleClick}
             >
                 <Icon className="text-white text-2xl" icon="ph:share-bold" />
             </FloatIconButton>
+            <div className="pb-14" />
 
-            {showPopup &&
-                <SharePopup
-                    url={shareURL}
-                    togglePopup={togglePopup}
-                />
-            }
+            {showPopup && <SharePopup url={shareURL} togglePopup={togglePopup} />}
         </div>
     );
 }
