@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import useSWR from "swr";
 import { swrFetcher } from "@/lib/swrFetcher";
 import TextLoader from "@/components/ui/TextLoader";
+import HeaderBar from "@/components/ui/HeaderBar";
 
 type ApiResponse = {
     success: {
@@ -20,6 +21,8 @@ export default function Home() {
 
     return (
         <>
+            <HeaderBar title='Home' />
+
             <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
                 <div className="mx-8">
                     <h1
