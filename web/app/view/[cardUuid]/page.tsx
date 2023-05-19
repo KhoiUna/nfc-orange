@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Link as LinkType, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
 import axios from "axios";
+import imagekitTransform from "@/lib/imagekitTransform";
 
 type Props = {
     params: {
@@ -97,6 +98,8 @@ export default function View({ params }: Props) {
     const { first_name, middle_name, last_name, avatar_url, major, bio } = success.user
     const { links, resume_link } = success
 
+    const avatarURL = avatar_url ? imagekitTransform(avatar_url) : `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
+
     return (
         <div>
             <div className="w-full h-[200px]">
@@ -105,9 +108,13 @@ export default function View({ params }: Props) {
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
-                    <Image className="w-[100px] h-[100px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[150px] left-0 right-0 m-auto" src={avatar_url ||
-                        `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
-                    } alt={`${first_name}'s profile picture`} width={100} height={100} />
+                    <Image
+                        className="w-[120px] h-[120px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[150px] left-0 right-0 m-auto"
+                        src={avatarURL}
+                        alt={`${first_name}'s profile picture`}
+                        width={120}
+                        height={120}
+                    />
                 </div>
             </div>
 
