@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import axios from "axios";
 import TextLoader from "./ui/TextLoader";
 import { User } from "../types/types";
+import imagekitTransform from "@/lib/imagekitTransform";
 
 
 const ProfilePictureUpload = ({ user }: { user: User }) => {
@@ -64,9 +65,15 @@ const ProfilePictureUpload = ({ user }: { user: User }) => {
             />
 
             <div className="rounded-lg p-3 m-auto">
-                <Image className="m-auto w-[100px] h-[100px] rounded-[100%] border-2 border-primary object-scale-down" src={imageURL || user?.avatar_url ||
-                    `https://api.dicebear.com/5.x/initials/png?seed=${user.first_name} ${user.last_name}`
-                } alt={`${user.first_name}'s profile picture`} width={500} height={500} />
+                <Image
+                    className="m-auto w-[120px] h-[120px] rounded-[100%] border-2 border-primary object-scale-down"
+                    src={imagekitTransform(imageURL) || imagekitTransform(user?.avatar_url) ||
+                        `https://api.dicebear.com/5.x/initials/png?seed=${user.first_name} ${user.last_name}`
+                    }
+                    alt={`${user.first_name}'s profile picture`}
+                    width={120}
+                    height={120}
+                />
             </div>
 
             <IKContext
