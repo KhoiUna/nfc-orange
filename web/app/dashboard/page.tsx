@@ -13,6 +13,8 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import dynamic from 'next/dynamic';
 import OrangeLoader from "@/components/ui/OrangeLoader";
+import FloatIconButton from "@/components/ui/FloatIconButton";
+import SharePopup from "./components/SharePopup";
 
 const BioEditor = dynamic(() => import('./components/BioEditor'), {
     ssr: false,
@@ -39,6 +41,9 @@ const linksInitialState: LinkState[] = [
 
 export default function Dashboard() {
     const { data, error } = useSWR<ApiResponse>("/api/profile", swrFetcher);
+
+    const [showPopup, setShowPopup] = useState(false)
+    const togglePopup = () => setShowPopup(!showPopup)
 
     const [linkState, setLinkState] = useState<LinkState[]>(linksInitialState)
     useEffect(() => {
@@ -158,6 +163,16 @@ export default function Dashboard() {
                     </button>
                 }
             </div>
+
+            <FloatIconButton
+                onClick={togglePopup}
+            >
+                <Icon
+                    icon="material-symbols:ios-share-rounded"
+                    className="text-white text-2xl" />
+            </FloatIconButton>
+
+            {showPopup && <SharePopup url={'http://localhost:3000/view/a66f7b1b-c788-4ea8-833e-8c25575237f4'} togglePopup={togglePopup} />}
         </div>
     );
 }
