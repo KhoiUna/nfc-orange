@@ -87,10 +87,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
   );
 };
 
-interface HeaderBarProps {
-  title: string;
-}
-const HeaderBar = ({ title }: HeaderBarProps) => {
+const HeaderBar = () => {
   const [menuOpened, setMenuOpened] = useState<Boolean>(false);
   const toggleMenu = () => setMenuOpened(!menuOpened);
 
@@ -135,7 +132,7 @@ const HeaderBar = ({ title }: HeaderBarProps) => {
         {NAV_LINKS.length !== 0 && (
           <button
             type="button"
-            className={"sm:hidden pb-1 " + `${title === 'Home' || title === 'NFC Orange | Waitlist' ? 'text-primary' : 'text-white'}`}
+            className="sm:hidden pb-1 text-white rounded-lg"
             onClick={toggleMenu}
           >
             <svg
