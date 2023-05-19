@@ -8,6 +8,7 @@ import TextLoader from "./ui/TextLoader";
 import { User } from "../types/types";
 import imagekitTransform from "@/lib/imagekitTransform";
 
+export const BLUR_DATA_URL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/2rbfwAJLwOgP/tGXwAAAABJRU5ErkJggg=='
 
 const ProfilePictureUpload = ({ user }: { user: User }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +74,8 @@ const ProfilePictureUpload = ({ user }: { user: User }) => {
                     alt={`${user.first_name}'s profile picture`}
                     width={120}
                     height={120}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                 />
             </div>
 
