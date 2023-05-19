@@ -30,7 +30,7 @@ export default function View({ params }: Props) {
 
   if (error) return (
     <>
-      <HeaderBar title="Home" />
+      <HeaderBar />
 
       <div className="w-screen text-center pt-[20vh]">
         {error === "invalid" && (

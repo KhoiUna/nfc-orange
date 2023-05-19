@@ -28,7 +28,7 @@ const Layout = ({ children, title }: LayoutProps) => {
 
       <Analytics />
 
-      <HeaderBar title={title} />
+      <HeaderBar />
 
       <main>
         {children}
