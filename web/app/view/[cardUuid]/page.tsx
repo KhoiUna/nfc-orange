@@ -24,14 +24,7 @@ type ApiResponse = {
     error: any
 }
 
-function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => {
-    await sleep(2000)
-    return data
-});
+const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => data)
 
 export default function View({ params }: Props) {
     const { cardUuid } = params
