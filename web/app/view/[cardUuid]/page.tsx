@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import useSWR from "swr";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { Link as LinkType, User } from "@/types/types";
@@ -10,6 +10,10 @@ import OrangeLoader from "@/components/ui/OrangeLoader";
 import axios from "axios";
 import imagekitTransform from "@/lib/imagekitTransform";
 import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
+import FloatIconButton from "@/components/ui/FloatIconButton";
+import { Icon } from "@iconify/react";
+import { Toaster, toast } from "react-hot-toast";
+import SharePopup from "@/app/dashboard/components/SharePopup";
 
 type Props = {
     params: {
@@ -31,6 +35,8 @@ const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => data
 export default function View({ params }: Props) {
     const { cardUuid } = params
     const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
+
+    const [showPopup, setShowPopup] = useState(false)
 
     // Update scan history
     const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
@@ -99,10 +105,42 @@ export default function View({ params }: Props) {
     const { first_name, middle_name, last_name, avatar_url, major, bio } = success.user
     const { links, resume_link } = success
 
+    const togglePopup = () => setShowPopup(!showPopup)
+
+    const handleClick = () => {
+        if (!navigator.share) return togglePopup()
+
+        navigator.share({
+            title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
+            url: window.location.href
+        }).then(() => toast.success('Shared successfully!')).catch(() => null)
+    }
+
     const avatarURL = avatar_url ? imagekitTransform(avatar_url) : `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
 
     return (
         <div>
+            <Toaster
+                toastOptions={{
+                    success: {
+                        style: {
+                            background: "green",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                    error: {
+                        style: {
+                            background: "red",
+                            fontWeight: "bold",
+                            fontSize: "large",
+                            color: "white",
+                        },
+                    },
+                }}
+            />
+
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
                     backgroundImage: 'url(/images/animation.webp)',
@@ -160,6 +198,14 @@ export default function View({ params }: Props) {
                     }
                 </div>
             </div>
-        </div >
+
+            <FloatIconButton
+                onClick={handleClick}
+            >
+                <Icon className="text-white text-2xl" icon="ph:share-bold" />
+            </FloatIconButton>
+
+            {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
+        </div>
     );
 }
