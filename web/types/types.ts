@@ -22,7 +22,7 @@ export type User = {
   last_name: string,
   avatar_url: string | null
   bio: string | null
-  cardUuid: string
+  uuid: string
 }
 
 export type Link = {
