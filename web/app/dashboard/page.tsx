@@ -105,6 +105,17 @@ export default function Dashboard() {
 
     const { user } = data.success
 
+    const shareURL = `${window.location.origin}/view/${user.uuid}`
+
+    const handleClick = () => {
+        if (!navigator.share) return togglePopup()
+
+        navigator.share({
+            title: `${user.first_name} ${user.last_name} ${user.last_name} | NFC Orange`,
+            url: shareURL
+        }).then(() => toast.success('Shared successfully!')).catch(() => null)
+    }
+
     return (
         <div className="pb-5">
             <h2 className="text-xl mx-5 py-7">
@@ -167,16 +178,14 @@ export default function Dashboard() {
             </div>
 
             <FloatIconButton
-                onClick={togglePopup}
+                onClick={handleClick}
             >
-                <Icon
-                    icon="material-symbols:ios-share-rounded"
-                    className="text-white text-2xl" />
+                <Icon className="text-white text-2xl" icon="ph:share-bold" />
             </FloatIconButton>
 
             {showPopup &&
                 <SharePopup
-                    url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.uuid}`}
+                    url={shareURL}
                     togglePopup={togglePopup}
                 />
             }
