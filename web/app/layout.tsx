@@ -14,8 +14,6 @@ export default function RootLayout({ children }: {
             <Analytics />
 
             <body>
-                <HeaderBar title='Home' />
-
                 {children}
             </body>
         </html>
