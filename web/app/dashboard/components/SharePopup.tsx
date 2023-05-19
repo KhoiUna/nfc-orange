@@ -34,7 +34,7 @@ export default function SharePopup({ url, togglePopup }: Props) {
                 onClick={() => togglePopup()}
             />
 
-            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] mx-5 sm:m-auto sm:w-screen top-[25vh] left-0 right-0 p-4">
+            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] mx-3 sm:m-auto sm:w-screen top-[25vh] left-0 right-0 p-4">
                 <p className="font-bold text-center pb-3">Share your profile</p>
 
                 <div className="flex justify-center items-center">
