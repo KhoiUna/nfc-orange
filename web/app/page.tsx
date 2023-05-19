@@ -6,6 +6,7 @@ import Logo from "@/components/Logo";
 import { Icon } from "@iconify/react";
 import useSWR from "swr";
 import { swrFetcher } from "@/lib/swrFetcher";
+import TextLoader from "@/components/ui/TextLoader";
 
 type ApiResponse = {
     success: {
@@ -29,9 +30,9 @@ export default function Home() {
                     <h2 className="text-5xl text-primary font-bold mt-4 ml-1 flex">
                         Get one & join our student community
                     </h2>
-                    {data && <h3 className="text-3xl text-primary font-bold mt-4 ml-1 flex">
-                        {Math.floor(data.success.count / 10) * 10}+ students and growing
-                    </h3>}
+                    <h3 className="text-3xl text-primary font-bold mt-4 ml-1 flex">
+                        {!data ? <TextLoader loadingText="" /> : Math.floor(data.success.count / 10) * 10 + '+ students and growing'}
+                    </h3>
 
                     <Link href={"/waitlist"}>
                         <button className="text-xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
