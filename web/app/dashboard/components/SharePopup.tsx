@@ -1,6 +1,6 @@
 'use client'
 
-import { LegacyRef, useEffect, useRef, useState } from "react"
+import { LegacyRef, useRef, useState } from "react"
 import { Icon } from '@iconify/react';
 import { toast } from "react-hot-toast";
 
@@ -11,14 +11,6 @@ type Props = {
 
 export default function SharePopup({ url, togglePopup }: Props) {
     const urlRef = useRef<HTMLParagraphElement>()
-
-    useEffect(() => {
-        (document.querySelector('html') as HTMLHtmlElement).style.overflow = 'hidden'
-
-        return () => {
-            (document.querySelector('html') as HTMLHtmlElement).style.overflow = 'visible'
-        }
-    })
 
     const [copied, setCopied] = useState(false)
     const handleCopy = () => {
