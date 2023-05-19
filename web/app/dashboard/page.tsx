@@ -174,10 +174,11 @@ export default function Dashboard() {
                     className="text-white text-2xl" />
             </FloatIconButton>
 
-            {showPopup && <SharePopup
-                url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.uuid}`}
-                togglePopup={togglePopup}
-            />
+            {showPopup &&
+                <SharePopup
+                    url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.uuid}`}
+                    togglePopup={togglePopup}
+                />
             }
         </div>
     );
