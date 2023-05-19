@@ -175,7 +175,7 @@ export default function Dashboard() {
             </FloatIconButton>
 
             {showPopup && <SharePopup
-                url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.cardUuid}`}
+                url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.uuid}`}
                 togglePopup={togglePopup}
             />
             }
