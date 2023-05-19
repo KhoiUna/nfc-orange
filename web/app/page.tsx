@@ -21,7 +21,7 @@ export default function Home() {
 
     return (
         <>
-            <HeaderBar title='Home' />
+            <HeaderBar />
 
             <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
                 <div className="mx-8">
