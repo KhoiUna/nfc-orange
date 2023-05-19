@@ -46,15 +46,12 @@ export default function SharePopup({ url, togglePopup }: Props) {
                 <p className="font-bold text-center pb-3">Share your profile</p>
 
                 <div className="flex justify-center items-center">
-                    <div
+                    <p
                         className="bg-gray-200 max-w-full overflow-hidden whitespace-nowrap p-2 rounded-lg rounded-r-none text-ellipsis"
+                        ref={urlRef as LegacyRef<HTMLParagraphElement>}
                     >
-                        <p
-                            ref={urlRef as LegacyRef<HTMLParagraphElement>}
-                        >
-                            {url}
-                        </p>
-                    </div>
+                        {url}
+                    </p>
 
                     <button
                         className="flex justify-center items-center border-2 border-slate-200 p-2 rounded-lg rounded-l-none"
@@ -64,7 +61,7 @@ export default function SharePopup({ url, togglePopup }: Props) {
                         {copied && <Icon icon="material-symbols:check-small-rounded" className="text-xl text-green-600" />}
                     </button>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
