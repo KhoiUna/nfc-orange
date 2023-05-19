@@ -103,14 +103,16 @@ export default function Dashboard() {
         setLinkState(newLinkState)
     }
 
+    const { user } = data.success
+
     return (
         <div className="pb-5">
             <h2 className="text-xl mx-5 py-7">
-                {greetUser(data.success.user.first_name)}
+                {greetUser(user.first_name)}
             </h2>
 
-            <ProfilePictureUpload user={data.success.user} />
-            <BioEditor bio={data.success.user.bio} />
+            <ProfilePictureUpload user={user} />
+            <BioEditor bio={user.bio} />
             <hr className="w-[95%] m-auto" />
 
             <div className="mt-5 mx-3">
@@ -172,7 +174,11 @@ export default function Dashboard() {
                     className="text-white text-2xl" />
             </FloatIconButton>
 
-            {showPopup && <SharePopup url={'http://localhost:3000/view/a66f7b1b-c788-4ea8-833e-8c25575237f4'} togglePopup={togglePopup} />}
+            {showPopup && <SharePopup
+                url={`${process.env.NEXT_PUBLIC_ORIGIN}/view/${user.cardUuid}`}
+                togglePopup={togglePopup}
+            />
+            }
         </div>
     );
 }
