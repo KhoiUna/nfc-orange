@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, title }: LayoutProps) => {
-  const pageTitle = `NFC ORANGE | ${title}`;
+  const pageTitle = `NFC Orange | ${title}`;
 
   return (
     <>
@@ -19,7 +19,7 @@ const Layout = ({ children, title }: LayoutProps) => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="NFC ORANGE | Your online identity with a card tap." />
+        <meta name="description" content="NFC Orange | Your online identity with a card tap." />
         <link rel="icon" href="/nfc-orange.svg" />
         <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 

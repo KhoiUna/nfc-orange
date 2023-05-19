@@ -1,7 +1,7 @@
 import AppHeaderBar from "@/components/ui/AppHeaderBar";
 
 export const metadata = {
-    title: 'NFC ORANGE | Dashboard',
+    title: 'NFC Orange | Dashboard',
     viewport: {
         width: 'device-width',
         initialScale: 1,
