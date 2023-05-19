@@ -1,4 +1,5 @@
-'use client'
+import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload"
+import Image from "next/image"
 
 type Props = {
     url: string
@@ -6,6 +7,8 @@ type Props = {
 }
 
 export default function QrCodePopup({ url, togglePopup }: Props) {
+    const qrCodeURL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url
+
     return (
         <>
             <div
@@ -13,11 +16,18 @@ export default function QrCodePopup({ url, togglePopup }: Props) {
                 onClick={() => togglePopup()}
             />
 
-            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] m-auto sm:w-screen top-[40vh] left-0 right-0 p-4">
+            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] mx-5 sm:w-screen top-[25vh] left-0 right-0 p-4">
                 <p className="font-bold text-center pb-3">Scan QR code</p>
 
-                {/* TODO: add QR code */}
-                {url}
+                <Image
+                    className="m-auto"
+                    src={qrCodeURL}
+                    alt="QR code"
+                    width={150}
+                    height={150}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                />
             </div>
         </>
     )
