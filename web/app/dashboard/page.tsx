@@ -111,7 +111,7 @@ export default function Dashboard() {
         if (!navigator.share) return togglePopup()
 
         navigator.share({
-            title: `${user.first_name} ${user.last_name} ${user.last_name} | NFC Orange`,
+            title: `${user.first_name} ${user.middle_name} ${user.last_name} | NFC Orange`,
             url: shareURL
         }).then(() => toast.success('Shared successfully!')).catch(() => null)
     }
