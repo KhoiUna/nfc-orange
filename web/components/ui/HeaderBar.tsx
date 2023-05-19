@@ -43,7 +43,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
       {/* Dark overlay */}
       <div
         onClick={() => toggleMenu()}
-        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 bg-black opacity-[0.2] w-[100vw] h-[100vh]"
+        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 bg-black opacity-[0.5] w-[100vw] h-[100vh]"
       ></div>
 
       {/* Menu sidebar */}
