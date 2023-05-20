@@ -1,26 +1,76 @@
+import { Link } from '@/types/types'
+import axios from 'axios'
+import { load } from 'cheerio'
+
 type Params = {
     firstName: string
-    middleName: string
+    middleName: string | null
     lastName: string
-    email: string
     viewURL: string
-    bio: string
+    bio: string | null
+    avatarURL: string
+    links: Link[]
 }
 
-export default function generateVcardContent(params: Params) {
-    const { firstName, middleName, lastName, email, viewURL, bio } = params
+export default async function generateVcardContent(params: Params) {
+    const { firstName, middleName, lastName, viewURL, bio, avatarURL, links } = params
 
     return `
-        BEGIN:VCARD
-        VERSION:3.0
-        N:${lastName};${firstName}
-        FN:${firstName + ' ' + middleName + ' ' + lastName}
-        PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQEBLAEsAAD / 4gI0SUNDX1BST0ZJTEUAAQEAAAIkYXBwbAQAAABtbnRyUkdCIFhZWiAH4QAHAAcADQAWACBhY3NwQVBQTAAAAABBUFBMAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWFwcGzKGpWCJX8QTTiZE9XR6hWCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApkZXNjAAAA / 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        
-        TITLE:${bio}
-        EMAIL:${email}
+BEGIN:VCARD
+VERSION:3.0
+N:${lastName};${firstName}
+FN:${firstName + ' ' + middleName + ' ' + lastName}
+PHOTO;ENCODING=b;TYPE=JPEG:${await generateBase64FromImageUrl(avatarURL)}
+TITLE:${stripBio(bio || '')}
 
-        item1.URL:${viewURL}
-        item1.X - ABLabel:NFC Orange
-        END: VCARD
-    `
+item1.URL:${viewURL}
+item1.X-ABLabel:NFC Orange Profile
+${appendCustomVcardLinks(links)}
+END: VCARD
+`
+}
+
+async function generateBase64FromImageUrl(imageUrl: string): Promise<string> {
+    try {
+        const response = await axios.get(imageUrl, {
+            responseType: 'arraybuffer',
+        });
+
+        const imageBuffer = Buffer.from(response.data, 'binary');
+        const base64String = imageBuffer.toString('base64');
+
+        return base64String;
+    } catch (error) {
+        console.error('Error generating base64 string');
+        throw error;
+    }
+}
+
+function stripBio(html: string): string {
+    const $ = load(html);
+    const string = $.text();
+
+    const strippedBio = string.replace(
+        /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+        ' '
+    )
+
+    return strippedBio;
+}
+
+function appendCustomVcardLinks(links: Link[]): string {
+    let string = ''
+
+    // Start from item2 since item1 already exists
+    let counter = 2
+
+    links.forEach(link => {
+        string += `
+item${counter}.URL:${link.url}
+item${counter}.X-ABLabel:${link.link_title}
+        `
+        counter++
+    })
+
+    return string
 }
