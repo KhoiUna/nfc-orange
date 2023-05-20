@@ -7,7 +7,6 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 import { Link as LinkType, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
-import axios from "axios";
 import imagekitTransform from "@/lib/imagekitTransform";
 import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
 import FloatIconButton from "@/components/ui/FloatIconButton";
@@ -16,6 +15,8 @@ import { Toaster, toast } from "react-hot-toast";
 import SharePopup from "@/app/dashboard/components/SharePopup";
 import QrCodePopup from "../components/QrCodePopup";
 import HeaderBar from "@/components/ui/HeaderBar";
+import generateVcardContent from "@/lib/generateVcardContent";
+import { swrFetcher } from "@/lib/swrFetcher";
 
 type Props = {
     params: {
@@ -32,11 +33,9 @@ type ApiResponse = {
     error: any
 }
 
-const swrFetcher = (url: string) => axios.get(url).then(async ({ data }) => data)
-
 export default function View({ params }: Props) {
     const { cardUuid } = params
-    const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
+    const { data, error } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
     const [showPopup, setShowPopup] = useState(false)
     const [showQrCodePopup, setShowQrCodePopup] = useState(false)
@@ -67,16 +66,13 @@ export default function View({ params }: Props) {
         }
     }, [setCookie, cookies, data, cardUuid]);
 
-    if (!data) return <OrangeLoader />
-
-    const { success, error } = data;
-
-    if (error) return (
+    const errorCode = error?.response.data.error
+    if (errorCode) return (
         <>
             <HeaderBar />
 
             <div id="parallax" className="text-center py-[20vh] min-h-[80vh] m-0">
-                {error === "invalid" && (
+                {errorCode === "invalid" && (
                     <h1
                         className="text-white text-[3em] font-bold"
                         style={{
@@ -86,7 +82,7 @@ export default function View({ params }: Props) {
                         Invalid card
                     </h1>
                 )}
-                {error === "register" && (
+                {errorCode === "register" && (
                     <>
                         <h1
                             className="text-[3em] text-white font-bold"
@@ -107,8 +103,10 @@ export default function View({ params }: Props) {
         </>
     );
 
-    const { first_name, middle_name, last_name, avatar_url, major, bio } = success.user
-    const { links, resume_link } = success
+    if (!data) return <OrangeLoader />
+
+    const { first_name, middle_name, last_name, avatar_url, major, bio } = data.success.user
+    const { links, resume_link } = data.success
 
     const togglePopup = () => setShowPopup(!showPopup)
     const toggleQrCodePopup = () => setShowQrCodePopup(!showQrCodePopup)
@@ -126,6 +124,29 @@ export default function View({ params }: Props) {
     }
 
     const avatarURL = avatar_url ? imagekitTransform(avatar_url) : `https://api.dicebear.com/5.x/initials/png?seed=${first_name} ${last_name}`
+
+    const handleDownloadVcard = async () => {
+        const fileContent = await generateVcardContent({
+            firstName: first_name,
+            middleName: middle_name,
+            lastName: last_name,
+            viewURL: window.location.href,
+            bio,
+            avatarURL,
+            links
+        })
+
+        const blob = new Blob([fileContent], { type: 'text/vcard' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `contact.vcf`;
+        a.click();
+
+        // Cleanup
+        URL.revokeObjectURL(url);
+    }
 
     return (
         <div>
@@ -186,43 +207,55 @@ export default function View({ params }: Props) {
                     </div>
                 )}
 
-                <div className="mt-6 pb-6">
+                <div className="mt-6 pb-6 min-h-[35vh]">
                     {!resume_link && links.length === 0 && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
-                    {
-                        resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
-                            <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
-                                <p className="font-bold">My Resume</p>
-                            </div>
-                        </Link>
-                    }
+                    {resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
+                        <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
+                            <p className="font-bold">My Resume</p>
+                        </div>
+                    </Link>}
 
                     {/* Loop through social links */}
-                    {
-                        links.map((link, index) => (
-                            <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
-                                <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
-                                    <p className="font-bold">{link.link_title}</p>
-                                </div>
-                            </Link>
-                        ))
+                    {links.map((link, index) => (
+                        <Link key={index} href={link.url} target="_blank" rel="noreferrer" className="block max-w-[500px] m-auto">
+                            <div className="mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
+                                <p className="font-bold">{link.link_title}</p>
+                            </div>
+                        </Link>
+                    ))
                     }
                 </div>
             </div>
 
-            <FloatIconButton
-                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 right-2 drop-shadow-lg flex justify-center items-center"
-                onClick={handleClick}
-            >
-                <Icon className="text-white text-2xl" icon="ph:share-bold" />
-            </FloatIconButton>
-            <FloatIconButton
-                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 left-2 drop-shadow-lg flex justify-center items-center"
-                onClick={() => toggleQrCodePopup()}
-            >
-                <Icon className="text-white text-2xl" icon="vaadin:qrcode" />
-            </FloatIconButton>
-            <div className="pb-14" />
+            {/* Fixed share bar */}
+            <div className="sm:w-[500px] w-[370px] m-auto flex justify-around items-center sticky bottom-2">
+                <FloatIconButton
+                    className="bg-primary rounded-[100%] w-14 h-14 drop-shadow-lg flex justify-center items-center"
+                    onClick={() => toggleQrCodePopup()}
+                >
+                    <Icon className="text-white text-2xl" icon="vaadin:qrcode" />
+                </FloatIconButton>
+
+                {resume_link && links.length > 0 &&
+                    <div
+                        className="cursor-pointer drop-shadow-lg max-w-[500px] m-auto p-3 bg-primary rounded-[30px]"
+                        onClick={handleDownloadVcard}
+                    >
+                        <p className="font-bold flex justify-center items-center text-white">
+                            <Icon icon="bxs:contact" className="text-2xl mr-2" />
+                            Save Contact
+                        </p>
+                    </div>
+                }
+
+                <FloatIconButton
+                    className="bg-primary rounded-[100%] w-14 h-14 drop-shadow-lg flex justify-center items-center"
+                    onClick={handleClick}
+                >
+                    <Icon className="text-white text-2xl" icon="ph:share-bold" />
+                </FloatIconButton>
+            </div>
 
             {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
             {showQrCodePopup && <QrCodePopup url={window.location.href} togglePopup={toggleQrCodePopup} />}
