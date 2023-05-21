@@ -1,8 +1,8 @@
 import TextLoader from "@/components/ui/TextLoader";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import PDFViewer from "tailwind-pdf-viewer/dist";
-import "tailwind-pdf-viewer/dist/style.css";
+import PDFViewer from "tailwind-pdf-viewer";
+import "tailwind-pdf-viewer/style.css";
 import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
