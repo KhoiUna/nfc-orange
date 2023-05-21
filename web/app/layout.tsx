@@ -1,5 +1,4 @@
 import Analytics from '@/components/Analytics';
-import HeaderBar from '@/components/ui/HeaderBar';
 import '@/styles/globals.css'
 
 export const metadata = {
