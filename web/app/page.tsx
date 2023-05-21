@@ -22,9 +22,9 @@ export const Footer = () => (
                 <div className="grid grid-cols-2 gap-8 sm:gap-6">
                     {/* CHANGE: Uncomment for addition section */}
                     {/* <div>
-                                <h2 className="mb-6 text-sm font-semibold uppercase text-white">Resources</h2>
+                                <h2 className="mb-4 text-sm font-bold uppercase text-white">Resources</h2>
                                 <ul className="text-white font-medium">
-                                    <li className="mb-4">
+                                    <li className="mb-2">
                                         <a href="https://flowbite.com/" className="hover:underline">Flowbite</a>
                                     </li>
                                     <li>
@@ -34,9 +34,9 @@ export const Footer = () => (
                             </div> */}
 
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                        <h2 className="mb-4 text-sm font-bold uppercase text-white">Follow us</h2>
                         <ul className="text-white font-medium">
-                            <li className="mb-4">
+                            <li className="mb-2">
                                 <a target="_blank" rel="noreferrer" href="https://www.instagram.com/nfc_orange/" className="hover:underline ">Instagram</a>
                             </li>
                             <li>
@@ -45,9 +45,9 @@ export const Footer = () => (
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                        <h2 className="mb-4 text-sm font-bold uppercase text-white">Legal</h2>
                         <ul className="text-white font-medium">
-                            <li className="mb-4">
+                            <li className="mb-2">
                                 <a href="/terms-of-service" className="hover:underline">Terms of Service</a>
                             </li>
                             <li>
