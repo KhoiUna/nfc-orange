@@ -30,7 +30,7 @@ type ApiResponse = {
         links: LinkType[]
         resume_link: string
     },
-    error: any
+    error: 'invalid' | 'register'
 }
 
 export default function View({ params }: Props) {
@@ -66,7 +66,9 @@ export default function View({ params }: Props) {
         }
     }, [setCookie, cookies, data, cardUuid]);
 
-    const errorCode = error?.response.data.error
+    if (!data) return <OrangeLoader />
+
+    const errorCode = data.error
     if (errorCode) return (
         <>
             <HeaderBar />
@@ -102,9 +104,6 @@ export default function View({ params }: Props) {
             </div>
         </>
     );
-
-    if (!data) return <OrangeLoader />
-
     const { first_name, middle_name, last_name, avatar_url, major, bio } = data.success.user
     const { links, resume_link } = data.success
 
