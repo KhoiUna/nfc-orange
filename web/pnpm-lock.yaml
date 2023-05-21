@@ -68,8 +68,8 @@ dependencies:
     specifier: ^1.3.0
     version: 1.3.0(react@18.2.0)
   tailwind-pdf-viewer:
-    specifier: ^0.0.9
-    version: 0.0.9
+    specifier: ^0.1.2
+    version: 0.1.2
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -1443,8 +1443,8 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001488
-      electron-to-chromium: 1.4.401
-      node-releases: 2.0.10
+      electron-to-chromium: 1.4.402
+      node-releases: 2.0.11
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
 
@@ -1809,8 +1809,8 @@ packages:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
-  /electron-to-chromium@1.4.401:
-    resolution: {integrity: sha512-AswqHsYyEbfSn0x87n31Na/xttUqEAg7NUjpiyxC20MaWKLyadOYHMzyLdF78N1iw+FK8/2KHLpZxRdyRILgtA==}
+  /electron-to-chromium@1.4.402:
+    resolution: {integrity: sha512-gWYvJSkohOiBE6ecVYXkrDgNaUjo47QEKK0kQzmWyhkH+yoYiG44bwuicTGNSIQRG3WDMsWVZJLRnJnLNkbWvA==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -3133,8 +3133,8 @@ packages:
       whatwg-url: 5.0.0
     dev: false
 
-  /node-releases@2.0.10:
-    resolution: {integrity: sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==}
+  /node-releases@2.0.11:
+    resolution: {integrity: sha512-+M0PwXeU80kRohZ3aT4J/OnR+l9/KD2nVLNNoRgFtnf+umQVFdGBAO2N8+nCnEi0xlh/Wk3zOGC+vNNx+uM79Q==}
     dev: true
 
   /nopt@5.0.0:
@@ -4025,8 +4025,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /tailwind-pdf-viewer@0.0.9:
-    resolution: {integrity: sha512-/wJxjAh/fsXKGaBjEgNy85R7Ubnnvyrt1ufKBGRaP9lWCeWqMzOFE2AeG4j/WeBgpKpwxfi2p9SmKElHNSCOGg==}
+  /tailwind-pdf-viewer@0.1.2:
+    resolution: {integrity: sha512-viZVjUUlscykEC1OuAGYjzn7Rwu9u+dAbCHq4M61PVffVSylKsjSZ/Yz8m+iP+BEExWDli3iCnIkQQVJBxguOQ==}
     dependencies:
       '@iconify/react': 4.1.0(react@18.2.0)
       pdfjs-dist: 3.6.172
