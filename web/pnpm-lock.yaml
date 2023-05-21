@@ -68,8 +68,8 @@ dependencies:
     specifier: ^1.3.0
     version: 1.3.0(react@18.2.0)
   tailwind-pdf-viewer:
-    specifier: ^0.1.3
-    version: 0.1.3
+    specifier: ^0.1.5
+    version: 0.1.5
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -4025,8 +4025,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /tailwind-pdf-viewer@0.1.3:
-    resolution: {integrity: sha512-8cr45/ngpt3vo7ZPUUuRsve4NyG6Ls6SS59/NjSAX11pbruW3f/9fXi+aaMVy1Qi5nWXnnUp3zdz1MpfBru5fQ==}
+  /tailwind-pdf-viewer@0.1.5:
+    resolution: {integrity: sha512-hOI+1OyCjYIlkKMFzlW8u9xUiOA8tZD4b8VMJur9RaZ/yUCWwHR0iR2lYSXiDKuFRNu93G72xhdqiyifiR+Z9w==}
     dependencies:
       '@iconify/react': 4.1.0(react@18.2.0)
       pdfjs-dist: 3.6.172
