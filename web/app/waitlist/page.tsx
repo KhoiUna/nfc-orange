@@ -1,3 +1,4 @@
+import HeaderBar from "@/components/ui/HeaderBar";
 import Script from "next/script";
 
 export const metadata = {
@@ -7,6 +8,8 @@ export const metadata = {
 export default function Waitlist() {
     return (
         <>
+            <HeaderBar />
+
             <iframe
                 data-tally-src="https://tally.so/r/w7qGNa?transparentBackground=1"
                 width="100%"
