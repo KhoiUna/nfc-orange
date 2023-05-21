@@ -71,7 +71,7 @@ export default async function register(
     const { c_id } = req.query;
 
     // Validate email (has to be school email with `.edu`)
-    if (!isEduEmail(email)) return res.status(400).json({ success: false, error: 'Please use a .edu email' });
+    // if (!isEduEmail(email)) return res.status(400).json({ success: false, error: 'Please use a .edu email' });
 
     // Validate req.body from user
     const { error } = await isValid(req.body);
