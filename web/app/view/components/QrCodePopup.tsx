@@ -2,12 +2,12 @@ import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload"
 import Image from "next/image"
 
 type Props = {
-    url: string
     togglePopup: () => void
 }
 
-export default function QrCodePopup({ url, togglePopup }: Props) {
-    const qrCodeURL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url
+export default function QrCodePopup({ togglePopup }: Props) {
+    const url = window.location.origin + window.location.pathname
+    const qrCodeURL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url + '?ref=qrcode'
 
     return (
         <>

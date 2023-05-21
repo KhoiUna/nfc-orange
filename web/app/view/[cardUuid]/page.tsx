@@ -258,7 +258,7 @@ export default function View({ params }: Props) {
             </div>
 
             {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
-            {showQrCodePopup && <QrCodePopup url={window.location.href} togglePopup={toggleQrCodePopup} />}
+            {showQrCodePopup && <QrCodePopup togglePopup={toggleQrCodePopup} />}
         </div>
     );
 }
