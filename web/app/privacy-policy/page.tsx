@@ -2,7 +2,8 @@ import HeaderBar from "@/components/ui/HeaderBar"
 import { Footer } from "../page"
 
 export const metadata = {
-    title: 'NFC Orange | Privacy Policy'
+    title: 'NFC Orange | Privacy Policy',
+    description: "NFC Orange | Your online identity with a card tap."
 }
 
 export default function PrivacyPolicy() {

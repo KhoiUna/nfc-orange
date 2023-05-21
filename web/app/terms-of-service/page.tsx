@@ -2,7 +2,8 @@ import HeaderBar from "@/components/ui/HeaderBar"
 import { Footer } from "../page";
 
 export const metadata = {
-    title: 'NFC Orange | Terms of Service'
+    title: 'NFC Orange | Terms of Service',
+    description: "NFC Orange | Your online identity with a card tap."
 }
 
 export default function TermsOfService() {
