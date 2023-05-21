@@ -1,1 +1,1 @@
-declare module "tailwind-pdf-viewer/dist";
+declare module "tailwind-pdf-viewer"
