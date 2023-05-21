@@ -148,7 +148,7 @@ export default function View({ params }: Props) {
     }
 
     return (
-        <div>
+        <>
             <HeaderBar />
 
             <Toaster
@@ -236,17 +236,15 @@ export default function View({ params }: Props) {
                     <Icon className="text-white text-2xl" icon="vaadin:qrcode" />
                 </FloatIconButton>
 
-                {resume_link && links.length > 0 &&
-                    <div
-                        className="cursor-pointer drop-shadow-lg max-w-[500px] m-auto p-3 bg-primary rounded-[30px]"
-                        onClick={handleDownloadVcard}
-                    >
-                        <p className="font-bold flex justify-center items-center text-white">
-                            <Icon icon="bxs:contact" className="text-2xl mr-2" />
-                            Save Contact
-                        </p>
-                    </div>
-                }
+                <div
+                    className="cursor-pointer drop-shadow-lg max-w-[500px] m-auto p-3 bg-primary rounded-[30px]"
+                    onClick={handleDownloadVcard}
+                >
+                    <p className="font-bold flex justify-center items-center text-white">
+                        <Icon icon="bxs:contact" className="text-2xl mr-2" />
+                        Save Contact
+                    </p>
+                </div>
 
                 <FloatIconButton
                     className="bg-primary rounded-[100%] w-14 h-14 drop-shadow-lg flex justify-center items-center"
@@ -258,6 +256,6 @@ export default function View({ params }: Props) {
 
             {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
             {showQrCodePopup && <QrCodePopup togglePopup={toggleQrCodePopup} />}
-        </div>
+        </>
     );
 }
