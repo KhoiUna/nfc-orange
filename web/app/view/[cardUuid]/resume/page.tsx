@@ -4,7 +4,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import TextLoader from "@/components/ui/TextLoader";
 import { swrFetcher } from "@/lib/swrFetcher";
-import PDFViewer from "tailwind-pdf-viewer/dist";
+import PDFViewer from "tailwind-pdf-viewer";
 import "tailwind-pdf-viewer/dist/style.css";
 import { Icon } from "@iconify/react";
 import HeaderBar from "@/components/ui/HeaderBar";
