@@ -23,9 +23,8 @@ FN:${firstName + ' ' + middleName + ' ' + lastName}
 PHOTO;ENCODING=b;TYPE=JPEG:${await generateBase64FromImageUrl(avatarURL)}
 TITLE:${stripBio(bio || '')}
 
-item1.URL:${viewURL}
+item1.URL:${viewURL}?ref=vcard
 item1.X-ABLabel:NFC Orange Profile
-${appendCustomVcardLinks(links)}
 END: VCARD
 `
 }
