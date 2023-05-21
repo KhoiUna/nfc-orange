@@ -212,6 +212,8 @@ export default function Register({ showForm }: RegisterProps) {
                 />
               </div>
 
+              <p className="text-white text-sm py-2 italic text-left font-semibold leading-6">*By clicking {"Submit"}, you agree to our <a className="bg-primary rounded-lg p-1 whitespace-nowrap underline" target="_blank" href="/terms-of-service">Terms of Service</a> and <a className="bg-primary rounded-lg p-1 whitespace-nowrap underline" target="_blank" href="/privacy-policy">Privacy Policy</a>. Please read them carefully before proceeding.</p>
+
               <div className="my-5 drop-shadow-lg">
                 <button
                   className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black flex m-auto shadow-stone-800 shadow-lg"
