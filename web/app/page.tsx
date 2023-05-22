@@ -85,20 +85,15 @@ export default async function Home() {
 
             <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
                 <div className="mx-8">
-                    <h1
-                        className="text-4xl text-primary font-bold px-1">
-                        Online identity with a card tap
+                    <h1 className="text-4xl text-primary font-bold mt-4 ml-1 flex">
+                        Get your digital business card & join our student community
                     </h1>
-
-                    <h2 className="text-5xl text-primary font-bold mt-4 ml-1 flex">
-                        Get one & join our student community
-                    </h2>
-                    {userCount > 0 && <h3 className="text-3xl text-primary font-bold mt-4 ml-1 flex">
+                    {userCount > 0 && <h3 className="text-2xl text-primary font-bold mt-4 ml-1 flex">
                         {Math.floor(userCount / 10) * 10 + '+ students and growing'}
                     </h3>}
 
                     <a href={"/waitlist"}>
-                        <button className="text-xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
+                        <button className="text-2xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
                             Join waitlist
                         </button>
                     </a>
