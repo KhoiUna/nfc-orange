@@ -206,7 +206,7 @@ export default function View({ params }: Props) {
                     </div>
                 )}
 
-                <div className={"mt-6 pb-6 " + isBlank ? 'min-h-[35vh]' : ''}>
+                <div className={`mt-6 pb-6 ${isBlank ? 'min-h-[35vh]' : ''}`}>
                     {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
                     {resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
