@@ -147,30 +147,30 @@ export default function View({ params }: Props) {
         URL.revokeObjectURL(url);
     }
 
+    const isBlank = !resume_link && links.length === 0
+
     return (
         <>
             <HeaderBar />
 
-            <Toaster
-                toastOptions={{
-                    success: {
-                        style: {
-                            background: "green",
-                            fontWeight: "bold",
-                            fontSize: "large",
-                            color: "white",
-                        },
+            <Toaster toastOptions={{
+                success: {
+                    style: {
+                        background: "green",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        color: "white",
                     },
-                    error: {
-                        style: {
-                            background: "red",
-                            fontWeight: "bold",
-                            fontSize: "large",
-                            color: "white",
-                        },
+                },
+                error: {
+                    style: {
+                        background: "red",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        color: "white",
                     },
-                }}
-            />
+                },
+            }} />
 
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
@@ -206,8 +206,8 @@ export default function View({ params }: Props) {
                     </div>
                 )}
 
-                <div className="mt-6 pb-6 min-h-[35vh]">
-                    {!resume_link && links.length === 0 && <p className="italic text-lg text-slate-500">Nothing here!</p>}
+                <div className={"mt-6 pb-6 " + isBlank ? 'min-h-[35vh]' : ''}>
+                    {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
                     {resume_link && <Link href={`/view/${cardUuid}/resume`} className="block max-w-[500px] m-auto">
                         <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
