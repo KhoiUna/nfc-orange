@@ -56,6 +56,7 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
       subject,
       template: emailTemplate,
       context: {
+        subject,
         name: toName, // replace {{name}} with `toName`
       },
     });
@@ -99,6 +100,11 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
               first_name: "Demo",
               last_name: "Nguyen",
               email: "knguyen2@una.edu",
+            },
+            {
+              first_name: "Khoi",
+              last_name: "Nguyen",
+              email: "nguyentuankhoi2112@gmail.com",
             },
             {
               first_name: "Test",
