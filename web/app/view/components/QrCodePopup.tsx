@@ -7,7 +7,7 @@ type Props = {
 
 export default function QrCodePopup({ togglePopup }: Props) {
     const url = window.location.origin + window.location.pathname
-    const qrCodeURL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url + '?ref=qrcode'
+    const qrCodeURL = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + url + '?utm_source=qrcode'
 
     return (
         <>

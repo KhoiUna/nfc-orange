@@ -22,7 +22,7 @@ export default function SharePopup({ url, togglePopup }: Props) {
             }
         }
 
-        const content = urlRef.current!.innerText + '?ref=share'
+        const content = urlRef.current!.innerText + '?utm_source=share'
         copyContent(content)
         setCopied(true)
     }
