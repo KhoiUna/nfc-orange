@@ -1,4 +1,5 @@
 import client from '@/db/client';
+import { User } from '@/types/types';
 import { Metadata } from 'next';
 
 export default function ViewLayout({ children }: { children: React.ReactNode; }) {
@@ -17,8 +18,8 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { username } = params
 
-    const { rows } = await client.query('SELECT first_name, middle_name, last_name FROM users WHERE username=$1', [username])
-    const { first_name, middle_name, last_name } = rows[0]
+    const { rows } = await client.query('SELECT first_name, middle_name, last_name, avatar_url FROM users WHERE username=$1', [username])
+    const { first_name, middle_name, last_name, avatar_url }: User = rows[0]
 
     return {
         title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
@@ -27,7 +28,7 @@ export async function generateMetadata(
         openGraph: {
             images: [
                 {
-                    url: '/images/orange-loader.png',
+                    url: avatar_url || '/images/orange-loader.png',
                     width: 556,
                     height: 624,
                 },
