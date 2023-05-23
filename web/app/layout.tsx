@@ -3,7 +3,19 @@ import '@/styles/globals.css'
 
 export const metadata = {
     title: 'NFC Orange | Home',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    description: 'NFC Orange | Get your digital business card & join our student community.',
+    metadataBase: new URL('https://www.nfcorange.com'),
+    openGraph: {
+        images: [
+            {
+                url: '/images/orange-loader.png',
+                width: 556,
+                height: 624,
+            },
+        ],
+        locale: 'en-US',
+        type: 'website',
+    }
 }
 
 export default function RootLayout({ children }: {
