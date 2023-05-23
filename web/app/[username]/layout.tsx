@@ -1,6 +1,18 @@
 export const metadata = {
-    title: 'NFC Orange | View',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    title: 'Profile View | NFC Orange',
+    description: 'NFC Orange | Get your digital business card & join our student community.',
+    metadataBase: new URL('https://www.nfcorange.com'),
+    openGraph: {
+        images: [
+            {
+                url: '/images/orange-loader.png',
+                width: 556,
+                height: 624,
+            },
+        ],
+        locale: 'en-US',
+        type: 'website',
+    }
 }
 
 export default function ViewLayout({ children }: { children: React.ReactNode; }) {
