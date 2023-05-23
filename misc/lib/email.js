@@ -32,6 +32,34 @@ const sendMailgun = async (toAddress, subject, toName, emailTemplate) => {
   }
 };
 
+const sendMailgunWaitlist = async (toAddress, toName, firstName) => {
+  try {
+    const mg = mailgun.client({
+      username: "api",
+      key: process.env.MAILGUN_API_KEY,
+    });
+
+    const MAILGUN_DOMAIN = "mg.nfcorange.com";
+
+    await mg.messages.create(MAILGUN_DOMAIN, {
+      from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
+      to: [`${toName} <${toAddress}>`],
+      subject: `Welcome 👋 ${toName} from NFC Orange 🍊`,
+      template: "waitlist",
+      "h:X-Mailgun-Variables": JSON.stringify({
+        name: toName,
+        email: toAddress,
+        password: firstName.toLowercase() + "123",
+      }),
+    });
+
+    return true;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+};
+
 const sendNodemailer = async (toAddress, subject, toName, emailTemplate) => {
   try {
     const transporter = nodemailer.createTransport({
@@ -75,4 +103,4 @@ const sendNodemailer = async (toAddress, subject, toName, emailTemplate) => {
   }
 };
 
-module.exports = { sendMailgun, sendNodemailer };
+module.exports = { sendMailgun, sendNodemailer, sendMailgunWaitlist };
