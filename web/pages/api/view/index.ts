@@ -1,7 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../../db/client";
-import { ApiResponse } from "../register";
+import client from "@/db/client";
 import { validate as uuidValidate } from "uuid";
+import { Link, User } from "@/types/types";
+
+type ApiResponse = {
+  success: boolean | {
+    user: User
+    links: Link[]
+    resume_link: string
+  },
+  error: string | boolean
+}
 
 export default async function view(
   req: NextApiRequest,
@@ -51,7 +60,7 @@ export default async function view(
     );
 
     const { rows: user } = await client.query(
-      "SELECT first_name, middle_name, last_name, major, avatar_url, bio FROM users WHERE id=$1",
+      "SELECT first_name, middle_name, last_name, major, avatar_url, username, bio FROM users WHERE id=$1",
       [userId]
     );
 
