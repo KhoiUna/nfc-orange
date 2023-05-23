@@ -105,7 +105,7 @@ export default function Dashboard() {
 
     const { user } = data.success
 
-    const shareURL = `${window.location.origin}/view/${user.uuid}`
+    const shareURL = `${window.location.origin}/${user.username}`
 
     const handleClick = () => {
         if (!navigator.share) return togglePopup()
