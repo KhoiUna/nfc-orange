@@ -108,6 +108,8 @@ export default function Profile() {
 
                 <p><b>Email:</b> {authData.data?.email}</p>
 
+                <p><b>Username:</b> {user.username}</p>
+
                 <div>
                     <label className="font-bold" htmlFor="current_password">Current password</label>
                     <br />
