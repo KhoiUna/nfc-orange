@@ -1,7 +1,8 @@
 import Link from "next/link"
 
 export const metadata = {
-    title: 'NFC Orange | Resume'
+    title: 'NFC Orange | Resume',
+    description: 'NFC Orange | Get your digital business card & join our student community.'
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

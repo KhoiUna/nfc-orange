@@ -3,7 +3,7 @@ import { Footer } from "../page";
 
 export const metadata = {
     title: 'NFC Orange | Terms of Service',
-    description: "NFC Orange | Your online identity with a card tap."
+    description: "NFC Orange | Get your digital business card & join our student community."
 }
 
 export default function TermsOfService() {

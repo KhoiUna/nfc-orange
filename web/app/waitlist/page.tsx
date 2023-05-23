@@ -2,7 +2,8 @@ import HeaderBar from "@/components/ui/HeaderBar";
 import Script from "next/script";
 
 export const metadata = {
-    title: 'NFC Orange | Waitlist'
+    title: 'NFC Orange | Waitlist',
+    description: 'NFC Orange | Get your digital business card & join our student community.'
 }
 
 export default function Waitlist() {
