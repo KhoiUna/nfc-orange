@@ -11,3 +11,12 @@ update users set middle_name='Le',last_name='Nohaic' where id=40;
 UPDATE users SET username=CONCAT(LOWER(first_name), LOWER(middle_name), LOWER(last_name));
 
 update users set username='yutraminoo' where id=42;
+
+GRANT REFERENCES ON users TO khoi;
+
+create table profile_view_histories (
+    id SERIAL NOT NULL PRIMARY KEY,
+    user_id INT NOT NULL,
+    scanned_at timestamp without time zone,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
