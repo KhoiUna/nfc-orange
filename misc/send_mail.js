@@ -30,22 +30,21 @@ client
   });
 
 const sendMailgun = async (toAddress, subject, toName, emailTemplate) => {
-  const mg = mailgun.client({
-    username: "api",
-    key: process.env.MAILGUN_API_KEY,
-  });
-
-  const MAILGUN_DOMAIN = "mg.nfcorange.com";
-
   try {
-    const message = await mg.messages.create(MAILGUN_DOMAIN, {
-      from: "NFC Orange <khoi@mg.khoiuna.info>",
+    const mg = mailgun.client({
+      username: "api",
+      key: process.env.MAILGUN_API_KEY,
+    });
+
+    const MAILGUN_DOMAIN = "mg.nfcorange.com";
+
+    await mg.messages.create(MAILGUN_DOMAIN, {
+      from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
       to: [`${toName} <${toAddress}>`],
       subject,
       template: emailTemplate,
-      "h:X-Mailgun-Variables": { name: toName },
+      "h:X-Mailgun-Variables": JSON.stringify({ name: toName }),
     });
-    if (!message) throw new Error("Error sending Mailgun");
 
     return true;
   } catch (error) {
