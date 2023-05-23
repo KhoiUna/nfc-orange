@@ -49,7 +49,7 @@ const sendMailgunWaitlist = async (toAddress, toName, firstName) => {
       "h:X-Mailgun-Variables": JSON.stringify({
         name: toName,
         email: toAddress,
-        password: firstName.toLowercase() + "123",
+        password: firstName.toLowerCase() + "123",
       }),
     });
 
