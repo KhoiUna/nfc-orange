@@ -1,5 +1,3 @@
-import client from '@/db/client';
-import { User } from '@/types/types';
 import { Metadata } from 'next';
 
 export default function ViewLayout({ children }: { children: React.ReactNode; }) {
@@ -7,7 +5,6 @@ export default function ViewLayout({ children }: { children: React.ReactNode; })
         <main className="bg-slate-50 min-h-screen">{children}</main>
     )
 };
-
 
 type Props = {
     params: { username: string };
@@ -18,12 +15,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const { username } = params
 
-    const { rows } = await client.query('SELECT first_name, middle_name, last_name FROM users WHERE username=$1', [username])
-    const { first_name, middle_name, last_name }: User = rows[0]
-
     return {
-        title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
-        description: `View ${first_name} ${middle_name} ${last_name}'s profile on NFC Orange!`,
+        title: `${username} | NFC Orange`,
+        description: `View @${username}'s profile on NFC Orange!`,
         metadataBase: new URL('https://www.nfcorange.com'),
         openGraph: {
             images: [
