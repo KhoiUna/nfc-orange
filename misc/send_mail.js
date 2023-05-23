@@ -7,6 +7,9 @@ const nodemailer = require("nodemailer");
 const path = require("node:path");
 const { Client } = require("pg");
 const readline = require("node:readline/promises");
+const formData = require("form-data");
+const Mailgun = require("mailgun.js");
+const mailgun = new Mailgun(formData);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -26,7 +29,32 @@ client
     console.error("Error connecting to database", error);
   });
 
-const sendMail = async (toAddress, subject, toName, emailTemplate) => {
+const sendMailgun = async (toAddress, subject, toName, emailTemplate) => {
+  const mg = mailgun.client({
+    username: "api",
+    key: process.env.MAILGUN_API_KEY,
+  });
+
+  const MAILGUN_DOMAIN = "mg.nfcorange.com";
+
+  try {
+    const message = await mg.messages.create(MAILGUN_DOMAIN, {
+      from: "NFC Orange <khoi@mg.khoiuna.info>",
+      to: [`${toName} <${toAddress}>`],
+      subject,
+      template: emailTemplate,
+      "h:X-Mailgun-Variables": { name: toName },
+    });
+    if (!message) throw new Error("Error sending Mailgun");
+
+    return true;
+  } catch (error) {
+    console.error(error);
+    return;
+  }
+};
+
+const sendNodemailer = async (toAddress, subject, toName, emailTemplate) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -122,7 +150,7 @@ const sendMail = async (toAddress, subject, toName, emailTemplate) => {
     const name = `${row.first_name} ${row.last_name[0]}.`;
     const email = row.email;
 
-    const response = await sendMail(email, subject, name, emailTemplate);
+    const response = await sendMailgun(email, subject, name, emailTemplate);
     if (!response) process.exit(1);
 
     console.log(`${count}. Successfully sent email to`, name);
