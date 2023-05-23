@@ -45,7 +45,8 @@ client
   } while (!isTesting || isTesting.length === 0);
 
   // CHANGE
-  const sql = "SELECT first_name, last_name, email FROM users";
+  const sql =
+    " SELECT first_name, last_name, email FROM users WHERE not updated_at is null or not last_logged_in is null";
 
   const { rows } =
     isTesting === "y"
