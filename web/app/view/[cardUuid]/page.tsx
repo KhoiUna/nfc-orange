@@ -40,7 +40,7 @@ export default function View({ params }: Props) {
             !cookies.viewed
         ) {
             const cookieOption = {
-                maxAge: 1800, // 30 min
+                maxAge: 3600, // 1 hour
                 path: "/view",
                 secure: process.env.NEXT_PUBLIC_PRODUCTION === "true",
                 sameSite: true,
