@@ -80,19 +80,17 @@ export default function View({ params }: Props) {
     );
     const { first_name, middle_name, last_name, avatar_url, major, bio } = data.success.user
     const { links, resume_link } = data.success
+    const shareURL = window.location.origin + window.location.pathname
 
     const togglePopup = () => setShowPopup(!showPopup)
     const toggleQrCodePopup = () => setShowQrCodePopup(!showQrCodePopup)
 
     const handleClick = () => {
-        if (!navigator.share) {
-            togglePopup()
-            return
-        }
+        if (!navigator.share) return togglePopup()
 
         navigator.share({
             title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
-            url: window.location.href
+            url: shareURL + '?utm_source=share'
         }).then(() => toast.success('Shared successfully!')).catch(() => null)
     }
 
@@ -103,7 +101,7 @@ export default function View({ params }: Props) {
             firstName: first_name,
             middleName: middle_name,
             lastName: last_name,
-            viewURL: window.location.href,
+            viewURL: shareURL,
             bio,
             avatarURL,
             links
@@ -148,7 +146,7 @@ export default function View({ params }: Props) {
 
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
-                    backgroundImage: 'url(/images/animation.webp)',
+                    backgroundImage: 'url(/images/animation.gif)',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
@@ -228,7 +226,7 @@ export default function View({ params }: Props) {
                 </FloatIconButton>
             </div>
 
-            {showPopup && <SharePopup url={window.location.href} togglePopup={togglePopup} />}
+            {showPopup && <SharePopup url={shareURL} togglePopup={togglePopup} />}
             {showQrCodePopup && <QrCodePopup togglePopup={toggleQrCodePopup} />}
         </>
     );
