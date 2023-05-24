@@ -8,7 +8,7 @@ import { Link as LinkType, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
 import HeaderBar from "@/components/ui/HeaderBar";
 import { swrFetcher } from "@/lib/swrFetcher";
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 type Props = {
     params: {
@@ -26,8 +26,6 @@ type ApiResponse = {
 }
 
 export default function View({ params }: Props) {
-    const router = useRouter();
-
     const { cardUuid } = params
     const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
@@ -97,5 +95,5 @@ export default function View({ params }: Props) {
     );
 
     const { username } = data.success.user
-    return router.push(`/${username}`)
+    redirect(`/${username}`)
 }
