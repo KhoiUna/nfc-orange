@@ -29,14 +29,10 @@ export default function View({ params }: Props) {
     const { cardUuid } = params
     const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
-    // Update scan history
-    const [cookies, setCookie, removeCookie] = useCookies(["viewed"]);
+    // Update `scan_histories`
+    const [cookies, setCookie, removeCookie] = useCookies(["scan_viewed"]);
     useEffect(() => {
-        // If card is valid & cookies.viewed not set & code is production
-        if (
-            data?.success &&
-            !cookies.viewed
-        ) {
+        if (!cookies.scan_viewed) {
             const cookieOption = {
                 maxAge: 3600, // 1 hour
                 path: "/view",
@@ -44,16 +40,15 @@ export default function View({ params }: Props) {
                 sameSite: true,
                 httpOnly: false,
             };
-            setCookie("viewed", true, cookieOption);
+            setCookie("scan_viewed", true, cookieOption);
 
-            // Fetch POST to api to update scan history
             fetch(`/api/view/scan?c_id=${cardUuid}`, {
                 method: "POST",
             })
                 .then((res) => res.json())
                 .catch((err) => console.error(err));
         }
-    }, [setCookie, cookies, data, cardUuid]);
+    }, [setCookie, cookies, data?.success, cardUuid]);
 
     if (!data) return <OrangeLoader />
 

@@ -40,25 +40,25 @@ export default function View({ params }: Props) {
     const [showPopup, setShowPopup] = useState(false)
     const [showQrCodePopup, setShowQrCodePopup] = useState(false)
 
-    // Update scan history
-    const [cookies, setCookie, removeCookie] = useCookies(["profile_viewed"]);
+    // Update `profile_view_histories`
+    const [cookies, setCookie, removeCookie] = useCookies(["profile_viewed", "scan_viewed"]);
     useEffect(() => {
         if (data?.success && !cookies.profile_viewed) {
             const cookieOption = {
                 maxAge: 3600, // 1 hour
-                path: "/view",
+                path: '/',
                 secure: process.env.NEXT_PUBLIC_PRODUCTION === "true",
                 sameSite: true,
                 httpOnly: false,
             };
-            setCookie("profile_viewed", true, cookieOption);
+            setCookie("profile_viewed", true, cookieOption)
+            removeCookie("scan_viewed")
 
-            // Fetch POST to api to update `profile_view_histories`
             fetch(`/api/view/profile/${username}`, {
                 method: "POST",
             }).catch((err) => console.error(err))
         }
-    }, [setCookie, cookies, data, username]);
+    }, [setCookie, cookies, data, username, removeCookie]);
 
     if (!data) return <OrangeLoader />
 
