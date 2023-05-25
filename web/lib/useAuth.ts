@@ -16,13 +16,13 @@ export default function useAuth({
 }: UseAuthProps): UseAuthReturn {
   const router = useRouter();
 
-  const { data } = useSWR(`/api/user`, swrFetcher);
+  const { data } = useSWR('/api/user', swrFetcher);
 
   useEffect(() => {
-    if (!data) return;
+    if (!data) return
 
-    if (!data.isAuthenticated) router.push("/login");
-    if (data.isAuthenticated && redirectIfFound) router.push("/dashboard");
+    if (!data.isAuthenticated) return router.push("/login");
+    if (data.isAuthenticated && redirectIfFound) return router.push("/dashboard");
   }, [data, redirectIfFound, router]);
 
   return { data };
