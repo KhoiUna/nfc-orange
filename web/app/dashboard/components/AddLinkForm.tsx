@@ -3,12 +3,13 @@
 import TextLoader from '@/components/ui/TextLoader';
 import usermaven from '@/lib/usermaven';
 import { appSubmitButtonStyle, inputStyle } from '@/styles/tailwind';
+import { User } from '@/types/types';
 import axios from 'axios';
 import { SyntheticEvent, useState } from 'react';
 import { toast } from "react-hot-toast";
 
 type Props = {
-    userEmail: string
+    user: User
     index: number,
     link_title: string
     url: string
@@ -21,7 +22,7 @@ const formInitialState = {
     link_title: ''
 }
 
-export default function AddLinkForm({ userEmail, index, removeLink, saveLink, link_title, url }: Props) {
+export default function AddLinkForm({ user, index, removeLink, saveLink, link_title, url }: Props) {
     const [form, setForm] = useState(formInitialState)
 
     const handleChange = (event: SyntheticEvent) => {
@@ -41,17 +42,16 @@ export default function AddLinkForm({ userEmail, index, removeLink, saveLink, li
             const { data } = await axios.post('/api/dashboard/link', form)
 
             if (data.success) {
-                // Track logged_in with Usermaven
+                // Track added_link with Usermaven
                 if (process.env.NEXT_PUBLIC_PRODUCTION === "true") {
-                    const { first_name, last_name, middle_name, id, created_at } = data.success.user
                     usermaven.track('added_link')
                     usermaven.id({
-                        id: id.toString(),
-                        email: userEmail,
-                        created_at,
-                        first_name,
-                        middle_name,
-                        last_name
+                        id: user.id.toString(),
+                        email: user.email,
+                        created_at: user.created_at,
+                        first_name: user.first_name,
+                        middle_name: user.middle_name,
+                        last_name: user.last_name
                     })
                 }
 
