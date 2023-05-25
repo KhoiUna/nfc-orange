@@ -36,7 +36,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     );
 
     const { rows } = await client.query(
-      "SELECT id, first_name, middle_name, last_name, major, avatar_url, bio, username, expected_grad_date, created_at FROM users WHERE email = $1",
+      "SELECT id, email, first_name, middle_name, last_name, major, avatar_url, bio, username, expected_grad_date, created_at FROM users WHERE email = $1",
       [req.session.user?.email]
     );
 
