@@ -53,6 +53,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
         <div className="text-right">
           <button
             type="button"
+            aria-label="Close dropdown menu"
             className={"sm:hidden mr-5 mt-6 text-white"}
             onClick={() => toggleMenu()}
           >
@@ -132,6 +133,7 @@ const HeaderBar = () => {
         {NAV_LINKS.length !== 0 && (
           <button
             type="button"
+            aria-label="Open dropdown menu"
             className="sm:hidden pb-1 text-white rounded-lg"
             onClick={toggleMenu}
           >
