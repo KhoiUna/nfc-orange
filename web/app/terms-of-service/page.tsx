@@ -75,7 +75,7 @@ export default function TermsOfService() {
                         </p>
 
                         <p>
-                            If you have any questions or concerns regarding these Terms, please contact us at <a className="underline text-primary font-semibold" href="mailto:nfcorange1@gmail.com">nfcorange1@gmail.com</a>.
+                            If you have any questions or concerns regarding these Terms, please contact us at <a className="underline text-primary font-semibold" href="mailto:contact@mg.nfcorange.com">contact@mg.nfcorange.com</a>.
                         </p>
 
                         <p className="mt-4">
