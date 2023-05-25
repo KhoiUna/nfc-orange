@@ -39,7 +39,7 @@ export default function Login() {
       event.preventDefault();
       setIsLoading(true);
 
-      const { success, error } = await (
+      const { error } = await (
         await fetch("/api/login", {
           method: "POST",
           headers: new Headers({
