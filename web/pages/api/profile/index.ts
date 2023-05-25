@@ -2,7 +2,16 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "@/db/client";
 import { sessionOptions } from "@/lib/session";
-import { ApiResponse } from "../register";
+import { Link, User } from "@/types/types";
+
+type ApiResponse = {
+  success: boolean | {
+    user: User
+    resume_link: Link
+    links: Link[],
+  },
+  error: string | boolean
+}
 
 async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
@@ -27,7 +36,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     );
 
     const { rows } = await client.query(
-      "SELECT first_name, middle_name, last_name, major, avatar_url, bio, username, expected_grad_date FROM users WHERE email = $1",
+      "SELECT id, first_name, middle_name, last_name, major, avatar_url, bio, username, expected_grad_date, created_at FROM users WHERE email = $1",
       [req.session.user?.email]
     );
 
