@@ -25,18 +25,11 @@ client
   });
 
 (async () => {
-  const subject = process.argv[2];
-  const toName = process.argv[3];
-  let toEmail = process.argv[4];
+  const toName = process.argv[2];
+  let toEmail = process.argv[3];
 
-  if (!subject || !toName || !toEmail) {
-    console.log(
-      "Usage: node send_mail.js <email subject> <to name> <to email>"
-    );
-    process.exit(1);
-  }
-  if (subject.length < 10) {
-    console.log("Warn: email subject too short!");
+  if (!toName || !toEmail) {
+    console.log("Usage: node send_mail.js <to name> <to email>");
     process.exit(1);
   }
 
@@ -47,10 +40,12 @@ client
 
   toEmail = isTesting === "y" ? "thorwaitson@gmail.com" : toEmail;
 
-  const response = await sendMailgun(toEmail, subject, toName, "welcome");
+  const SUBJECT = "🙏 Thank you for joining the waitlist from NFC Orange 🍊";
+  const TEMPLATE = "welcome";
+  const response = await sendMailgun(toEmail, SUBJECT, toName, TEMPLATE);
   if (!response) process.exit(1);
 
   console.log(`Successfully sent email to ${toName}<${toEmail}>`);
-  console.log("Send emails successfully!");
+  console.log("Send email successfully!");
   process.exit();
 })();
