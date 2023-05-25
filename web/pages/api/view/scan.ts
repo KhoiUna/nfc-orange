@@ -1,6 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "../../../db/client";
-import { ApiResponse } from "../register";
+
+type ApiResponse = {
+  success: boolean
+  error: boolean | string
+}
 
 export default async function scan(
   req: NextApiRequest,
