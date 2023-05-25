@@ -46,7 +46,7 @@ export default function PrivacyPolicy() {
 
                     <h2 className="text-xl font-semibold mb-2">Contact Us</h2>
                     <p className="mb-2">
-                        If you have any questions or concerns regarding this Privacy Policy, please contact us at <a className="underline text-primary font-semibold" href="mailto:nfcorange1@gmail.com">nfcorange1@gmail.com</a>.
+                        If you have any questions or concerns regarding this Privacy Policy, please contact us at <a className="underline text-primary font-semibold" href="mailto:contact@mg.nfcorange.com">contact@mg.nfcorange.com</a>.
                     </p>
 
                     <p className="mt-4">
