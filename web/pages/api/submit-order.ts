@@ -2,7 +2,11 @@ import Joi from "joi";
 import { NextApiRequest, NextApiResponse } from "next";
 import createDiscordAlert from "../../lib/createDiscordAlert";
 import { OrderInfo } from "../shop";
-import { ApiResponse } from "./register";
+
+type ApiResponse = {
+  success: boolean | string
+  error: boolean | string
+}
 
 const isValid = async (orderInfo: OrderInfo) => {
   const schema = Joi.object().keys({
