@@ -93,7 +93,7 @@ export default async function Home() {
                     </h2>}
 
                     <a href={"/waitlist"}>
-                        <button className="text-2xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 transition-all hover:shadow-stone-800 hover:shadow-lg">
+                        <button className="text-2xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 drop-shadow-lg transition-all hover:shadow-stone-800 hover:shadow-lg">
                             Join waitlist
                         </button>
                     </a>
