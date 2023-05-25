@@ -138,7 +138,7 @@ const HeaderBar = () => {
           <button
             type="button"
             aria-label="Open dropdown menu"
-            className="sm:hidden pb-1 text-white rounded-lg"
+            className="sm:hidden pb-1 text-white rounded-lg drop-shadow-lg"
             onClick={toggleMenu}
           >
             <svg
