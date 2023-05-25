@@ -51,10 +51,9 @@
       rgb(255, 248, 211, 0.5),
       rgb(255, 233, 182)
     ),
-    url(/images/animation.gif);
-  background-position: left 42% top 0;
+    url(/images/mockup.png);
+  background-position: left 40% top 0;
   background-repeat: no-repeat;
-  background-size: cover;
   background-attachment: fixed;
   height: 100vh;
 }
@@ -65,7 +64,7 @@
       rgb(255, 248, 211),
       rgb(255, 233, 182)
     );
-    min-height: 100vh;
+    /* min-height: 100vh; */
   }
 }
 
