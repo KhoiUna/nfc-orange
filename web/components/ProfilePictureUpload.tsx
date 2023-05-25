@@ -1,3 +1,5 @@
+'use client'
+
 import { Icon } from "@iconify/react";
 import { IKContext, IKUpload } from "imagekitio-react";
 import Image from "next/image";
