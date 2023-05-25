@@ -15,6 +15,7 @@ export type Student =
   };
 
 export type User = {
+  id: number
   major: string
   expected_grad_date: string
   username: string
@@ -23,6 +24,7 @@ export type User = {
   last_name: string,
   avatar_url: string | null
   bio: string | null
+  created_at: string
 }
 
 export type Link = {
