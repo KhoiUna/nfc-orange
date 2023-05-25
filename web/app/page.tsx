@@ -114,7 +114,7 @@ export default async function Home() {
                     </div>
 
                     <p className="font-bold mb-3 text-xl">Eco-Friendly Solution</p>
-                    <p className="text-left">Reduce paper waste and embrace a greener approach to networking by using NFC technology instead of physical resumes.</p>
+                    <p className="text-left">Reduce paper waste and embrace a greener approach to networking by using NFC technology instead of physical business cards.</p>
                 </div>
 
                 <div className="border-primary rounded-lg text-center border-2 w-[280px] h-[330px] bg-white drop-shadow-lg px-8 py-5 m-6">
