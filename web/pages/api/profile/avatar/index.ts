@@ -2,7 +2,11 @@ import { withIronSessionApiRoute } from "iron-session/next";
 import { NextApiRequest, NextApiResponse } from "next";
 import client from "@/db/client";
 import { sessionOptions } from "@/lib/session";
-import { ApiResponse } from "../../register";
+
+type ApiResponse = {
+  success: boolean
+  error: boolean | string
+}
 
 async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
