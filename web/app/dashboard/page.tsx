@@ -55,11 +55,11 @@ export default function Dashboard() {
         if (data?.success) {
             // Track logged_in with Usermaven
             if (process.env.NEXT_PUBLIC_PRODUCTION === "true") {
-                const { first_name, last_name, middle_name, id, created_at } = data.success.user
+                const { first_name, last_name, middle_name, id, created_at, email } = data.success.user
                 usermaven.track('logged_in')
                 usermaven.id({
                     id: id.toString(),
-                    email: authUser.data?.email,
+                    email,
                     created_at,
                     first_name,
                     middle_name,
@@ -179,7 +179,7 @@ export default function Dashboard() {
                             </button>
                         )
 
-                        return item.isAdded ? <AddLinkForm key={index} userEmail={authUser.data!.email} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
+                        return item.isAdded ? <AddLinkForm key={index} user={data.success.user} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
                     })
                 }
 
