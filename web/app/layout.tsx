@@ -8,9 +8,9 @@ export const metadata = {
     openGraph: {
         images: [
             {
-                url: '/images/orange-loader.png',
-                width: 556,
-                height: 624,
+                url: '/images/mockup.png',
+                width: 512,
+                height: 512,
             },
         ],
         locale: 'en-US',
