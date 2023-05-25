@@ -4,7 +4,7 @@
 require("dotenv").config();
 const { Client } = require("pg");
 const readline = require("node:readline/promises");
-const { sendMailgun } = require("./lib/email");
+const { sendMailgun } = require("../lib/email");
 
 const rl = readline.createInterface({
   input: process.stdin,

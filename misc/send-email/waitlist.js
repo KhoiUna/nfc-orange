@@ -4,7 +4,7 @@
 require("dotenv").config();
 const { Client } = require("pg");
 const readline = require("node:readline/promises");
-const { sendMailgun, sendMailgunWaitlist } = require("./lib/email");
+const { sendMailgunWaitlist } = require("../lib/email");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -31,7 +31,7 @@ client
   } while (!isTesting || isTesting.length === 0);
 
   const sql =
-    "SELECT first_name, last_name, email FROM users WHERE updated_at is null and last_logged_in is null";
+    "SELECT first_name, last_name, email FROM users WHERE updated_at is null and last_logged_in is null and id=53";
 
   let { rows } = await client.query(sql);
 
