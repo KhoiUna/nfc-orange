@@ -1,7 +1,7 @@
 import AppHeaderBar from "@/components/ui/AppHeaderBar";
 
 export const metadata = {
-    title: 'NFC Orange | Dashboard',
+    title: 'Dashboard | NFC Orange',
     description: 'NFC Orange | Get your digital business card & join our student community.'
 };
 
