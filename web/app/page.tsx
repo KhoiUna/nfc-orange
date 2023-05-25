@@ -19,20 +19,7 @@ export const Footer = () => (
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 sm:gap-6">
-                    {/* CHANGE: Uncomment for addition section */}
-                    {/* <div>
-                                <h2 className="mb-4 text-sm font-bold uppercase text-white">Resources</h2>
-                                <ul className="text-white font-medium">
-                                    <li className="mb-2">
-                                        <a href="https://flowbite.com/" className="hover:underline">Flowbite</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://tailwindcss.com/" className="hover:underline">Tailwind CSS</a>
-                                    </li>
-                                </ul>
-                            </div> */}
-
+                <div className="grid grid-cols-3 gap-8 sm:gap-6">
                     <div>
                         <h2 className="mb-4 text-sm font-bold uppercase text-white">Follow us</h2>
                         <ul className="text-white font-medium">
@@ -44,6 +31,7 @@ export const Footer = () => (
                             </li>
                         </ul>
                     </div>
+
                     <div>
                         <h2 className="mb-4 text-sm font-bold uppercase text-white">Legal</h2>
                         <ul className="text-white font-medium">
@@ -52,6 +40,15 @@ export const Footer = () => (
                             </li>
                             <li>
                                 <a href="/privacy-policy" className="hover:underline">Privacy Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h2 className="mb-4 text-sm font-bold uppercase text-white">Contact</h2>
+                        <ul className="text-white font-medium">
+                            <li className="mb-2">
+                                <a href="mailto:contact@mg.nfcorange.com" className="hover:underline">Email us</a>
                             </li>
                         </ul>
                     </div>
