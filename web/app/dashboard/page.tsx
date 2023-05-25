@@ -15,13 +15,8 @@ import dynamic from 'next/dynamic';
 import OrangeLoader from "@/components/ui/OrangeLoader";
 import FloatIconButton from "@/components/ui/FloatIconButton";
 import SharePopup from "./components/SharePopup";
-import { UsermavenClient, usermavenClient } from "@usermaven/sdk-js";
 import useAuth from "@/lib/useAuth";
-
-const usermaven: UsermavenClient = usermavenClient({
-    key: process.env.NEXT_PUBLIC_USERMAVEN_API_KEY as string,
-    tracking_host: "https://events.usermaven.com",
-});
+import usermaven from "@/lib/usermaven";
 
 const BioEditor = dynamic(() => import('./components/BioEditor'), {
     ssr: false,
@@ -59,16 +54,18 @@ export default function Dashboard() {
 
         if (data?.success) {
             // Track logged_in with Usermaven
-            const { first_name, last_name, middle_name, id, created_at } = data.success.user
-            usermaven.track('logged_in')
-            usermaven.id({
-                id: id.toString(),
-                email: authUser.data?.email,
-                created_at,
-                first_name,
-                middle_name,
-                last_name
-            })
+            if (process.env.NEXT_PUBLIC_PRODUCTION === "true") {
+                const { first_name, last_name, middle_name, id, created_at } = data.success.user
+                usermaven.track('logged_in')
+                usermaven.id({
+                    id: id.toString(),
+                    email: authUser.data?.email,
+                    created_at,
+                    first_name,
+                    middle_name,
+                    last_name
+                })
+            }
 
             const newLinkState = data.success.links.filter(item => item.link_title !== 'My Resume').map(item => ({
                 ...item,
@@ -182,7 +179,7 @@ export default function Dashboard() {
                             </button>
                         )
 
-                        return item.isAdded ? <AddLinkForm key={index} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
+                        return item.isAdded ? <AddLinkForm key={index} userEmail={authUser.data!.email} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
                     })
                 }
 
