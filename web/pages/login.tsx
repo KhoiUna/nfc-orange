@@ -51,8 +51,7 @@ export default function Login() {
 
       if (error) throw error;
 
-      if (success) router.push("/dashboard");
-
+      router.push("/dashboard");
       return true;
     } catch (error) {
       console.error("Error logging in");
