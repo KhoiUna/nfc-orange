@@ -4,9 +4,9 @@ import { RegisterInfo } from "../register";
 import client from "../../db/client";
 import PasswordHelper from "../../helpers/PasswordHelper";
 
-export type ApiResponse = {
-  success: any;
-  error: any;
+type ApiResponse = {
+  success: boolean | string
+  error: boolean | string
 };
 
 type Body = {
