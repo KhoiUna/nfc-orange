@@ -33,7 +33,7 @@ const NAV_LINKS: NavLink[] = [
   // },
   {
     href: "/waitlist",
-    text: "Join Waitlist",
+    text: "Join waitlist",
   },
   {
     href: "/login",
