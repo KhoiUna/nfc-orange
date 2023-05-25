@@ -1,10 +1,14 @@
 import Script from "next/script";
+import NavigationEvents from "./NavigationEvents";
 
 const Analytics = () => {
   if (process.env.NEXT_PUBLIC_PRODUCTION !== "true") return <></>;
 
   return (
     <>
+      {/* Tracking with Usermaven */}
+      <NavigationEvents />
+
       {/* Google tag (gtag.js)  */}
       <Script
         async
