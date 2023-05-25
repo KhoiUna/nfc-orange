@@ -27,9 +27,13 @@ const NAV_LINKS: NavLink[] = [
   //   href: "https://recruit.nfcorange.com/",
   //   text: "Recruiter Login",
   // },
+  // {
+  //   href: "/register",
+  //   text: "Register",
+  // },
   {
-    href: "/register",
-    text: "Register",
+    href: "/waitlist",
+    text: "Join Waitlist",
   },
   {
     href: "/login",
