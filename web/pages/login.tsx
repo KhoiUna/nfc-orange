@@ -101,7 +101,7 @@ export default function Login() {
                 />
               </div>
 
-              <div className="mt-5 drop-shadow-lg">
+              <div className="my-5 drop-shadow-lg">
                 <button
                   className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black shadow-stone-800 shadow-lg"
                   type="submit"
@@ -121,7 +121,7 @@ export default function Login() {
               )}
             </form>
 
-            <div className="my-5">
+            <div className="hidden my-5">
               <Link
                 href={"/register"}
                 className="text-[1.3rem] underline text-primary font-bold shadow-stone-800 shadow-lg">
