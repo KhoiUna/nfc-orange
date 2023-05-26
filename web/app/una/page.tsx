@@ -1,7 +1,6 @@
 'use client'
 
 import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
-import HeaderBar from "@/components/ui/HeaderBar";
 import { appSubmitButtonStyle } from "@/styles/tailwind";
 import Image from "next/image";
 import LinkEditor, { LinkState } from "./components/LinkEditor";
@@ -11,6 +10,8 @@ import { useState } from "react";
 import { getFirestore, addDoc, collection } from "firebase/firestore";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import app from "@/lib/firebase";
+import { Icon } from "@iconify/react";
+import { Footer } from "../page";
 
 const registerInfoInitialState = {
     email: "",
@@ -97,8 +98,6 @@ export default function Create() {
                 }}
             />
 
-            <HeaderBar />
-
             <div
                 className="min-w-screen min-h-screen p-3 pt-[20vh]"
                 style={{
@@ -151,7 +150,8 @@ export default function Create() {
                                 className={appSubmitButtonStyle + ' bg-primary text-white font-bold text-xl'}
                                 onClick={handleNext}
                             >
-                                Next <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 7.766c0-1.554 1.696-2.515 3.029-1.715l7.056 4.234c1.295.777 1.295 2.653 0 3.43L8.03 17.949c-1.333.8-3.029-.16-3.029-1.715V7.766zM14.056 12L7 7.766v8.468L14.056 12zM18 6a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1z" /></svg>
+                                Next
+                                <Icon className="text-2xl" icon="mi:next" />
                             </button>
                         </div>
                     </>
@@ -159,6 +159,7 @@ export default function Create() {
 
                 {next && (
                     <form className="max-w-[500px] m-auto" onSubmit={handleSubmit}>
+                        <h1 className="text-3xl mb-1 text-center font-bold text-white">Final step: Fill this form</h1>
                         <div>
                             <input
                                 required
@@ -212,6 +213,8 @@ export default function Create() {
                     </form>
                 )}
             </div>
+
+            <Footer />
         </>
     )
 }
