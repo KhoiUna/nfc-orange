@@ -10,5 +10,5 @@ export default function NameInput() {
         if (name) localStorage.setItem('create_card_name', name)
     }, [name])
 
-    return <input value={name} onChange={({ target }) => setName(target.value)} className={inputStyle + ' text-sm'} type="text" placeholder="Please type your full name" />
+    return <input autoComplete="off" value={name} onChange={({ target }) => setName(target.value)} className={inputStyle + ' text-sm'} type="text" placeholder="Please type your full name" />
 }
