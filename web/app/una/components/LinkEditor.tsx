@@ -22,7 +22,8 @@ export default function LinkEditor() {
     const [linkState, setLinkState] = useState<LinkState[]>(linksInitialState)
 
     useEffect(() => {
-        if (localStorage.getItem('create_card_link_state')) setLinkState(JSON.parse(localStorage.getItem('create_card_link_state')!))
+        const localStorageLinkState: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state') || '[]')
+        if (localStorageLinkState.length > 1) setLinkState(localStorageLinkState || linksInitialState)
     }, [])
 
     useEffect(() => {
