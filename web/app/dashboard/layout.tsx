@@ -1,4 +1,4 @@
-import AppHeaderBar from "@/components/ui/AppHeaderBar";
+import AppHeaderBar from "@/components/ui/AppHeaderBar"
 
 export const metadata = {
     title: 'Dashboard | NFC Orange',
