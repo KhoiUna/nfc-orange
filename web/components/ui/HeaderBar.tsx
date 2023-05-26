@@ -1,11 +1,10 @@
 'use client'
 
 import NavLink from "./NavLink";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Logo from "../Logo";
 
-export const HEADER_BAR_BG_COLOR = "bg-primary";
 export const LOGO_WIDTH = 150;
 export const LOGO_WIDTH_HEIGHT_RATIO = 4 / 15;
 export const LOGO_HEIGHT = LOGO_WIDTH * LOGO_WIDTH_HEIGHT_RATIO;
@@ -52,7 +51,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
 
       {/* Menu sidebar */}
       <div
-        className={`text-black drop-shadow-xl sm:hidden absolute z-20 top-0 right-0 ${HEADER_BAR_BG_COLOR} h-[100vh] w-[60%]`}
+        className={`text-black drop-shadow-xl sm:hidden absolute z-20 top-0 right-0 h-[100vh] w-[60%]`}
       >
         <div className="text-right">
           <button
@@ -95,20 +94,6 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
 const HeaderBar = () => {
   const [menuOpened, setMenuOpened] = useState<Boolean>(false);
   const toggleMenu = () => setMenuOpened(!menuOpened);
-
-  useEffect(() => {
-    const header = document.querySelector("header") as HTMLHeadingElement;
-    window.addEventListener("scroll", () => {
-      const html = document.querySelector("html") as HTMLHtmlElement;
-
-      if (html.scrollTop === 0)
-        return (header.style.animation =
-          "1s ease 0s 1 normal forwards running colorFadeOut");
-
-      return (header.style.animation =
-        "1s ease 0s 1 normal forwards running colorFadeIn");
-    });
-  }, []);
 
   return (
     <header className={`p-2 fixed w-full z-10`}>
