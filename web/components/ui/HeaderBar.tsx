@@ -51,7 +51,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
 
       {/* Menu sidebar */}
       <div
-        className={`text-black drop-shadow-xl sm:hidden absolute z-20 top-0 right-0 h-[100vh] w-[60%]`}
+        className={`text-black drop-shadow-xl sm:hidden absolute z-20 top-0 right-0 h-[100vh] w-fit`}
       >
         <div className="text-right">
           <button
