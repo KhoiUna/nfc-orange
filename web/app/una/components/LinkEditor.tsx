@@ -4,8 +4,8 @@ import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind"
 import { Link as LinkType } from "@/types/types"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
-import { SyntheticEvent, useEffect, useState } from "react"
-import { Toaster, toast } from "react-hot-toast"
+import { SyntheticEvent, useMemo, useState } from "react"
+import { toast } from "react-hot-toast"
 
 type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
 
@@ -19,9 +19,10 @@ const linksInitialState: LinkState[] = [
 ]
 
 export default function LinkEditor() {
-    const [linkState, setLinkState] = useState<LinkState[]>(JSON.parse(localStorage.getItem('created_link_state')!) || linksInitialState)
-    useEffect(() => {
-        if (linkState.length > 1) localStorage.setItem('created_link_state', JSON.stringify(linkState))
+    const [linkState, setLinkState] = useState<LinkState[]>(JSON.parse(localStorage.getItem('create_card_link_state')!) || linksInitialState)
+
+    useMemo(() => {
+        if (linkState.length > 1) localStorage.setItem('create_card_link_state', JSON.stringify(linkState))
     }, [linkState])
 
     const addLink = () => {
