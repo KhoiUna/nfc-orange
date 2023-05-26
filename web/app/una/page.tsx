@@ -148,7 +148,7 @@ export default function Create() {
 
                         <div className="my-5 mx-3">
                             <button
-                                className={appSubmitButtonStyle + ' bg-primary text-white font-bold text-xl'}
+                                className={appSubmitButtonStyle + ' font-bold text-xl'}
                                 onClick={handleNext}
                             >
                                 Next
@@ -210,10 +210,19 @@ export default function Create() {
                             />
                         </div>
 
-                        <button type="submit" className={appSubmitButtonStyle + ' bg-primary mt-3 text-lg font-bold text-white'}>
-                            {isLoading && <TextLoader loadingText="Submitting" />}
-                            {!isLoading && "Submit"}
-                        </button>
+                        <div className="flex">
+                            <button type="submit" className={appSubmitButtonStyle + ' mt-3 text-lg font-bold'}
+                                onClick={() => setNext(false)}
+                            >
+                                <Icon className="text-2xl" icon="ph:skip-back-bold" />
+                                Back
+                            </button>
+
+                            <button type="submit" className={appSubmitButtonStyle + ' bg-primary mt-3 text-lg font-bold text-white'}>
+                                {isLoading && <TextLoader loadingText="Submitting" />}
+                                {!isLoading && "Submit"}
+                            </button>
+                        </div>
                     </form>
                 )}
             </div>
