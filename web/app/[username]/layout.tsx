@@ -20,8 +20,8 @@ export async function generateMetadata(
         const { first_name, middle_name, last_name, avatar_url } = rows[0]
 
         return {
-            title: `${first_name} ${middle_name} ${last_name} | NFC Orange`,
-            description: `View ${first_name} ${middle_name} ${last_name}'s profile on NFC Orange!`,
+            title: `${first_name} ${middle_name || ''} ${last_name} | NFC Orange`,
+            description: `View ${first_name} ${middle_name || ''} ${last_name}'s profile on NFC Orange!`,
             metadataBase: new URL('https://www.nfcorange.com'),
             openGraph: {
                 images: [
