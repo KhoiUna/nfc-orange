@@ -31,7 +31,7 @@ client
   } while (!isTesting || isTesting.length === 0);
 
   const sql =
-    "SELECT first_name, last_name, email FROM users WHERE updated_at is null and last_logged_in is null and id=53";
+    "SELECT first_name, last_name, email FROM users WHERE updated_at is null and last_logged_in is null";
 
   let { rows } = await client.query(sql);
 
