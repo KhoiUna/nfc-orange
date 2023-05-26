@@ -46,7 +46,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
       {/* Dark overlay */}
       <div
         onClick={() => toggleMenu()}
-        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 bg-black opacity-[0.5] w-[100vw] h-[100vh]"
+        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 opacity-70 bg-gradient-to-l from-primary to-white w-[100vw] h-[100vh]"
       ></div>
 
       {/* Menu sidebar */}
@@ -57,7 +57,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
           <button
             type="button"
             aria-label="Close dropdown menu"
-            className={"sm:hidden mr-5 mt-6 text-white"}
+            className={"sm:hidden mr-3 mt-4 text-white"}
             onClick={() => toggleMenu()}
           >
             <svg
@@ -96,7 +96,7 @@ const HeaderBar = () => {
   const toggleMenu = () => setMenuOpened(!menuOpened);
 
   return (
-    <header className={`p-2 fixed w-full z-10`}>
+    <header id="header" className={`fixed w-full z-10`}>
       <nav
         className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
       >
@@ -119,7 +119,7 @@ const HeaderBar = () => {
             ))}
         </div>
 
-        {NAV_LINKS.length !== 0 && (
+        {NAV_LINKS.length !== 0 && !menuOpened && (
           <button
             type="button"
             aria-label="Open dropdown menu"
