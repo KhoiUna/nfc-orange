@@ -4,7 +4,7 @@ import { appSubmitButtonStyle, inputStyle } from "@/styles/tailwind"
 import { Link as LinkType } from "@/types/types"
 import { Icon } from "@iconify/react"
 import Link from "next/link"
-import { SyntheticEvent, useMemo, useState } from "react"
+import { SyntheticEvent, useEffect, useRef, useState } from "react"
 import { toast } from "react-hot-toast"
 
 export type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
@@ -20,12 +20,18 @@ const linksInitialState: LinkState[] = [
 
 export default function LinkEditor() {
     const [linkState, setLinkState] = useState<LinkState[]>(linksInitialState)
+    const firstLoad = useRef(true)
 
-    useMemo(() => {
-        if (typeof window !== 'undefined') {
-            if (linkState.length > 1) return localStorage.setItem('create_card_link_state', JSON.stringify(linkState))
-            if (localStorage.getItem('create_card_link_state')) return setLinkState(JSON.parse(localStorage.getItem('create_card_link_state')!))
+    useEffect(() => {
+        if (firstLoad.current && localStorage.getItem('create_card_link_state')) setLinkState(JSON.parse(localStorage.getItem('create_card_link_state')!))
+
+        return () => {
+            firstLoad.current = false
         }
+    }, [])
+
+    useEffect(() => {
+        if (!firstLoad.current) localStorage.setItem('create_card_link_state', JSON.stringify(linkState))
     }, [linkState])
 
     const addLink = () => {
@@ -61,24 +67,22 @@ export default function LinkEditor() {
 
             {
                 linkState.map((item, index) => {
-                    if (item.isSaved && !item.isAdded) return (
-                        <button
-                            key={index}
-                            className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-2 rounded-lg bg-white text-center hover:bg-blue-100"
-                        >
-                            <Link href={item.url} target="_blank" rel="noreferrer" className="flex w-full justify-center underline text-sm">
-                                {item.link_title}
-                                <Icon icon="material-symbols:arrow-outward-rounded" />
-                            </Link>
+                    if (item.isSaved && !item.isAdded) return (<button
+                        key={index}
+                        className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-2 rounded-lg bg-white text-center hover:bg-blue-100"
+                    >
+                        <Link href={item.url} target="_blank" rel="noreferrer" className="flex w-full justify-center underline text-sm">
+                            {item.link_title}
+                            <Icon icon="material-symbols:arrow-outward-rounded" />
+                        </Link>
 
-                            <span
-                                className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
-                                onClick={() => deleteLink(index)}
-                            >
-                                <Icon className="text-md text-red-700" icon="material-symbols:delete-outline" />
-                            </span>
-                        </button>
-                    )
+                        <span
+                            className="bg-red-100 ml-3 p-3 rounded-lg hover:bg-red-200"
+                            onClick={() => deleteLink(index)}
+                        >
+                            <Icon className="text-md text-red-700" icon="material-symbols:delete-outline" />
+                        </span>
+                    </button>)
 
                     return item.isAdded ? <AddLinkForm key={index} index={index} removeLink={cancelLink} saveLink={saveLink} link_title={item.link_title} url={item.url} /> : null
                 })
