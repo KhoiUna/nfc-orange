@@ -12,6 +12,7 @@ import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { Footer } from "../page";
+import TextLoader from "@/components/ui/TextLoader";
 
 const registerInfoInitialState = {
     email: "",
@@ -46,8 +47,10 @@ export default function Create() {
         }));
     };
 
+    const [isLoading, setIsLoading] = useState(false)
     const handleSubmit = async (event: React.SyntheticEvent) => {
         event.preventDefault()
+        setIsLoading(true)
         try {
             if (typeof window !== 'undefined') {
                 const links: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state')!)
@@ -62,6 +65,7 @@ export default function Create() {
                     user: registerInfo,
                     links: submittedLinks
                 });
+                setIsLoading(false)
                 localStorage.clear()
                 setRegisterInfo(registerInfoInitialState)
                 setNext(false)
@@ -69,6 +73,7 @@ export default function Create() {
             }
         } catch (error) {
             console.error('Error submitting');
+            setIsLoading(false)
             toast.error('Error submitting')
         }
 
@@ -209,7 +214,10 @@ export default function Create() {
                             />
                         </div>
 
-                        <button type="submit" className={appSubmitButtonStyle + ' bg-primary mt-3 text-lg font-bold text-white'}>Claim my card</button>
+                        <button type="submit" className={appSubmitButtonStyle + ' bg-primary mt-3 text-lg font-bold text-white'}>
+                            {isLoading && <TextLoader loadingText="Submitting" />}
+                            {!isLoading && "Submit"}
+                        </button>
                     </form>
                 )}
             </div>
