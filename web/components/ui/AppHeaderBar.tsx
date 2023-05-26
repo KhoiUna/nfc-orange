@@ -8,7 +8,6 @@ export type NavLinkProps = {
   text: string;
 };
 
-const HEADER_BAR_BG_COLOR = "bg-primary";
 const TEXT_COLOR = "text-white";
 const TEXT_DECORATION_COLOR = TEXT_COLOR;
 const NAV_LINKS: NavLinkProps[] = [
@@ -40,12 +39,12 @@ const MenuSidebar = ({
       {/* Dark overlay */}
       <div
         onClick={() => toggleMenu()}
-        className="cursor-pointer sm:hidden absolute left-0 top-0 bg-black opacity-[0.5] w-[100vw] h-[100vh]"
+        className="cursor-pointer sm:hidden absolute left-0 top-0 opacity-70 bg-gradient-to-l from-primary to-white w-[100vw] h-[100vh]"
       ></div>
 
       {/* Menu sidebar */}
       <div
-        className={`${TEXT_COLOR} drop-shadow-xl sm:hidden absolute top-0 right-0 ${HEADER_BAR_BG_COLOR} h-[100vh] w-[60%]`}
+        className={`${TEXT_COLOR} drop-shadow-xl sm:hidden absolute top-0 right-0 h-[100vh] w-fit`}
       >
         <div className="text-right">
           <button className="sm:hidden mr-3 mt-6" onClick={() => toggleMenu()}>
@@ -119,11 +118,11 @@ const AppHeaderBar = ({
   const toggleMenu = () => setMenuOpened(!menuOpened);
 
   return (
-    <header className="sticky top-0 z-10 shadow-xl">
+    <header id="header" className="sticky top-0 z-10 shadow-xl">
       <nav
-        className={`flex flex-row ${HEADER_BAR_BG_COLOR} text-slate-50 py-3 px-3 items-center justify-between`}
+        className={`flex flex-row text-slate-50 py-3 px-3 items-center justify-between`}
       >
-        <p className={`p-2 text-2xl ${TEXT_COLOR}`}>{title}</p>
+        <p className={`p-2 text-2xl font-bold ${TEXT_COLOR}`}>{title}</p>
 
         <div className="flex text-black">
           {/* TODO: feedback form */}
@@ -164,7 +163,7 @@ const AppHeaderBar = ({
           ))}
         </div>
 
-        <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu}>
+        {!menuOpened && <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -179,7 +178,7 @@ const AppHeaderBar = ({
               d="M4 6h16M4 12h16m-7 6h7"
             />
           </svg>
-        </button>
+        </button>}
 
         {menuOpened && (
           <MenuSidebar toggleMenu={toggleMenu} />
