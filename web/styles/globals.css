@@ -45,6 +45,22 @@
   border-radius: 8px;
 }
 
+header {
+  --border-bottom-width: 0px;
+  --border-color: rgba(0, 0, 0, 0);
+  --border-left-width: 0px;
+  --border-right-width: 0px;
+  --border-style: solid;
+  --border-top-width: 0px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(220, 119, 0, 0.5);
+  filter: none;
+  width: 100%;
+  opacity: 1;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
 #gif-parallax {
   background-image: linear-gradient(
       to top,
