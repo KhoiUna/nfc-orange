@@ -1,21 +1,79 @@
+'use client'
+
 import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
 import HeaderBar from "@/components/ui/HeaderBar";
-import { inputStyle } from "@/styles/tailwind";
+import { appSubmitButtonStyle } from "@/styles/tailwind";
 import Image from "next/image";
-import LinkEditor from "./components/LinkEditor";
-import { Toaster } from "react-hot-toast";
+import LinkEditor, { LinkState } from "./components/LinkEditor";
+import { Toaster, toast } from "react-hot-toast";
+import NameInput from "./components/NameInput";
+import { useState } from "react";
+import { getFirestore, addDoc, collection } from "firebase/firestore";
+import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import app from "@/lib/firebase";
 
-export const metadata = {
-    title: 'Create your card | NFC Orange',
-    description: 'NFC Orange | Create your own digital business card for University of North Alabama students.',
-    viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
-}
+const registerInfoInitialState = {
+    email: "",
+    major: "",
+    expected_grad_date: '',
+    university: ''
+};
 
-export default function page() {
+export default function Create() {
+    const [registerInfo, setRegisterInfo] = useState(registerInfoInitialState);
+
+    const [next, setNext] = useState(false)
+
+    const handleNext = () => {
+        const name = localStorage.getItem('create_card_name')
+        const linkState: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state') || '[]')
+
+        if (!name) return toast.error('Please fill in your full name')
+
+        if (linkState.every(link => link.isSaved === false)) return toast.error('Please add at least one link')
+
+        setNext(true)
+    }
+
+    const handleChange = (event: React.SyntheticEvent) => {
+        const target = event.target as HTMLInputElement;
+        setRegisterInfo((prev) => ({
+            ...prev,
+            [target.name]: target.value,
+        }));
+    };
+
+    const handleSubmit = async (event: React.SyntheticEvent) => {
+        event.preventDefault()
+        try {
+            const links: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state')!)
+            const submittedLinks = links.filter(link => link.isSaved === true).map(({ link_title, url }) => ({ link_title, url }))
+
+            const appCheck = initializeAppCheck(app, {
+                provider: new ReCaptchaV3Provider(process.env.NEXT_PUBLIC_CLIENT_RECAPTCHA as string),
+                isTokenAutoRefreshEnabled: true
+            });
+            const db = getFirestore(app);
+            await addDoc(collection(db, "new_users"), {
+                user: registerInfo,
+                links: submittedLinks
+            });
+            localStorage.clear()
+            setRegisterInfo(registerInfoInitialState)
+            setNext(false)
+            toast.success('Your card is successfully submitted! We will work to get you on board soon!')
+        } catch (error) {
+            console.error('Error submitting');
+            toast.error('Error submitting')
+        }
+
+    }
+
     return (
         <>
             <Toaster
                 toastOptions={{
+                    duration: 10000,
                     success: {
                         style: {
                             background: "green",
@@ -43,42 +101,112 @@ export default function page() {
                     background: 'linear-gradient(225deg, rgba(70, 55, 32, 1) 0%, rgba(220, 119, 0, 1) 35%, rgba(255, 246, 206, 1) 100%)'
                 }}
             >
-                <div
-                    id="phone"
-                    className="m-auto overflow-auto drop-shadow-2xl w-[350px] border-[15px] border-t-[40px] border-black rounded-2xl h-[90vh] bg-slate-50"
-                >
-                    <div className="w-full h-[150px]">
+                {!next && (
+                    <>
                         <div
-                            className="h-full"
-                            style={{
-                                backgroundImage: 'url(/images/animation.gif)',
-                                backgroundPosition: 'center',
-                                backgroundSize: 'cover'
-                            }}
+                            id="phone"
+                            className="m-auto overflow-auto drop-shadow-2xl w-[350px] border-[15px] border-t-[40px] border-black rounded-2xl h-[90vh] bg-slate-50"
                         >
-                            <Image
-                                className="w-[90px] h-[90px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[110px] left-0 right-0 m-auto"
-                                src={'https://ik.imagekit.io/chekchat/default-avatar_TAffG0nED.png'}
-                                alt={`Profile picture`}
-                                width={90}
-                                height={90}
-                                placeholder="blur"
-                                blurDataURL={BLUR_DATA_URL}
+                            <div className="w-full rounded-lg">
+                                <div className="w-full h-[150px]">
+                                    <div
+                                        className="h-full"
+                                        style={{
+                                            backgroundImage: 'url(/images/animation.gif)',
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }}
+                                    >
+                                        <Image
+                                            className="w-[90px] h-[90px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[110px] left-0 right-0 m-auto"
+                                            src={'https://ik.imagekit.io/chekchat/default-avatar_TAffG0nED.png'}
+                                            alt={`Profile picture`}
+                                            width={90}
+                                            height={90}
+                                            placeholder="blur"
+                                            blurDataURL={BLUR_DATA_URL}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="text-center mt-[3.5rem] mx-3">
+                                    <p className="mt-3">Hi! My name is
+                                        <NameInput />
+                                        Here are my links:
+                                    </p>
+                                </div>
+
+                                <div className="my-5 mx-3">
+                                    <LinkEditor />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="my-5 mx-3">
+                            <button
+                                className={appSubmitButtonStyle + ' bg-primary text-white font-bold text-xl'}
+                                onClick={handleNext}
+                            >
+                                Next <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 7.766c0-1.554 1.696-2.515 3.029-1.715l7.056 4.234c1.295.777 1.295 2.653 0 3.43L8.03 17.949c-1.333.8-3.029-.16-3.029-1.715V7.766zM14.056 12L7 7.766v8.468L14.056 12zM18 6a1 1 0 0 1 1 1v10a1 1 0 1 1-2 0V7a1 1 0 0 1 1-1z" /></svg>
+                            </button>
+                        </div>
+                    </>
+                )}
+
+                {next && (
+                    <form className="max-w-[500px] m-auto" onSubmit={handleSubmit}>
+                        <div>
+                            <input
+                                required
+                                onChange={handleChange}
+                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                type="email"
+                                name="email"
+                                placeholder="Your email*"
+                                value={registerInfo.email}
                             />
                         </div>
-                    </div>
 
-                    <div className="text-center mt-[3.5rem] mx-3">
-                        <p className="mt-3">Hi! My name is
-                            <input className={inputStyle + ' text-sm'} type="text" placeholder="Please type your full name" />
-                            Here are my links:
-                        </p>
-                    </div>
+                        <div>
+                            <input
+                                required
+                                onChange={handleChange}
+                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                type="text"
+                                name="university"
+                                placeholder="University*"
+                                value={registerInfo.university}
+                            />
+                        </div>
 
-                    <div className="my-5 mx-3">
-                        <LinkEditor />
-                    </div>
-                </div>
+                        <div>
+                            <input
+                                required
+                                onChange={handleChange}
+                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                type="text"
+                                name="major"
+                                placeholder="Major*"
+                                value={registerInfo.major}
+                            />
+                        </div>
+
+                        <div className="text-left">
+                            <label htmlFor="expected_grad_date" className="text-white text-lg font-bold">Expected graduation date*</label>
+                            <input
+                                id="expected_grad_date"
+                                required
+                                onChange={handleChange}
+                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                type="date"
+                                name="expected_grad_date"
+                                value={registerInfo.expected_grad_date}
+                            />
+                        </div>
+
+                        <button type="submit" className={appSubmitButtonStyle + ' bg-primary mt-3 text-lg font-bold text-white'}>Claim my card</button>
+                    </form>
+                )}
             </div>
         </>
     )
