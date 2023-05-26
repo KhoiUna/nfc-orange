@@ -45,7 +45,7 @@
   border-radius: 8px;
 }
 
-header {
+#header {
   --border-bottom-width: 0px;
   --border-color: rgba(0, 0, 0, 0);
   --border-left-width: 0px;
