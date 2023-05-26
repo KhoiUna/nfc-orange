@@ -60,7 +60,8 @@ export default function Create() {
             const db = getFirestore(app);
             await addDoc(collection(db, "new_users"), {
                 user: registerInfo,
-                links: submittedLinks
+                links: submittedLinks,
+                created_at: new Date()
             });
             setIsLoading(false)
             localStorage.clear()
