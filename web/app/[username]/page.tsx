@@ -178,7 +178,7 @@ export default function View({ params }: Props) {
                     </div>
                 )}
 
-                <div className={`mt-6 pb-6 ${isBlank ? 'min-h-[35vh]' : ''}`}>
+                <div className={`mt-6 pb-6 min-h-[35vh]`}>
                     {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
                     {resume_link && <Link href={`/${username}/resume`} className="block max-w-[500px] m-auto">
@@ -194,8 +194,7 @@ export default function View({ params }: Props) {
                                 <p className="font-bold">{link.link_title}</p>
                             </div>
                         </Link>
-                    ))
-                    }
+                    ))}
                 </div>
             </div>
 
