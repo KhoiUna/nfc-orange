@@ -1,5 +1,6 @@
 import Script from "next/script";
 import NavigationEvents from "./NavigationEvents";
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 const Analytics = () => {
   if (process.env.NEXT_PUBLIC_PRODUCTION !== "true") return <></>;
@@ -8,6 +9,8 @@ const Analytics = () => {
     <>
       {/* Tracking with Usermaven */}
       <NavigationEvents />
+
+      <VercelAnalytics />
 
       {/* Google tag (gtag.js)  */}
       <Script
