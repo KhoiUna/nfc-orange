@@ -7,7 +7,7 @@ import Link from "next/link"
 import { SyntheticEvent, useMemo, useState } from "react"
 import { toast } from "react-hot-toast"
 
-type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
+export type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
 
 const linksInitialState: LinkState[] = [
     {
