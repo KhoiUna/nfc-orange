@@ -24,8 +24,8 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/peers",
-        destination: "/dashboard",
+        source: "/register",
+        destination: "/",
         permanent: true,
       },
     ];
