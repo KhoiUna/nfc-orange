@@ -25,14 +25,16 @@ export default function Create() {
     const [next, setNext] = useState(false)
 
     const handleNext = () => {
-        const name = localStorage.getItem('create_card_name')
-        const linkState: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state') || '[]')
+        if (typeof window !== 'undefined') {
+            const name = localStorage.getItem('create_card_name')
+            const linkState: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state') || '[]')
 
-        if (!name) return toast.error('Please fill in your full name')
+            if (!name) return toast.error('Please fill in your full name')
 
-        if (linkState.every(link => link.isSaved === false)) return toast.error('Please add at least one link')
+            if (linkState.every(link => link.isSaved === false)) return toast.error('Please add at least one link')
 
-        setNext(true)
+            setNext(true)
+        }
     }
 
     const handleChange = (event: React.SyntheticEvent) => {
@@ -46,22 +48,24 @@ export default function Create() {
     const handleSubmit = async (event: React.SyntheticEvent) => {
         event.preventDefault()
         try {
-            const links: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state')!)
-            const submittedLinks = links.filter(link => link.isSaved === true).map(({ link_title, url }) => ({ link_title, url }))
+            if (typeof window !== 'undefined') {
+                const links: LinkState[] = JSON.parse(localStorage.getItem('create_card_link_state')!)
+                const submittedLinks = links.filter(link => link.isSaved === true).map(({ link_title, url }) => ({ link_title, url }))
 
-            const appCheck = initializeAppCheck(app, {
-                provider: new ReCaptchaV3Provider(process.env.NEXT_PUBLIC_CLIENT_RECAPTCHA as string),
-                isTokenAutoRefreshEnabled: true
-            });
-            const db = getFirestore(app);
-            await addDoc(collection(db, "new_users"), {
-                user: registerInfo,
-                links: submittedLinks
-            });
-            localStorage.clear()
-            setRegisterInfo(registerInfoInitialState)
-            setNext(false)
-            toast.success('Your card is successfully submitted! We will work to get you on board soon!')
+                const appCheck = initializeAppCheck(app, {
+                    provider: new ReCaptchaV3Provider(process.env.NEXT_PUBLIC_CLIENT_RECAPTCHA as string),
+                    isTokenAutoRefreshEnabled: true
+                });
+                const db = getFirestore(app);
+                await addDoc(collection(db, "new_users"), {
+                    user: registerInfo,
+                    links: submittedLinks
+                });
+                localStorage.clear()
+                setRegisterInfo(registerInfoInitialState)
+                setNext(false)
+                toast.success('Your card is successfully submitted! We will work to get you on board soon!')
+            }
         } catch (error) {
             console.error('Error submitting');
             toast.error('Error submitting')

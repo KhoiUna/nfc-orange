@@ -19,10 +19,13 @@ const linksInitialState: LinkState[] = [
 ]
 
 export default function LinkEditor() {
-    const [linkState, setLinkState] = useState<LinkState[]>(JSON.parse(localStorage.getItem('create_card_link_state')!) || linksInitialState)
+    const [linkState, setLinkState] = useState<LinkState[]>(linksInitialState)
 
     useMemo(() => {
-        if (linkState.length > 1) localStorage.setItem('create_card_link_state', JSON.stringify(linkState))
+        if (typeof window !== 'undefined') {
+            if (linkState.length > 1) return localStorage.setItem('create_card_link_state', JSON.stringify(linkState))
+            if (localStorage.getItem('create_card_link_state')) return setLinkState(JSON.parse(localStorage.getItem('create_card_link_state')!))
+        }
     }, [linkState])
 
     const addLink = () => {
