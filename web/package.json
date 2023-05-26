@@ -1,6 +1,9 @@
 {
   "name": "nfc-orange",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
