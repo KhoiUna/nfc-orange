@@ -1,4 +1,4 @@
-// Script to send email with Nodemailer
+// Script to say thank you for filling out the Tally.so form
 "use strict";
 
 require("dotenv").config();

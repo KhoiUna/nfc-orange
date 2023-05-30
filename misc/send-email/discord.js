@@ -1,4 +1,4 @@
-// Script to send email with Nodemailer
+// Script to invite users to the Discord channel
 "use strict";
 
 require("dotenv").config();
