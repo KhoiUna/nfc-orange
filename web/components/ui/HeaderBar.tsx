@@ -46,7 +46,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
       {/* Dark overlay */}
       <div
         onClick={() => toggleMenu()}
-        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 opacity-70 bg-gradient-to-l from-primary to-white w-[100vw] h-[100vh]"
+        className="cursor-pointer sm:hidden absolute z-10 left-0 top-0 opacity-90 bg-gradient-to-l from-primary to-white w-[100vw] h-[100vh]"
       ></div>
 
       {/* Menu sidebar */}
@@ -79,7 +79,7 @@ const MenuSidebar = ({ toggleMenu }: { toggleMenu: () => void }) => {
           {NAV_LINKS.map((item, index) => (
             <p
               key={index}
-              className="sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 decoration-white text-white font-semibold"
+              className="sm:hidden mx-5 my-8 text-2xl decoration-white text-white font-semibold"
               onClick={() => toggleMenu()}
             >
               <NavLink href={item.href} text={item.text} />
@@ -111,7 +111,7 @@ const HeaderBar = () => {
             NAV_LINKS.map((item, index) => (
               <p
                 key={index}
-                className={"hidden sm:block mx-5 text-lg underline underline-offset-4 font-semibold text-white drop-shadow-lg"}
+                className={"hidden sm:block mx-5 text-lg font-semibold text-white drop-shadow-lg"}
                 onClick={() => toggleMenu()}
               >
                 <NavLink href={item.href} text={item.text} />
