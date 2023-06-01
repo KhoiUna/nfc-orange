@@ -7,7 +7,7 @@ import { Link, User } from "@/types/types";
 type ApiResponse = {
   success: boolean | {
     user: User
-    resume_link: Link
+    video_link: Link | null
     links: Link[],
   },
   error: string | boolean
@@ -26,12 +26,12 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .json({ success: false, error: "Method not allowed" });
 
     const { rows: links } = await client.query(
-      "SELECT link_title, url FROM links WHERE user_id=(SELECT id FROM users WHERE email = $1) AND NOT link_title='My Resume'",
+      "SELECT link_title, url FROM links WHERE user_id=(SELECT id FROM users WHERE email = $1) AND NOT link_title='Video'",
       [req.session.user?.email]
     );
 
-    const { rows: resume_link } = await client.query(
-      "SELECT link_title, url FROM links WHERE user_id=(SELECT id FROM users WHERE email = $1) AND link_title='My Resume'",
+    const { rows: video_link } = await client.query(
+      "SELECT link_title, url FROM links WHERE user_id=(SELECT id FROM users WHERE email = $1) AND link_title='Video'",
       [req.session.user?.email]
     );
 
@@ -43,7 +43,7 @@ async function profile(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
     return res.status(200).json({
       success: {
         user: rows[0],
-        resume_link: resume_link[0]?.url,
+        video_link: video_link[0],
         links,
       },
       error: false,
