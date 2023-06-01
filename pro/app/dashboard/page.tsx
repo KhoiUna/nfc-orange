@@ -145,11 +145,11 @@ export default function Dashboard() {
                         className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
                     >
                         <div className="flex w-full justify-center">
-                            Upload video
+                            Embed YouTube video
                         </div>
 
                         <span className="bg-blue-100 ml-3 p-3 rounded-lg">
-                            <Icon className="text-2xl text-blue-800" icon="ant-design:upload-outlined" />
+                            <Icon className="text-2xl text-red-500" icon="ri:youtube-fill" />
                         </span>
                     </button>
                 </Link>
