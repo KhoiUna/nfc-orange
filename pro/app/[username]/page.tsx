@@ -28,7 +28,7 @@ type ApiResponse = {
     success: {
         user: User
         links: LinkType[]
-        resume_link: string
+        video_link: LinkType
     },
     error: 'invalid' | 'register'
 }
@@ -37,6 +37,7 @@ export default function View({ params }: Props) {
     const { username } = params
     const { data } = useSWR<ApiResponse>(`/api/view/profile/${username}`, swrFetcher);
 
+    const [isOpen, setIsOpen] = useState(true)
     const [showPopup, setShowPopup] = useState(false)
     const [showQrCodePopup, setShowQrCodePopup] = useState(false)
 
@@ -79,7 +80,7 @@ export default function View({ params }: Props) {
         </>
     );
     const { first_name, middle_name, last_name, avatar_url, bio } = data.success.user
-    const { links, resume_link } = data.success
+    const { links, video_link } = data.success
     const shareURL = window.location.origin + window.location.pathname
 
     const togglePopup = () => setShowPopup(!showPopup)
@@ -119,7 +120,26 @@ export default function View({ params }: Props) {
         URL.revokeObjectURL(url);
     }
 
-    const isBlank = !resume_link && links.length === 0
+    const isBlank = !video_link && links.length === 0
+
+    const embedURL = (url: string) => {
+        try {
+            const getID = (url: string) => {
+                const urlObj = new URL(url)
+
+                let id = urlObj.searchParams.get('v')
+
+                if (id !== null && id.length === 11) return id
+
+                id = urlObj.pathname.slice(1)
+                if (id.length === 11) return id
+            }
+
+            return `https://www.youtube.com/embed/${getID(url)}`
+        } catch (error) {
+            return
+        }
+    }
 
     return (
         <>
@@ -180,11 +200,27 @@ export default function View({ params }: Props) {
                 <div className={`mt-6 pb-6 min-h-[35vh]`}>
                     {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
 
-                    {resume_link && <Link href={`/${username}/resume`} className="block max-w-[500px] m-auto">
-                        <div className="border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100">
-                            <p className="font-bold">My Resume</p>
+
+                    {video_link && <button
+                        className={"w-full m-auto max-w-[500px] border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100 " + `${isOpen ? 'bg-orange-100' : ''}`}
+                        onClick={() => setIsOpen(!isOpen)}
+                    >
+                        <div className="flex justify-between items-center">
+                            <p className="font-bold w-full">
+                                Check out this video
+                            </p>
+                            <Icon icon="mingcute:down-line" className={`text-2xl ${isOpen ? 'rotate-180' : ''}`} />
                         </div>
-                    </Link>}
+
+                        {isOpen &&
+                            <div className="pt-4">
+                                <iframe
+                                    className="w-full"
+                                    width="560" height="315"
+                                    src={embedURL(video_link?.url)}
+                                    title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                            </div>}
+                    </button>}
 
                     {/* Loop through social links */}
                     {links.map((link, index) => (
@@ -194,11 +230,11 @@ export default function View({ params }: Props) {
                             </div>
                         </Link>
                     ))}
-                </div>
-            </div>
+                </div >
+            </div >
 
             {/* Fixed share bar */}
-            <div className="sm:w-[500px] w-[370px] m-auto flex justify-around items-center sticky bottom-2">
+            < div className="sm:w-[500px] w-[370px] m-auto flex justify-around items-center sticky bottom-2" >
                 <FloatIconButton
                     className="bg-primary rounded-[100%] w-14 h-14 drop-shadow-lg flex justify-center items-center"
                     onClick={() => toggleQrCodePopup()}
@@ -222,9 +258,10 @@ export default function View({ params }: Props) {
                 >
                     <Icon className="text-white text-2xl" icon="ph:share-bold" />
                 </FloatIconButton>
-            </div>
+            </div >
 
-            {showPopup && <SharePopup url={shareURL} togglePopup={togglePopup} />}
+            {showPopup && <SharePopup url={shareURL} togglePopup={togglePopup} />
+            }
             {showQrCodePopup && <QrCodePopup togglePopup={toggleQrCodePopup} />}
         </>
     );
