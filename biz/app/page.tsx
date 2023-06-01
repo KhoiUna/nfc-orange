@@ -5,6 +5,7 @@ import { SyntheticEvent, useState } from "react";
 import TextLoader from "@/components/ui/TextLoader";
 import useAuth from "@/lib/useAuth";
 import Logo from "@/components/Logo";
+import HeaderBar from "@/components/ui/HeaderBar";
 
 export const Footer = () => (
     <footer className="bg-primary py-[5%] px-[10%]">
@@ -76,7 +77,7 @@ const loginInfoInitialState = {
 };
 
 export default function Login() {
-    useAuth({ redirectIfFound: true });
+    useAuth({});
 
     const router = useRouter();
 
@@ -130,62 +131,67 @@ export default function Login() {
     };
 
     return (
-        <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
-            <div className="w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
-                <h1
-                    className="text-[2.5rem] font-bold mx-auto my-3 text-white"
-                    style={{
-                        textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
-                    }}
-                >
-                    Login
-                </h1>
+        <>
+            <HeaderBar />
 
-                <div className="max-w-[500px] m-auto">
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <input
-                                onChange={handleChange}
-                                value={loginInfo.email}
-                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                            />
-                        </div>
+            <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
 
-                        <div>
-                            <input
-                                onChange={handleChange}
-                                value={loginInfo.password}
-                                className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                            />
-                        </div>
+                <div className="w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
+                    <h1
+                        className="text-[2.5rem] font-bold mx-auto my-3 text-white"
+                        style={{
+                            textShadow: "2px 8px 2px rgba(0, 0, 0, 0.3)",
+                        }}
+                    >
+                        Login
+                    </h1>
 
-                        <div className="my-5 drop-shadow-lg">
-                            <button
-                                className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black shadow-stone-800 shadow-lg"
-                                type="submit"
-                            >
-                                {!isLoading && "Login"}
-                                {isLoading && <TextLoader loadingText="Login" />}
-                            </button>
-                        </div>
+                    <div className="max-w-[500px] m-auto">
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <input
+                                    onChange={handleChange}
+                                    value={loginInfo.email}
+                                    className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                />
+                            </div>
 
-                        {status.text && (
-                            <p
-                                className={`${status.error === true ? "text-red-600" : "text-green-600"
-                                    } text-[1.3rem] p-2 font-bold my-1`}
-                            >
-                                {status.text}
-                            </p>
-                        )}
-                    </form>
+                            <div>
+                                <input
+                                    onChange={handleChange}
+                                    value={loginInfo.password}
+                                    className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                />
+                            </div>
+
+                            <div className="my-5 drop-shadow-lg">
+                                <button
+                                    className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black shadow-stone-800 shadow-lg"
+                                    type="submit"
+                                >
+                                    {!isLoading && "Login"}
+                                    {isLoading && <TextLoader loadingText="Login" />}
+                                </button>
+                            </div>
+
+                            {status.text && (
+                                <p
+                                    className={`${status.error === true ? "text-red-600" : "text-green-600"
+                                        } text-[1.3rem] p-2 font-bold my-1`}
+                                >
+                                    {status.text}
+                                </p>
+                            )}
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
