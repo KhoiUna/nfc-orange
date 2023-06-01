@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Toaster } from "react-hot-toast"
 
 export const metadata = {
     title: 'NFC Orange | Resume',
@@ -8,8 +9,8 @@ export const metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <header className="sticky top-0 z-10 shadow-xl">
-                <nav className={`flex bg-primary p-3`}>
+            <header className="sticky top-0 z-10">
+                <nav className={`flex bg-primary p-2`}>
                     <Link href={'/dashboard'}>
                         <button className="flex text-white items-center">
                             <svg
@@ -26,13 +27,35 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     d="M10 19l-7-7m0 0l7-7m-7 7h18"
                                 />
                             </svg>
-                            <span className="p-2 text-white text-2xl">Back</span>
+                            <span className="text-white text-xl p-2">Back</span>
                         </button>
                     </Link>
                 </nav>
             </header>
 
-            <main className="pt-20 h-screen max-h-screen overflow-y-auto bg-slate-50">{children}</main>
+            <main className="pt-20 h-screen max-h-screen overflow-y-auto bg-slate-50">
+                <Toaster
+                    toastOptions={{
+                        success: {
+                            style: {
+                                background: "green",
+                                fontWeight: "bold",
+                                fontSize: "large",
+                                color: "white",
+                            },
+                        },
+                        error: {
+                            style: {
+                                background: "red",
+                                fontWeight: "bold",
+                                fontSize: "large",
+                                color: "white",
+                            },
+                        },
+                    }}
+                />
+
+                {children}</main>
         </>
     )
 }
