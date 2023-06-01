@@ -98,7 +98,8 @@ const MenuSidebar = ({
                   className={`sm:hidden mx-5 my-8 text-xl ${TEXT_DECORATION_COLOR} font-semibold`}
                   onClick={() => toggleMenu()}
                 >
-                  <NavLink href={item.href} text={item.text} />
+                  {item.text !== 'Logout' && <NavLink href={item.href} text={item.text} />}
+                  {item.text === 'Logout' && <a href={item.href}>Logout</a>}
                 </p>
               </Fragment>
             );
