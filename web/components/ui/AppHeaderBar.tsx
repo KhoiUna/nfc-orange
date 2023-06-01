@@ -47,7 +47,7 @@ const MenuSidebar = ({
         className={`${TEXT_COLOR} drop-shadow-xl sm:hidden absolute top-0 right-0 h-[100vh] w-fit`}
       >
         <div className="text-right">
-          <button className="sm:hidden mr-3 mt-6" onClick={() => toggleMenu()}>
+          <button className="sm:hidden mr-3 mt-5" onClick={() => toggleMenu()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -68,7 +68,7 @@ const MenuSidebar = ({
           {/* <Link href={"https://forms.gle/fuXW1XgG7kST3ihr7"} passHref>
             <a target={"_blank"} rel="noopenner noreferrer">
               <p
-                className="flex items-center sm:hidden justify-end my-8 text-2xl decoration-black"
+                className="flex items-center sm:hidden justify-end my-8 text-xl decoration-black"
                 onClick={() => toggleMenu()}
               >
                 Feedback
@@ -95,7 +95,7 @@ const MenuSidebar = ({
               <Fragment key={index}>
                 <p
                   key={index}
-                  className={`sm:hidden mx-5 my-8 text-2xl ${TEXT_DECORATION_COLOR} font-semibold`}
+                  className={`sm:hidden mx-5 my-8 text-xl ${TEXT_DECORATION_COLOR} font-semibold`}
                   onClick={() => toggleMenu()}
                 >
                   <NavLink href={item.href} text={item.text} />
@@ -120,9 +120,9 @@ const AppHeaderBar = ({
   return (
     <header id="header" className="sticky top-0 z-10 shadow-xl">
       <nav
-        className={`flex flex-row text-slate-50 py-3 px-3 items-center justify-between`}
+        className={`flex flex-row text-slate-50 py-2 px-3 items-center justify-between`}
       >
-        <p className={`p-2 text-2xl font-bold ${TEXT_COLOR}`}>{title}</p>
+        <p className={`p-2 text-xl font-bold ${TEXT_COLOR}`}>{title}</p>
 
         <div className="flex text-black">
           {/* TODO: feedback form */}
