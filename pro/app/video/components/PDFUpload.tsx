@@ -1,8 +1,6 @@
 import TextLoader from "@/components/ui/TextLoader";
 import { SyntheticEvent, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import PDFViewer from "tailwind-pdf-viewer";
-import "tailwind-pdf-viewer/style.css";
 import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
@@ -143,7 +141,7 @@ export default function PDFUpload({ pdfURL }: Props) {
             <div className="mt-6">
                 {uploadedURL && <p className="mx-5 font-bold mb-2">Your current resume:</p>}
                 {uploadedURL && <div className="mx-5">
-                    <PDFViewer pdfURL={uploadedURL} />
+                    <p>Video</p>
                 </div>}
             </div>
         </>
