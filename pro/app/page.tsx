@@ -12,7 +12,7 @@ const loginInfoInitialState = {
 };
 
 export default function Login() {
-    useAuth({});
+    useAuth({ redirectIfFound: true });
 
     const router = useRouter();
 

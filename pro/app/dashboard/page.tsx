@@ -144,12 +144,12 @@ export default function Dashboard() {
             <hr className="w-[95%] m-auto" />
 
             <div className="mt-5 mx-3">
-                <Link href={`/resume`} className="contents">
+                <Link href={`/video`} className="contents">
                     <button
                         className="max-w-[500px] mx-auto flex justify-between items-center w-full font-bold mt-5 border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
                     >
                         <div className="flex w-full justify-center">
-                            My Resume
+                            Upload video
                         </div>
 
                         <span className="bg-blue-100 ml-3 p-3 rounded-lg">
