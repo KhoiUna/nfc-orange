@@ -1,5 +1,4 @@
 import HeaderBar from "@/components/ui/HeaderBar"
-import { Footer } from "../page"
 
 export const metadata = {
     title: 'NFC Orange | Privacy Policy',
