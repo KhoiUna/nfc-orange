@@ -98,6 +98,7 @@ export default function Profile() {
                 <p><b>First Name:</b> {user.first_name}</p>
                 {user.middle_name && <p><b>Middle Name:</b> {user.middle_name}</p>}
                 <p><b>Last Name:</b> {user.last_name}</p>
+                <p><b>Premium:</b> {user.is_premium ? 'Subscribed' : 'False'}</p>
             </div>
             <hr className="mt-3" />
 

@@ -24,6 +24,7 @@ export type User = {
   avatar_url: string | null
   bio: string | null
   created_at: string
+  is_premium: boolean
 }
 
 export type Link = {
