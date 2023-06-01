@@ -44,7 +44,7 @@ export default function Analytics() {
                     borderColor: '#DC7700',
                     backgroundColor: 'RGBA(220, 119, 0, 0.1)',
                     fill: true,
-                    tension: 0.1
+                    tension: 0.5
                 }]
             }}
 
