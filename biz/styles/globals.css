@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-bg-color: #dc7700;
+  --swiper-navigation-size: 20px;
+  --swiper-navigation-color: var(--theme-bg-color);
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+@keyframes colorFadeIn {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--theme-bg-color);
+  }
+}
+@keyframes colorFadeOut {
+  from {
+    background-color: var(--theme-bg-color);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+/* Customize scrollbar */
+*::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+*::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: silver;
+  border-radius: 8px;
+}
+
+#header {
+  --border-bottom-width: 0px;
+  --border-color: rgba(0, 0, 0, 0);
+  --border-left-width: 0px;
+  --border-right-width: 0px;
+  --border-style: solid;
+  --border-top-width: 0px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(220, 119, 0, 0.8);
+  filter: none;
+  width: 100%;
+  opacity: 1;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+#gif-parallax {
+  background-image: linear-gradient(
+      to top,
+      rgb(255, 248, 211, 0.5),
+      rgb(255, 233, 182)
+    ),
+    url(/images/mockup.png);
+  background-position: left 40% top 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+}
+@media screen and (min-width: 500px) {
+  #gif-parallax {
+    background: linear-gradient(
+      to right bottom,
+      rgb(255, 248, 211),
+      rgb(255, 233, 182)
+    );
+    /* min-height: 100vh; */
+  }
+}
+
+#parallax {
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(220, 117, 0, 0.6)
+    ),
+    url(/images/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+#bio a {
+  color: #1e40af;
+  text-decoration: underline;
+}
