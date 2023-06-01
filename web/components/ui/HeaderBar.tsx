@@ -98,7 +98,7 @@ const HeaderBar = () => {
   return (
     <header id="header" className={`fixed w-full z-10`}>
       <nav
-        className={`flex text-slate-50 pt-4 pb-2 px-3 items-center justify-between`}
+        className={`flex text-slate-50 p-3 items-center justify-between`}
       >
         <Link href="/">
           <div className="w-[10rem] h-fit cursor-pointer">
