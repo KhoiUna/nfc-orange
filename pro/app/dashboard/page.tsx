@@ -17,6 +17,7 @@ import FloatIconButton from "@/components/ui/FloatIconButton";
 import SharePopup from "./components/SharePopup";
 import useAuth from "@/lib/useAuth";
 import usermaven from "@/lib/usermaven";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 const BioEditor = dynamic(() => import('./components/BioEditor'), {
     ssr: false,
@@ -76,12 +77,7 @@ export default function Dashboard() {
         }
     }, [data, authUser.data?.email])
 
-    if (error)
-        return (
-            <div className="text-[1.8rem] text-center mx-5 pt-5">
-                <h1>Failed to load</h1>
-            </div>
-        );
+    if (error) return <ErrorMessage />
 
     if (!data) return <OrangeLoader />
 
