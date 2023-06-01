@@ -107,7 +107,7 @@ export default function Login() {
 
                             <div className="my-5 drop-shadow-lg">
                                 <button
-                                    className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black shadow-stone-800 shadow-lg"
+                                    className="bg-primary text-[1.3rem] text-white rounded-lg p-2 border border-black drop-shadow-lg"
                                     type="submit"
                                 >
                                     {!isLoading && "Login"}
