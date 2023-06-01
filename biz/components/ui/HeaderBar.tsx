@@ -80,7 +80,7 @@ const HeaderBar = () => {
       <nav
         className={`flex text-slate-50 p-3 items-center justify-between`}
       >
-        <Link href="/">
+        <Link href="https://www.nfcorange.com/">
           <div className="w-[10rem] h-fit cursor-pointer">
             <Logo />
           </div>
