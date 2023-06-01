@@ -78,7 +78,7 @@ export default function View({ params }: Props) {
             </div>
         </>
     );
-    const { first_name, middle_name, last_name, avatar_url, major, bio } = data.success.user
+    const { first_name, middle_name, last_name, avatar_url, bio } = data.success.user
     const { links, resume_link } = data.success
     const shareURL = window.location.origin + window.location.pathname
 
@@ -166,7 +166,6 @@ export default function View({ params }: Props) {
                 {!bio && (
                     <>
                         <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
-                        <p className="text-lg">My major is <b>{major}</b></p>
                     </>
                 )}
                 {bio && (
