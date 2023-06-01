@@ -1,6 +1,5 @@
 import Image from "next/image";
 import HeaderBar from "./HeaderBar";
-import Link from "next/link";
 
 export default function ErrorMessage() {
     return (
@@ -11,7 +10,7 @@ export default function ErrorMessage() {
                 <h1 className='text-2xl text-center font-bold'>Oh no! Something goes wrong!</h1>
                 <h2 className='text-2xl text-center font-bold'>Click the image below to reset your session.</h2>
 
-                <Link href={'/api/logout'}>
+                <a href={'/api/logout'}>
                     <Image
                         className='m-auto'
                         src={'/images/error.png'}
@@ -19,7 +18,7 @@ export default function ErrorMessage() {
                         width={300}
                         height={300}
                     />
-                </Link>
+                </a>
             </div>
         </>
     )
