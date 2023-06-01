@@ -135,9 +135,9 @@ export default function Dashboard() {
 
     return (
         <div className="pb-5">
-            <h2 className="text-xl mx-5 py-7">
+            <h1 className="text-xl mx-5 py-7">
                 {greetUser(user.first_name)}
-            </h2>
+            </h1>
 
             <ProfilePictureUpload user={user} />
             <BioEditor bio={user.bio} />
