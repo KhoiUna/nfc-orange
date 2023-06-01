@@ -12,6 +12,7 @@ export default function ErrorMessage() {
 
                 <a href={'/api/logout'}>
                     <Image
+                        priority
                         className='m-auto'
                         src={'/images/error.png'}
                         alt='NFC Orange error image'
