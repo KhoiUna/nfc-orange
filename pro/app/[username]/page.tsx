@@ -122,7 +122,7 @@ export default function View({ params }: Props) {
         URL.revokeObjectURL(url);
     }
 
-    const isBlank = !video_link && links.length === 0
+    const isBlank = !video_link?.url && links.length === 0
 
     const embedURL = (url: string) => {
         try {
@@ -191,10 +191,7 @@ export default function View({ params }: Props) {
                     </>
                 )}
                 {bio && (
-                    <div
-                        id='bio'
-                        className='text-center mb-3 bg-white p-3 mx-3 rounded-lg leading-6'
-                    >
+                    <div className='w-[500px] text-center mb-3 bg-white p-3 mx-auto rounded-lg leading-6'>
                         <p dangerouslySetInnerHTML={{ __html: bio }} />
                     </div>
                 )}
@@ -206,7 +203,7 @@ export default function View({ params }: Props) {
 
                 <div className={`mt-6 pb-6 min-h-[35vh]`}>
                     {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
-                    {video_link && <button
+                    {video_link?.url && <button
                         className={"w-full m-auto max-w-[500px] border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100"}
                         onClick={() => setIsOpen(!isOpen)}
                     >
