@@ -187,7 +187,7 @@ export default function View({ params }: Props) {
             <div className="text-center mt-[5rem] mx-3">
                 {!bio && (
                     <>
-                        <p className="mt-3 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
+                        <p className="my-2 text-lg font-bold"><span className="font-normal">Hi! I am </span>{first_name} {middle_name} {last_name}</p>
                     </>
                 )}
                 {bio && (
