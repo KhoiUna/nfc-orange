@@ -17,11 +17,13 @@ export type Student =
 export type User = {
   id: number
   email: string
+  phone_number: string
   username: string
-  first_name: string,
-  middle_name: string | null,
+  first_name: string
+  middle_name: string | null
   last_name: string,
   avatar_url: string | null
+  banner_image_url: string | null
   bio: string | null
   created_at: string
   is_premium: boolean
