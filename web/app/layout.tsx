@@ -5,6 +5,7 @@ export const metadata = {
     title: 'NFC Orange | Home',
     description: 'NFC Orange | Get your digital business card & join our student community.',
     metadataBase: new URL('https://www.nfcorange.com'),
+    manifest: '/manifest.json',
     openGraph: {
         images: [
             {
