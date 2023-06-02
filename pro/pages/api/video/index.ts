@@ -21,7 +21,11 @@ async function upload(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
         .json({ success: false, error: "Method not allowed" });
 
     if (req.method === 'POST') {
-      const { videoURL } = req.body;
+      const { videoURL }: { videoURL: string } = req.body;
+
+      if (videoURL.trim().length === 0) return res
+        .status(400)
+        .json({ success: false, error: "URL cannnot be empty." });
 
       // Save link to database
       const response = await client.query(
