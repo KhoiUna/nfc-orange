@@ -7,8 +7,19 @@ import useSWR from "swr";
 import { swrFetcher } from "@/lib/swrFetcher";
 import OrangeLoader from "@/components/ui/OrangeLoader";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+import { Link, User } from "@/types/types";
+import { Icon } from "@iconify/react";
 
 Chart.register(CategoryScale);
+
+type ProfileApiResponse = {
+    success: {
+        user: User
+        video_link: Link | null
+        links: Link[],
+    },
+    error: string | boolean
+}
 
 type ApiResponse = {
     success: {
@@ -18,12 +29,23 @@ type ApiResponse = {
     error: string | boolean
 }
 
-export default function Analytics() {
-    const { data: analyticsData, error } = useSWR<ApiResponse>(`/api/analytics`, swrFetcher)
+export default async function Analytics() {
+    const { data: profileData, error: profileError } = useSWR<ProfileApiResponse>(`/api/profile`, swrFetcher)
 
-    if (error) return <ErrorMessage />
+    const { data: analyticsData, error } = useSWR<ApiResponse>(profileData?.success.user.is_premium ? `/api/analytics` : null, swrFetcher)
 
-    if (!analyticsData) return <OrangeLoader />
+    if (error || profileError) return <ErrorMessage />
+
+    if (!profileData?.success.user.is_premium) return (
+        <div className="font-semibold text-center from-primary to-[#FFF0C3] bg-gradient-to-b pt-8 text-2xl min-h-screen">
+            <p className="text-white">This feature is only for Premium Users.</p>
+            <p className="text-white">Please subscribe.</p>
+            <Icon className="text-7xl m-auto mt-5 text-white drop-shadow-lg" icon="ic:round-lock" />
+        </div>
+    )
+
+    if (!analyticsData || !profileData) return <OrangeLoader />
+
 
     if (analyticsData.success === false) return <ErrorMessage />
 
