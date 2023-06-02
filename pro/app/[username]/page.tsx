@@ -79,7 +79,8 @@ export default function View({ params }: Props) {
             </div>
         </>
     );
-    const { first_name, middle_name, last_name, avatar_url, bio } = data.success.user
+
+    const { first_name, middle_name, last_name, avatar_url, bio, phone_number, banner_image_url } = data.success.user
     const { links, video_link } = data.success
     const shareURL = window.location.origin + window.location.pathname
 
@@ -104,6 +105,7 @@ export default function View({ params }: Props) {
             lastName: last_name,
             viewURL: shareURL,
             bio,
+            phoneNumber: phone_number,
             avatarURL,
             links
         })
@@ -166,7 +168,7 @@ export default function View({ params }: Props) {
 
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
-                    backgroundImage: 'url(/images/animation.gif)',
+                    backgroundImage: `url(${banner_image_url || '/images/animation.gif'})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
@@ -196,13 +198,16 @@ export default function View({ params }: Props) {
                         <p dangerouslySetInnerHTML={{ __html: bio }} />
                     </div>
                 )}
+                {phone_number && (
+                    <div className='max-w-[500px] m-auto text-center mb-3 bg-white p-3 rounded-lg leading-6'>
+                        <p>Call me at: <a className="text-blue-800 ml-1 underline underline-offset-2 font-semibold" href={`tel:${phone_number}`}>{phone_number}</a></p>
+                    </div>
+                )}
 
                 <div className={`mt-6 pb-6 min-h-[35vh]`}>
                     {isBlank && <p className="italic text-lg text-slate-500">Nothing here!</p>}
-
-
                     {video_link && <button
-                        className={"w-full m-auto max-w-[500px] border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100 " + `${isOpen ? 'bg-orange-100' : ''}`}
+                        className={"w-full m-auto max-w-[500px] border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white hover:bg-orange-100"}
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         <div className="flex justify-between items-center">
