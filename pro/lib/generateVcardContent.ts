@@ -20,7 +20,7 @@ export default async function generateVcardContent(params: Params) {
 BEGIN:VCARD
 VERSION:3.0
 N:${lastName};${firstName}
-FN:${firstName + ' ' + middleName + ' ' + lastName}
+FN:${firstName + ' ' + `${middleName || ''}` + lastName}
 PHOTO;ENCODING=b;TYPE=JPEG:${await generateBase64FromImageUrl(avatarURL)}
 TITLE:${stripBio(bio || '')}
 ${phoneNumber ? `TEL;type=CELL,VOICE:${phoneNumber}` : ''}
