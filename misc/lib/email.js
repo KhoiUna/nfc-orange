@@ -17,13 +17,26 @@ const sendMailgun = async (toAddress, subject, toName, emailTemplate) => {
 
     const MAILGUN_DOMAIN = "mg.nfcorange.com";
 
-    await mg.messages.create(MAILGUN_DOMAIN, {
-      from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
-      to: [`${toName} <${toAddress}>`],
-      subject,
-      template: emailTemplate,
-      "h:X-Mailgun-Variables": JSON.stringify({ name: toName }),
-    });
+    const options =
+      emailTemplate === "payment"
+        ? {
+            from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
+            to: [`${toName} <${toAddress}>`],
+            subject,
+            template: emailTemplate,
+            "h:X-Mailgun-Variables": JSON.stringify({
+              name: toName,
+              payment_link: process.env.STRIPE_PAYMENT_LINK,
+            }),
+          }
+        : {
+            from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
+            to: [`${toName} <${toAddress}>`],
+            subject,
+            template: emailTemplate,
+            "h:X-Mailgun-Variables": JSON.stringify({ name: toName }),
+          };
+    await mg.messages.create(MAILGUN_DOMAIN, options);
 
     return true;
   } catch (error) {
