@@ -95,7 +95,7 @@ const ProfilePictureUpload = ({ user }: { user: User }) => {
                         fileName={`avatar-${user.first_name}-${user.last_name}.png`}
                         onError={onError}
                         onSuccess={onSuccess}
-                        folder={`${process.env.NEXT_PUBLIC_IMGKIT_UPLOAD_FOLDER}/${process.env.NEXT_PUBLIC_UPLOAD_FOLDER}`}
+                        folder={process.env.NEXT_PUBLIC_IMGKIT_UPLOAD_FOLDER}
                         onChange={() => {
                             setImageURL("")
                             setIsLoading(true)
