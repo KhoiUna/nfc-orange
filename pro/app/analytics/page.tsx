@@ -33,32 +33,34 @@ export default function Analytics() {
     }))
 
     return (
-        <Line
-            className="p-3 pt-8"
-            data={{
-                labels: chartData.map(({ date }) => date),
-                datasets: [{
-                    label: 'Profile views',
-                    data: chartData.map(({ count }) => count),
-                    borderWidth: 2,
-                    borderColor: '#DC7700',
-                    backgroundColor: 'RGBA(220, 119, 0, 0.1)',
-                    fill: true,
-                    tension: 0.5
-                }]
-            }}
+        <div className="max-w-[800px] m-auto">
+            <Line
+                className="p-3 pt-8"
+                data={{
+                    labels: chartData.map(({ date }) => date),
+                    datasets: [{
+                        label: 'Profile views',
+                        data: chartData.map(({ count }) => count),
+                        borderWidth: 2,
+                        borderColor: '#DC7700',
+                        backgroundColor: 'RGBA(220, 119, 0, 0.1)',
+                        fill: true,
+                        tension: 0.5
+                    }]
+                }}
 
-            options={{
-                plugins: {
-                    title: {
-                        display: true,
-                        text: "Profile Views"
-                    },
-                    legend: {
-                        display: false
+                options={{
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Profile Views"
+                        },
+                        legend: {
+                            display: false
+                        }
                     }
-                }
-            }}
-        />
+                }}
+            />
+        </div>
     )
 }
