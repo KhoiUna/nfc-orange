@@ -1,5 +1,4 @@
 import Script from "next/script";
-import NavigationEvents from "./NavigationEvents";
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 const Analytics = () => {
@@ -8,23 +7,21 @@ const Analytics = () => {
   return (
     <>
       {/* Tracking with Usermaven */}
-      <NavigationEvents />
+      {/* <NavigationEvents /> */}
 
       <VercelAnalytics />
 
-      {/* Google tag (gtag.js)  */}
-      <Script
-        async
-        strategy="afterInteractive"
-        src={"https://www.googletagmanager.com/gtag/js?id=G-JHYW0T0JLC"}
-      />
+      {/* Google tag (gtag.js) */}
+      <Script async strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-1SWNJQ1DSE" />
       <Script
         id="google_analytics"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-JHYW0T0JLC');`,
+          __html: `window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1SWNJQ1DSE');`
         }}
       />
     </>
