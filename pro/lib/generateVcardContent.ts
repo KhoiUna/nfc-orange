@@ -10,10 +10,11 @@ type Params = {
     bio: string | null
     avatarURL: string
     links: Link[]
+    phoneNumber?: string
 }
 
 export default async function generateVcardContent(params: Params) {
-    const { firstName, middleName, lastName, viewURL, bio, avatarURL, links } = params
+    const { firstName, middleName, lastName, viewURL, bio, avatarURL, phoneNumber, links } = params
 
     return `
 BEGIN:VCARD
@@ -22,6 +23,7 @@ N:${lastName};${firstName}
 FN:${firstName + ' ' + middleName + ' ' + lastName}
 PHOTO;ENCODING=b;TYPE=JPEG:${await generateBase64FromImageUrl(avatarURL)}
 TITLE:${stripBio(bio || '')}
+${phoneNumber ? `TEL;type=CELL,VOICE:${phoneNumber}` : ''}
 
 item1.URL:${viewURL}?utm_source=vcard
 item1.X-ABLabel:NFC Orange Profile
