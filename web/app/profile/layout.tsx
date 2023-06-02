@@ -2,7 +2,7 @@ import Analytics from "@/components/Analytics";
 import AppHeaderBar from "@/components/ui/AppHeaderBar";
 
 export const metadata = {
-    title: 'NFC Orange | Profile',
+    title: 'Profile | NFC Orange',
     description: 'NFC Orange | Get your digital business card & join our student community.'
 }
 
