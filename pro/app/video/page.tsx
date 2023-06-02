@@ -59,9 +59,9 @@ export default function Page() {
                 setIsLoading(false)
                 toast.success('Video saved successfully')
             }
-        } catch (error) {
+        } catch (error: any) {
             setIsLoading(false)
-            toast.error('Error saving video')
+            toast.error(error.response.data.error || 'Error saving video')
         }
     }
 
