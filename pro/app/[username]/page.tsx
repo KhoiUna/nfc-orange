@@ -191,7 +191,7 @@ export default function View({ params }: Props) {
                     </>
                 )}
                 {bio && (
-                    <div className='w-[500px] text-center mb-3 bg-white p-3 mx-auto rounded-lg leading-6'>
+                    <div className='max-w-[500px] text-center m-auto mb-3 bg-white p-3 rounded-lg leading-6'>
                         <p dangerouslySetInnerHTML={{ __html: bio }} />
                     </div>
                 )}
