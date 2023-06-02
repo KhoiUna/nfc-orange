@@ -48,7 +48,7 @@ export default async function handler(
             );
 
             const { rows: user } = await client.query(
-                "SELECT first_name, middle_name, last_name, avatar_url, bio FROM users WHERE id=$1",
+                "SELECT first_name, middle_name, last_name, phone_number, avatar_url, banner_image_url, is_premium, bio FROM users WHERE id=$1",
                 [userId]
             );
 
