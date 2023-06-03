@@ -17,6 +17,7 @@ import QrCodePopup from "./components/QrCodePopup";
 import HeaderBar from "@/components/ui/HeaderBar";
 import generateVcardContent from "@/lib/generateVcardContent";
 import { swrFetcher } from "@/lib/swrFetcher";
+import axios from "axios";
 
 type Props = {
     params: {
@@ -58,6 +59,11 @@ export default function View({ params }: Props) {
                 method: "POST",
             }).catch((err) => console.error(err))
         }
+
+        if (data?.success && new URL(window.location.href).searchParams.get('utm_source') === 'qrcode')
+            axios.post(`/api/view/profile/${username}`, {
+                isQrCode: true
+            }).catch((err) => console.error(err))
     }, [setCookie, cookies, data, username, removeCookie]);
 
     if (!data) return <OrangeLoader />
