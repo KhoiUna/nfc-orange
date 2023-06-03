@@ -78,7 +78,7 @@ export default function View({ params }: Props) {
             </div>
         </>
     );
-    const { first_name, middle_name, last_name, avatar_url, major, bio } = data.success.user
+    const { first_name, middle_name, last_name, avatar_url, major, bio, banner_image_url } = data.success.user
     const { links, resume_link } = data.success
     const shareURL = window.location.origin + window.location.pathname
 
@@ -146,7 +146,7 @@ export default function View({ params }: Props) {
 
             <div className="w-full h-[200px]">
                 <div className="h-full" style={{
-                    backgroundImage: 'url(/images/animation.gif)',
+                    backgroundImage: `url(${banner_image_url || '/images/animation.gif'})`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover'
                 }}>
@@ -170,10 +170,7 @@ export default function View({ params }: Props) {
                     </>
                 )}
                 {bio && (
-                    <div
-                        id='bio'
-                        className='text-center mb-3 bg-white p-3 mx-3 rounded-lg leading-6'
-                    >
+                    <div className='text-center mb-3 bg-white p-3 mx-auto max-w-[500px] rounded-lg leading-6'>
                         <p dangerouslySetInnerHTML={{ __html: bio }} />
                     </div>
                 )}
