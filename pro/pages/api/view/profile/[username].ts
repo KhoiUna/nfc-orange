@@ -77,7 +77,15 @@ export default async function handler(
                 [userId, new Date()]
             );
 
-            if (!saveProfileViewResponse) throw new Error("Error saving profile view.");
+            if (!saveProfileViewResponse) throw new Error("Error saving profile view.")
+
+            if (req.body.isQrCode === true) {
+                const saveQrResponse = await client.query(
+                    "INSERT INTO qr_histories(user_id, scanned_at) VALUES ($1, $2);",
+                    [userId, new Date()]
+                );
+                if (!saveQrResponse) throw new Error("Error saving QR Code scan.");
+            }
 
             return res.status(200).json({ success: true, error: false });
         }
