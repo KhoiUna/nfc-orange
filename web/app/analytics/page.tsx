@@ -41,9 +41,7 @@ export default async function Analytics() {
     const { data: analyticsData, error } = useSWR<ApiResponse>(profileData?.success.user.is_premium ? `/api/analytics` : null, swrFetcher)
 
     if (error || profileError) return <ErrorMessage />
-
-    if (!analyticsData || !profileData) return <OrangeLoader />
-
+    if (!profileData) return <OrangeLoader />
     if (profileData.success.user.is_premium === false) return (
         <div className="font-semibold text-center from-primary to-[#FFF0C3] bg-gradient-to-b pt-8 text-2xl min-h-screen">
             <p className="text-white">This feature is only for Premium Users.</p>
@@ -59,6 +57,7 @@ export default async function Analytics() {
         </div>
     )
 
+    if (!analyticsData) return <OrangeLoader />
     if (analyticsData.success === false) return <ErrorMessage />
 
     const profileViewChartData = analyticsData.success.profileViewHistory.map(({ date, count }) => ({
