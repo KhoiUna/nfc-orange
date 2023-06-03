@@ -1,5 +1,7 @@
 -- DATE: 2023-06-02
 
+begin;
+
 create table qr_histories (
     id serial primary key,
     user_id int not null,
@@ -12,5 +14,3 @@ create table card_tap_histories (
     card_id int not null,
     scanned_at timestamp without time zone not null
 );
-
-alter table users add column card_id INT;
