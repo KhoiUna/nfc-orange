@@ -1,4 +1,3 @@
-import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload"
 import { User } from "@/types/types"
 import Image from "next/image"
 import Link from "next/link"
@@ -25,40 +24,39 @@ export default function AddToHomeScreen({ user, url, togglePopup }: Props) {
                 last_name
             })
         }
+        localStorage.setItem('added_to_homescreen', 'true')
         togglePopup()
     }
 
     return (
         <>
-            <div className="fixed bg-black opacity-[0.5] w-screen h-screen top-0" />
+            <div onClick={() => togglePopup()} className="fixed bg-black opacity-[0.5] w-screen h-screen top-0 cursor-pointer" />
 
-            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] h-[550px] overflow-auto mx-3 sm:m-auto sm:w-screen top-[12vh] left-0 right-0 p-4 drop-shadow-lg">
+            <div className="fixed z-10 rounded-lg bg-white max-w-[500px] h-fit overflow-auto mx-3 sm:m-auto sm:w-screen top-16 left-0 right-0 p-4 drop-shadow-lg">
                 <p className="text-xl font-bold text-center px-3">Save digital card to your phone</p>
                 <p className="mt-3">1. Go to view your digital card <Link className="text-blue-800 underline font-semibold" href={url} target='_blank'>here</Link>.</p>
 
                 <div className="mt-3">
                     <p>2. Tap on your {"browser's"} <span className="italic">Share</span> button.</p>
                     <Image
-                        className="mt-3 mx-auto drop-shadow-lg rounded-lg w-auto"
+                        priority
+                        className="mt-3 mx-auto drop-shadow-lg rounded-lg w-auto h-auto"
                         src={'/images/share-button.jpeg'}
                         alt="Phone's share button"
                         width={250}
                         height={250}
-                        placeholder="blur"
-                        blurDataURL={BLUR_DATA_URL}
                     />
                 </div>
 
                 <div className="mt-3">
-                    <p>2. Tap <span className="italic">Add to Home Screen</span>. Then, {"you're"} done!</p>
+                    <p>3. Tap <span className="italic">Add to Home Screen</span>. Then, {"you're"} done!</p>
                     <Image
-                        className="mt-3 mx-auto drop-shadow-lg rounded-lg w-auto"
+                        priority
+                        className="mt-3 mx-auto drop-shadow-lg rounded-lg w-auto h-auto"
                         src={'/images/add-to-homescreen.jpeg'}
                         alt="Phone's share button"
                         width={250}
                         height={250}
-                        placeholder="blur"
-                        blurDataURL={BLUR_DATA_URL}
                     />
                 </div>
 

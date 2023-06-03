@@ -198,12 +198,12 @@ export default function Dashboard() {
                 }
             </div>
 
-            <FloatIconButton
+            {localStorage.getItem('added_to_homescreen') !== 'true' && <FloatIconButton
                 className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 left-2 drop-shadow-lg flex justify-center items-center"
                 onClick={toggleAddToHomeScreenPopup}
             >
                 <Icon className="text-white text-2xl" icon="ic:round-add-to-home-screen" />
-            </FloatIconButton>
+            </FloatIconButton>}
             <FloatIconButton
                 className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 right-2 drop-shadow-lg flex justify-center items-center"
                 onClick={handleClick}
