@@ -138,7 +138,7 @@ export default async function Analytics() {
             <h1 className="text-center font-bold pt-5">Card Taps</h1>
             {!profileData.success.user.card_id && (
                 <div className="rounded-lg drop-shadow-lg mx-3 font-semibold text-center bg-primary p-3 mt-3">
-                    <p className="text-white">You do not have a NFC Orange card to use this chart.</p>
+                    <p className="text-white">You do not have an NFC Orange card to use this chart.</p>
                 </div>
             )}
             {profileData.success.user.card_id && <Line
