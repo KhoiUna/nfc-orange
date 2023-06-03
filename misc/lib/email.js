@@ -53,6 +53,7 @@ const sendMailgunWaitlist = async (toAddress, toName, firstName) => {
     });
 
     const MAILGUN_DOMAIN = "mg.nfcorange.com";
+    const password = firstName.toLowerCase() + "123";
 
     await mg.messages.create(MAILGUN_DOMAIN, {
       from: `NFC Orange <contact@${MAILGUN_DOMAIN}>`,
@@ -62,10 +63,11 @@ const sendMailgunWaitlist = async (toAddress, toName, firstName) => {
       "h:X-Mailgun-Variables": JSON.stringify({
         name: toName,
         email: toAddress,
-        password: firstName.toLowerCase() + "123",
+        password,
       }),
     });
 
+    console.log(toAddress, " - Password:", password);
     return true;
   } catch (error) {
     console.error(error);
