@@ -51,7 +51,7 @@ export default async function Analytics() {
         </div>
     )
 
-    if (!analyticsData || !profileData) return <OrangeLoader />
+    if (!analyticsData || !profileData || profileData.error) return <OrangeLoader />
 
 
     if (analyticsData.success === false) return <ErrorMessage />
