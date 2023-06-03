@@ -21,11 +21,17 @@ type ProfileApiResponse = {
     error: string | boolean
 }
 
+type History = {
+    date: string
+    count: number
+}[]
+
 type ApiResponse = {
-    success: {
-        date: string
-        count: number
-    }[] | false
+    success: false | {
+        profileViewHistory: History
+        cardTapHistory: History
+        qrHistory: History
+    }
     error: string | boolean
 }
 
@@ -56,20 +62,28 @@ export default async function Analytics() {
 
     if (analyticsData.success === false) return <ErrorMessage />
 
-    const chartData = analyticsData.success.map(({ date, count }) => ({
+    const profileViewChartData = analyticsData.success.profileViewHistory.map(({ date, count }) => ({
+        date: new Date(date).toLocaleDateString(),
+        count
+    }))
+    const qrChartData = analyticsData.success.qrHistory.map(({ date, count }) => ({
+        date: new Date(date).toLocaleDateString(),
+        count
+    }))
+    const cardTapChartData = analyticsData.success.cardTapHistory?.map(({ date, count }) => ({
         date: new Date(date).toLocaleDateString(),
         count
     }))
 
     return (
-        <div className="max-w-[800px] m-auto">
+        <div className="max-w-[800px] min-h-screen m-auto bg-slate-50">
             <Line
                 className="p-3 pt-8"
                 data={{
-                    labels: chartData.map(({ date }) => date),
+                    labels: profileViewChartData.map(({ date }) => date),
                     datasets: [{
-                        label: 'Profile views',
-                        data: chartData.map(({ count }) => count),
+                        label: 'Profile Views',
+                        data: profileViewChartData.map(({ count }) => count),
                         borderWidth: 2,
                         borderColor: '#DC7700',
                         backgroundColor: 'RGBA(220, 119, 0, 0.1)',
@@ -83,6 +97,62 @@ export default async function Analytics() {
                         title: {
                             display: true,
                             text: "Profile Views"
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }}
+            />
+
+            <Line
+                className="p-3 pt-8"
+                data={{
+                    labels: qrChartData.map(({ date }) => date),
+                    datasets: [{
+                        label: 'QR Code Scan',
+                        data: qrChartData.map(({ count }) => count),
+                        borderWidth: 2,
+                        borderColor: 'RGBA(70, 55, 32, 1)',
+                        backgroundColor: 'RGBA(70, 55, 32, 0.1)',
+                        fill: true,
+                        tension: 0.5
+                    }]
+                }}
+
+                options={{
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "QR Code Scan"
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }}
+            />
+
+            <Line
+                className="p-3 pt-8"
+                data={{
+                    labels: cardTapChartData.map(({ date }) => date),
+                    datasets: [{
+                        label: 'Card Tap',
+                        data: cardTapChartData.map(({ count }) => count),
+                        borderWidth: 2,
+                        borderColor: 'rgb(25,64,255)',
+                        backgroundColor: 'rgba(25,64,255,0.1)',
+                        fill: true,
+                        tension: 0.5
+                    }]
+                }}
+
+                options={{
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: "Card Tap"
                         },
                         legend: {
                             display: false
