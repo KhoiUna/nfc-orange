@@ -76,7 +76,7 @@ export default async function Analytics() {
     }))
 
     return (
-        <div className="max-w-[800px] min-h-screen m-auto bg-slate-50">
+        <div className="max-w-[800px] min-h-screen m-auto bg-slate-50 pb-8">
             <h1 className="text-center font-bold pt-5">Profile Views</h1>
             <Line
                 className="p-3"
