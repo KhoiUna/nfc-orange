@@ -48,7 +48,7 @@ export default function View({ params }: Props) {
             const cookieOption = {
                 maxAge: 3600, // 1 hour
                 path: '/',
-                secure: process.env.NEXT_PUBLIC_PRODUCTION === "true",
+                secure: process.env.NODE_ENV === "production",
                 sameSite: true,
                 httpOnly: false,
             };
