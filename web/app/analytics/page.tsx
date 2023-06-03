@@ -42,7 +42,9 @@ export default async function Analytics() {
 
     if (error || profileError) return <ErrorMessage />
 
-    if (!profileData?.success.user.is_premium) return (
+    if (!analyticsData || !profileData) return <OrangeLoader />
+
+    if (profileData.success.user.is_premium === false) return (
         <div className="font-semibold text-center from-primary to-[#FFF0C3] bg-gradient-to-b pt-8 text-2xl min-h-screen">
             <p className="text-white">This feature is only for Premium Users.</p>
             <p className="text-white">Please subscribe.</p>
@@ -56,9 +58,6 @@ export default async function Analytics() {
             <Icon className="text-7xl m-auto mt-5 text-white drop-shadow-lg" icon="ic:round-lock" />
         </div>
     )
-
-    if (!analyticsData || !profileData || profileData.error) return <OrangeLoader />
-
 
     if (analyticsData.success === false) return <ErrorMessage />
 
