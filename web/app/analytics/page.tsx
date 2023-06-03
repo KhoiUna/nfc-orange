@@ -77,8 +77,9 @@ export default async function Analytics() {
 
     return (
         <div className="max-w-[800px] min-h-screen m-auto bg-slate-50">
+            <h1 className="text-center font-bold pt-5">Profile Views</h1>
             <Line
-                className="p-3 pt-8"
+                className="p-3"
                 data={{
                     labels: profileViewChartData.map(({ date }) => date),
                     datasets: [{
@@ -105,12 +106,13 @@ export default async function Analytics() {
                 }}
             />
 
+            <h1 className="text-center font-bold pt-5">QR Code Scans</h1>
             <Line
-                className="p-3 pt-8"
+                className="p-3"
                 data={{
                     labels: qrChartData.map(({ date }) => date),
                     datasets: [{
-                        label: 'QR Code Scan',
+                        label: 'QR Code Scans',
                         data: qrChartData.map(({ count }) => count),
                         borderWidth: 2,
                         borderColor: 'RGBA(70, 55, 32, 1)',
@@ -124,7 +126,7 @@ export default async function Analytics() {
                     plugins: {
                         title: {
                             display: true,
-                            text: "QR Code Scan"
+                            text: "QR Code Scans"
                         },
                         legend: {
                             display: false
@@ -133,12 +135,18 @@ export default async function Analytics() {
                 }}
             />
 
-            <Line
-                className="p-3 pt-8"
+            <h1 className="text-center font-bold pt-5">Card Taps</h1>
+            {!profileData.success.user.card_id && (
+                <div className="rounded-lg drop-shadow-lg mx-3 font-semibold text-center bg-primary p-3 mt-3">
+                    <p className="text-white">You do not have a NFC Orange card to use this chart.</p>
+                </div>
+            )}
+            {profileData.success.user.card_id && <Line
+                className="p-3"
                 data={{
                     labels: cardTapChartData.map(({ date }) => date),
                     datasets: [{
-                        label: 'Card Tap',
+                        label: 'Card Taps',
                         data: cardTapChartData.map(({ count }) => count),
                         borderWidth: 2,
                         borderColor: 'rgb(25,64,255)',
@@ -152,14 +160,14 @@ export default async function Analytics() {
                     plugins: {
                         title: {
                             display: true,
-                            text: "Card Tap"
+                            text: "Card Taps"
                         },
                         legend: {
                             display: false
                         }
                     }
                 }}
-            />
+            />}
         </div>
     )
 }
