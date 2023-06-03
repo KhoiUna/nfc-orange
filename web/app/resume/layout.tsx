@@ -8,8 +8,8 @@ export const metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <header className="sticky top-0 z-10 shadow-xl">
-                <nav className={`flex bg-primary p-3`}>
+            <header id="header" className="sticky top-0 z-10">
+                <nav className={`flex bg-primary p-2`}>
                     <Link href={'/dashboard'}>
                         <button className="flex text-white items-center">
                             <svg
@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     d="M10 19l-7-7m0 0l7-7m-7 7h18"
                                 />
                             </svg>
-                            <span className="p-2 text-white text-2xl">Back</span>
+                            <span className="text-white text-xl p-2">Back</span>
                         </button>
                     </Link>
                 </nav>
