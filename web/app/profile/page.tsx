@@ -95,20 +95,19 @@ export default function Profile() {
             <ProfilePictureUpload user={user} />
 
             <div className="text-lg">
-                <p><b>Major:</b> {user.major}</p>
-                <p><b>Expected graduation date:</b> {new Date(user.expected_grad_date).toLocaleDateString('en', { timeZone: 'utc' })}</p>
                 <p><b>First Name:</b> {user.first_name}</p>
                 {user.middle_name && <p><b>Middle Name:</b> {user.middle_name}</p>}
                 <p><b>Last Name:</b> {user.last_name}</p>
+                <p><b>Plan:</b> {user.is_premium ? 'Premium' : 'Free'}</p>
             </div>
             <hr className="mt-3" />
 
             <form className="text-lg mt-2" onSubmit={handleSubmit}>
                 <p className="text-center text-xl font-bold mt-4 mb-2">Account info</p>
 
-                <p><b>Email:</b> {authData.data?.email}</p>
-
                 <p><b>Username:</b> {user.username}</p>
+                <p><b>Email:</b> {authData.data?.email}</p>
+                <hr className="my-3" />
 
                 <div>
                     <label className="font-bold" htmlFor="current_password">Current password</label>
