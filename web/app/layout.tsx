@@ -3,10 +3,14 @@ import '@/styles/globals.css'
 
 export const metadata = {
     title: 'NFC Orange | Home',
-    description: 'NFC Orange | Get your digital business card & join our student community.',
+    description: 'Get your digital business card & join our student community.',
     metadataBase: new URL('https://www.nfcorange.com'),
     manifest: '/manifest.json',
     openGraph: {
+        title: 'NFC Orange | Home',
+        description: 'Get your digital business card & join our student community.',
+        url: 'https://www.nfcorange.com',
+        siteName: 'NFC Orange',
         images: [
             {
                 url: '/images/mockup.png',

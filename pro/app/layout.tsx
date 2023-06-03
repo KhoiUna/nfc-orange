@@ -2,11 +2,15 @@ import Analytics from '@/components/Analytics';
 import '@/styles/globals.css'
 
 export const metadata = {
-    title: 'NFC Orange | Home',
-    description: 'NFC Orange | Get your digital business card & join our student community.',
-    metadataBase: new URL('https://www.nfcorange.com'),
+    title: 'Pro | NFC Orange',
+    description: 'Get your digital business card.',
+    metadataBase: new URL('https://pro.nfcorange.com'),
     manifest: '/manifest.json',
     openGraph: {
+        title: 'Pro | NFC Orange',
+        description: 'Get your digital business card.',
+        url: 'https://pro.nfcorange.com',
+        siteName: 'NFC Orange',
         images: [
             {
                 url: '/images/mockup.png',
