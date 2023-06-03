@@ -16,6 +16,7 @@ export type Student =
 
 export type User = {
   id: number
+  card_id: number | null
   email: string
   major: string
   expected_grad_date: string
