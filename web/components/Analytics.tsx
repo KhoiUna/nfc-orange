@@ -3,7 +3,7 @@ import NavigationEvents from "./NavigationEvents";
 import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 
 const Analytics = () => {
-  if (process.env.NEXT_PUBLIC_PRODUCTION !== "true") return <></>;
+  if (process.env.NODE_ENV !== "production") return <></>;
 
   return (
     <>
