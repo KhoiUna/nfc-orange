@@ -55,7 +55,7 @@ export default function Dashboard() {
 
         if (data?.success) {
             // Track logged_in with Usermaven
-            if (process.env.NEXT_PUBLIC_PRODUCTION === "true") {
+            if (process.env.NODE_ENV === "production") {
                 const { first_name, last_name, middle_name, id, created_at, email } = data.success.user
                 usermaven.track('logged_in')
                 usermaven.id({

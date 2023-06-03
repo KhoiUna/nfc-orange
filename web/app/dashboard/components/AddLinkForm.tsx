@@ -43,7 +43,7 @@ export default function AddLinkForm({ user, index, removeLink, saveLink, link_ti
 
             if (data.success) {
                 // Track added_link with Usermaven
-                if (process.env.NEXT_PUBLIC_PRODUCTION === "true") {
+                if (process.env.NODE_ENV === "production") {
                     usermaven.track('added_link')
                     usermaven.id({
                         id: user.id.toString(),
