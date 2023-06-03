@@ -40,6 +40,13 @@ export default async function Analytics() {
         <div className="font-semibold text-center from-primary to-[#FFF0C3] bg-gradient-to-b pt-8 text-2xl min-h-screen">
             <p className="text-white">This feature is only for Premium Users.</p>
             <p className="text-white">Please subscribe.</p>
+            <div className="mt-3 drop-shadow-lg">
+                {/* @ts-ignore */}
+                <stripe-buy-button
+                    buy-button-id="buy_btn_1NEkhfDjwiDsyRPr6Gn3NSnN"
+                    publishable-key="pk_live_51NEGB0DjwiDsyRPrty0AvEErWGKtd5nUrwKyoY8AjXHxU5Obo4rcT8woJjh2o48ojYJruOUHtmAN8Matp5clkKse00UZDv5Oic"
+                />
+            </div>
             <Icon className="text-7xl m-auto mt-5 text-white drop-shadow-lg" icon="ic:round-lock" />
         </div>
     )
