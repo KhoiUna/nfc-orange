@@ -27,7 +27,7 @@ type ApiResponse = {
         user: User,
         links: LinkType[]
     };
-    error: any;
+    error: false | string;
 }
 
 type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
