@@ -36,7 +36,7 @@ export default async function scan(
       return res.status(400).json({ success: false, error: "Invalid card" });
 
     const saveScanHistoryResponse = await client.query(
-      "INSERT INTO scan_histories(card_id, scanned_at) VALUES ($1, $2);",
+      "INSERT INTO card_tap_histories(card_id, scanned_at) VALUES ($1, $2);",
       [cardId, new Date()]
     );
 

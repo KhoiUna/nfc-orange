@@ -29,7 +29,7 @@ export default function View({ params }: Props) {
     const { cardUuid } = params
     const { data } = useSWR<ApiResponse>(`/api/view?c_id=${cardUuid}`, swrFetcher);
 
-    // Update `scan_histories`
+    // Update `card_tap_histories`
     const [cookies, setCookie, removeCookie] = useCookies(["scan_viewed"]);
     useEffect(() => {
         if (!cookies.scan_viewed) {
