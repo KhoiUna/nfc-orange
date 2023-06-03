@@ -1,9 +1,11 @@
+'use client'
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { SyntheticEvent, useState } from "react";
-import TextLoader from "../components/ui/TextLoader";
-import Layout from "../containers/Layout";
-import useAuth from "../lib/useAuth";
+import TextLoader from "@/components/ui/TextLoader";
+import useAuth from "@/lib/useAuth";
+import HeaderBar from "@/components/ui/HeaderBar";
 
 const loginInfoInitialState = {
   email: "",
@@ -65,7 +67,9 @@ export default function Login() {
   };
 
   return (
-    <Layout title="Login">
+    <>
+      <HeaderBar />
+
       <div id="parallax" className="text-center p-6 m-auto min-h-[80vh]">
         <div className="w-full p-6 mt-[7rem] rounded-lg max-w-[450px] mx-auto">
           <h1
@@ -133,6 +137,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
