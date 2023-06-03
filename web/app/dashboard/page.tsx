@@ -17,6 +17,7 @@ import FloatIconButton from "@/components/ui/FloatIconButton";
 import SharePopup from "./components/SharePopup";
 import useAuth from "@/lib/useAuth";
 import usermaven from "@/lib/usermaven";
+import AddToHomeScreen from "./components/AddToHomeScreen";
 
 const BioEditor = dynamic(() => import('./components/BioEditor'), {
     ssr: false,
@@ -45,8 +46,11 @@ export default function Dashboard() {
     const authUser = useAuth({})
     const { data, error } = useSWR<ApiResponse>("/api/profile", swrFetcher);
 
-    const [showPopup, setShowPopup] = useState(false)
-    const togglePopup = () => setShowPopup(!showPopup)
+    const [showAddToHomeScreenPopup, setShowAddToHomeScreenPopup] = useState(false)
+    const toggleAddToHomeScreenPopup = () => setShowAddToHomeScreenPopup(!showAddToHomeScreenPopup)
+
+    const [showSharePopup, setShowSharePopup] = useState(false)
+    const togglePopup = () => setShowSharePopup(!showSharePopup)
 
     const [linkState, setLinkState] = useState<LinkState[]>(linksInitialState)
     useEffect(() => {
@@ -195,6 +199,12 @@ export default function Dashboard() {
             </div>
 
             <FloatIconButton
+                className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 left-2 drop-shadow-lg flex justify-center items-center"
+                onClick={toggleAddToHomeScreenPopup}
+            >
+                <Icon className="text-white text-2xl" icon="ic:round-add-to-home-screen" />
+            </FloatIconButton>
+            <FloatIconButton
                 className="bg-primary rounded-[100%] w-14 h-14 fixed bottom-2 right-2 drop-shadow-lg flex justify-center items-center"
                 onClick={handleClick}
             >
@@ -202,7 +212,8 @@ export default function Dashboard() {
             </FloatIconButton>
             <div className="pb-14" />
 
-            {showPopup && <SharePopup url={shareURL} togglePopup={togglePopup} />}
+            {showAddToHomeScreenPopup && <AddToHomeScreen user={user} url={shareURL} togglePopup={toggleAddToHomeScreenPopup} />}
+            {showSharePopup && <SharePopup url={shareURL} togglePopup={togglePopup} />}
         </div>
     );
 }
