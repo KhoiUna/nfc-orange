@@ -96,7 +96,7 @@ export default async function Analytics() {
                 options={{
                     plugins: {
                         title: {
-                            display: true,
+                            display: false,
                             text: "Profile Views"
                         },
                         legend: {
@@ -125,7 +125,7 @@ export default async function Analytics() {
                 options={{
                     plugins: {
                         title: {
-                            display: true,
+                            display: false,
                             text: "QR Code Scans"
                         },
                         legend: {
@@ -159,7 +159,7 @@ export default async function Analytics() {
                 options={{
                     plugins: {
                         title: {
-                            display: true,
+                            display: false,
                             text: "Card Taps"
                         },
                         legend: {
