@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../../db/client";
+import client from "@/db/client";
 
 type ApiResponse = {
   success: boolean
