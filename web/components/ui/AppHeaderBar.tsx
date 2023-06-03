@@ -15,6 +15,10 @@ const NAV_LINKS: NavLinkProps[] = [
     href: "/dashboard",
     text: "Dashboard",
   },
+  {
+    href: "/analytics",
+    text: "Analytics",
+  },
   // {
   //   href: "/peers",
   //   text: "Peers",
