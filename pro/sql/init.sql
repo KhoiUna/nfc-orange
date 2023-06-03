@@ -29,7 +29,7 @@ CREATE TABLE public.links (
     url text NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at timestamp without time zone,
-    link_title character varying(45) DEFAULT 'My Resume'::character varying NOT NULL,
+    link_title character varying(45) DEFAULT 'Video'::character varying NOT NULL,
     id integer NOT NULL
 );
 
@@ -107,14 +107,13 @@ CREATE TABLE public.users (
     first_name character varying(45) NOT NULL,
     middle_name character varying(45),
     last_name character varying(45) NOT NULL,
-    university_id integer DEFAULT 1,
     avatar_url text,
     last_logged_in timestamp without time zone,
-    major character varying(60) NOT NULL,
-    expected_grad_date date,
     bio text,
-    graduated boolean DEFAULT false,
-    username character varying(45) NOT NULL
+    is_premium boolean DEFAULT false,
+    username character varying(45) NOT NULL,
+    phone_number character(12),
+    banner_image_url text
 );
 
 
