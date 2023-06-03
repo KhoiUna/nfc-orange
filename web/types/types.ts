@@ -24,8 +24,10 @@ export type User = {
   middle_name: string | null,
   last_name: string,
   avatar_url: string | null
+  banner_image_url: string | null
   bio: string | null
   created_at: string
+  is_premium: boolean
 }
 
 export type Link = {
