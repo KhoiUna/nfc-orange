@@ -96,7 +96,7 @@ export default function page() {
             <div className="py-8 flex flex-wrap justify-center items-center">
                 <Suspense>
                     {/* @ts-ignore */}
-                    {jobTools.map((item, index) => <Card key={index} jobItem={item} />)}
+                    {jobTools.map((item: JobItem, index) => <Card key={index} jobItem={item} />)}
                 </Suspense>
             </div>
         </>
