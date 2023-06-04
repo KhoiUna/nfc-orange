@@ -19,10 +19,10 @@ const NAV_LINKS: NavLinkProps[] = [
     href: "/analytics",
     text: "Analytics",
   },
-  {
-    href: "/job-tools",
-    text: "Job Tools",
-  },
+  // {
+  //   href: "/job-tools",
+  //   text: "Job Tools",
+  // },
   // {
   //   href: "/peers",
   //   text: "Peers",
