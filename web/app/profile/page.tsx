@@ -11,6 +11,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, User } from "@/types/types";
 import OrangeLoader from "@/components/ui/OrangeLoader";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 
 type ApiResponse = {
     success: {
@@ -35,11 +36,7 @@ export default function Profile() {
 
     const { data: profileResponse, error } = useSWR<ApiResponse, any>("/api/profile", swrFetcher);
 
-    if (error) return (
-        <div className="text-[1.8rem] text-center m-5">
-            <h1>Failed to load</h1>
-        </div>
-    );
+    if (error) return <ErrorMessage />
 
     if (!profileResponse) return <OrangeLoader />
 
