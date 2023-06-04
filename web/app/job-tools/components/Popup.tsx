@@ -19,7 +19,7 @@ export default function Popup() {
 
     return (
         <>
-            <div className="fixed bg-black opacity-[0.5] w-screen h-screen top-0 cursor-pointer" />
+            <div className="fixed bg-black opacity-[0.5] w-screen h-screen top-0" />
 
             <div className="fixed z-10 rounded-lg bg-white mx-5 max-w-[500px] h-[550px] overflow-auto sm:m-auto sm:w-screen top-16 left-0 right-0 p-4">
                 {/* @ts-ignore */}
