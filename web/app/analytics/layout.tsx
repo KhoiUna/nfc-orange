@@ -6,7 +6,7 @@ export const metadata = {
     description: 'NFC Orange | Get your digital business card & join our student community.'
 };
 
-export default async function AnalyticsLayout({ children }: { children: React.ReactNode }) {
+export default function AnalyticsLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <AppHeaderBar title={'Analytics'} />
