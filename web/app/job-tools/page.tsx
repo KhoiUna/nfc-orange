@@ -3,6 +3,7 @@ import Image from "next/image"
 import jobTools from "./jobTools"
 import axios from 'axios'
 import { Suspense } from 'react'
+import { parse } from 'node-html-parser';
 
 type JobItem = {
     name: string,
@@ -15,9 +16,13 @@ type JobItem = {
 }
 
 const FALLBACK_ICON_URL = 'https://ik.imagekit.io/chekchat/www-icon_zUzwyf79x.png?updatedAt=1685905852569'
-const imageURLToBase64 = async (url: string) => {
+const imageURLToBase64 = async (href: string, url: string) => {
     try {
-        new URL(url)
+        try {
+            new URL(url)
+        } catch (error) {
+            url = href + url
+        }
 
         const { data } = await axios.get(url, {
             responseType: 'arraybuffer',
@@ -33,11 +38,18 @@ const imageURLToBase64 = async (url: string) => {
 }
 const fetchFavicon = async (url: string) => {
     try {
-        const { result } = await ogs({ url })
-        if (result) {
-            if (result.favicon && await imageURLToBase64(result.favicon)) return await imageURLToBase64(result.favicon)
-            if (result.ogImage && result.ogImage[0].url) return await imageURLToBase64(result.ogImage[0].url)
+        const { html, result } = await ogs({ url })
+
+        if (result.favicon) return await imageURLToBase64(url, result.favicon)
+
+        if (html) {
+            const root = parse(html);
+            const faviconElement = root.querySelector('link[rel="shortcut icon"]');
+            const faviconUrl = faviconElement?.getAttribute('href');
+            if (faviconUrl) return await imageURLToBase64(url, faviconUrl)
         }
+
+        if (result.ogImage && result.ogImage[0].url) return await imageURLToBase64(url, result.ogImage[0].url)
     } catch (error) {
         return
     }
