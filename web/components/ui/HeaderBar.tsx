@@ -35,6 +35,10 @@ const NAV_LINKS: NavLink[] = [
     text: "Join waitlist",
   },
   {
+    href: "/job-tools",
+    text: "Job Tools",
+  },
+  {
     href: "/login",
     text: "Login",
   },
