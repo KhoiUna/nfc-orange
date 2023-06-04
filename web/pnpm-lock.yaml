@@ -41,6 +41,9 @@ dependencies:
   next:
     specifier: 13.4.4
     version: 13.4.4(react-dom@18.2.0)(react@18.2.0)
+  open-graph-scraper:
+    specifier: ^6.0.1
+    version: 6.0.1
   pdfjs-dist:
     specifier: ^2.16.105
     version: 2.16.105
@@ -1546,6 +1549,10 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
+
+  /chardet@1.5.1:
+    resolution: {integrity: sha512-0XMOtA52igKDOIfvJZJ6v0+J9yMF3IuYyEa5oFUxBXA01G6mwCNKpul3bgbFf7lmZuqwN/oyg/zQ1cGS7NyJkQ==}
+    dev: false
 
   /chart.js@4.3.0:
     resolution: {integrity: sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g==}
@@ -3371,6 +3378,15 @@ packages:
     dependencies:
       wrappy: 1.0.2
 
+  /open-graph-scraper@6.0.1:
+    resolution: {integrity: sha512-xyBxn72mrQO4r0z4CywlcA1/WpI9ouhX1IurDEWQ0BNsowdumwRUK5AB1PQaaWXziqwhIaVVMttC/5hGbH/uOg==}
+    engines: {node: '>=18.16.0'}
+    dependencies:
+      chardet: 1.5.1
+      cheerio: 1.0.0-rc.12
+      validator: 13.9.0
+    dev: false
+
   /optionator@0.9.1:
     resolution: {integrity: sha512-74RlY5FCnhq4jRxVUPKDaRwrVNXMqsGsiW6AJw4XK8hmtm10wC0ypZBLw5IIp85NZMr91+qd1RvvENwg7jjRFw==}
     engines: {node: '>= 0.8.0'}
@@ -4497,6 +4513,11 @@ packages:
   /uuid@9.0.0:
     resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
     hasBin: true
+    dev: false
+
+  /validator@13.9.0:
+    resolution: {integrity: sha512-B+dGG8U3fdtM0/aNK4/X8CXq/EcxU2WPrPEkJGslb47qyHsxmbggTWK0yEA4qnYVNF+nxNlN88o14hIcPmSIEA==}
+    engines: {node: '>= 0.10'}
     dev: false
 
   /web-streams-polyfill@3.2.1:
