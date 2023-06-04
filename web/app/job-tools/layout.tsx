@@ -1,4 +1,4 @@
-import AppHeaderBar from "@/components/ui/AppHeaderBar"
+import HeaderBar from "@/components/ui/HeaderBar";
 
 export const metadata = {
     title: 'Job Tools | NFC Orange',
@@ -8,9 +8,9 @@ export const metadata = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <AppHeaderBar title={'Dashboard'} />
+            <HeaderBar />
 
-            <main className="min-h-screen bg-slate-50">
+            <main className="pt-12 min-h-screen bg-slate-50">
                 {children}
             </main>
         </>
