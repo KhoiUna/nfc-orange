@@ -9,7 +9,7 @@ type ApiResponse = {
     error: boolean | string
 }
 
-export const Footer = () => (
+const Footer = () => (
     <footer className="bg-primary py-[5%] px-[10%]">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
@@ -72,6 +72,7 @@ export const Footer = () => (
         </div>
     </footer>
 )
+export { Footer };
 
 export default async function Home() {
     const [userCount] = await Promise.all([getUserCount()])
