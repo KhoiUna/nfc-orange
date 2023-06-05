@@ -114,6 +114,12 @@ const jobTools = [
         tags: [tags[4]],
         url: "https://www.dice.com/",
         text: "Find your next tech job. Explore open roles at companies hiring now."
+    },
+    {
+        name: "ZipRecruiter",
+        tags: [tags[4]],
+        url: "https://www.ziprecruiter.com/",
+        text: "With a personal recruiter, you’ll get matched to roles that are right for you."
     }
 ];
 
