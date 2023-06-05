@@ -21,8 +21,6 @@ const imageURLToBase64 = async (href: string, url: string) => {
             new URL(url)
         } catch (error) {
             url = href + url
-            console.log(href);
-
         }
 
         const { data } = await axios.get(url, {
@@ -44,9 +42,13 @@ const fetchFavicon = async (url: string) => {
 
         if (html) {
             const root = parse(html);
-            const faviconElement = root.querySelector('link[rel="shortcut icon"]');
-            const faviconUrl = faviconElement?.getAttribute('href');
-            if (faviconUrl) return await imageURLToBase64(url, faviconUrl)
+            let iconElement = root.querySelector('link[rel="icon"]');
+            let iconUrl = iconElement?.getAttribute('href');
+            if (iconUrl) return await imageURLToBase64(url, iconUrl)
+
+            iconElement = root.querySelector('link[rel="shortcut icon"]');
+            iconUrl = iconElement?.getAttribute('href');
+            if (iconUrl) return await imageURLToBase64(url, iconUrl)
         }
 
         if (result.ogImage && result.ogImage[0].url) return await imageURLToBase64(url, result.ogImage[0].url)
