@@ -44,5 +44,20 @@
   "display": "fullscreen",
   "theme_color": "#FFF0C3",
   "background_color": "#FFF0C3",
-  "screenshots": []
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Home | NFC Orange"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "401x714",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Home | NFC Orange"
+    }
+  ]
 }
