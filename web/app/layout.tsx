@@ -1,4 +1,5 @@
 import Analytics from '@/components/Analytics';
+import ServiceWorker from '@/components/ServiceWorker';
 import '@/styles/globals.css'
 
 export const metadata = {
@@ -30,6 +31,8 @@ export default function RootLayout({ children }: {
     return (
         <html lang='en'>
             <Analytics />
+
+            <ServiceWorker />
 
             <body>
                 {children}
