@@ -56,7 +56,7 @@
       "src": "screenshot2.png",
       "sizes": "401x714",
       "type": "image/png",
-      "platform": "wide",
+      "platform": "narrow",
       "label": "Home | NFC Orange"
     }
   ]
