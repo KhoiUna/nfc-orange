@@ -35,6 +35,12 @@ const tags = {
 
 const jobTools = [
     {
+        name: "ChatGPT",
+        tags: [tags[2], tags[6]],
+        url: "https://chat.openai.com/",
+        text: "ChatGPT: get instant answers, find creative inspiration, and learn something new. Use ChatGPT for free today."
+    },
+    {
         name: "Simplify",
         tags: [tags[1], tags[0]],
         url: "https://simplify.jobs/",
@@ -44,8 +50,7 @@ const jobTools = [
         name: "Teal",
         tags: [tags[0], tags[2]],
         url: "https://www.tealhq.com/",
-        text:
-            "Better Resume. Faster Search. More Offers. Simplify your job search and land your next position sooner with Teal's all-in-one suite of tools."
+        text: "Better Resume. Faster Search. More Offers. Simplify your job search and land your next position sooner with Teal's all-in-one suite of tools."
     },
     {
         name: "Careerflow",
@@ -112,4 +117,4 @@ const jobTools = [
     }
 ];
 
-export default jobTools;
+export default jobTools.sort((a, b) => a.name.localeCompare(b.name))
