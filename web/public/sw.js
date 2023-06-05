@@ -7,7 +7,10 @@ importScripts(
 );
 
 // TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
-const offlineFallbackPage = "offline.html";
+const OFFLINE_FALLBACK_PAGE = "offline.html";
+
+// TODO: Add whichever assets you want to pre-cache here:
+const PRECACHE_ASSETS = ["/_next/"];
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -17,7 +20,10 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener("install", async (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.add(offlineFallbackPage))
+    caches.open(CACHE).then((cache) => {
+      cache.add(OFFLINE_FALLBACK_PAGE);
+      cache.addAll();
+    })
   );
 });
 
@@ -47,7 +53,7 @@ self.addEventListener("fetch", (event) => {
           return networkResp;
         } catch (error) {
           const cache = await caches.open(CACHE);
-          const cachedResp = await cache.match(offlineFallbackPage);
+          const cachedResp = await cache.match(OFFLINE_FALLBACK_PAGE);
           return cachedResp;
         }
       })()
