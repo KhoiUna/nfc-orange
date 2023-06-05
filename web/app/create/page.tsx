@@ -13,6 +13,7 @@ import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
 import { Footer } from "../page";
 import TextLoader from "@/components/ui/TextLoader";
+import { Tooltip } from "react-tooltip";
 
 const registerInfoInitialState = {
     email: "",
@@ -122,14 +123,15 @@ export default function Create() {
                                             backgroundSize: 'cover'
                                         }}
                                     >
+                                        <Tooltip id="avatar" />
                                         <Image
+                                            data-tooltip-id="avatar"
+                                            data-tooltip-content="😉 You can change after submitting."
                                             className="w-[90px] h-[90px] object-scale-down bg-white rounded-[100%] border-2 border-primary relative top-[110px] left-0 right-0 m-auto"
                                             src={'https://ik.imagekit.io/chekchat/default-avatar_TAffG0nED.png'}
                                             alt={`Profile picture`}
                                             width={90}
                                             height={90}
-                                            placeholder="blur"
-                                            blurDataURL={BLUR_DATA_URL}
                                         />
                                     </div>
                                 </div>

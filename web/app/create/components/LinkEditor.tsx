@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react"
 import Link from "next/link"
 import { SyntheticEvent, useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
+import { Tooltip } from 'react-tooltip'
 
 export type LinkState = LinkType & { isSaved: boolean, isAdded: boolean }
 
@@ -55,8 +56,11 @@ export default function LinkEditor() {
 
     return (
         <>
+            <Tooltip id="my-resume" />
             <button
-                className="max-w-[500px] mx-auto w-full font-bold text-sm border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
+                className="cursor-default max-w-[500px] mx-auto w-full font-bold text-sm border-2 border-black drop-shadow-lg p-3 rounded-lg bg-white text-center hover:bg-blue-100"
+                data-tooltip-id='my-resume'
+                data-tooltip-content="😉 You can upload after submitting."
             >
                 My Resume
             </button>
