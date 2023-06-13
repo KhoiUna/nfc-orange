@@ -14,13 +14,13 @@ import { SyntheticEvent, useState } from "react";
 
 type Student = {
   student_id: number
+  username: string
   first_name: string;
   middle_name?: string;
   last_name: string;
   avatar_url?: string;
   major: string;
-  university_name: string;
-  uuid: string
+  university_name: string
 };
 
 export default function Dashboard() {
@@ -120,9 +120,9 @@ export default function Dashboard() {
                 <p className="py-2">{student.university_name}</p>
 
 
-                <a className="block w-fit" href={process.env.NEXT_PUBLIC_STUDENT_APP_URL + student.uuid} target="_blank" rel="noreferrer">
+                <a className="block w-fit" href={process.env.NEXT_PUBLIC_STUDENT_APP_URL + '/' + student.username + '?utm_source=recruiter'} target="_blank" rel="noreferrer">
                   <p className="pt-2 underline font-semibold text-blue-700">
-                    View Resume
+                    View Profile
                   </p>
                 </a>
 
