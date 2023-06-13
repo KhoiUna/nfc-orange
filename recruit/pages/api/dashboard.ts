@@ -20,8 +20,7 @@ async function dashboard(
         .json({ success: false, error: "Method not allowed" });
 
     const { rows } = await client.query(
-      "SELECT student_id, first_name, middle_name, last_name, avatar_url, major, university_name, uuid FROM recruiter_dashboard WHERE recruiter_email = $1 ORDER BY first_name;",
-      [req.session.user?.email]
+      "SELECT student_id, first_name, middle_name, last_name, username, avatar_url, major, university_name FROM recruiter_dashboard ORDER BY first_name;"
     );
 
     return res.status(200).json({ success: rows, error: false });
