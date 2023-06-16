@@ -35,7 +35,7 @@ const registerUser = async (inputData: Inputs) => {
 
 export default function Register() {
   const searchParams = useSearchParams();
-  const readerID = searchParams.get("r_id");
+  const readerID = searchParams?.get("r_id");
 
   const [status, setStatus] = useState({
     error: false,

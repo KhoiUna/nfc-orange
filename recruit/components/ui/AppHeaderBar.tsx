@@ -1,3 +1,5 @@
+'use client'
+
 import NavLink, { NavLinkProps } from "./NavLink";
 import { Fragment, useState } from "react";
 import Link from "next/link";
@@ -82,11 +84,11 @@ const MenuSidebar = ({
               </Fragment>
             );
           })}
-          <Link href={"/api/logout"}>
+          <a href={"/api/logout"}>
             <p className={`sm:hidden mx-5 my-8 text-2xl underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}>
               Logout
             </p>
-          </Link>
+          </a>
         </div>
       </div>
     </>
@@ -120,11 +122,11 @@ const AppHeaderBar = ({
               <NavLink href={item.href} text={item.text} />
             </p>
           ))}
-          <Link href={"/api/logout"} prefetch={false}>
+          <a href={"/api/logout"}>
             <p className={`hidden sm:block mx-5 text-lg underline underline-offset-4 ${TEXT_DECORATION_COLOR} font-semibold`}>
               Logout
             </p>
-          </Link>
+          </a>
         </div>
 
         <button className={`sm:hidden ${TEXT_COLOR}`} onClick={toggleMenu} aria-label="Menu">

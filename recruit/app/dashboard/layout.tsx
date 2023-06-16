@@ -1,10 +1,6 @@
-"use client";
-
 import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AppHeaderBar from "@/components/ui/AppHeaderBar";
-
-const queryClient = new QueryClient();
+import ReactQuery from "@/components/ReactQuery";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -14,9 +10,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         navLinks={[]}
       />
 
-      <QueryClientProvider client={queryClient}>
+      <ReactQuery>
         <main>{children}</main>
-      </QueryClientProvider>
+      </ReactQuery>
     </>
   );
 }

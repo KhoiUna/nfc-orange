@@ -1,3 +1,5 @@
+'use client'
+
 import NavLink from "./NavLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
