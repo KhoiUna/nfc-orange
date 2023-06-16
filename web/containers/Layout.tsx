@@ -20,7 +20,7 @@ const Layout = ({ children, title }: LayoutProps) => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="NFC Orange | Get your digital business card & join our student community." />
+        <meta name="description" content="NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution." />
         <link rel="icon" href="/nfc-orange.svg" />
         <link rel="shortcut icon" href="/nfc-orange.svg" type="image/x-icon" />
 

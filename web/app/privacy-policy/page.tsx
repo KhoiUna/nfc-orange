@@ -3,7 +3,7 @@ import { Footer } from "../page"
 
 export const metadata = {
     title: 'NFC Orange | Privacy Policy',
-    description: "NFC Orange | Get your digital business card & join our student community."
+    description: "NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution."
 }
 
 export default function PrivacyPolicy() {

@@ -3,7 +3,7 @@ import Script from "next/script";
 
 export const metadata = {
     title: 'Analytics | NFC Orange',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    description: 'NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution.'
 };
 
 export default function AnalyticsLayout({ children }: { children: React.ReactNode }) {

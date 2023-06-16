@@ -4,13 +4,13 @@ import '@/styles/globals.css'
 
 export const metadata = {
     title: 'NFC Orange | Home',
-    description: 'Get your digital business card & join our student community.',
+    description: 'Modernize Career Fairs: Embrace the Paperless Revolution.',
     metadataBase: new URL('https://www.nfcorange.com'),
     manifest: '/manifest.json',
     themeColor: '#FFF0C3',
     openGraph: {
         title: 'NFC Orange | Home',
-        description: 'Get your digital business card & join our student community.',
+        description: 'Modernize Career Fairs: Embrace the Paperless Revolution.',
         url: 'https://www.nfcorange.com',
         siteName: 'NFC Orange',
         images: [

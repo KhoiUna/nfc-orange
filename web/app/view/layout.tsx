@@ -1,6 +1,6 @@
 export const metadata = {
     title: 'NFC Orange | View',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    description: 'NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution.'
 }
 
 export default function ViewLayout({ children }: { children: React.ReactNode; }) {

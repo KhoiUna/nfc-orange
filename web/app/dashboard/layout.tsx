@@ -2,7 +2,7 @@ import AppHeaderBar from "@/components/ui/AppHeaderBar"
 
 export const metadata = {
     title: 'Dashboard | NFC Orange',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    description: 'NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution.'
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

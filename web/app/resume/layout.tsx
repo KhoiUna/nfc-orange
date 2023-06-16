@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export const metadata = {
     title: 'NFC Orange | Resume',
-    description: 'NFC Orange | Get your digital business card & join our student community.'
+    description: 'NFC Orange | Modernize Career Fairs: Embrace the Paperless Revolution.'
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
