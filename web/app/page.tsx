@@ -86,9 +86,9 @@ export default async function Home() {
                     <h1 className="text-4xl text-primary font-bold mt-4 ml-1 flex">
                         Modernize Career Fairs: Embrace the Paperless Revolution.
                     </h1>
-                    {userCount > 0 && <h2 className="text-2xl text-primary font-bold mt-4 ml-1 flex">
+                    {/* {userCount > 0 && <h2 className="text-2xl text-primary font-bold mt-4 ml-1 flex">
                         {Math.floor(userCount / 10) * 10 + '+ students and growing'}
-                    </h2>}
+                    </h2>} */}
 
                     <a href={"/waitlist"}>
                         <button className="text-2xl font-bold bg-primary text-white py-2 px-6 rounded-[100px] cursor-pointer mt-7 drop-shadow-lg transition-all hover:shadow-stone-800 hover:shadow-lg">
