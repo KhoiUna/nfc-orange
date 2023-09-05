@@ -22,13 +22,13 @@ const nextConfig = {
     ],
   },
   async redirects() {
-    return [
-      {
-        source: "/register",
-        destination: "/",
-        permanent: true,
-      },
-    ];
+    // return [
+    //   {
+    //     source: "/register",
+    //     destination: "/",
+    //     permanent: true,
+    //   },
+    // ];
   },
 };
 
