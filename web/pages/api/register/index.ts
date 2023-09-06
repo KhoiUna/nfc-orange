@@ -119,7 +119,7 @@ export default async function register(
       [username]
     );
     const { count } = rows[0]
-    if (count !== 0) return res
+    if (count > 0) return res
       .status(400)
       .json({ success: false, error: "Username already exists" })
 
