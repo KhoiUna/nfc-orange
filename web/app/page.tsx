@@ -84,7 +84,7 @@ export default async function Home() {
             <div id='gif-parallax' className="flex justify-between items-center min-h-screen">
                 <div className="mx-8">
                     <h1 className="text-4xl text-primary font-bold mt-4 ml-1 flex">
-                        Modernize Career Fairs: Embrace the Paperless Revolution.
+                        Modernize Networking: Embrace the Paperless Revolution.
                     </h1>
                     {/* {userCount > 0 && <h2 className="text-2xl text-primary font-bold mt-4 ml-1 flex">
                         {Math.floor(userCount / 10) * 10 + '+ students and growing'}
