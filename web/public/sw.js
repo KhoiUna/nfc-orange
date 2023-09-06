@@ -32,7 +32,7 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 workbox.routing.registerRoute(
-  new RegExp("/*"),
+  new RegExp("^(?!.*/api/logout).*$"),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE,
   })
