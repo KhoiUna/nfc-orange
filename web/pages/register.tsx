@@ -12,6 +12,7 @@ export type RegisterInfo = {
   email: string;
   major: string;
   expected_grad_date: string
+  username: string
   password: string;
   confirm_password: string;
 };
@@ -23,8 +24,9 @@ const registerInfoInitialState: RegisterInfo = {
   email: "",
   major: "",
   expected_grad_date: '',
+  username: '',
   password: "",
-  confirm_password: "",
+  confirm_password: ""
 };
 
 interface RegisterProps {
@@ -162,7 +164,7 @@ export default function Register({ showForm }: RegisterProps) {
                   className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
                   type="email"
                   name="email"
-                  placeholder="School email .edu*"
+                  placeholder="Primary Email*"
                   value={registerInfo.email}
                 />
               </div>
@@ -187,6 +189,17 @@ export default function Register({ showForm }: RegisterProps) {
                   type="date"
                   name="expected_grad_date"
                   value={registerInfo.expected_grad_date}
+                />
+              </div>
+
+              <div>
+                <input
+                  onChange={handleChange}
+                  className="border-2 my-3 p-2 rounded-lg w-full drop-shadow-lg text-[1.3rem]"
+                  type="text"
+                  name="username"
+                  placeholder="Username*"
+                  value={registerInfo.username}
                 />
               </div>
 

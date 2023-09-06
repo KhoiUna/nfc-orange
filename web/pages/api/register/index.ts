@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import Joi from "joi";
-import { RegisterInfo } from "../register";
-import client from "../../db/client";
-import PasswordHelper from "../../helpers/PasswordHelper";
+import { RegisterInfo } from "../../register";
+import client from "../../../db/client";
+import PasswordHelper from "../../../helpers/PasswordHelper";
 
 type ApiResponse = {
   success: boolean | string
@@ -10,6 +10,7 @@ type ApiResponse = {
 };
 
 type Body = {
+  username: string
   first_name: string
   middle_name: string
   last_name: string
@@ -25,14 +26,15 @@ const isValid = async (registerInfo: RegisterInfo) => {
     middle_name: Joi.string().trim().allow(null, ""),
     last_name: Joi.string().trim().min(1).required(),
     email: Joi.string().email().trim().required(),
-    major: Joi.string().min(5).max(45).required(),
+    major: Joi.string().min(2).max(45).required(),
     expected_grad_date: Joi.string().required(),
+    username: Joi.string().trim().min(3).alphanum().required(),
     password: Joi.string().min(6).required(),
     confirm_password: Joi.ref("password"),
   });
 
   try {
-    const value = await schema.validateAsync(registerInfo);
+    const _ = await schema.validateAsync(registerInfo)
   } catch (error: any) {
     if (error.details[0].type === "any.only")
       return {
@@ -66,7 +68,7 @@ export default async function register(
         .status(405)
         .json({ success: false, error: "Method not allowed" });
 
-    const { first_name, middle_name, last_name, email, major, expected_grad_date, password }: Body =
+    const { first_name, middle_name, last_name, email, major, expected_grad_date, username, password }: Body =
       req.body;
     const { c_id } = req.query;
 
@@ -101,7 +103,7 @@ export default async function register(
         .status(400)
         .json({ success: false, error: "Invalid registration" });
 
-    // Validate unique user
+    // Validate unique email
     const { rows: users } = await client.query(
       "SELECT * FROM users WHERE email = $1;",
       [email]
@@ -109,11 +111,22 @@ export default async function register(
     if (users.length !== 0)
       return res
         .status(400)
-        .json({ success: false, error: "Email already registered" });
+        .json({ success: false, error: "Email already registered" })
+
+    // Validate unique username
+    const { rows } = await client.query(
+      "SELECT COUNT(*) FROM users WHERE username = $1;",
+      [username]
+    );
+    const { count } = rows[0]
+    if (count !== 0) return res
+      .status(400)
+      .json({ success: false, error: "Username already exists" })
+
 
     // Save user to db
     const savingUserResponse = await client.query(
-      "INSERT INTO users(email, password, card_id, first_name, middle_name, last_name, major, expected_grad_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+      "INSERT INTO users(email, password, card_id, first_name, middle_name, last_name, major, expected_grad_date, username) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
       [
         email,
         await PasswordHelper.hashPassword(password),
@@ -122,7 +135,8 @@ export default async function register(
         middle_name.trim(),
         last_name.trim(),
         major,
-        expected_grad_date
+        expected_grad_date,
+        username
       ]
     );
 
