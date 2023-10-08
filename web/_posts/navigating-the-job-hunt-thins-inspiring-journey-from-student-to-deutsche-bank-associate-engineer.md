@@ -1,6 +1,6 @@
 ---
 title: "Navigating the Job Hunt: Thin's Inspiring Journey from Student to Deutsche Bank Associate Engineer"
-excerpt: "In the world of job hunting, where uncertainties loom and opportunities can seem elusive, it's easy to get disheartened. Thin Yati Su, an international student from Burma who recently joined Deutsche Bank as an Associate Engineer, knows this journey all too well. Her story is not..."
+excerpt: "Navigating the Job Hunt: Thin's Inspiring Journey from Student to Deutsche Bank Associate Engineer"
 coverImage: /images/thin-yati-su.jpg
 date: "2023-10-07"
 author: "Khoi Nguyen"
