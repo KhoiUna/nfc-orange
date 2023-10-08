@@ -39,6 +39,10 @@ const NAV_LINKS: NavLink[] = [
     text: "Job Tools",
   },
   {
+    href: "/blog",
+    text: "Blog",
+  },
+  {
     href: "/login",
     text: "Login",
   },
