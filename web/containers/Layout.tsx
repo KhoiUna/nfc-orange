@@ -1,10 +1,8 @@
-import { Icon } from "@iconify/react";
 import Head from "next/head";
 import { ReactNode } from "react";
 import Analytics from "../components/Analytics";
-import Logo from "../components/Logo";
 import HeaderBar from "../components/ui/HeaderBar";
-import { Footer } from "@/app/page";
+import Footer from "@/components/ui/Footer";
 
 interface LayoutProps {
   children: ReactNode | ReactNode[];
