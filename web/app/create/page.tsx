@@ -1,6 +1,5 @@
 'use client'
 
-import { BLUR_DATA_URL } from "@/components/ProfilePictureUpload";
 import { appSubmitButtonStyle } from "@/styles/tailwind";
 import Image from "next/image";
 import LinkEditor, { LinkState } from "./components/LinkEditor";
@@ -11,9 +10,9 @@ import { getFirestore, addDoc, collection } from "firebase/firestore";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import app from "@/lib/firebase";
 import { Icon } from "@iconify/react";
-import { Footer } from "../page";
 import TextLoader from "@/components/ui/TextLoader";
 import { Tooltip } from "react-tooltip";
+import Footer from "@/components/ui/Footer";
 
 const registerInfoInitialState = {
     email: "",
