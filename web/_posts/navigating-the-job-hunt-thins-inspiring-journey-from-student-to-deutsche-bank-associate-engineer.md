@@ -6,7 +6,7 @@ date: "2023-10-07"
 author: "Khoi Nguyen"
 ---
 
-In the world of job hunting, where uncertainties loom and opportunities can seem elusive, it's easy to get disheartened. Thin Yati Su, an international student from Burma who recently joined Deutsche Bank as an Associate Engineer, knows this journey all too well. Her story is not just about landing a dream job; it's a testament to resilience, perseverance, and the invaluable lessons learned along the way.
+In the world of job hunting, where uncertainties loom and opportunities can seem elusive, it's easy to get disheartened. [Thin Yati Su](https://www.linkedin.com/in/thin-yati-su/), an international student from Burma who recently joined Deutsche Bank as an Associate Engineer, knows this journey all too well. Her story is not just about landing a dream job; it's a testament to resilience, perseverance, and the invaluable lessons learned along the way.
 
 **The Early Days**
 
