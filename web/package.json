@@ -24,7 +24,7 @@
     "imagekitio-react": "^2.0.0",
     "iron-session": "^6.3.1",
     "joi": "^17.9.2",
-    "next": "13.4.4",
+    "next": "13.5.0",
     "node-html-parser": "^6.1.5",
     "open-graph-scraper": "^6.0.1",
     "pdfjs-dist": "^2.16.105",
