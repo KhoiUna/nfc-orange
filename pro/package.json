@@ -13,7 +13,7 @@
   "dependencies": {
     "@usermaven/sdk-js": "^1.2.2",
     "@vercel/analytics": "^1.0.1",
-    "axios": "^1.4.0",
+    "axios": "^1.6.0",
     "bcrypt": "^5.1.0",
     "chart.js": "^4.3.0",
     "cheerio": "1.0.0-rc.12",
