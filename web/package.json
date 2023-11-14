@@ -13,7 +13,7 @@
   "dependencies": {
     "@usermaven/sdk-js": "^1.2.2",
     "@vercel/analytics": "^1.0.1",
-    "axios": "^1.4.0",
+    "axios": "^1.6.1",
     "bcrypt": "^5.1.0",
     "chart.js": "^4.3.0",
     "cheerio": "1.0.0-rc.12",
@@ -24,7 +24,7 @@
     "imagekitio-react": "^2.0.0",
     "iron-session": "^6.3.1",
     "joi": "^17.9.2",
-    "next": "13.4.4",
+    "next": "14.0.2",
     "node-html-parser": "^6.1.5",
     "open-graph-scraper": "^6.0.1",
     "pdfjs-dist": "^2.16.105",
