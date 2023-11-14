@@ -347,8 +347,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /dottie@2.0.2:
-    resolution: {integrity: sha512-fmrwR04lsniq/uSr8yikThDTrM7epXHBAAjH9TbeH3rEA8tdCO7mRzB9hdmdGyJCxF8KERo9CITcm3kGuoyMhg==}
+  /dottie@2.0.6:
+    resolution: {integrity: sha512-iGCHkfUc5kFekGiqhe8B/mdaurD+lakO9txNnTvKtA6PISrw86LgqHvRzWYPyoE2Ph5aMIrCw9/uko6XHTKCwA==}
     dev: false
 
   /ee-first@1.1.1:
@@ -892,7 +892,7 @@ packages:
       '@types/debug': 4.1.7
       '@types/validator': 13.7.10
       debug: 4.3.4
-      dottie: 2.0.2
+      dottie: 2.0.6
       inflection: 1.13.4
       lodash: 4.17.21
       moment: 2.29.4
